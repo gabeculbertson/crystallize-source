@@ -9,19 +9,19 @@ public class SlidingDoorTrigger : MonoBehaviour {
 
     Vector3 originalPosition;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         originalPosition = door.transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update() {
         if (isNear) {
             door.transform.position = Vector3.MoveTowards(door.transform.position, target.position, 3f * Time.deltaTime);
         } else {
             door.transform.position = Vector3.MoveTowards(door.transform.position, originalPosition, 3f * Time.deltaTime);
         }
-	}
+    }
 
     void OnTriggerEnter(Collider other) {
         if (other.IsPlayer()) {

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PhraseProgression  {
+public class PhraseProgression {
 
     public PhraseSequence Phrase { get; set; }
     public List<List<bool>> MissingWords { get; set; }
@@ -31,10 +31,10 @@ public class PhraseProgression  {
     public bool GetWordMissing(int step, int word) {
         int index = Mathf.Clamp(step, 0, MissingWords.Count - 1);
         //if (step < MissingWords.Count) {
-            if (word < MissingWords[index].Count) {
-                return MissingWords[index][word];
-            }
-            return false;
+        if (word < MissingWords[index].Count) {
+            return MissingWords[index][word];
+        }
+        return false;
         //}
         //return false;
     }

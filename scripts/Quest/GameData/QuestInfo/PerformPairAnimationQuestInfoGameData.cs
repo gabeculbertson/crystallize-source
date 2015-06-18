@@ -20,11 +20,11 @@ public class PerformPairAnimationQuestInfoGameData : QuestInfoGameData {
 
     public override void ProcessMessage(System.EventArgs args) {
         var qi = GetQuestInstance();
-        
+
         if (!IsJoined(args)) {
             return;
         }
-        
+
         if (args is PersonAnimationEventArgs) {
             var paea = (PersonAnimationEventArgs)args;
 

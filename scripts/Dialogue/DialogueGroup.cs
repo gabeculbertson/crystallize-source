@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using Crystallize;
 
 public class DialogueGroup : MonoBehaviour, ITriggerEventHandler, IInteractionPoint {
 

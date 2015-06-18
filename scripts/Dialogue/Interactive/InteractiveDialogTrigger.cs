@@ -1,52 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Crystallize {
-	public class InteractiveDialogTrigger : MonoBehaviour {
+public class InteractiveDialogTrigger : MonoBehaviour {
 
-		InteractiveDialogActor actor;
+    InteractiveDialogActor actor;
 
-		// Use this for initialization
-		void Start () {
-		
-		}
-		
-		// Update is called once per frame
-		void Update () {
-		
-		}
+    // Use this for initialization
+    void Start() {
 
-		public void Initialize(InteractiveDialogActor actor){
-			this.actor = actor;
-		}
+    }
 
-		void OnTriggerEnter(Collider other){
-			if (!other.attachedRigidbody) {
-				return;
-			}
+    // Update is called once per frame
+    void Update() {
 
-			if (other.attachedRigidbody.tag == "Player") {
-				var triggerConsumer = other.attachedRigidbody.gameObject.GetInterfaceInChildren<ITriggerConsumer>();
-				if(triggerConsumer != null){
-					triggerConsumer.TriggerEntered(gameObject);
-				}
-				actor.TriggerEntered();
-			}
-		}
+    }
 
-		void OnTriggerExit(Collider other){
-			if (!other.attachedRigidbody) {
-				return;
-			}
+    public void Initialize(InteractiveDialogActor actor) {
+        this.actor = actor;
+    }
 
-			if (other.attachedRigidbody.tag == "Player") {
-				var triggerConsumer = other.attachedRigidbody.gameObject.GetInterfaceInChildren<ITriggerConsumer>();
-				if(triggerConsumer != null){
-					triggerConsumer.TriggerExited(gameObject);
-				}
-				actor.CloseDialogue();
-			}
-		}
+    void OnTriggerEnter(Collider other) {
+        if (!other.attachedRigidbody) {
+            return;
+        }
 
-	}
+        if (other.attachedRigidbody.tag == "Player") {
+            var triggerConsumer = other.attachedRigidbody.gameObject.GetInterfaceInChildren<ITriggerConsumer>();
+            if (triggerConsumer != null) {
+                triggerConsumer.TriggerEntered(gameObject);
+            }
+            actor.TriggerEntered();
+        }
+    }
+
+    void OnTriggerExit(Collider other) {
+        if (!other.attachedRigidbody) {
+            return;
+        }
+
+        if (other.attachedRigidbody.tag == "Player") {
+            var triggerConsumer = other.attachedRigidbody.gameObject.GetInterfaceInChildren<ITriggerConsumer>();
+            if (triggerConsumer != null) {
+                triggerConsumer.TriggerExited(gameObject);
+            }
+            actor.CloseDialogue();
+        }
+    }
+
 }

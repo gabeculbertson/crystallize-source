@@ -5,21 +5,20 @@ using System.Collections;
 
 public class HoldableItemButton : MonoBehaviour, IPointerClickHandler {
 
-	GameObject parentUI;
-	string holdableID;
+    GameObject parentUI;
+    string holdableID;
 
-	public void Initiallize(GameObject parentUI, string holdableID){
-		this.parentUI = parentUI;
-		this.holdableID = holdableID;
-		GetComponentInChildren<Text> ().text = holdableID;
-	}
+    public void Initiallize(GameObject parentUI, string holdableID) {
+        this.parentUI = parentUI;
+        this.holdableID = holdableID;
+        GetComponentInChildren<Text>().text = holdableID;
+    }
 
-	#region IPointerClickHandler implementation
-	public void OnPointerClick (PointerEventData eventData)
-	{
+    #region IPointerClickHandler implementation
+    public void OnPointerClick(PointerEventData eventData) {
         PlayerManager.main.PlayerGameObject.GetComponent<ArmAnimationController>().HoldItem(holdableID);
-		Destroy (parentUI);
-	}
-	#endregion
+        Destroy(parentUI);
+    }
+    #endregion
 
 }

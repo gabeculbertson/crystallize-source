@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Crystallize;
 
 public class NativeSpeakerUI : MonoBehaviour {
 

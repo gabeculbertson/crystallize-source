@@ -81,7 +81,7 @@ public class ConversationObjectiveUI : MonoBehaviour, IPhraseDropHandler, IPoint
 		if (entry.type != InventoryType.Objective) return;
 
 		if (TryPhrase (PhraseSegmentData.GetWordInstance(phraseObject.Word))) {
-			ObjectiveManager.main.AddFoundWord(gameObject, PhraseSegmentData.GetWordInstance(phraseObject.Word));
+			ObjectiveManager.main.AddFoundWord(gameObject, phraseObject.Word);
 			Destroy(phraseObject.gameObject);
 		}
 	}

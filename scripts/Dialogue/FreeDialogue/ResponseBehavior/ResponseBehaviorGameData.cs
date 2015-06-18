@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Crystallize;
 using System.Xml.Serialization;
 
 [XmlInclude(typeof(GiveItemResponseBehaviorGameData))]

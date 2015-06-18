@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Crystallize;
 using Util.Serialization;
 using System.Xml.Serialization;
 
@@ -15,7 +14,7 @@ public class NetworkMessageManager : MonoBehaviour {
         public int Level { get; set; }
         public float Time { get; set; }
         public Vector3 Position { get; set; }
-        
+
         public TimePosition(int level, float time, Vector3 position) {
             Level = level;
             Time = time;
@@ -79,14 +78,14 @@ public class NetworkMessageManager : MonoBehaviour {
         Debug.Log("Player ID: " + PlayerManager.main.PlayerID);
     }
 
-    void OnEventManagerInitialized(object sender, System.EventArgs args){
+    void OnEventManagerInitialized(object sender, System.EventArgs args) {
         CrystallizeEventManager.Environment.OnPersonAnimationRequested += HandleOnPersonAnimationRequested;
         CrystallizeEventManager.UI.OnTradeStateChanged += HandleTradeStateChanged;
         CrystallizeEventManager.UI.OnUIRequested += HandleUIRequested;
         CrystallizeEventManager.Network.OnSendQuestStateRequested += HandleSendQuestStateRequested;
         CrystallizeEventManager.PlayerState.OnQuestStateChanged += HandleQuestStateChanged;
         CrystallizeEventManager.PlayerState.OnQuestStateRequested += HandleQuestStateRequested;
-		CrystallizeEventManager.Network.OnEnglishLineInput += HandleOnEnglishLineInput;
+        CrystallizeEventManager.Network.OnEnglishLineInput += HandleOnEnglishLineInput;
         CrystallizeEventManager.UI.OnCursor3DPositionChanged += HandleCursor3DPositionChanged;
         CrystallizeEventManager.Network.OnNetworkSpeechBubbleRequested += HandleNetworkSpeechBubbleRequested;
         CrystallizeEventManager.Network.OnNetworkPlayerFeedbackRequested += HandleNetworkPlayerFeedbackRequested;
@@ -117,18 +116,17 @@ public class NetworkMessageManager : MonoBehaviour {
                                         RPCMode.Others, Network.player.guid, Serializer.GetBytesForObject<NetworkSpeechBubbleRequestedEventArgs>(e));
     }
 
-    void HandleOnEnglishLineInput (object sender, TextEventArgs e)
-    {
-		if (sender == this) {
-			return;
-		}
+    void HandleOnEnglishLineInput(object sender, TextEventArgs e) {
+        if (sender == this) {
+            return;
+        }
 
         if (GameSettings.GetFlag(NetworkFlags.LockEnglishText)) {
             return;
         }
 
-		GetComponent<NetworkView>().RPC("SendChatText", 
-		                                RPCMode.Others, Network.player.guid, e.Text);
+        GetComponent<NetworkView>().RPC("SendChatText",
+                                        RPCMode.Others, Network.player.guid, e.Text);
     }
 
     IEnumerator WaitAndBeginSequence() {
@@ -139,7 +137,7 @@ public class NetworkMessageManager : MonoBehaviour {
             var go = Instantiate(player2Prefab) as GameObject;
 
             var spawn = GameObject.FindGameObjectWithTag("PlayerOrigin");
-            if(spawn){
+            if (spawn) {
                 go.transform.position = spawn.transform.position;
             } else {
                 go.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.back + Vector3.up;
@@ -158,8 +156,8 @@ public class NetworkMessageManager : MonoBehaviour {
     }
 
     void HandleQuestStateChanged(object sender, QuestStateChangedEventArgs e) {
-        GetComponent<NetworkView>().RPC("SendQuestState", RPCMode.Others, Network.player.guid, 
-		                                Serializer.GetBytesForObject<QuestStateChangedEventArgs>(e));
+        GetComponent<NetworkView>().RPC("SendQuestState", RPCMode.Others, Network.player.guid,
+                                        Serializer.GetBytesForObject<QuestStateChangedEventArgs>(e));
     }
 
     void HandleQuestStateRequested(object sender, QuestEventArgs e) {
@@ -177,8 +175,8 @@ public class NetworkMessageManager : MonoBehaviour {
             return;
         }
 
-        GetComponent<NetworkView>().RPC("SendObjectiveState", RPCMode.Others, Network.player.guid, 
-		                                Serializer.GetBytesForObject<PartnerObjectiveCompleteEventArgs>(e));
+        GetComponent<NetworkView>().RPC("SendObjectiveState", RPCMode.Others, Network.player.guid,
+                                        Serializer.GetBytesForObject<PartnerObjectiveCompleteEventArgs>(e));
     }
 
     void HandleCursor3DPositionChanged(object sender, Cursor3DPositionChangedEventArgs e) {
@@ -243,7 +241,7 @@ public class NetworkMessageManager : MonoBehaviour {
         //}
 
         foreach (var guid in networkPlayers) {
-            if(guid == Network.player.guid){
+            if (guid == Network.player.guid) {
                 continue;
             }
 
@@ -299,8 +297,8 @@ public class NetworkMessageManager : MonoBehaviour {
     Vector3 GetPosition(string guid, float time) {
         time -= Delay;
         if (currentPositionData.ContainsKey(guid) && lastPositionData.ContainsKey(guid)) {
-            return Vector3.Lerp(lastPositionData[guid].Position, currentPositionData[guid].Position, 
-                (time  - lastPositionData[guid].Time) / (currentPositionData[guid].Time - lastPositionData[guid].Time));
+            return Vector3.Lerp(lastPositionData[guid].Position, currentPositionData[guid].Position,
+                (time - lastPositionData[guid].Time) / (currentPositionData[guid].Time - lastPositionData[guid].Time));
         }
         return Vector3.zero;
     }
@@ -369,10 +367,10 @@ public class NetworkMessageManager : MonoBehaviour {
         //Debug.Log("Requested quest: " + questID);
     }
 
-	[RPC]
-	void SendChatText(string playerGuid, string text){
-		CrystallizeEventManager.Network.RaiseEnglishLineInput (this, new TextEventArgs (text));
-	}
+    [RPC]
+    void SendChatText(string playerGuid, string text) {
+        CrystallizeEventManager.Network.RaiseEnglishLineInput(this, new TextEventArgs(text));
+    }
 
     [RPC]
     void SendNetworkSpeechBubbleRequested(string playerGuid, string data) {
@@ -389,8 +387,8 @@ public class NetworkMessageManager : MonoBehaviour {
     [RPC]
     void SetNetworkPlayers(string bytes) {
         networkPlayers = Serializer.GetObjectForBytes<List<string>>(bytes);
-        Debug.Log("Have players: " + networkPlayers.Count);  
-		PlayerManager.main.PlayerCount = networkPlayers.Count;
+        Debug.Log("Have players: " + networkPlayers.Count);
+        PlayerManager.main.PlayerCount = networkPlayers.Count;
     }
 
     public Transform GetPlayerTransform(string guid) {

@@ -19,39 +19,40 @@ using System.Xml.Serialization;
 [XmlInclude(typeof(PairApproachCursorQuestInfoGameData))]
 public class QuestInfoGameData : ISerializableDictionaryItem<int> {
 
-	public int Key { 
-		get {
-			return QuestID;
-		}
-	}
+    public int Key {
+        get {
+            return QuestID;
+        }
+    }
 
-	public int QuestID { get; set; }
-	public int WorldID { get; set; }
+    public int QuestID { get; set; }
+    public int WorldID { get; set; }
 
-	public string Title { get; set; }
-	public string Description { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
     public NPCActorLine QuestPromptLine { get; set; }
-	public List<QuestObjectiveInfoGameData> Objectives { get; set; }
+    public List<QuestObjectiveInfoGameData> Objectives { get; set; }
     public List<StatePrerequisite> Prerequisites { get; set; }
     public List<QuestReward> Rewards { get; set; }
 
-	public QuestInfoGameData(){
-		QuestID = -1;
-		WorldID = -1;
-		Title = "New quest";
-		Description = "EMPTY";
+    public QuestInfoGameData() {
+        QuestID = -1;
+        WorldID = -1;
+        Title = "New quest";
+        Description = "EMPTY";
         QuestPromptLine = new NPCActorLine();
-		Objectives = new List<QuestObjectiveInfoGameData> ();
+        Objectives = new List<QuestObjectiveInfoGameData>();
         Prerequisites = new List<StatePrerequisite>();
         Rewards = new List<QuestReward>();
-	}
+    }
 
-	public QuestInfoGameData(int questID, int clientID) : this(){
-		QuestID = questID;
-		WorldID = clientID;
-	}
+    public QuestInfoGameData(int questID, int clientID)
+        : this() {
+        QuestID = questID;
+        WorldID = clientID;
+    }
 
-	public List<QuestObjectiveInfoGameData> GetObjectives(){
+    public List<QuestObjectiveInfoGameData> GetObjectives() {
         if (Objectives.Count == 0) {
             Objectives = GetDefaultObjectives();
         }
@@ -66,7 +67,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
         }
 
         return Objectives;
-	}
+    }
 
     public virtual List<QuestObjectiveInfoGameData> GetDefaultObjectives() {
         return new List<QuestObjectiveInfoGameData>();
@@ -84,25 +85,25 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
     public void BeginQuest() {
         Begin();
 
-		CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, GetQuestInstance()));
+        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, GetQuestInstance()));
     }
 
-    protected virtual void Begin() {  }
+    protected virtual void Begin() { }
 
-	public virtual void ReceiveMessage(System.EventArgs args) { 
-		ProcessMessage (args);
+    public virtual void ReceiveMessage(System.EventArgs args) {
+        ProcessMessage(args);
 
-		if (PlayerData.Instance.Flags.GetFlag (FlagPlayerData.IsMultiplayer)
+        if (PlayerData.Instance.Flags.GetFlag(FlagPlayerData.IsMultiplayer)
             && !GameSettings.GetFlag(GameSystemFlags.LockQuestInterdependence)) {
-			if(PartnerQuestComplete(args)){
-				CompleteObjective(GetObjectives().Count - 1);
-			}
-		}
+            if (PartnerQuestComplete(args)) {
+                CompleteObjective(GetObjectives().Count - 1);
+            }
+        }
 
-		if (AllObjectivesComplete ()) {
-			CompleteQuest();
-		}
-	}
+        if (AllObjectivesComplete()) {
+            CompleteQuest();
+        }
+    }
 
     public virtual void ProcessMessage(System.EventArgs args) { }
 
@@ -122,7 +123,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
     }
 
     protected void CompleteObjective(int index) {
-		var qi = GetQuestInstance ();
+        var qi = GetQuestInstance();
         if (!qi.GetObjectiveState(index).IsComplete) {
             qi.SetObjectiveState(index, true);
             EffectManager.main.PlayPositiveFeedback();
@@ -130,7 +131,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
             DataLogger.LogTimestampedData("ObjectiveComplete", QuestID.ToString(), index.ToString());
         }
         CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, qi));
-		//CrystallizeEventManager.main.RaiseSendQuestStateRequested (this, new PartnerObjectiveCompleteEventArgs (QuestID));
+        //CrystallizeEventManager.main.RaiseSendQuestStateRequested (this, new PartnerObjectiveCompleteEventArgs (QuestID));
     }
 
     protected void CompleteQuest() {
@@ -142,7 +143,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
             DataLogger.LogTimestampedData("QuestComplete", QuestID.ToString());
         }
         CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, qi));
-		CrystallizeEventManager.Network.RaiseSendQuestStateRequested(this, new PartnerObjectiveCompleteEventArgs(QuestID));
+        CrystallizeEventManager.Network.RaiseSendQuestStateRequested(this, new PartnerObjectiveCompleteEventArgs(QuestID));
     }
 
     protected void RequestPartnerQuestState() {
@@ -156,40 +157,40 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
         } else {
             if (args is QuestStateChangedEventArgs) {
                 var qsc = (QuestStateChangedEventArgs)args;
-                
-                if (qsc.PlayerID != PlayerManager.main.PlayerID 
-                    && qsc.QuestState == ObjectiveState.Active 
+
+                if (qsc.PlayerID != PlayerManager.main.PlayerID
+                    && qsc.QuestState == ObjectiveState.Active
                     && qsc.QuestID == QuestID) {
-                        CompleteObjective(0);
+                    CompleteObjective(0);
                 }
             }
         }
         return false;
     }
 
-	bool PartnerQuestComplete(System.EventArgs args){
-		var objIndex = GetObjectives ().Count - 1;
-		if (GetQuestInstance ().GetObjectiveState (objIndex).IsComplete) {
-			return false;
-		}
+    bool PartnerQuestComplete(System.EventArgs args) {
+        var objIndex = GetObjectives().Count - 1;
+        if (GetQuestInstance().GetObjectiveState(objIndex).IsComplete) {
+            return false;
+        }
 
-		if (!(args is QuestStateChangedEventArgs)) {
-			return false;
-		}
-		var qscArgs = (QuestStateChangedEventArgs)args;
+        if (!(args is QuestStateChangedEventArgs)) {
+            return false;
+        }
+        var qscArgs = (QuestStateChangedEventArgs)args;
 
-		if (qscArgs.PlayerID == PlayerManager.main.PlayerID || qscArgs.QuestID != QuestID) {
-			return false;
-		}
+        if (qscArgs.PlayerID == PlayerManager.main.PlayerID || qscArgs.QuestID != QuestID) {
+            return false;
+        }
 
-		var inst = qscArgs.GetQuestInstance ();
-		for (int i = 0; i < objIndex; i++) {
-			if(!inst.GetObjectiveState(i).IsComplete){
-				return false;
-			}
-		}
+        var inst = qscArgs.GetQuestInstance();
+        for (int i = 0; i < objIndex; i++) {
+            if (!inst.GetObjectiveState(i).IsComplete) {
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
 }

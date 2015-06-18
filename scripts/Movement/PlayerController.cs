@@ -2,7 +2,6 @@
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
-using Crystallize;
 
 public class PlayerController : MonoBehaviour {
 

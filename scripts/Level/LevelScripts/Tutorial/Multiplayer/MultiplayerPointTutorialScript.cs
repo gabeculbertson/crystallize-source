@@ -14,8 +14,8 @@ public class MultiplayerPointTutorialScript : LevelScript {
 
     public Transform questClient;
 
-	// Use this for initialization
-	IEnumerator Start () {
+    // Use this for initialization
+    IEnumerator Start() {
         ObjectiveManager.main.SetObjective(this, false);
 
         SetMessage("Approach the teacher to start the quest.");
@@ -25,14 +25,14 @@ public class MultiplayerPointTutorialScript : LevelScript {
         yield return StartCoroutine(RunStateMachine<TutorialObjective>(GetObjective, SetObjective, TutorialObjective.Complete));
 
         ObjectiveManager.main.SetObjective(this, true);
-	}
+    }
 
     TutorialObjective GetObjective() {
         var qi = GetQuestInstance(questClient);
         if (qi.State == ObjectiveState.Complete) {
             return TutorialObjective.Complete;
         }
-        
+
         if (qi.State != ObjectiveState.Active) {
             return TutorialObjective.AcceptQuest;
         }
@@ -76,5 +76,5 @@ public class MultiplayerPointTutorialScript : LevelScript {
                 break;
         }
     }
-	
+
 }

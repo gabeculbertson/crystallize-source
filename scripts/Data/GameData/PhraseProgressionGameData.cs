@@ -28,5 +28,5 @@ public class PhraseProgressionGameData {
         }
         return p;
     }
-	
+
 }

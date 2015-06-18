@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using Crystallize;
 
 public class PhraseEventArgs : EventArgs {
 
@@ -13,7 +12,6 @@ public class PhraseEventArgs : EventArgs {
 
 	public PhraseSegmentData PhraseData { get; set; }
 	public IWordContainer PhraseContainer { get; set; }
-	public PhraseSegmentInstance PhraseInstance { get; set; }
     public bool HasMore { get; set; }
 
     public PhraseSequence Phrase { get; set; }
@@ -40,14 +38,6 @@ public class PhraseEventArgs : EventArgs {
 
         Phrase = new PhraseSequence();
         Phrase.Add(phraseContainer.Word); //PhraseData.GetPhraseSequence().PhraseElements[0]);
-	}
-
-	public PhraseEventArgs (PhraseSegmentInstance phraseInstance){
-		PhraseData = phraseInstance.Data;
-		PhraseInstance = phraseInstance;
-        
-        Phrase = new PhraseSequence();
-        Phrase.Add(PhraseData.GetPhraseSequence().PhraseElements[0]);
 	}
 
     public PhraseEventArgs(PhraseSequenceElement word) {

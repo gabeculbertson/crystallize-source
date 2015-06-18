@@ -97,13 +97,6 @@ public class ObjectiveManager : MonoBehaviour {
         return PlayerManager.main.playerData.WordStorage.ContainsFoundWord(wordID);
     }
 
-	public void AddFoundWord(GameObject sender, PhraseSegmentData phrase){
-		if (PlayerManager.main.playerData.WordStorage.AddFoundWord (phrase)){
-			CrystallizeEventManager.PlayerState.RaiseOnWordFound (this, new PhraseEventArgs (phrase));
-		}
-		CrystallizeEventManager.UI.RaiseUpdateUI (this, EventArgs.Empty);
-	}
-
     public void AddFoundWord(GameObject sender, PhraseSequenceElement word) {
         if (PlayerManager.main.playerData.WordStorage.AddFoundWord(word.WordID)) {
             //PlayerManager.main.playerData.WordStorage.InventoryElements.Add(word);
@@ -115,30 +108,6 @@ public class ObjectiveManager : MonoBehaviour {
 	public void AddUnlockedWord(PhraseSegmentData phrase){
 		if (OnWordUnlocked != null) {
 			OnWordUnlocked(this, new PhraseEventArgs(phrase));
-		}
-	}
-
-	public void SetPhraseSolved(PhraseSegmentData phrase){
-		solvedPhrases [phrase] = true;
-
-		if (IsComplete) {
-			foreach(var p in phrases){
-				PlayerManager.main.playerData.WordStorage.AddUnlockedWord(p);
-				Debug.Log(Application.loadedLevel);
-
-				PlayerManager.main.playerData.LevelData.SetLevelState(Application.loadedLevelName, LevelState.Played);
-				for(int i = 0; i < PlayerManager.main.playerData.LevelData.Levels.Count - 1; i++){
-					var level = PlayerManager.main.playerData.LevelData.Levels[i];
-					if(level.LevelName == Application.loadedLevelName){
-						var nextLevel = PlayerManager.main.playerData.LevelData.Levels[i+1];
-						if(nextLevel.LevelState == LevelState.Hidden){
-							nextLevel.LevelState = LevelState.Locked;
-						}
-					}
-				}
-
-				PlayerManager.main.Save();
-			}
 		}
 	}
 

@@ -5,7 +5,6 @@ using System;
 using System.IO;
 using System.Linq;
 using Util.Serialization;
-using Crystallize.Data;
 
 public class PlayerManager : MonoBehaviour {
 

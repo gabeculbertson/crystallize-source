@@ -133,7 +133,7 @@ public class MultiplayerFirstLevelTutorialScript : LevelScript {
         if (!InteractionManager.IsInteractingWithOtherPlayer()) {
             return CommunicationState.OutOfRange;
         }
-        
+
         var ep = TutorialCanvas.main.GetRegisteredGameObject("EmoticonPanel");
         if (!ep.activeSelf) {
             return CommunicationState.EmoticonPanelClosed;

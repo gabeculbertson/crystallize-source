@@ -3,11 +3,11 @@ using System.Collections;
 
 public class NavigationGameData {
 
-	public SerializableDictionary<int, AreaGameData> Areas { get; set; }
+    public SerializableDictionary<int, AreaGameData> Areas { get; set; }
 
-	public NavigationGameData(){
-		Areas = new SerializableDictionary<int, AreaGameData> ();
-	}
+    public NavigationGameData() {
+        Areas = new SerializableDictionary<int, AreaGameData>();
+    }
 
     public void AddNewArea() {
         int i = 0;
