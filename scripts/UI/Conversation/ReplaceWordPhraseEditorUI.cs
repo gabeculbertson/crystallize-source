@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializable<PhraseSequence> {
+public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializable<PhraseSequence>, ISelectionSequence<PhraseSequence> {
 
     const string ResourcePath = "UI/ReplaceWordPhraseEditor";
 
@@ -31,8 +32,14 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
     public GameObject wordPrefab;
     public Transform wordParent;
 
+    public event EventHandler OnCancel;
+    public event EventHandler OnExit;
+    public event SequenceCompleteCallback<PhraseSequence> OnSelection;
+
     PhraseSequence phrase;
     List<GameObject> wordInstances = new List<GameObject>();
+
+    int selectedWord = -1;
 
     void Start() {
         Refresh();
@@ -40,7 +47,7 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
 
     void Refresh() {
         UIUtil.GenerateChildren(phrase.PhraseElements, wordInstances, wordParent, GetWordInstance);
-        Debug.Log(wordInstances.Count);
+        //Debug.Log(wordInstances.Count);
     }
 
     public void Initialize(PhraseSequence phrase)
@@ -64,14 +71,26 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
         Destroy(gameObject);
     }
 
-    void HandleWordClicked(object sender, System.EventArgs e)
-    {
-        
-    }
-
     public void Confirm()
     {
-        CrystallizeEventManager.UI.RaiseModifiedPhraseSelected(this, new PhraseEventArgs(phrase));
+        OnSelection.Raise(this, new SequenceCompleteEventArgs<PhraseSequence>(phrase));
+        //CrystallizeEventManager.UI.RaiseModifiedPhraseSelected(this, new PhraseEventArgs(phrase));
+    }
+
+    void HandleWordClicked(object sender, System.EventArgs e) {
+        selectedWord = wordInstances.IndexOf(((Component)sender).gameObject);
+        CrystallizeEventManager.UI.RequestWordSelectionRequested(selectedWord, OnWordSelectionOpened);
+    }
+
+    void OnWordSelectionOpened(object sender, SequenceCallbackEventArgs<PhraseSequenceElement> e) {
+        e.Sequence.OnSelection += OnWordSelected;
+    }
+
+    void OnWordSelected(object sender, SequenceCompleteEventArgs<PhraseSequenceElement> e) {
+        if (phrase.PhraseElements.IndexInRange(selectedWord)) {
+            phrase.PhraseElements[selectedWord] = e.Data;
+        }
+        Refresh();
     }
 
 }

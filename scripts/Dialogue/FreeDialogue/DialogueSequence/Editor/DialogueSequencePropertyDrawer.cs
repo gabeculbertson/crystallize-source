@@ -10,7 +10,7 @@ public class DialogueSequencePropertyDrawer : PropertyDrawer {
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        if (GUI.Button(position, label.text + "; " + property.FindPropertyRelative("xmlString").stringValue)) 
+        if (GUI.Button(position, label.text)) 
         {
             DialogueSequenceEditorWindow.Open(property.FindPropertyRelative("xmlString").stringValue, 
                 (s) => SetValue(property, s));

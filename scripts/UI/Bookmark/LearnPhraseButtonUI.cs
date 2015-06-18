@@ -19,11 +19,11 @@ public class LearnPhraseButtonUI : MonoBehaviour, IPointerClickHandler, IInitial
     public void Initialize(PhraseSequence param1) {
         phrase = param1;
         Refresh();
-        CrystallizeEventManager.PlayerState.OnSucceedCollectPhrase += HandleSucceedCollectPhrase;
+        CrystallizeEventManager.PlayerState.OnPhraseCollected += HandleSucceedCollectPhrase;
     }
 
     void OnDestroy() {
-        CrystallizeEventManager.PlayerState.OnSucceedCollectPhrase -= HandleSucceedCollectPhrase;
+        CrystallizeEventManager.PlayerState.OnPhraseCollected -= HandleSucceedCollectPhrase;
     }
 
     void HandleSucceedCollectPhrase(object sender, PhraseEventArgs e) {
@@ -31,7 +31,7 @@ public class LearnPhraseButtonUI : MonoBehaviour, IPointerClickHandler, IInitial
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        CrystallizeEventManager.PlayerState.RaiseAttemptCollectPhrase(this, new PhraseEventArgs(phrase));
+        CrystallizeEventManager.PlayerState.RequestCollectPhrase(phrase, null);
     }
 
 }

@@ -18,15 +18,20 @@ public class MenuManager : MonoBehaviour {
 	void Start () {
 		CrystallizeEventManager.UI.OnUIRequested += HandleOnUIRequested;
 
-        CrystallizeEventManager.UI.OnBasePhraseSelected += HandleBasePhraseSelected;
+        CrystallizeEventManager.UI.OnReplaceWordPhraseEditorRequested += HandleReplaceWordPhraseEditorRequested;
+        CrystallizeEventManager.UI.OnWordSelectionRequested += HandleWordSelectionRequested;
 	}
 
-    void HandleBasePhraseSelected(object sender, PhraseEventArgs e)
-    {
-        // open the proper base phrase editor
-        var editor = ReplaceWordPhraseEditorUI.GetInstance();
-        editor.Initialize(e.Phrase);
-        editor.transform.position = new Vector2(Screen.width * 0.5f, 300f);
+    void HandleReplaceWordPhraseEditorRequested(object sender, SequenceRequestEventArgs<PhraseSequence, PhraseSequence> e) {
+        var instance = ReplaceWordPhraseEditorUI.GetInstance();
+        instance.Initialize(e.Data);
+        instance.transform.position = new Vector2(Screen.width * 0.5f, 300f);
+        e.SequenceRequest.RaiseCallback(instance);
+    }
+
+    void HandleWordSelectionRequested(object sender, SequenceRequestEventArgs<int, PhraseSequenceElement> e) {
+        var instance = WordSelectionPanelUI.GetInstance();
+        e.SequenceRequest.RaiseCallback(instance);
     }
 
 	void HandleOnUIRequested (object sender, UIRequestEventArgs e)

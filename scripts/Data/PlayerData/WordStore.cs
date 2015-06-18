@@ -42,6 +42,10 @@ public class WordStore {
         return ObjectiveWords.Contains(word.WordID);
     }
 
+    public bool AddFoundWord(PhraseSequenceElement word) {
+        return AddFoundWord(word.WordID);
+    }
+
     public bool AddFoundWord(int wordID) {
         if (!FoundWords.Contains(wordID)) {
             RemoveObjectiveWord(wordID);
@@ -60,6 +64,10 @@ public class WordStore {
         if (FoundWords.Contains(wordID)) {
             FoundWords.Remove(wordID);
         }
+    }
+
+    public bool ContainsFoundWord(PhraseSequenceElement word) {
+        return ContainsFoundWord(word.WordID);
     }
 
     public bool ContainsFoundWord(int wordID) {

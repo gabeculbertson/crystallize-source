@@ -75,6 +75,12 @@ public class UISystem : MonoBehaviour {
             lastMode = Mode;
             CrystallizeEventManager.UI.RaiseUpdateUI(this, EventArgs.Empty);
         }
+
+        if (Input.GetMouseButtonDown(0)) {
+            if (!UISystem.MouseOverUI()) {
+                CrystallizeEventManager.Input.RaiseEnvironmentClick(this, System.EventArgs.Empty);
+            }
+        }
     }
 
     public void AddCenterPanel(object panel) {

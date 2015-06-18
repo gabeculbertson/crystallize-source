@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class UIEvents {
+public class UIEvents : GameEvents{
 
     public event EventHandler<PhraseEventArgs> OnBeginDragWord;
     public void RaiseBeginDragWord(object sender, PhraseEventArgs args) { OnBeginDragWord.Raise(sender, args); }
@@ -52,8 +52,6 @@ public class UIEvents {
 
     public event EventHandler<PhraseEventArgs> OnBasePhraseSelected;
     public void RaiseBasePhraseSelected(object sender, PhraseEventArgs args) { OnBasePhraseSelected.Raise(sender, args); }
-    public event EventHandler<PhraseEventArgs> OnModifiedPhraseSelected;
-    public void RaiseModifiedPhraseSelected(object sender, PhraseEventArgs args) { OnModifiedPhraseSelected.Raise(sender, args); }
     
     public event EventHandler<PhraseEventArgs> OnWordSelected;
     public void RaiseWordSelected(object sender, PhraseEventArgs args) { OnWordSelected.Raise(sender, args); }
@@ -80,5 +78,20 @@ public class UIEvents {
 
     public event EventHandler OnTutorialEvent;
     public void RaiseTutorialEvent(object sender, EventArgs args) { OnTutorialEvent.Raise(sender, args); }
+
+    public event SequenceRequestHandler<DialogueElement, DialogueElement> OnLinearDialogueTurnRequested;
+    public SequenceRequest<DialogueElement> RequestLinearDialogueTurn(DialogueElement inputPhrase, SequenceRequestCallback<DialogueElement> callback) {
+        return RequestSequence(inputPhrase, OnLinearDialogueTurnRequested, callback);
+    }
+
+    public event SequenceRequestHandler<PhraseSequence, PhraseSequence> OnReplaceWordPhraseEditorRequested;
+    public SequenceRequest<PhraseSequence> RequestReplaceWordPhraseEditor(PhraseSequence inputPhrase, SequenceRequestCallback<PhraseSequence> callback) {
+        return RequestSequence(inputPhrase, OnReplaceWordPhraseEditorRequested, callback);
+    }
+
+    public event SequenceRequestHandler<int, PhraseSequenceElement> OnWordSelectionRequested;
+    public SequenceRequest<PhraseSequenceElement> RequestWordSelectionRequested(int id, SequenceRequestCallback<PhraseSequenceElement> callback) {
+        return RequestSequence(id, OnWordSelectionRequested, callback);
+    }
 
 }

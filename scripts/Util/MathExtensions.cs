@@ -43,4 +43,16 @@ public static class MathExtensions  {
 		return closest;
 	}
 
+    public static bool IndexInRange<T>(this List<T> list, int index){
+        if (index < 0) {
+            return false;
+        }
+
+        if (index >= list.Count) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

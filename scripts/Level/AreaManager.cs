@@ -25,7 +25,7 @@ public class AreaManager : MonoBehaviour {
             yield return new WaitForSeconds(1f);
         }
 
-		CrystallizeEventManager.main.RaiseBeforeSceneChange (null, System.EventArgs.Empty);
+		CrystallizeEventManager.Environment.RaiseBeforeSceneChange (null, System.EventArgs.Empty);
 		PlayerManager.main.Save();
 
         Application.LoadLevel(area.LevelName);

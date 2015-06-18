@@ -19,7 +19,7 @@ public class ConversationPhrasePanelUI : MonoBehaviour {
         CrystallizeEventManager.UI.OnPromptEndDialogueContinue += HandlePromptEndDialogueContinue;
         CrystallizeEventManager.UI.OnPromptPromptDialogueContinue += HandlePromptPromptDialogueContinue;
 
-        CrystallizeEventManager.PlayerState.OnSucceedCollectPhrase += HandleSucceedCollectPhrase;
+        CrystallizeEventManager.PlayerState.OnPhraseCollected += HandleSucceedCollectPhrase;
 
         Refresh();
 	}
@@ -41,7 +41,16 @@ public class ConversationPhrasePanelUI : MonoBehaviour {
     {
         var c = (Component)sender;
         var p = c.gameObject.GetInterface<IPhraseContainer>().Phrase;
-        CrystallizeEventManager.UI.RaiseBasePhraseSelected(this, new PhraseEventArgs(p));
+        CrystallizeEventManager.UI.RequestReplaceWordPhraseEditor(p, PhraseEditorCallback);
+    }
+
+    void PhraseEditorCallback(object sender, SequenceCallbackEventArgs<PhraseSequence> e) {
+        e.Sequence.OnSelection += Sequence_OnSelection;
+    }
+
+    void Sequence_OnSelection(object sender, SequenceCompleteEventArgs<PhraseSequence> args) {
+        // move this out
+        PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args.Data);
     }
 
     void HandleSucceedCollectPhrase(object sender, PhraseEventArgs e)
