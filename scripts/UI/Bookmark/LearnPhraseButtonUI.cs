@@ -22,6 +22,10 @@ public class LearnPhraseButtonUI : MonoBehaviour, IPointerClickHandler, IInitial
         CrystallizeEventManager.PlayerState.OnSucceedCollectPhrase += HandleSucceedCollectPhrase;
     }
 
+    void OnDestroy() {
+        CrystallizeEventManager.PlayerState.OnSucceedCollectPhrase -= HandleSucceedCollectPhrase;
+    }
+
     void HandleSucceedCollectPhrase(object sender, PhraseEventArgs e) {
         Refresh();
     }

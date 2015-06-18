@@ -22,7 +22,7 @@ public class UIEvents {
     public event EventHandler<SpeechBubbleRequestedEventArgs> OnSpeechBubbleRequested;
     public void RaiseSpeechBubbleRequested(object sender, SpeechBubbleRequestedEventArgs args) { OnSpeechBubbleRequested.Raise(sender, args); }
     public event EventHandler<PhraseEventArgs> OnSpeechBubbleOpen;
-    public void RaiseSpeechBubbleOpen(object sender, PhraseEventArgs args) { OnSpeechBubbleOpen(sender, args); }
+    public void RaiseSpeechBubbleOpen(object sender, PhraseEventArgs args) { OnSpeechBubbleOpen.Raise(sender, args); }
 
     public event EventHandler<WordClickedEventArgs> OnWordClicked;
     public void RaiseWordClicked(object sender, WordClickedEventArgs args) { OnWordClicked(sender, args); }
@@ -54,6 +54,9 @@ public class UIEvents {
     public void RaiseBasePhraseSelected(object sender, PhraseEventArgs args) { OnBasePhraseSelected.Raise(sender, args); }
     public event EventHandler<PhraseEventArgs> OnModifiedPhraseSelected;
     public void RaiseModifiedPhraseSelected(object sender, PhraseEventArgs args) { OnModifiedPhraseSelected.Raise(sender, args); }
+    
+    public event EventHandler<PhraseEventArgs> OnWordSelected;
+    public void RaiseWordSelected(object sender, PhraseEventArgs args) { OnWordSelected.Raise(sender, args); }
 
     public event EventHandler<ItemHoverEventArgs> OnHoverOverItem;
     public void RaiseHoverOverItem(object sender, ItemHoverEventArgs args) { OnHoverOverItem.Raise(sender, args); }

@@ -15,7 +15,9 @@ public class ConversationCameraController : MonoBehaviour {
 
     void OnDestroy()
     {
-        OmniscientCamera.main.Resume();
+        if (Camera.main) {
+            OmniscientCamera.main.Resume();
+        }
     }
 	
 	// Update is called once per frame

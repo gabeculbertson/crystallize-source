@@ -5,6 +5,13 @@ using System.Collections.Generic;
 
 public class WordSelectionPanelUI : MonoBehaviour {
 
+    const string ResourcePath = "WordSelectionPanel";
+
+    public static WordSelectionPanelUI GetInstance() {
+        var instance = Instantiate<GameObject>(Resources.Load<GameObject>(ResourcePath));
+        return instance.GetComponent<WordSelectionPanelUI>();
+    }
+
     public Transform wordParent;
     public GameObject wordButtonPrefab;
 
