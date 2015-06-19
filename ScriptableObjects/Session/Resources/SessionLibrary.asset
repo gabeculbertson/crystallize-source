@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbdd4d59e2f657469d00a858d5df9dd, type: 3}
+  m_Name: SessionLibrary
+  m_EditorClassIdentifier: 
+  morningSessionData: {fileID: 11400000, guid: 4254a2349bdefc34c8323b9f32cffc38, type: 2}
+  eveningSessionData: {fileID: 11400000, guid: 04023c6fea795c84ca021b1e3056673f, type: 2}
+  nightSessionData: {fileID: 11400000, guid: 495ce7cd635e8d544a10894dec65963b, type: 2}

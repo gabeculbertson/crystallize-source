@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ede9348f2e5e6149a3db0164fc3df90, type: 3}
+  m_Name: HoldableDictionary
+  m_EditorClassIdentifier: 
+  holdables:
+  - id: WaterBottle
+    prefab: {fileID: 188646, guid: 80f3a00fb2af51a4cacb1f08e9d5d6f1, type: 2}
+  - id: CoffeeCup
+    prefab: {fileID: 135146, guid: 9f8433a477190b741816edde47bac591, type: 2}
+  - id: SushiPlate
+    prefab: {fileID: 172548, guid: 1459f09a484e15441a1d4344a1ffa008, type: 2}

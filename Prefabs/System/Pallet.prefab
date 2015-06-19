@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Pallet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaed29d80fb238489dcf2165b92672e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  lockedWordShape: {fileID: 21300000, guid: 8707a277e85960946b757637ba610581, type: 3}
+  leftSpeechBubble: {fileID: 21300000, guid: b62fa484ef9143e4387b44a52bb191e0, type: 3}
+  rightSpeechBubble: {fileID: 21300000, guid: f445fa50990c9aa4598e78c1d9632d56, type: 3}
+  leftPhoneSpeechBubble: {fileID: 21300000, guid: 7b40d4cfac33c794784d1b86558881e0,
+    type: 3}
+  rightPhoneSpeechBubble: {fileID: 21300000, guid: d4a931ad0d2b4b34dbbed9df8aa2b330,
+    type: 3}
+  importantMessageColor: {r: 1, g: .931034565, b: 0, a: 1}
+  lightGray: {r: .75, g: .75, b: .75, a: 1}
+  darkGray: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  inactiveColor: {r: .375, g: .375, b: .375, a: 1}
+  successColor: {r: .641379356, g: 1, b: .235294104, a: 1}
+  failureColor: {r: .889705896, g: .457936883, b: .457936883, a: 1}
+  selfColor: {r: .167777672, g: .83088237, b: .0427659974, a: 1}
+  otherColor: {r: 0, g: .174492851, b: .816176474, a: 1}
+  verbColor: {r: 1, g: .625, b: .625, a: 1}
+  nounColor: {r: .625, g: .658620775, b: 1, a: 1}
+  pronounColor: {r: .779411793, g: .800091922, b: 1, a: 1}
+  adverbColor: {r: .566176474, g: 1, b: .623022258, a: 1}
+  adjectiveColor: {r: .448475361, g: .772058845, b: .492202848, a: 1}
+  particleColor: {r: .683823526, g: .683823526, b: .683823526, a: 1}
+  questionWordColor: {r: .993204892, g: 1, b: .507352948, a: 1}
+  greetingColor: {r: 1, g: .595588207, b: .955375254, a: 1}
+  rumorPhraseColor: {r: .83088237, g: .665927768, b: .83088237, a: 1}
+  normalPhraseColor: {r: .696366727, g: .839413524, b: .845588207, a: 1}
+  contructedPhraseColor: {r: .843137264, g: .839026392, b: .694117665, a: 1}
+  inventoryBackgroundColor: {r: .281574398, g: .41981861, b: .45588237, a: 1}
+  constructorBackgroundColor: {r: .694117665, g: .835294127, b: .843137264, a: .501960814}
+  objectiveWordColor: {r: .66078037, g: .764705896, b: .652249157, a: 1}
+  confirmButtonColor: {r: .431372553, g: .713725507, b: .749019623, a: 1}
+  disabledButtonColor: {r: .558823526, g: .558823526, b: .558823526, a: .603921592}
+  levelColors:
+  - {r: .904411793, g: .845707595, b: .771410048, a: 1}
+  - {r: .91911763, g: .803528786, b: .500108123, a: 1}
+  - {r: .693993926, g: .904411793, b: .492106438, a: 1}
+  - {r: .46172148, g: .897058845, b: .716919243, a: 1}
+  - {r: .324070096, g: .816176474, b: .775450408, a: 1}
+  - {r: .602076113, g: .646509945, b: .941176474, a: 1}
+  - {r: .731242597, g: .460045397, b: .933823526, a: 1}
+  - {r: .963235319, g: .559526384, b: .701520562, a: 1}
+  - {r: .992647052, g: .39413929, b: .39413929, a: 1}
+  - {r: .933823526, g: .660306036, b: .411980957, a: 1}
+  stageColors:
+  - {r: .458823532, g: .894117653, b: .713725507, a: 1}
+  - {r: .600000024, g: .643137276, b: .937254906, a: 1}
+  - {r: .913725495, g: .800000012, b: .498039216, a: 1}
+  - {r: .988235295, g: .396078438, b: .396078438, a: 1}
+  - {r: .536764741, g: .536764741, b: .536764741, a: 1}
+  rumorColors:
+  - {r: .301470578, g: .0931012034, b: .183634162, a: .478431374}
+  - {r: .199826971, g: .411764681, b: .385455191, a: .478431374}
+  - {r: .433823526, g: .411824346, b: .114835642, a: .478431374}
+  textBubblePointer: {fileID: 2800000, guid: d64fc309d65a0274d9cffe1f01be96df, type: 3}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1

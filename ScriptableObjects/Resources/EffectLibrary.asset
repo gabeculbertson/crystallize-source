@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd41496863f94fb4184f0604712bac5d, type: 3}
+  m_Name: EffectLibrary
+  m_EditorClassIdentifier: 
+  actorEffects: {fileID: 11400000, guid: 122c6998c210f464db52b4f26f10e8fe, type: 2}
+  uiSetEffect: {fileID: 100000, guid: 5a87f944c8a899f478560825b26f0f34, type: 2}
+  uiEnergizeEffect: {fileID: 100000, guid: 0117537e2420c1b4ba9093d868f83ec5, type: 2}
+  uiRisingText: {fileID: 100000, guid: 39ebc95c4292eba449e32975e44bf28a, type: 2}
+  uiClientLock: {fileID: 100002, guid: 3ada860b65547ec468d5f5dafed6395e, type: 2}
+  uiQuestionMark: {fileID: 100000, guid: c15df924f82c5e94fa2c6cf2eab798e2, type: 2}
+  uiWordCount: {fileID: 100002, guid: ff55984e0fe65f949bab544c77214ae4, type: 2}
+  uiExclaimationPoint: {fileID: 100000, guid: 64afd565db47bbe4d9e9a8d92b06cab1, type: 2}
+  uiCheckMark: {fileID: 100000, guid: a57bd75e56fea044e815a9cd0324dc7e, type: 2}
+  uiLevelUpEffect: {fileID: 100004, guid: 9c9b82745b947054d9fcc9babf165cd4, type: 2}
+  uiMessage: {fileID: 171582, guid: 09ca7f688f911544ca4437d2ef75b915, type: 2}
+  uiStatusThoughBubble: {fileID: 135116, guid: a95ee5be9cb6fc44eb6d1618177be236, type: 2}
+  uiFadeInEffect: {fileID: 112960, guid: e50d897f7a8d8cd478978d660956037e, type: 2}
+  uiFadeOutEffect: {fileID: 112960, guid: fd2db949ad6691f498c6ded2d7a865f1, type: 2}
+  uiTimeTransition: {fileID: 124158, guid: 51e2740f69c830b4c9a24d2783fd8a39, type: 2}
+  interactionTargetEffect: {fileID: 194924, guid: e88f6b6f7d53c784aa14458bbd0112bf,
+    type: 2}
+  clientTargetEffect: {fileID: 100000, guid: 7dc223b753cec8e48b7c82a8aa043001, type: 2}
+  conversationCompleteEffect: {fileID: 100002, guid: 7b21e8da7803df1479cc45b97d279350,
+    type: 2}
+  positiveFeedbackEffect: {fileID: 102630, guid: cacef17309686ba4ea55734e4d6c7dd3,
+    type: 2}
+  objectiveWordShape: {fileID: 21300000, guid: f5cc53b1344cc8044ac63fb7edc33ccc, type: 3}
+  conversationWordShape: {fileID: 21300000, guid: 8707a277e85960946b757637ba610581,
+    type: 3}
+  inventoryWordShape: {fileID: 21300000, guid: 8707a277e85960946b757637ba610581, type: 3}

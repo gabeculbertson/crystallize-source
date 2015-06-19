@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b20f43e333a95546b4531ad54c09da5, type: 3}
+  m_Name: SocialEffectSet
+  m_EditorClassIdentifier: 
+  reactEffect: {fileID: 100000, guid: cc4afbcc77421354194fe1bfce836225, type: 2}
+  unlockEffect: {fileID: 100000, guid: 64d7333ab57d69446a1ea70b76f46eb4, type: 2}
+  rejectEffect: {fileID: 100002, guid: 4e4788059cc2d3d40aa8be3a18e45ebb, type: 2}
