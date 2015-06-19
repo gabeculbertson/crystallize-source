@@ -16,23 +16,32 @@ public class MenuManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        ConversationPhrasePanelUI.GetInstance();
+
+        PromptDialogueTurnSequence.RequestPhrasePanel.SetHandler(ConversationPhrasePanelUI.GetInstance);
 		CrystallizeEventManager.UI.OnUIRequested += HandleOnUIRequested;
 
-        CrystallizeEventManager.UI.OnReplaceWordPhraseEditorRequested += HandleReplaceWordPhraseEditorRequested;
-        CrystallizeEventManager.UI.OnWordSelectionRequested += HandleWordSelectionRequested;
+        //CrystallizeEventManager.UI.OnPhrasePanelRequested += HandlePhrasePanelRequested;
+        //CrystallizeEventManager.UI.OnReplaceWordPhraseEditorRequested += HandleReplaceWordPhraseEditorRequested;
+        //CrystallizeEventManager.UI.OnWordSelectionRequested += HandleWordSelectionRequested;
 	}
 
-    void HandleReplaceWordPhraseEditorRequested(object sender, SequenceRequestEventArgs<PhraseSequence, PhraseSequence> e) {
-        var instance = ReplaceWordPhraseEditorUI.GetInstance();
-        instance.Initialize(e.Data);
-        instance.transform.position = new Vector2(Screen.width * 0.5f, 300f);
-        e.SequenceRequest.RaiseCallback(instance);
-    }
+    //void HandlePhrasePanelRequested(object sender, SequenceRequestEventArgs<object, PhraseSequence> args) {
+    //    var instance = ConversationPhrasePanelUI.GetInstance();
+    //    args.SequenceRequest.RaiseCallback(instance);
+    //}
 
-    void HandleWordSelectionRequested(object sender, SequenceRequestEventArgs<int, PhraseSequenceElement> e) {
-        var instance = WordSelectionPanelUI.GetInstance();
-        e.SequenceRequest.RaiseCallback(instance);
-    }
+    //void HandleReplaceWordPhraseEditorRequested(object sender, SequenceRequestEventArgs<PhraseSequence, PhraseSequence> e) {
+    //    var instance = ReplaceWordPhraseEditorUI.GetInstance();
+    //    instance.Initialize(e.Data);
+    //    instance.transform.position = new Vector2(Screen.width * 0.5f, 300f);
+    //    e.SequenceRequest.RaiseCallback(instance);
+    //}
+
+    //void HandleWordSelectionRequested(object sender, SequenceRequestEventArgs<int, PhraseSequenceElement> e) {
+    //    var instance = WordSelectionPanelUI.GetInstance();
+    //    e.SequenceRequest.RaiseCallback(instance);
+    //}
 
 	void HandleOnUIRequested (object sender, UIRequestEventArgs e)
 	{

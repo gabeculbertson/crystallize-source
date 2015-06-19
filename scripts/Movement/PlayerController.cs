@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public static void LockMovement(object lockObject){
 		if (main) {
 			if(!main.locks.Contains(lockObject)){
-				main.locks.Add (lockObject);
+                main.locks.Add (lockObject);
 			}
 		}
 	}

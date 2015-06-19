@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WordSelectionPanelUI : MonoBehaviour, ISelectionSequence<PhraseSequenceElement> {
+public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElement, PhraseSequenceElement> {
 
     const string ResourcePath = "UI/WordSelectionPanel";
 
@@ -22,9 +22,7 @@ public class WordSelectionPanelUI : MonoBehaviour, ISelectionSequence<PhraseSequ
     IPhraseDropHandler source;
     Dictionary<UIButton, PhraseSequenceElement> buttonWords = new Dictionary<UIButton, PhraseSequenceElement>();
 
-    public event EventHandler OnCancel;
-    public event EventHandler OnExit;
-    public event SequenceCompleteCallback<PhraseSequenceElement> OnSelection;
+    public event ProcessExitCallback<PhraseSequenceElement> OnExit;
 
     public bool IsOpen {
         get {
@@ -59,8 +57,12 @@ public class WordSelectionPanelUI : MonoBehaviour, ISelectionSequence<PhraseSequ
         Initialize();
 	}
 
+    public void ForceExit() {
+        Exit(null);
+    }
+
     void HandleActorDeparted(object sender, System.EventArgs e) {
-        Close();
+        Exit(null);
     }
 
     void HandleClicked(object sender, System.EventArgs e) {
@@ -76,26 +78,30 @@ public class WordSelectionPanelUI : MonoBehaviour, ISelectionSequence<PhraseSequ
             source.AcceptDrop(new WordContainer(buttonWords[(UIButton)sender]));
         }
 
-        OnSelection.Raise(this, new SequenceCompleteEventArgs<PhraseSequenceElement>(buttonWords[(UIButton)sender]));
+        Exit(new ProcessExitEventArgs<PhraseSequenceElement>(buttonWords[(UIButton)sender]));
     }
 
     void Update() {
         if (Input.GetMouseButtonUp(0)) {
-            if (IsOpen) {
-                OnCancel.Raise(this, EventArgs.Empty);
-                Close();
-            }
+            Exit(null);
         }
     }
 
-    public void Close() {
-        Destroy(gameObject);
-        OnExit.Raise(this, EventArgs.Empty);
+    public void Exit(ProcessExitEventArgs<PhraseSequenceElement> word) {
+        if (IsOpen) {
+            OnExit.Raise(this, word);
+            Destroy(gameObject);
+        }
     }
 
     void OnDestroy() {
         TutorialCanvas.main.UnregisterGameObject("WordSelector");
         CrystallizeEventManager.Environment.OnActorDeparted -= HandleActorDeparted;
     }
-	
+
+
+
+    public void Initialize(ProcessRequestEventArgs<PhraseSequenceElement, PhraseSequenceElement> args) {
+        throw new NotImplementedException();
+    }
 }

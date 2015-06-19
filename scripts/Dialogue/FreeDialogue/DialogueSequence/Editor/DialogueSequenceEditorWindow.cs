@@ -86,6 +86,7 @@ public class DialogueSequenceEditorWindow : EditorWindow {
 
         EditorGUILayout.LabelField(element.ID.ToString());
         EditorUtilities.DrawPhraseSequence(element.Phrase);
+        EditorUtilities.DrawPhraseSequence(element.Prompt);
 
         element.DefaultNextID = GetID("Default Next ID", element.DefaultNextID);
 

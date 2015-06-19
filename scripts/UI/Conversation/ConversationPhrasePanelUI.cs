@@ -2,27 +2,62 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ConversationPhrasePanelUI : MonoBehaviour {
+public class ConversationPhrasePanelUI : UIMonoBehaviour, IProcess<object, PhraseSequence> {
+
+    const string ResourcePath = "UI/ConversationPhrasePanel";
+
+    static ConversationPhrasePanelUI _instance;
+
+    public static ProcessRequestHandler<PhraseSequence, PhraseSequence> RequestReplaceWordPhraseEditor;
+
+    public static ConversationPhrasePanelUI GetInstance(object obj) {
+        return GetInstance();
+    }
+
+    public static ConversationPhrasePanelUI GetInstance() {
+        //if (!_instance) {
+            _instance = GameObjectUtil.GetResourceInstance<ConversationPhrasePanelUI>(ResourcePath);
+        //}
+        //_instance.Initialize();
+        return _instance;
+    }
 
     public GameObject phrasePrefab;
 
-    DialogueSequenceEventArgs endArgs;
-    DialogueSequenceEventArgs linearArgs;
+    public event ProcessExitCallback<PhraseSequence> OnExit;
 
     List<GameObject> phraseInstances = new List<GameObject>();
+    Coroutine fadeOut;
 
-	// Use this for initialization
+    public void ForceExit() {
+        Exit(null);
+    }
+
+    public void Exit(ProcessExitEventArgs<PhraseSequence> args) {
+        OnExit.Raise(this, args);
+        //FadeOut();
+        Destroy(gameObject);
+    }
+
+    void Initialize() {
+        if (fadeOut != null) {
+            StopCoroutine(fadeOut);
+            fadeOut = null;
+        }
+        canvasGroup.interactable = true;
+        canvasGroup.alpha = 1f;
+    }
+
 	void Start () {
         transform.SetParent(MainCanvas.main.transform);
-
-	    CrystallizeEventManager.UI.OnPromptLinearDialogueContinue += HandlePromptLinearDialogueContinue;
-        CrystallizeEventManager.UI.OnPromptEndDialogueContinue += HandlePromptEndDialogueContinue;
-        CrystallizeEventManager.UI.OnPromptPromptDialogueContinue += HandlePromptPromptDialogueContinue;
-
-        CrystallizeEventManager.PlayerState.OnPhraseCollected += HandleSucceedCollectPhrase;
-
+        transform.position = new Vector2(Screen.width * .5f, 80f);
+        CrystallizeEventManager.PlayerState.OnPhraseCollected += HandlePhraseCollected;
         Refresh();
 	}
+
+    void OnDestroy() {
+        CrystallizeEventManager.PlayerState.OnPhraseCollected -= HandlePhraseCollected;
+    }
 
     void Refresh()
     {
@@ -41,58 +76,37 @@ public class ConversationPhrasePanelUI : MonoBehaviour {
     {
         var c = (Component)sender;
         var p = c.gameObject.GetInterface<IPhraseContainer>().Phrase;
-        CrystallizeEventManager.UI.RequestReplaceWordPhraseEditor(p, PhraseEditorCallback);
+        RequestReplaceWordPhraseEditor(sender, new ProcessRequestEventArgs<PhraseSequence, PhraseSequence>(p, HandlePhraseSelection));
     }
 
-    void PhraseEditorCallback(object sender, SequenceCallbackEventArgs<PhraseSequence> e) {
-        e.Sequence.OnSelection += Sequence_OnSelection;
+    void HandlePhraseSelection(object sender, ProcessExitEventArgs<PhraseSequence> args) {
+        Exit(args);
     }
 
-    void Sequence_OnSelection(object sender, SequenceCompleteEventArgs<PhraseSequence> args) {
-        // move this out
-        PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args.Data);
-    }
-
-    void HandleSucceedCollectPhrase(object sender, PhraseEventArgs e)
+    void HandlePhraseCollected(object sender, PhraseEventArgs e)
     {
+        //Initialize();
         Refresh();
     }
 
-    void HandlePromptPromptDialogueContinue(object sender, DialogueSequenceEventArgs e)
-    {
+    //void FadeOut() {
+    //    fadeOut = StartCoroutine(FadeOutCoroutine());
+    //}
+
+    //IEnumerator FadeOutCoroutine() {
+    //    canvasGroup.interactable = false;
+    //    while (canvasGroup.alpha > 0) {
+    //        canvasGroup.alpha -= Time.deltaTime;
+
+    //        yield return null;
+    //    }
+
+    //    fadeOut = null;
+    //}
+
+
+
+    public void Initialize(ProcessRequestEventArgs<object, PhraseSequence> args) {
         throw new System.NotImplementedException();
     }
-
-    void HandlePromptEndDialogueContinue(object sender, DialogueSequenceEventArgs e)
-    {
-        //Debug.Log("end prompt");
-        endArgs = e;
-    }
-
-    void HandlePromptLinearDialogueContinue (object sender, DialogueSequenceEventArgs args){
-        //Debug.Log("linear prompt");
-        linearArgs = args;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!UISystem.MouseOverUI()) {
-                if (linearArgs != null) {
-                    CrystallizeEventManager.UI.RaiseResolveLinearDialogueContinue(this,
-                        new DialogueSequenceEventArgs(linearArgs.Dialogue, linearArgs.Dialogue.GetElement(linearArgs.CurrentElement).NextIDs[0]));
-                    linearArgs = null;
-                    //Debug.Log("Linear continue");
-                } else if (endArgs != null) {
-                    CrystallizeEventManager.UI.RaiseResolveEndDialogueContinue(this,
-                        new DialogueSequenceEventArgs(null, -1));
-                    endArgs = null;
-                    //Debug.Log("end continue");
-                }
-            }
-        }
-	}
-
-
 }

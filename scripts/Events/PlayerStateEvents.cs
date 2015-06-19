@@ -33,14 +33,14 @@ public class PlayerStateEvents : GameEvents {
     public event EventHandler<PhraseEventArgs> OnWordCollected;
     public void RaiseWordCollected(object sender, PhraseEventArgs args) { OnWordCollected.Raise(sender, args); }
 
-    public event SequenceRequestHandler<PhraseSequence, PhraseSequence> OnCollectPhraseRequested;
-    public SequenceRequest<PhraseSequence> RequestCollectPhrase(PhraseSequence phrase, SequenceRequestCallback<PhraseSequence> callback) {
-        return RequestSequence<PhraseSequence, PhraseSequence>(phrase, OnCollectPhraseRequested, callback);
-    }
+    //public event SequenceRequestHandler<PhraseSequence, PhraseSequence> OnCollectPhraseRequested;
+    //public void RequestCollectPhrase(PhraseSequence phrase, SequenceRequestCallback<PhraseSequence> callback) {
+    //    RequestSequence<PhraseSequence, PhraseSequence>(phrase, OnCollectPhraseRequested, callback);
+    //}
 
-    public event SequenceRequestHandler<PhraseSequenceElement, PhraseSequenceElement> OnCollectWordRequested;
-    public SequenceRequest<PhraseSequenceElement> RequestCollectWord(PhraseSequenceElement word, SequenceRequestCallback<PhraseSequenceElement> callback) {
-        return RequestSequence<PhraseSequenceElement,PhraseSequenceElement>(word, OnCollectWordRequested, callback);
-    }
+    //public event SequenceRequestHandler<PhraseSequenceElement, PhraseSequenceElement> OnCollectWordRequested;
+    //public void RequestCollectWord(PhraseSequenceElement word, ProcessExitCallback<PhraseSequenceElement> callback) {
+    //    RequestSequence<PhraseSequenceElement,PhraseSequenceElement>(word, OnCollectWordRequested, callback);
+    //}
 
 }

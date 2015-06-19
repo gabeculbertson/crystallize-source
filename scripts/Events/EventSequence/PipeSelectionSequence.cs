@@ -2,20 +2,27 @@
 using System;
 using System.Collections;
 
-public class PipeSelectionSequence<O> : ISelectionSequence<O> {
+public class PipeSelectionSequence<I, O> : IProcess<I, O> {
 
     public O Data { get; set; }
 
-    public event EventHandler OnCancel;
-    public event EventHandler OnExit;
-    public event SequenceCompleteCallback<O> OnSelection;
+    public event ProcessExitCallback<O> OnExit;
 
     public PipeSelectionSequence(O data) {
         Data = data;
     }
 
     public void Continue() {
-        OnSelection.Raise(this, new SequenceCompleteEventArgs<O>(Data));
+        OnExit.Raise(this, new ProcessExitEventArgs<O>(Data));
     }
 
+    public void ForceExit() {
+        
+    }
+
+
+
+    public void Initialize(ProcessRequestEventArgs<I, O> args) {
+        throw new NotImplementedException();
+    }
 }

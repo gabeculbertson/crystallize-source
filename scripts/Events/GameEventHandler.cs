@@ -5,29 +5,54 @@ public class GameEventHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
-        CrystallizeEventManager.PlayerState.OnCollectWordRequested += HandleCollectWordRequested;
+        ConversationSequence.RequestLinearDialogueTurn.SetHandler(LinearDialogueTurnSequence.GetInstance);
+
+        //CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
+        //CrystallizeEventManager.PlayerState.OnCollectWordRequested += HandleCollectWordRequested;
+        //CrystallizeEventManager.UI.OnDialogueRequested += HandleDialogueRequested;
+        //CrystallizeEventManager.UI.OnLinearDialogueTurnRequested += HandleLinearDialogueTurnRequested;
+        //CrystallizeEventManager.UI.OnPromptDialogueTurnRequested += HandlePromptDialogueTurnRequested;
+        //CrystallizeEventManager.Environment.OnConversationCameraRequested += HandleConversationCameraRequested;
 	}
 
-    void HandleCollectWordRequested(object sender, SequenceRequestEventArgs<PhraseSequenceElement, PhraseSequenceElement> e) {
-        if (PlayerData.Instance.WordStorage.ContainsFoundWord(e.Data)) {
-            PlayerData.Instance.WordStorage.AddFoundWord(e.Data);
-            
-            e.PipeThrough();
-            CrystallizeEventManager.PlayerState.RaiseWordCollected(this, new PhraseEventArgs(e.Data));
-        }
-    }
+    //void HandleConversationCameraRequested(object sender, SequenceRequestEventArgs<GameObject, object> args) {
+    //    var instance = ConversationCameraController.GetInstance(args.Data);
+    //    args.SequenceRequest.RaiseCallback(instance);
+    //}
 
-    void HandleCollectPhraseRequested(object sender, SequenceRequestEventArgs<PhraseSequence, PhraseSequence> e) {
-        if (!PlayerData.Instance.PhraseStorage.ContainsPhrase(e.Data)) {
-            PlayerData.Instance.PhraseStorage.AddPhrase(e.Data);
-            foreach (var word in e.Data.PhraseElements) {
-                CrystallizeEventManager.PlayerState.RequestCollectWord(word, null);
-            }
+    //void HandleLinearDialogueTurnRequested(object sender, SequenceRequestEventArgs<DialogueState, DialogueState> args) {
+    //    var instance = new LinearDialogueTurnSequence(args.Data);
+    //    args.SequenceRequest.RaiseCallback(instance);
+    //}
+
+    //void HandlePromptDialogueTurnRequested(object sender, SequenceRequestEventArgs<DialogueState, DialogueState> args) {
+    //    var instance = new PromptDialogueTurnSequence(args.Data);
+    //    args.SequenceRequest.RaiseCallback(instance);
+    //}
+
+    //void HandleDialogueRequested(object sender, SequenceRequestEventArgs<GameObject, object> args) {
+    //    var i = ConversationSequence.GetInstance(args.Data);
+    //    args.SequenceRequest.RaiseCallback(i);
+    //}
+
+    //void HandleCollectWordRequested(PhraseSequenceElement word) {
+    //    if (PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
+    //        PlayerData.Instance.WordStorage.AddFoundWord(word);
             
-            e.PipeThrough();
-            CrystallizeEventManager.PlayerState.RaisePhraseCollected(this, new PhraseEventArgs(e.Data));
-        }
-    }
+    //        CrystallizeEventManager.PlayerState.RaiseWordCollected(this, new PhraseEventArgs(word));
+    //    }
+    //}
+
+    //void HandleCollectPhraseRequested(PhraseSequence phrase) {
+    //    if (!PlayerData.Instance.PhraseStorage.ContainsPhrase(phrase)) {
+    //        PlayerData.Instance.PhraseStorage.AddPhrase(phrase);
+    //        foreach (var word in phrase.PhraseElements) {
+    //            HandleCollectWordRequested(word);
+    //            //CrystallizeEventManager.PlayerState.RequestCollectWord(word, null);
+    //        }
+
+    //        CrystallizeEventManager.PlayerState.RaisePhraseCollected(this, new PhraseEventArgs(phrase));
+    //    }
+    //}
 	
 }

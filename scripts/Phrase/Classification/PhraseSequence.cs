@@ -49,6 +49,12 @@ public class PhraseSequence {
 	public string Translation { get; set; }
 	public List<PhraseSequenceElement> PhraseElements { get; set; }
 
+    public bool IsEmpty {
+        get {
+            return PhraseElements.Count == 0;
+        }
+    }
+
 	public PhraseSequence (){
 		PhraseElements = new List<PhraseSequenceElement> ();
 	}

@@ -22,6 +22,7 @@ public class DialogueElement : ISerializableDictionaryItem<int> {
     public DialogueElement()
     {
         Phrase = new PhraseSequence();
+        Prompt = new PhraseSequence();
         ID = -1;
         DefaultNextID = -1;
         NextIDs = new List<int>();
