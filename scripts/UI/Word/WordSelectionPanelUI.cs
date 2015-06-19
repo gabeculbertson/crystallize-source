@@ -22,7 +22,7 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
     IPhraseDropHandler source;
     Dictionary<UIButton, PhraseSequenceElement> buttonWords = new Dictionary<UIButton, PhraseSequenceElement>();
 
-    public event ProcessExitCallback<PhraseSequenceElement> OnExit;
+    public event ProcessExitCallback OnReturn;
 
     public bool IsOpen {
         get {
@@ -57,6 +57,10 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
         Initialize();
 	}
 
+    public void Initialize(PhraseSequenceElement element) {
+        Initialize();
+    }
+
     public void ForceExit() {
         Exit(null);
     }
@@ -89,7 +93,7 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
 
     public void Exit(ProcessExitEventArgs<PhraseSequenceElement> word) {
         if (IsOpen) {
-            OnExit.Raise(this, word);
+            OnReturn.Raise(this, word);
             Destroy(gameObject);
         }
     }
@@ -99,9 +103,4 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
         CrystallizeEventManager.Environment.OnActorDeparted -= HandleActorDeparted;
     }
 
-
-
-    public void Initialize(ProcessRequestEventArgs<PhraseSequenceElement, PhraseSequenceElement> args) {
-        throw new NotImplementedException();
-    }
 }

@@ -4,17 +4,20 @@ using System.Collections;
 
 public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState> {
 
-    public static LinearDialogueTurnSequence GetInstance(DialogueState state) {
-        return new LinearDialogueTurnSequence(state);
+    public static LinearDialogueTurnSequence GetInstance() {
+        return new LinearDialogueTurnSequence();
     }
 
     DialogueState state;
 
-    public event ProcessExitCallback<DialogueState> OnExit;
+    public event ProcessExitCallback OnReturn;
     public event EventHandler<PhraseEventArgs> OnPhraseRequested;
 
-    public LinearDialogueTurnSequence(DialogueState state) {
-        this.state = state;
+    public LinearDialogueTurnSequence() {
+    }
+
+    public void Initialize(DialogueState data) {
+        this.state = data;
         CrystallizeEventManager.Input.OnEnvironmentClick += OnEnvironmentClick;
     }
 
@@ -33,16 +36,11 @@ public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState>
 
     void Exit() {
         CrystallizeEventManager.Input.OnEnvironmentClick -= OnEnvironmentClick;
-        OnExit.Raise(this, GetNextState());
+        OnReturn.Raise(this, GetNextState());
     }
 
     public void ForceExit() {
         Exit();
     }
 
-
-
-    public void Initialize(ProcessRequestEventArgs<DialogueState, DialogueState> args) {
-        throw new NotImplementedException();
-    }
 }

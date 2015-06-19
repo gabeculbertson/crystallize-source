@@ -20,20 +20,10 @@ public static class EventExtensions {
         }
     }
 
-    public static void Raise<T>(this ProcessExitCallback<T> eventHandler, object sender, ProcessExitEventArgs<T> args) {
+    public static void Raise(this ProcessExitCallback eventHandler, object sender, ProcessExitEventArgs args) {
         if (eventHandler != null) {
             eventHandler(sender, args);
         }
-    }
-
-    public static void SetHandler<I, O>(this ProcessRequestHandler<I, O> processRequestHandler, GetProcessInstance<I, O> getProcessInstance) {
-        processRequestHandler = (s, e) => ProcessRequestHandler(getProcessInstance, s, e);
-    }
-
-    static void ProcessRequestHandler<I, O>(GetProcessInstance<I, O> getProcessInstance, object sender, ProcessRequestEventArgs<I, O> args) {
-        var process = getProcessInstance(args.Data);
-        //process.
-        process.OnExit += args.Callback;
     }
 
 }

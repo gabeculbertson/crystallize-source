@@ -2,11 +2,11 @@
 using System;
 using System.Collections;
 
-public interface IProcess<I, O> {
-
-    event ProcessExitCallback<O> OnExit;
-
-    void Initialize(ProcessRequestEventArgs<I, O> args);
+public interface IProcess {
+    event ProcessExitCallback OnReturn;
     void ForceExit();
+}
 
+public interface IProcess<I, O> : IProcess{
+    void Initialize(I data);
 }

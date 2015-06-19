@@ -2,7 +2,11 @@
 using System;
 using System.Collections;
 
-public class ProcessExitEventArgs<T> : EventArgs {
+public abstract class ProcessExitEventArgs : EventArgs {
+
+}
+
+public class ProcessExitEventArgs<T> : ProcessExitEventArgs {
 
     public T Data { get; set; }
 

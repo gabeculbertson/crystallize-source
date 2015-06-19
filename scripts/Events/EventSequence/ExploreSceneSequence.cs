@@ -39,7 +39,7 @@ public class ExploreSceneSequence : MonoBehaviour {
     void StartDialogue(GameObject target) {
         //Debug.Log("DialogueRequested");
         Pause();
-        RequestDialogue(this, new ProcessRequestEventArgs<GameObject,object>(target, OnDialogueExit));
+        RequestDialogue(this, new ProcessRequestEventArgs<GameObject,object>(target, OnDialogueExit, null));
     }
 
     void OnDialogueExit(object sender, ProcessExitEventArgs<object> args) {

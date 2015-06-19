@@ -16,9 +16,8 @@ public class MenuManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ConversationPhrasePanelUI.GetInstance();
+        //ConversationPhrasePanelUI.GetInstance();
 
-        PromptDialogueTurnSequence.RequestPhrasePanel.SetHandler(ConversationPhrasePanelUI.GetInstance);
 		CrystallizeEventManager.UI.OnUIRequested += HandleOnUIRequested;
 
         //CrystallizeEventManager.UI.OnPhrasePanelRequested += HandlePhrasePanelRequested;

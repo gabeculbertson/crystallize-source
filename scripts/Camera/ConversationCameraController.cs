@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class ConversationCameraController : MonoBehaviour, IProcess<GameObject, object> {
 
     const string ResourcePath = "Camera/ConversationCameraController";
 
+    public static ConversationCameraController GetInstance() {
+        return GameObjectUtil.GetResourceInstance<ConversationCameraController>(ResourcePath);
+    }
+
     public static ConversationCameraController GetInstance(GameObject target) {
-        var i = GameObjectUtil.GetResourceInstance<ConversationCameraController>(ResourcePath);
+        var i = GetInstance();
         i.Initialize(target);
         return i;
     }
@@ -14,11 +19,8 @@ public class ConversationCameraController : MonoBehaviour, IProcess<GameObject, 
     public Transform cameraTransform;
     public Transform conversationTarget;
 
-    public event ProcessExitCallback<object> OnExit;
-
-    public void Initialize(ProcessRequestEventArgs<GameObject, object> args) {
-        Initialize(args.Data);
-    }
+    public event EventHandler OnExit;
+    public event ProcessExitCallback OnReturn;
 
     public void Initialize(GameObject target) {
         conversationTarget = target.transform;

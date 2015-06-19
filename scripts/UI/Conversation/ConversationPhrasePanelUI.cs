@@ -24,7 +24,7 @@ public class ConversationPhrasePanelUI : UIMonoBehaviour, IProcess<object, Phras
 
     public GameObject phrasePrefab;
 
-    public event ProcessExitCallback<PhraseSequence> OnExit;
+    public event ProcessExitCallback OnReturn;
 
     List<GameObject> phraseInstances = new List<GameObject>();
     Coroutine fadeOut;
@@ -34,7 +34,7 @@ public class ConversationPhrasePanelUI : UIMonoBehaviour, IProcess<object, Phras
     }
 
     public void Exit(ProcessExitEventArgs<PhraseSequence> args) {
-        OnExit.Raise(this, args);
+        OnReturn.Raise(this, args);
         //FadeOut();
         Destroy(gameObject);
     }
@@ -46,6 +46,10 @@ public class ConversationPhrasePanelUI : UIMonoBehaviour, IProcess<object, Phras
         }
         canvasGroup.interactable = true;
         canvasGroup.alpha = 1f;
+    }
+
+    public void Initialize(object args) {
+        Initialize();
     }
 
 	void Start () {
@@ -76,15 +80,16 @@ public class ConversationPhrasePanelUI : UIMonoBehaviour, IProcess<object, Phras
     {
         var c = (Component)sender;
         var p = c.gameObject.GetInterface<IPhraseContainer>().Phrase;
-        RequestReplaceWordPhraseEditor(sender, new ProcessRequestEventArgs<PhraseSequence, PhraseSequence>(p, HandlePhraseSelection));
+        RequestReplaceWordPhraseEditor(sender, new ProcessRequestEventArgs<PhraseSequence, PhraseSequence>(p, HandlePhraseSelection, this));
     }
 
-    void HandlePhraseSelection(object sender, ProcessExitEventArgs<PhraseSequence> args) {
-        Exit(args);
+    void HandlePhraseSelection(object sender, ProcessExitEventArgs args) {
+        Exit((ProcessExitEventArgs<PhraseSequence>)args);
     }
 
     void HandlePhraseCollected(object sender, PhraseEventArgs e)
     {
+        //Debug.Log("Phrase collected");
         //Initialize();
         Refresh();
     }
@@ -104,9 +109,4 @@ public class ConversationPhrasePanelUI : UIMonoBehaviour, IProcess<object, Phras
     //    fadeOut = null;
     //}
 
-
-
-    public void Initialize(ProcessRequestEventArgs<object, PhraseSequence> args) {
-        throw new System.NotImplementedException();
-    }
 }

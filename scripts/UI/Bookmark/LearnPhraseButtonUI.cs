@@ -31,6 +31,7 @@ public class LearnPhraseButtonUI : MonoBehaviour, IPointerClickHandler, IInitial
     }
 
     public void OnPointerClick(PointerEventData eventData) {
+        CrystallizeEventManager.PlayerState.RaiseCollectPhraseRequested(this, new PhraseEventArgs(phrase));
         //CrystallizeEventManager.PlayerState.RequestCollectPhrase(phrase, null);
     }
 

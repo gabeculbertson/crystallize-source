@@ -6,23 +6,22 @@ public class PipeSelectionSequence<I, O> : IProcess<I, O> {
 
     public O Data { get; set; }
 
-    public event ProcessExitCallback<O> OnExit;
+    public event ProcessExitCallback OnReturn;
 
     public PipeSelectionSequence(O data) {
         Data = data;
     }
 
+    public void Initialize(I args) {
+        
+    }
+
     public void Continue() {
-        OnExit.Raise(this, new ProcessExitEventArgs<O>(Data));
+        OnReturn.Raise(this, new ProcessExitEventArgs<O>(Data));
     }
 
     public void ForceExit() {
         
     }
 
-
-
-    public void Initialize(ProcessRequestEventArgs<I, O> args) {
-        throw new NotImplementedException();
-    }
 }

@@ -9,26 +9,28 @@ public class ConversationSequence : MonoBehaviour, IProcess<GameObject, object> 
     public static ProcessRequestHandler<GameObject, object> RequestConversationCamera;
 
     public static ConversationSequence GetInstance(GameObject target) {
+        var i = GetInstance();
+        i.Initialize(target);
+        return i;
+    }
+
+    public static ConversationSequence GetInstance() {
+        //Debug.Log("GettingInstance");
         var go = new GameObject("Conversation");
         var c = go.AddComponent<ConversationSequence>();
-        c.Initialize(target);
         return c;
     }
 
-    public event ProcessExitCallback<object> OnExit;
+    public event ProcessExitCallback OnReturn;
 
     DialogueActor actor;
     DialogueSequence dialogue;
-
-    public void Initialize(ProcessRequestEventArgs<GameObject, object> args) {
-        Initialize(args.Data);
-    }
 
     public void ForceExit() {
         Exit();
     }
 
-    void Initialize(GameObject target) {
+    public void Initialize(GameObject target) {
         actor = target.GetComponent<DialogueActor>();
         dialogue = target.GetInterface<IInstanceReference<DialogueSequence>>().Instance;
     }
@@ -41,7 +43,7 @@ public class ConversationSequence : MonoBehaviour, IProcess<GameObject, object> 
         yield return null;
         yield return null;
         
-        RequestConversationCamera(this, new ProcessRequestEventArgs<GameObject,object>(actor.gameObject, null));
+        RequestConversationCamera(this, new ProcessRequestEventArgs<GameObject,object>(actor.gameObject, null, this));
 
         CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
 
@@ -54,12 +56,12 @@ public class ConversationSequence : MonoBehaviour, IProcess<GameObject, object> 
 
     void Exit() {
         actor.SetPhrase(null);
+        PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
         PlayerController.UnlockMovement(this);
 
         CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
 
-        OnExit.Raise(this, null);
-        //Debug.Log("exit");
+        OnReturn.Raise(this, null);
         Destroy(gameObject);
     }
 
@@ -69,19 +71,20 @@ public class ConversationSequence : MonoBehaviour, IProcess<GameObject, object> 
 
         switch (dialogueState.Dialogue.GetElementType(dialogueState.CurrentID)) {
             case DialogueElementType.Linear: case DialogueElementType.End:
-                RequestLinearDialogueTurn(this, new ProcessRequestEventArgs<DialogueState, DialogueState>(dialogueState, HandleTurnExit));
+                RequestLinearDialogueTurn(this, new ProcessRequestEventArgs<DialogueState, DialogueState>(dialogueState, HandleTurnExit, this));
                 break;
             case DialogueElementType.Prompted:
-                RequestPromptDialogueTurn(this, new ProcessRequestEventArgs<DialogueState, DialogueState>(dialogueState, HandleTurnExit));
+                RequestPromptDialogueTurn(this, new ProcessRequestEventArgs<DialogueState, DialogueState>(dialogueState, HandleTurnExit, this));
                 break;
         }
     }
 
-    void HandleTurnExit(object sender, ProcessExitEventArgs<DialogueState> args) {
-        if (args == null) {
+    void HandleTurnExit(object sender, ProcessExitEventArgs<DialogueState> e) {
+        if (e == null) {
             Exit();
         } else {
-            SetDialogueElement(args.Data);
+            //var args = (ProcessExitEventArgs<DialogueState>)e;
+            SetDialogueElement(e.Data);
         }
     }
 
