@@ -54,7 +54,7 @@ public class EnglishInputSpeechBubbleUI : MonoBehaviour {
         var pe = new PhraseSequenceElement(PhraseSequenceElementType.Text, input.text);
         var p = new PhraseSequence();
         p.Add(pe);
-        PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(p);
+        PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(p);
         Close();
     }
 

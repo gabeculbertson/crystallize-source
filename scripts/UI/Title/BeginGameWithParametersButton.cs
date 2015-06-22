@@ -5,13 +5,12 @@ using System.Collections;
 
 public class BeginGameWithParametersButton : MonoBehaviour, IPointerClickHandler {
 
-	public string level = "Tutorial_Level01";
+    public string level = "Tutorial_Level01";
     public InputField nameInput;
     public ColorToggleButton toggleButton;
-	public bool multiplayerFlag = false;
+    public bool multiplayerFlag = false;
 
-	public void OnPointerClick (PointerEventData eventData)
-	{
+    public void OnPointerClick(PointerEventData eventData) {
         var n = nameInput.text;
         if (n == "") {
             n = "No name";
@@ -23,15 +22,15 @@ public class BeginGameWithParametersButton : MonoBehaviour, IPointerClickHandler
             }
 
             if (word.ContainsTag("name")) {
-                PlayerManager.main.playerData.WordStorage.InventoryElements.Remove(word);
+                PlayerData.Instance.WordStorage.InventoryElements.Remove(word);
                 break;
             }
         }
 
         PlayerData.Instance.AllowEnglish = toggleButton.isOn;
-		if (multiplayerFlag) {
-			PlayerData.Instance.Flags.SetFlag (FlagPlayerData.IsMultiplayer, true);
-		}
+        if (multiplayerFlag) {
+            PlayerData.Instance.Flags.SetFlag(FlagPlayerData.IsMultiplayer, true);
+        }
 
         var we = new PhraseSequenceElement(PhraseSequenceElementType.Text, n);
         we.AddTag("name");
@@ -39,9 +38,9 @@ public class BeginGameWithParametersButton : MonoBehaviour, IPointerClickHandler
         PlayerData.Instance.PersonalData.Name = n;
         PlayerData.Instance.WordStorage.AddFoundWord(w.WordID);
         PlayerData.Instance.WordStorage.InventoryElements.Add(we);
-        PlayerManager.main.Save();
+        PlayerDataLoader.Save();
 
         Application.LoadLevel(level);
-	}
+    }
 
 }

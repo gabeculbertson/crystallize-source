@@ -26,7 +26,7 @@ public class AreaManager : MonoBehaviour {
         }
 
 		CrystallizeEventManager.Environment.RaiseBeforeSceneChange (null, System.EventArgs.Empty);
-		PlayerManager.main.Save();
+        PlayerDataLoader.Save();
 
         Application.LoadLevel(area.LevelName);
         DataLogger.LogTimestampedData("ChangeArea", area.AreaID.ToString());

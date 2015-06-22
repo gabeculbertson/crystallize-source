@@ -15,9 +15,9 @@ public class UnlockConfirmationUI : MonoBehaviour {
     }
 
     public void Confirm() {
-        if (PlayerManager.main.playerData.Money >= area.Cost) {
-            PlayerManager.main.playerData.LevelData.SetAreaUnlocked(area.AreaID, true);
-            PlayerManager.main.playerData.Money -= area.Cost;
+        if (PlayerData.Instance.Money >= area.Cost) {
+            PlayerData.Instance.LevelData.SetAreaUnlocked(area.AreaID, true);
+            PlayerData.Instance.Money -= area.Cost;
             EffectManager.main.PlayMessage("Area unlocked!", Color.green);
 
             CrystallizeEventManager.PlayerState.RaiseMoneyChanged(this, System.EventArgs.Empty);

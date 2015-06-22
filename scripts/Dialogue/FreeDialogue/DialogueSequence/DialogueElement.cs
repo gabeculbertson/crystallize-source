@@ -6,7 +6,7 @@ public class DialogueElement : ISerializableDictionaryItem<int> {
 
     public int ID { get; set; }
     public PhraseSequence Prompt { get; set; }
-    public PhraseSequence Phrase { get; set; }
+    public DialogueActorLine Line { get; set; }
     public ConditionBranch Condition { get; set; }
     public int DefaultNextID { get; set; }
     public List<int> NextIDs { get; set; }
@@ -21,7 +21,8 @@ public class DialogueElement : ISerializableDictionaryItem<int> {
 
     public DialogueElement()
     {
-        Phrase = new PhraseSequence();
+        Line = new DialogueActorLine();
+        Prompt = new PhraseSequence();
         ID = -1;
         DefaultNextID = -1;
         NextIDs = new List<int>();

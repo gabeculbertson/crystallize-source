@@ -24,9 +24,9 @@ public class WordSlotUI : UIMonoBehaviour, IPhraseDropHandler, IPointerClickHand
 		GetComponent<LayoutElement>().preferredWidth = 160f;
 		if (word != null) {
 			GetComponentInChildren<Text> ().text = word.GetPlayerText();
-			GetComponentInChildren<Text> ().font = GUIPallet.main.defaultFont;
+			GetComponentInChildren<Text> ().font = GUIPallet.Instance.defaultFont;
 			GetComponentInChildren<Text> ().color = Color.black;
-			GetComponent<Image> ().color = GUIPallet.main.GetColorForWordCategory(word.GetPhraseCategory());
+			GetComponent<Image> ().color = GUIPallet.Instance.GetColorForWordCategory(word.GetPhraseCategory());
 		} else {
 			GetComponentInChildren<Text> ().text = "";
 			GetComponentInChildren<Text> ().color = Color.black;

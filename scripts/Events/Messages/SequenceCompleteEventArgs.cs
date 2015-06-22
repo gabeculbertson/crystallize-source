@@ -2,11 +2,15 @@
 using System;
 using System.Collections;
 
-public class SequenceCompleteEventArgs<T> : EventArgs {
+public abstract class ProcessExitEventArgs : EventArgs {
+
+}
+
+public class ProcessExitEventArgs<T> : ProcessExitEventArgs {
 
     public T Data { get; set; }
 
-    public SequenceCompleteEventArgs(T data) {
+    public ProcessExitEventArgs(T data) {
         Data = data;
     }
 

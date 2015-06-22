@@ -34,7 +34,7 @@ public class PairApproachCursorQuestInfoGameData : QuestInfoGameData  {
 
         if (TrySelfApproach(args)) {
             CompleteObjective(2);
-            CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, GetQuestInstance()));
+            CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, GetQuestInstance()));
         }
 //
 //        if (TryOtherApproach(args)) {
@@ -52,7 +52,7 @@ public class PairApproachCursorQuestInfoGameData : QuestInfoGameData  {
             return false;
         }
 
-        if (((Cursor3DPositionChangedEventArgs)args).PlayerID == PlayerManager.main.PlayerID) {
+        if (((Cursor3DPositionChangedEventArgs)args).PlayerID == PlayerManager.Instance.PlayerID) {
             return true;
         }
 
@@ -69,8 +69,8 @@ public class PairApproachCursorQuestInfoGameData : QuestInfoGameData  {
         }
 
         var caArgs = (CursorApproachedEventArgs)args;
-        if (caArgs.ActorPlayerID == PlayerManager.main.PlayerID
-            && caArgs.CursorPlayerID != PlayerManager.main.PlayerID) {
+        if (caArgs.ActorPlayerID == PlayerManager.Instance.PlayerID
+            && caArgs.CursorPlayerID != PlayerManager.Instance.PlayerID) {
             return true;
         }
 
@@ -84,7 +84,7 @@ public class PairApproachCursorQuestInfoGameData : QuestInfoGameData  {
 
         var qscArgs = (QuestStateChangedEventArgs)args;
         Debug.Log("Got: " + qscArgs.PlayerID + "; " + qscArgs.GetQuestInstance().GetObjectiveState(2).IsComplete);
-        if (qscArgs.PlayerID != PlayerManager.main.PlayerID
+        if (qscArgs.PlayerID != PlayerManager.Instance.PlayerID
                 && qscArgs.GetQuestInstance().GetObjectiveState(2).IsComplete
                 && qscArgs.QuestID == QuestID) {
             return true;

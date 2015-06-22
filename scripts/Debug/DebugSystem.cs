@@ -20,7 +20,7 @@ public class DebugSystem : MonoBehaviour {
 
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            PlayerManager.main.Save();
+            PlayerDataLoader.Save();
             //SavePlayerData(playerData, Application.dataPath + "TempPlayerData.xml");
         }
 
@@ -29,11 +29,11 @@ public class DebugSystem : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8)) {
-            PlayerManager.main.playerData.InventoryState.Level = 0;
+            PlayerData.Instance.InventoryState.Level = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha9)) {
-            PlayerManager.main.playerData.InventoryState.Level = 100;
+            PlayerData.Instance.InventoryState.Level = 100;
         }
 #endif
     }

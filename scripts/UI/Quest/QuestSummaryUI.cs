@@ -42,7 +42,7 @@ public class QuestSummaryUI : UIMonoBehaviour {
         ClearQuestPanel();
 
         foreach (var q in GameData.Instance.QuestData.Quests.Items) { //QuestInfo.GetAllQuestInfo()) {
-            var questState = PlayerManager.main.playerData.QuestData.GetQuestInstance(q.QuestID);
+            var questState = PlayerData.Instance.QuestData.GetQuestInstance(q.QuestID);
             if (questState == null) {
                 continue;
             }
@@ -76,7 +76,7 @@ public class QuestSummaryUI : UIMonoBehaviour {
     void UpdateDescriptionPanel(QuestInfoGameData quest) {
         ClearObjectivePanel();
 
-        var questState = PlayerManager.main.playerData.QuestData.GetQuestInstance(quest.QuestID);
+        var questState = PlayerData.Instance.QuestData.GetQuestInstance(quest.QuestID);
 
         questDescriptionText.text = quest.Description;
         var count = quest.GetObjectives().Count;

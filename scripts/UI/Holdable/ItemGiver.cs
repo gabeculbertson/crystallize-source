@@ -30,7 +30,7 @@ namespace Crystallize {
 		}
 
 		void GiveItem(string item){
-            PlayerManager.main.PlayerGameObject.GetComponent<ArmAnimationController>().HoldItem(item);
+            PlayerManager.Instance.PlayerGameObject.GetComponent<ArmAnimationController>().HoldItem(item);
 		}
 
 	}

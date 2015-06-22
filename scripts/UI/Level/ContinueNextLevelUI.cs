@@ -47,14 +47,14 @@ public class ContinueNextLevelUI : UIMonoBehaviour {
 	// Update is called once per frame
 	void Open () {
 		var instance = Instantiate (fireworksPrefab) as GameObject;
-        instance.transform.position = PlayerManager.main.PlayerGameObject.transform.position;
+        instance.transform.position = PlayerManager.Instance.PlayerGameObject.transform.position;
 		time = 0;
 		canvasGroup.alpha = 0;
 		gameObject.SetActive (true);
 	}
 
 	public void LoadNextLevel(){
-		PlayerManager.main.Save ();
+		PlayerDataLoader.Save ();
 		Application.LoadLevel (LevelSettings.main.nextLevel);
 	}
 

@@ -14,4 +14,8 @@ public class StandardScriptableObjectSessionData : ScriptableObjectSessionData {
         }
     }
 
+    public virtual TimeSessionArgs GetArgs() {
+        return new TimeSessionArgs(sessionArea);
+    }
+
 }

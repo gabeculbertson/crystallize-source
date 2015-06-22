@@ -1,32 +1,64 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Reflection;
 
 public class GameEventHandler : MonoBehaviour {
 
+    public static GameEventHandler GetInstance() {
+        return new GameObject("GameEventHandler").AddComponent<GameEventHandler>();
+    }
+
 	// Use this for initialization
-	void Start () {
-        CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
+	void Awake () {
         CrystallizeEventManager.PlayerState.OnCollectWordRequested += HandleCollectWordRequested;
+        CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
 	}
 
-    void HandleCollectWordRequested(object sender, SequenceRequestEventArgs<PhraseSequenceElement, PhraseSequenceElement> e) {
-        if (PlayerData.Instance.WordStorage.ContainsFoundWord(e.Data)) {
-            PlayerData.Instance.WordStorage.AddFoundWord(e.Data);
-            
-            e.PipeThrough();
-            CrystallizeEventManager.PlayerState.RaiseWordCollected(this, new PhraseEventArgs(e.Data));
+    //ProcessRequestHandler<I, O> Handler<I, O>(GetProcessInstance<I, O> getProcess) {
+    //    return (s, e) => ProcessRequestHandler(getProcess, s, e);
+    //}
+
+    //void ProcessRequestHandler<I, O>(GetProcessInstance<I, O> getProcessInstance, object sender, ProcessRequestEventArgs<I, O> args) {
+    //    var process = getProcessInstance();
+
+    //    if (args.Parent != null) {
+    //        ProcessExitCallback forceChildExit = (s, e) => process.ForceExit();
+    //        ProcessExitCallback detachChild = (s, e) => {
+    //            args.Parent.OnReturn -= forceChildExit;
+    //            Debug.Log("Detached child: " + process);
+    //        };
+    //        process.OnReturn += detachChild;
+    //        args.Parent.OnReturn += forceChildExit;
+    //    }
+
+    //    ProcessExitCallback castCallback = (s, e) => args.Callback(s, (ProcessExitEventArgs<O>)e);
+    //    process.OnReturn += castCallback;
+
+    //    Debug.Log("Started: " + process);
+    //    process.OnReturn += (s, e) => Debug.Log("Ended: " + process);
+
+    //    process.Initialize(args.Data);
+    //}
+
+    public void HandleCollectWordRequested(object sender, PhraseEventArgs args) {
+        var word = args.Word;
+        if (PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
+            PlayerData.Instance.WordStorage.AddFoundWord(word);
+
+            CrystallizeEventManager.PlayerState.RaiseWordCollected(this, new PhraseEventArgs(word));
         }
     }
 
-    void HandleCollectPhraseRequested(object sender, SequenceRequestEventArgs<PhraseSequence, PhraseSequence> e) {
-        if (!PlayerData.Instance.PhraseStorage.ContainsPhrase(e.Data)) {
-            PlayerData.Instance.PhraseStorage.AddPhrase(e.Data);
-            foreach (var word in e.Data.PhraseElements) {
-                CrystallizeEventManager.PlayerState.RequestCollectWord(word, null);
+    void HandleCollectPhraseRequested(object sender, PhraseEventArgs args) {
+        var phrase = args.Phrase;
+        if (!PlayerData.Instance.PhraseStorage.ContainsPhrase(phrase)) {
+            PlayerData.Instance.PhraseStorage.AddPhrase(phrase);
+            foreach (var word in phrase.PhraseElements) {
+                CrystallizeEventManager.PlayerState.RaiseCollectWordRequested(null, new PhraseEventArgs(word));
             }
-            
-            e.PipeThrough();
-            CrystallizeEventManager.PlayerState.RaisePhraseCollected(this, new PhraseEventArgs(e.Data));
+
+            CrystallizeEventManager.PlayerState.RaisePhraseCollected(this, new PhraseEventArgs(phrase));
         }
     }
 	

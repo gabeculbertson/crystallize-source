@@ -67,7 +67,7 @@ public class EmoticonPanelUI : MonoBehaviour {
     }
 
     public void PlayAnimation(PersonAnimationType type) {
-        CrystallizeEventManager.Environment.RaisePersonAnimationRequested(this, new PersonAnimationEventArgs(PlayerManager.main.PlayerGameObject, type));
+        CrystallizeEventManager.Environment.RaisePersonAnimationRequested(this, new PersonAnimationEventArgs(PlayerManager.Instance.PlayerGameObject, type));
         if (closeOnSelect) {
             Close();
         }

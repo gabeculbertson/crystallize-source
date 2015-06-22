@@ -15,6 +15,9 @@ public class DialogueActorLine {
     }
 
     public AudioClip GetAudioClip() {
+        if (!ScriptableObjectDictionaries.main) {
+            return null;
+        }
         return ScriptableObjectDictionaries.main.audioResources.GetAudioResource(AudioClipID);
     }
 

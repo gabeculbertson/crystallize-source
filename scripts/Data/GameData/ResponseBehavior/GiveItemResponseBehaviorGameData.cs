@@ -13,7 +13,7 @@ public class GiveItemResponseBehaviorGameData : ResponseBehaviorGameData {
             if (word.HasAuxiliaryData) {
                 var wordItem = word.AuxiliaryData.ItemID;
                 if (wordItem != 0) {
-                    PlayerManager.main.playerData.ItemInventory.AddItem(wordItem);
+                    PlayerData.Instance.ItemInventory.AddItem(wordItem);
                     CrystallizeEventManager.UI.RaiseItemAcquired(this, new ItemDragEventArgs(wordItem));
                     EffectManager.main.PlayMessage("Got " + GameData.Instance.TradeData.Items.GetItem(wordItem).Name.GetText(JapaneseTools.JapaneseScriptType.Romaji) + "!");
                 }

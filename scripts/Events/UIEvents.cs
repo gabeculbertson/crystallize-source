@@ -37,19 +37,6 @@ public class UIEvents : GameEvents{
     public event EventHandler OnProgressEvent;
     public void RaiseOnProgressEvent(object sender, EventArgs args) { OnProgressEvent.Raise(sender, args); }
 
-    public event EventHandler<DialogueSequenceEventArgs> OnPromptLinearDialogueContinue;
-    public void RaisePromptLinearDialogueContinue(object sender, DialogueSequenceEventArgs args) { OnPromptLinearDialogueContinue.Raise(sender, args); }
-    public event EventHandler<DialogueSequenceEventArgs> OnPromptPromptDialogueContinue;
-    public void RaisePromptPromptDialogueContinue(object sender, DialogueSequenceEventArgs args) { OnPromptPromptDialogueContinue.Raise(sender, args); }
-    public event EventHandler<DialogueSequenceEventArgs> OnPromptEndDialogueContinue;
-    public void RaisePromptEndDialogueContinue(object sender, DialogueSequenceEventArgs args) { OnPromptEndDialogueContinue.Raise(sender, args); }
-    public event EventHandler<DialogueSequenceEventArgs> OnResolveLinearDialogueContinue;
-    public void RaiseResolveLinearDialogueContinue(object sender, DialogueSequenceEventArgs args) { OnResolveLinearDialogueContinue.Raise(sender, args); }
-    public event EventHandler<DialogueSequenceEventArgs> OnResolvePromptDialogueContinue;
-    public void RaiseResolvePromptDialogueContinue(object sender, DialogueSequenceEventArgs args) { OnResolvePromptDialogueContinue.Raise(sender, args); }
-    public event EventHandler<DialogueSequenceEventArgs> OnResolveEndDialogueContinue;
-    public void RaiseResolveEndDialogueContinue(object sender, DialogueSequenceEventArgs args) { OnResolveEndDialogueContinue.Raise(sender, args); }
-
     public event EventHandler<PhraseEventArgs> OnBasePhraseSelected;
     public void RaiseBasePhraseSelected(object sender, PhraseEventArgs args) { OnBasePhraseSelected.Raise(sender, args); }
     
@@ -79,19 +66,19 @@ public class UIEvents : GameEvents{
     public event EventHandler OnTutorialEvent;
     public void RaiseTutorialEvent(object sender, EventArgs args) { OnTutorialEvent.Raise(sender, args); }
 
-    public event SequenceRequestHandler<DialogueElement, DialogueElement> OnLinearDialogueTurnRequested;
-    public SequenceRequest<DialogueElement> RequestLinearDialogueTurn(DialogueElement inputPhrase, SequenceRequestCallback<DialogueElement> callback) {
-        return RequestSequence(inputPhrase, OnLinearDialogueTurnRequested, callback);
-    }
+    //public event SequenceRequestHandler<GameObject, object> OnDialogueRequested;
+    //public void RequestDialogue(GameObject inputPhrase, SequenceRequestCallback<object> callback) { RequestSequence(inputPhrase, OnDialogueRequested, callback); }
 
-    public event SequenceRequestHandler<PhraseSequence, PhraseSequence> OnReplaceWordPhraseEditorRequested;
-    public SequenceRequest<PhraseSequence> RequestReplaceWordPhraseEditor(PhraseSequence inputPhrase, SequenceRequestCallback<PhraseSequence> callback) {
-        return RequestSequence(inputPhrase, OnReplaceWordPhraseEditorRequested, callback);
-    }
+    //public event SequenceRequestHandler<DialogueState, DialogueState> OnLinearDialogueTurnRequested;
+    //public void RequestLinearDialogueTurn(DialogueState inputPhrase, SequenceRequestCallback<DialogueState> callback) { RequestSequence(inputPhrase, OnLinearDialogueTurnRequested, callback); }
+    //public event SequenceRequestHandler<DialogueState, DialogueState> OnPromptDialogueTurnRequested;
+    //public void RequestPromptDialogueTurn(DialogueState inputPhrase, SequenceRequestCallback<DialogueState> callback) { RequestSequence(inputPhrase, OnPromptDialogueTurnRequested, callback); }
 
-    public event SequenceRequestHandler<int, PhraseSequenceElement> OnWordSelectionRequested;
-    public SequenceRequest<PhraseSequenceElement> RequestWordSelectionRequested(int id, SequenceRequestCallback<PhraseSequenceElement> callback) {
-        return RequestSequence(id, OnWordSelectionRequested, callback);
-    }
+    //public event SequenceRequestHandler<object, PhraseSequence> OnPhrasePanelRequested;
+    //public void RequestPhrasePanel(object input, SequenceRequestCallback<PhraseSequence> callback) { RequestSequence(input, OnPhrasePanelRequested, callback); }
+    //public event SequenceRequestHandler<PhraseSequence, PhraseSequence> OnReplaceWordPhraseEditorRequested;
+    //public void RequestReplaceWordPhraseEditor(PhraseSequence input, SequenceRequestCallback<PhraseSequence> callback) { RequestSequence(input, OnReplaceWordPhraseEditorRequested, callback); }
+    //public event SequenceRequestHandler<int, PhraseSequenceElement> OnWordSelectionRequested;
+    //public void RequestWordSelectionRequested(int input, SequenceRequestCallback<PhraseSequenceElement> callback) { RequestSequence(input, OnWordSelectionRequested, callback); }
 
 }

@@ -73,9 +73,9 @@ public class NetworkMessageManager : MonoBehaviour {
         var playerTransform = GetPlayerTransform(playerID);
         PlayerController.main.target = playerTransform;
         OmniscientCamera.main.player = playerTransform;
-        PlayerManager.main.PlayerGameObject = playerTransform.gameObject;
+        PlayerManager.Instance.PlayerGameObject = playerTransform.gameObject;
 
-        Debug.Log("Player ID: " + PlayerManager.main.PlayerID);
+        Debug.Log("Player ID: " + PlayerManager.Instance.PlayerID);
     }
 
     void OnEventManagerInitialized(object sender, System.EventArgs args) {
@@ -166,8 +166,8 @@ public class NetworkMessageManager : MonoBehaviour {
     }
 
     void BroadcastQuestState(int questID) {
-        var q = PlayerManager.main.playerData.QuestData.GetOrCreateQuestInstance(questID);
-        HandleQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, q));
+        var q = PlayerData.Instance.QuestData.GetOrCreateQuestInstance(questID);
+        HandleQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, q));
     }
 
     void HandleSendQuestStateRequested(object sender, PartnerObjectiveCompleteEventArgs e) {
@@ -190,7 +190,7 @@ public class NetworkMessageManager : MonoBehaviour {
 
     void HandleUIRequested(object sender, UIRequestEventArgs e) {
         if (e is SpeechPanelUIRequestEventArgs) {
-            PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
+            PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
         }
     }
 
@@ -204,7 +204,7 @@ public class NetworkMessageManager : MonoBehaviour {
         }
 
         // TODO: make this more robust
-        if (e.TargetObject != PlayerManager.main.PlayerGameObject) {
+        if (e.TargetObject != PlayerManager.Instance.PlayerGameObject) {
             return;
         }
 
@@ -249,7 +249,7 @@ public class NetworkMessageManager : MonoBehaviour {
             UpdateForward(guid);
             GetPlayerTransform(guid).position = GetPosition(guid, Time.time);
             if (currentPositionData.ContainsKey(guid)) {
-                PlayerManager.main.OtherPlayerLevelID = currentPositionData[guid].Level;
+                PlayerManager.Instance.OtherPlayerLevelID = currentPositionData[guid].Level;
                 if (currentPositionData[guid].Level != Application.loadedLevel) {
                     GetPlayerTransform(guid).position = new Vector3(0, -10000f, 0);
                 }
@@ -258,7 +258,7 @@ public class NetworkMessageManager : MonoBehaviour {
 
         // TODO: get rid of this
         if (networkPlayers.Count == 1 || LevelSettings.main.hidePartner) {
-            PlayerManager.main.OtherGameObject.transform.position = new Vector3(0, -10000f, 0);
+            PlayerManager.Instance.OtherGameObject.transform.position = new Vector3(0, -10000f, 0);
         }
 
         var da = GetPlayerTransform(Network.player.guid).GetComponent<DialogueActor>();
@@ -388,7 +388,7 @@ public class NetworkMessageManager : MonoBehaviour {
     void SetNetworkPlayers(string bytes) {
         networkPlayers = Serializer.GetObjectForBytes<List<string>>(bytes);
         Debug.Log("Have players: " + networkPlayers.Count);
-        PlayerManager.main.PlayerCount = networkPlayers.Count;
+        PlayerManager.Instance.PlayerCount = networkPlayers.Count;
     }
 
     public Transform GetPlayerTransform(string guid) {

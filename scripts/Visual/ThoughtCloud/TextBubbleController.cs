@@ -34,7 +34,7 @@ namespace Crystallize.Visualization {
 
 			phraseData = e.PhraseData;
 			if (phraseData != null){
-				speechBubbleInstance = SpeechPanelUI.main.GetSpeechBubble (transform, phraseData, pointerType);
+				speechBubbleInstance = SpeechPanelUI.Instance.GetSpeechBubble (transform, phraseData, pointerType);
 				if(isPlayer){
 					speechBubbleInstance.GetComponent<SpeechBubbleUI>().SetTranslation(e.Translation);
 				}

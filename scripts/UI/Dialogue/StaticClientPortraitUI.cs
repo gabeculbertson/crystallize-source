@@ -1,98 +1,97 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;	
+using System.Collections.Generic;
 using Crystallize;
 
 public class StaticClientPortraitUI : MonoBehaviour {
-	
-	//public GameObject lockEffect;
-	public Image portraitImage;
-	public GameObject anonImage;
-	public GameObject questionEffect;
-	public GameObject exclaimationEffect;
-	public GameObject countEffect;
-	public GameObject checkEffect;
-	public GameObject lockEffect;
 
-	ConversationClient client;
-	List<PhraseSegmentData> phraseData;
+    //public GameObject lockEffect;
+    public Image portraitImage;
+    public GameObject anonImage;
+    public GameObject questionEffect;
+    public GameObject exclaimationEffect;
+    public GameObject countEffect;
+    public GameObject checkEffect;
+    public GameObject lockEffect;
 
-	GameObject[] Effects { 
-		get {
-			return new GameObject[]{ anonImage, exclaimationEffect, questionEffect, countEffect, checkEffect, lockEffect};
-		}
-	}
+    ConversationClient client;
+    List<PhraseSegmentData> phraseData;
 
-	public ConversationClient Client {
-		get {
-			return client;
-		}
-	}
+    GameObject[] Effects {
+        get {
+            return new GameObject[] { anonImage, exclaimationEffect, questionEffect, countEffect, checkEffect, lockEffect };
+        }
+    }
 
-	public void Initialize(InteractiveDialogActor actor){
-		this.client = actor.GetComponent<ConversationClient>();
-		phraseData = client.GetObjectiveWords ();
-		portraitImage.sprite = client.clientData.socialData.portrait;
-		client.OnStateChanged += HandleOnStateChanged;
-	}
+    public ConversationClient Client {
+        get {
+            return client;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		RefreshState ();
-	}
+    public void Initialize(InteractiveDialogActor actor) {
+        this.client = actor.GetComponent<ConversationClient>();
+        phraseData = client.GetObjectiveWords();
+        portraitImage.sprite = client.clientData.socialData.portrait;
+        client.OnStateChanged += HandleOnStateChanged;
+    }
 
-	void Update(){
+    // Use this for initialization
+    void Start() {
+        RefreshState();
+    }
 
-	}
+    void Update() {
 
-	void OnDisable(){
-		client.OnStateChanged -= HandleOnStateChanged;
-	}
+    }
 
-	void RefreshState(){
-		foreach (var eff in Effects) {
-			eff.SetActive(false);
-		}
+    void OnDisable() {
+        client.OnStateChanged -= HandleOnStateChanged;
+    }
 
-		switch (client.State) {
-		case ConversationClientState.Locked:
-			lockEffect.SetActive(true);
-			anonImage.SetActive(true);
-			var level = client.GetComponent<InteractiveDialogActor>().minimumLevel;
-			lockEffect.GetComponentInChildren<Text>().text = level.ToString();
-			break;
+    void RefreshState() {
+        foreach (var eff in Effects) {
+            eff.SetActive(false);
+        }
 
-		case ConversationClientState.SeekingClient:
-			anonImage.SetActive(true);
-			questionEffect.SetActive (true);
-			break;
+        switch (client.State) {
+            case ConversationClientState.Locked:
+                lockEffect.SetActive(true);
+                anonImage.SetActive(true);
+                var level = client.GetComponent<InteractiveDialogActor>().minimumLevel;
+                lockEffect.GetComponentInChildren<Text>().text = level.ToString();
+                break;
 
-		case ConversationClientState.SeekingWords:
-			countEffect.SetActive(true);
-			
-			int completed = 0;
-			foreach (var word in phraseData) {
-				if(PlayerManager.main.playerData.WordStorage.ContainsFoundWord(word)){
-					completed++;
-				}
-			}
-			countEffect.GetComponentInChildren<Text>().text =  string.Format ("{0}/{1}", completed, phraseData.Count);
-			break;
+            case ConversationClientState.SeekingClient:
+                anonImage.SetActive(true);
+                questionEffect.SetActive(true);
+                break;
 
-		case ConversationClientState.Available:
-			exclaimationEffect.SetActive (true);
-			break;
+            case ConversationClientState.SeekingWords:
+                countEffect.SetActive(true);
 
-		case ConversationClientState.Completed:
-			checkEffect.SetActive (true);
-			break;
-		}
-	}
+                int completed = 0;
+                foreach (var word in phraseData) {
+                    if (PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
+                        completed++;
+                    }
+                }
+                countEffect.GetComponentInChildren<Text>().text = string.Format("{0}/{1}", completed, phraseData.Count);
+                break;
 
-	void HandleOnStateChanged (object sender, System.EventArgs e)
-	{
-		RefreshState ();
-	}
+            case ConversationClientState.Available:
+                exclaimationEffect.SetActive(true);
+                break;
+
+            case ConversationClientState.Completed:
+                checkEffect.SetActive(true);
+                break;
+        }
+    }
+
+    void HandleOnStateChanged(object sender, System.EventArgs e) {
+        RefreshState();
+    }
 
 }

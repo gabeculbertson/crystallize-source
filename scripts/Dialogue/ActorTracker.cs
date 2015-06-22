@@ -30,7 +30,7 @@ public class ActorTracker {
 
     // TODO: decide if this needs to be moved somehwere else
     public static ActorType GetActorType(GameObject target) {
-        if (target == PlayerManager.main.PlayerGameObject) {
+        if (target == PlayerManager.Instance.PlayerGameObject) {
             return ActorType.Self;
         } else if (target.transform.IsHumanControlled()) {
             return ActorType.Other; 
@@ -51,7 +51,7 @@ public class ActorTracker {
     public static string GetName(GameObject target) {
         switch (GetActorType(target)) {
             case ActorType.Self:
-                return PlayerManager.main.playerData.PersonalData.Name;
+                return PlayerData.Instance.PersonalData.Name;
             case ActorType.Other:
                 return "Partner";
             default:

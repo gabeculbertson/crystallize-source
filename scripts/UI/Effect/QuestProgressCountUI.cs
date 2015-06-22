@@ -42,7 +42,7 @@ public class QuestProgressCountUI : MonoBehaviour {
 
             int completed = 0;
             foreach (var word in phraseData) {
-                if (PlayerManager.main.playerData.WordStorage.ContainsFoundWord(word)) {
+                if (PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
                     completed++;
                 }
             }
@@ -54,7 +54,7 @@ public class QuestProgressCountUI : MonoBehaviour {
 
             var count = 0;
             foreach (var n in neededWords) {
-                if (PlayerManager.main.playerData.WordStorage.ContainsFoundWord(n)) {
+                if (PlayerData.Instance.WordStorage.ContainsFoundWord(n)) {
                     count++;
                 }
             }

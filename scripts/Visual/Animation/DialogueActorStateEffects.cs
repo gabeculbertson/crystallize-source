@@ -116,15 +116,15 @@ public class DialogueActorStateEffects : MonoBehaviour {
             return ConversationClientState.Hidden;
         }
 
-        if (!PlayerManager.main.playerData.Conversation.IsAvailable(convID)) {
+        if (!PlayerData.Instance.Conversation.IsAvailable(convID)) {
             return ConversationClientState.Hidden;
         }
 
         var objs = c.GetNeededWords();
         var haveObjs = true;
         foreach(var o in objs){
-            if(!PlayerManager.main.playerData.WordStorage.ObjectiveWords.Contains(o.WordID)
-                && !PlayerManager.main.playerData.WordStorage.FoundWords.Contains(o.WordID)) {
+            if (!PlayerData.Instance.WordStorage.ObjectiveWords.Contains(o.WordID)
+                && !PlayerData.Instance.WordStorage.FoundWords.Contains(o.WordID)) {
                 haveObjs = false;
                 break;
             }
@@ -136,7 +136,7 @@ public class DialogueActorStateEffects : MonoBehaviour {
 
         var haveWords = true;
         foreach (var o in objs) {
-            if (!PlayerManager.main.playerData.WordStorage.FoundWords.Contains(o.WordID)) {
+            if (!PlayerData.Instance.WordStorage.FoundWords.Contains(o.WordID)) {
                 haveWords = false;
                 break;
             }
@@ -146,7 +146,7 @@ public class DialogueActorStateEffects : MonoBehaviour {
             return ConversationClientState.SeekingWords;
         }
 
-        var completed = PlayerManager.main.playerData.Conversation.GetConversationComplete(id);//c.ID);
+        var completed = PlayerData.Instance.Conversation.GetConversationComplete(id);//c.ID);
         if (!completed) {
             return ConversationClientState.Available;
         }

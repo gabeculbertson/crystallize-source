@@ -13,7 +13,7 @@ public class SlotClickTutorialScript : LevelScript {
 
 	// Use this for initialization
 	IEnumerator Start () {
-        PlayerManager.main.playerData.Tutorial.SetTutorialViewed(ID);
+        PlayerData.Instance.Tutorial.SetTutorialViewed(ID);
 
         SetMessage("Some words have been moved out of your quick inventory. Click a word slot to see a list of all your words.");
 

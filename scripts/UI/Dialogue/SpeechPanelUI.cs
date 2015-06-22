@@ -5,9 +5,22 @@ using System.Linq;
 
 public class SpeechPanelUI : MonoBehaviour {
 
+    const string ResourcePath = "UI/SpeechPanel";
 	const float Padding = 2f;
 
-	public static SpeechPanelUI main { get; set; }
+    static SpeechPanelUI _instance;
+	public static SpeechPanelUI Instance {
+        get {
+            if (!_instance) {
+                _instance = GameObjectUtil.GetResourceInstance<SpeechPanelUI>(ResourcePath);
+            }
+            return _instance;
+        }
+    }
+
+    public static SpeechPanelUI GetInstance() {
+        return Instance;
+    }
 
 	public GameObject normalSpeechBubblePrefab;
 	public GameObject playerSpeechBubblePrefab;
@@ -15,10 +28,11 @@ public class SpeechPanelUI : MonoBehaviour {
     Dictionary<Transform, GameObject> speechBubbleInstances = new Dictionary<Transform, GameObject>();
 
 	void Awake(){
-		main = this;
+		_instance = this;
 	}
 
     void Start() {
+        transform.SetParent(MainCanvas.main.transform, false);
         CrystallizeEventManager.UI.OnSpeechBubbleRequested += HandleSpeechBubbleRequested;
     }
 

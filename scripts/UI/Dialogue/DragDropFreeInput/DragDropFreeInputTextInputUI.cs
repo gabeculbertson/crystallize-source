@@ -112,7 +112,7 @@ public class DragDropFreeInputTextInputUI : MonoBehaviour {
         option.transform.SetParent(MainCanvas.main.transform);
         option.transform.position = input.transform.position + (optionInstances.Count * 32f + 40f) * Vector3.up;// +new Vector3(80f, 20f);
         option.GetComponentInChildren<Text>().text = JapaneseTools.KanaConverter.Instance.ConvertToRomaji(entry.Kana); //phrase.ConvertedText;
-        option.GetComponent<Image>().color = GUIPallet.main.GetColorForWordCategory(pse.GetPhraseCategory());
+        option.GetComponent<Image>().color = GUIPallet.Instance.GetColorForWordCategory(pse.GetPhraseCategory());
         option.GetComponent<Image>().sprite = EffectLibrary.Instance.objectiveWordShape;
         option.GetComponent<UIButton>().OnClicked += HandleOnClicked;
 

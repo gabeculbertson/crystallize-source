@@ -101,7 +101,7 @@ public class EnglishChatBoxUI : MonoBehaviour {
 
 	public void Confirm(){
 		if (inputField.text != "") {
-			string text = "Player " + (PlayerManager.main.PlayerID + 1) + ": " + inputField.text;
+			string text = "Player " + (PlayerManager.Instance.PlayerID + 1) + ": " + inputField.text;
 			CrystallizeEventManager.Network.RaiseEnglishLineInput (this, new TextEventArgs (text));
 			inputField.text = "";
 		}

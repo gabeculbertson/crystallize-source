@@ -18,7 +18,7 @@ public class CompleteConversationQuestInfoGameData : QuestInfoGameData {
             Debug.Log("Invalid actor: " + ActorGlobalID);
             return;
         }
-        PlayerManager.main.playerData.Conversation.SetAvailable(cid.ID, true);
+        PlayerData.Instance.Conversation.SetAvailable(cid.ID, true);
     }
 
     public override void ProcessMessage(System.EventArgs args) {
@@ -29,7 +29,7 @@ public class CompleteConversationQuestInfoGameData : QuestInfoGameData {
             return;
         }
 
-        if (PlayerData.Instance.Conversation.GetConversationComplete(ActorGlobalID)){//cid.ID)) {
+        if (PlayerData.Instance.Conversation.GetConversationComplete(ActorGlobalID)) {//cid.ID)) {
             CompleteObjective(0);
         }
     }

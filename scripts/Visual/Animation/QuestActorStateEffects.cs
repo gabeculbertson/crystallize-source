@@ -120,7 +120,7 @@ public class QuestActorStateEffects : MonoBehaviour {
             return ConversationClientState.Hidden;
         }
 
-        var questPlayerData = PlayerManager.main.playerData.QuestData.GetQuestInstance(q.QuestID);
+        var questPlayerData = PlayerData.Instance.QuestData.GetQuestInstance(q.QuestID);
         if (questPlayerData == null) 
             return ConversationClientState.Available;
         if (questPlayerData.State == ObjectiveState.Available)

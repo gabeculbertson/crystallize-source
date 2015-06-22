@@ -26,7 +26,7 @@ public class ConversationSetLevel : MonoBehaviour {
 	void Update () {
         var finished = true;
 	    foreach(var cid in cids){
-            if (!PlayerManager.main.playerData.Conversation.GetConversationComplete(cid)) {
+            if (!PlayerData.Instance.Conversation.GetConversationComplete(cid)) {
                 finished = false;
                 break;
             }

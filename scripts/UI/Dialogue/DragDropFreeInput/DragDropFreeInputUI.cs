@@ -166,7 +166,7 @@ public class DragDropFreeInputUI : MonoBehaviour {
     }
 
     public void EnterPhrase() {
-        PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(phrase);
+        PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(phrase);
         Close();
     }
 

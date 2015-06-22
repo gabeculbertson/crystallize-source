@@ -26,12 +26,16 @@ public class EditorUtilities {
         propertyDrawers = new Dictionary<Type, Action<object, PropertyInfo>>();
         propertyDrawers[typeof(int)] = DrawIntValue;
         propertyDrawers[typeof(string)] = DrawStringValue;
+        propertyDrawers[typeof(float)] = DrawFloatValue;
         propertyDrawers[typeof(PhraseSequence)] = DrawPhraseSequenceValue;
+        propertyDrawers[typeof(DialogueSequence)] = DrawDialogueSequenceValue;
+        propertyDrawers[typeof(SceneObjectGameData)] = DrawSceneObjectValue;
+        propertyDrawers[typeof(DialogueActorLine)] = DrawActorLineValue;
     }
 
-	public static object GetInstance(Type t){
-		return Activator.CreateInstance (t.GetType ());
-	}
+    public static object GetInstance(Type t) {
+        return Activator.CreateInstance(t.GetType());
+    }
 
     public static Dictionary<DialogueActorLine, List<DialogueActorLine>> GetAggregatedPlayerLines() {
         var playerLines = new Dictionary<DialogueActorLine, List<DialogueActorLine>>();
@@ -82,36 +86,6 @@ public class EditorUtilities {
         return npcLines;
     }
 
-    //public static List<PlayerActorLine> GetPlayerLines() {
-    //    var playerLines = new List<PlayerActorLine>();
-    //    foreach (var d in GameData.Instance.DialogueData.LinearDialogues.Items) {
-    //        foreach (var l in d.Lines) {
-    //            if (l is PlayerActorLine) {
-    //                AddPlayerLine(playerLines, (PlayerActorLine)l);
-    //            }
-    //        }
-    //    }
-
-    //    foreach (var d in GameData.Instance.DialogueData.BranchedDialogues.Items) {
-    //        foreach (var b in d.Elements) {
-    //            if (b.PromptPhrase.Phrase.PhraseElements.Count > 0) {
-    //                AddPlayerLine(playerLines, b.PromptPhrase);
-    //            }
-    //        }
-    //    }
-    //    return playerLines;
-    //}
-
-    //static bool AddPlayerLine(List<PlayerActorLine> playerLines, DialogueActorLine line) {
-    //    foreach (var l in playerLines) {
-    //        if (PhraseSequence.IsPhraseEquivalent(line.Phrase, l.Phrase)) {
-    //            return false;
-    //        }
-    //    }
-    //    playerLines.Add(line);
-    //    return true;
-    //}
-
     static void AddActorLine(Dictionary<DialogueActorLine, List<DialogueActorLine>> playerLines, DialogueActorLine line) {
         foreach (var l in playerLines.Keys) {
             if (PhraseSequence.IsPhraseEquivalent(line.Phrase, l.Phrase)) {
@@ -128,7 +102,7 @@ public class EditorUtilities {
         if (translations == null) {
             translations = new Dictionary<PhraseSequence, string>();
             var lines = GetAggregatedPlayerLines();
-                //GetPlayerLines();
+            //GetPlayerLines();
             foreach (var l in lines.Keys) {
                 var simPhr = GetSimilarPhrase(translations.Keys, l.Phrase);
                 if (simPhr == null) {
@@ -139,7 +113,7 @@ public class EditorUtilities {
                 }
             }
         }
-            
+
         var key = GetSimilarPhrase(translations.Keys, phrase);
         if (key != null) {
             return translations[key];
@@ -176,31 +150,31 @@ public class EditorUtilities {
         line.SetUseAutomaticProgression(EditorGUILayout.Toggle("Use automatic progression", line.UseAutomaticProgression));
         line.SetOverrideGivenWords(EditorGUILayout.Toggle("Override given words", line.OverrideGivenWords));
 
-         if (line.OverrideGivenWords) {
+        if (line.OverrideGivenWords) {
 
-             GUILayout.BeginHorizontal();
+            GUILayout.BeginHorizontal();
 
-             for (int i = 0; i < line.Phrase.PhraseElements.Count; i++) {
-                 var t = line.Phrase.PhraseElements[i].GetText();
-                 if(!line.GetWordGiven(i)){
-                     t = "{" + t + "}";
-                 }
+            for (int i = 0; i < line.Phrase.PhraseElements.Count; i++) {
+                var t = line.Phrase.PhraseElements[i].GetText();
+                if (!line.GetWordGiven(i)) {
+                    t = "{" + t + "}";
+                }
 
-                 if (GUILayout.Button(t)) {
-                     //Debug.Log("given: " + line.GetWordGiven(i));
-                     line.SetWordGiven(i, !line.GetWordGiven(i));
-                 }
-             }
+                if (GUILayout.Button(t)) {
+                    //Debug.Log("given: " + line.GetWordGiven(i));
+                    line.SetWordGiven(i, !line.GetWordGiven(i));
+                }
+            }
 
-             GUILayout.EndHorizontal();
-         }
+            GUILayout.EndHorizontal();
+        }
 
-         line.ProvideMissingWordsMessage = EditorGUILayout.Toggle("Provide missing words message", line.ProvideMissingWordsMessage);
+        line.ProvideMissingWordsMessage = EditorGUILayout.Toggle("Provide missing words message", line.ProvideMissingWordsMessage);
 
-         EditorGUILayout.EndVertical();
+        EditorGUILayout.EndVertical();
     }
 
-    public static void DrawNPCLine(NPCActorLine line) {
+    public static void DrawNPCLine(DialogueActorLine line) {
         EditorGUILayout.BeginVertical(GUI.skin.box);
 
         if (GUILayout.Button(line.Phrase.GetText())) {
@@ -243,27 +217,31 @@ public class EditorUtilities {
             if (!p.CanWrite) {
                 continue;
             }
-            
+
             DrawProperty(obj, p);
         }
     }
 
     public static void DrawProperty(object obj, PropertyInfo p) {
-		if (propertyDrawers.ContainsKey(p.PropertyType)) {
+        if (propertyDrawers.ContainsKey(p.PropertyType)) {
             propertyDrawers[p.PropertyType](obj, p);
         } else if (typeof(IList).IsAssignableFrom(p.PropertyType)) {
             DrawListValue(obj, p);
-        } else if(obj.GetType().IsSerializable){
-			EditorGUI.indentLevel++;
-			DrawObject(obj);
-			EditorGUI.indentLevel--;
-		} else {
+        } else if (obj.GetType().IsSerializable) {
+            EditorGUI.indentLevel++;
+            DrawObject(obj);
+            EditorGUI.indentLevel--;
+        } else {
             DrawLabelValue(obj, p);
         }
     }
 
     static void DrawStringValue(object obj, PropertyInfo p) {
         p.SetValue(obj, EditorGUILayout.TextField(p.Name, (string)p.GetValue(obj, new object[0])), new object[0]);
+    }
+
+    static void DrawFloatValue(object obj, PropertyInfo p) {
+        p.SetValue(obj, EditorGUILayout.FloatField(p.Name, (float)p.GetValue(obj, new object[0])), new object[0]);
     }
 
     static void DrawIntValue(object obj, PropertyInfo p) {
@@ -276,31 +254,74 @@ public class EditorUtilities {
             var list = (IList)p.GetValue(obj, new object[0]);
             var t = p.PropertyType.GetGenericArguments()[0];
             EditorGUILayout.LabelField(p.Name);
-            if (t == typeof(string)) {
-                EditorGUI.indentLevel++;
-                for (int i = 0; i < list.Count; i++) {
-                    list[i] = EditorGUILayout.TextField(list[i].ToString());
-                }
-                if (GUILayout.Button("Add...")) {
-                    list.Add("");
-                }
-                if (list.Count > 0) {
-                    if (GUILayout.Button("Remove...")) {
-                        list.RemoveAt(list.Count - 1);
-                    }
-                }
-                EditorGUI.indentLevel--;
+
+            EditorGUI.indentLevel++;
+
+            for (int i = 0; i < list.Count; i++) {
+                EditorGUILayout.BeginVertical(GUI.skin.box);
+                DrawObject(list[i]);
+                EditorGUILayout.EndVertical();
             }
+
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("+")) {
+                list.Add(GetDefaultValue(t));
+            }
+            if (list.Count > 0) {
+                if (GUILayout.Button("-")) {
+                    list.RemoveAt(list.Count - 1);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUI.indentLevel--;
         } else {
             DrawLabelValue(obj, p);
         }
     }
 
+    public static void DrawSceneObjectValue(object obj, PropertyInfo p) {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUILayout.LabelField(p.Name);
+        DrawObject(p.GetValue(obj, new object[0]));
+        EditorGUILayout.EndVertical();
+    }
+
+    static object GetDefaultValue(Type t) {
+        if (t.IsValueType) {
+            return Activator.CreateInstance(t);
+        } else if (t.GetConstructor(new Type[0]) != null) {
+            return Activator.CreateInstance(t);
+        } else {
+            return null;
+        }
+    }
+
     static void DrawPhraseSequenceValue(object obj, PropertyInfo p) {
         var ps = (PhraseSequence)p.GetValue(obj, new object[0]);
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(p.Name);
         if (GUILayout.Button(ps.GetText())) {
             PhraseEditorWindow.Open(ps);
         }
+        EditorGUILayout.EndHorizontal();
+    }
+
+    static void DrawDialogueSequenceValue(object obj, PropertyInfo p) {
+        var ds = (DialogueSequence)p.GetValue(obj, new object[0]);
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(p.Name);
+        if (GUILayout.Button("Edit")) {
+            DialogueSequenceEditorWindow.Open(ds);
+        }
+        EditorGUILayout.EndHorizontal();
+    }
+
+    static void DrawActorLineValue(object obj, PropertyInfo p) {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUILayout.LabelField(p.Name);
+        DrawNPCLine((DialogueActorLine)p.GetValue(obj, new object[0]));
+        EditorGUILayout.EndVertical();
     }
 
     static void DrawLabelValue(object obj, PropertyInfo p) {

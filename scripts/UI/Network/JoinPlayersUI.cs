@@ -24,7 +24,7 @@ public class JoinPlayersUI : UIMonoBehaviour {
 
         PlayerController.LockMovement(this);
 
-        while (PlayerManager.main.OtherPlayerLevelID != Application.loadedLevel) {
+        while (PlayerManager.Instance.OtherPlayerLevelID != Application.loadedLevel) {
             yield return new WaitForSeconds(0.1f);
         }
 

@@ -198,16 +198,16 @@ public class SpeechBubbleUI : MonoBehaviour {
          switch (pointerType) {
             case PointerType.Normal:
                 if (Flipped) {
-                    GetComponent<Image>().sprite = GUIPallet.main.leftSpeechBubble;
+                    GetComponent<Image>().sprite = GUIPallet.Instance.leftSpeechBubble;
                 } else {
-                    GetComponent<Image>().sprite = GUIPallet.main.rightSpeechBubble;
+                    GetComponent<Image>().sprite = GUIPallet.Instance.rightSpeechBubble;
                 };
                 break;
             case PointerType.Phone:
                 if (Flipped) {
-                    GetComponent<Image>().sprite = GUIPallet.main.leftPhoneSpeechBubble;
+                    GetComponent<Image>().sprite = GUIPallet.Instance.leftPhoneSpeechBubble;
                 } else {
-                    GetComponent<Image>().sprite = GUIPallet.main.rightPhoneSpeechBubble;
+                    GetComponent<Image>().sprite = GUIPallet.Instance.rightPhoneSpeechBubble;
                 }
                 break;
          }

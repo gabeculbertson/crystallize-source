@@ -14,8 +14,8 @@ public class ThoughtBubbleDialogueAvailableUI : MonoBehaviour {
             text.color = Color.black;
             cross.gameObject.SetActive(false);
         } else {
-            icon.color = GUIPallet.main.lightGray;
-            text.color = GUIPallet.main.inactiveColor;
+            icon.color = GUIPallet.Instance.lightGray;
+            text.color = GUIPallet.Instance.inactiveColor;
             cross.gameObject.SetActive(true);
         }
     }

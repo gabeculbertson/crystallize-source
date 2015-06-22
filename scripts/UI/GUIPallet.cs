@@ -4,7 +4,16 @@ using System.Collections.Generic;
 
 public class GUIPallet : MonoBehaviour {
 
-	public static GUIPallet main { get; set; }
+    const string ResourcePath = "UI/GUIPallet";
+    static GUIPallet _instance;
+    public static GUIPallet Instance {
+        get {
+            if (!_instance) {
+                _instance = GameObjectUtil.GetResourceInstance<GUIPallet>(ResourcePath);
+            }
+            return _instance;
+        }
+    }
 
 	public Texture2D WhiteBackground { get; set; }
 	public GUIStyle WordCardStyle { get; set; }
@@ -86,8 +95,6 @@ public class GUIPallet : MonoBehaviour {
 
 		LabelStyle = new GUIStyle (WordCardStyle);
 		LabelStyle.fontSize = 36;
-
-		main = this;
 	}
 
 	public Color GetColorForRumor(string rumor){

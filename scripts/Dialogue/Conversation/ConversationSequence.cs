@@ -2,66 +2,79 @@
 using System;
 using System.Collections;
 
-public class ConversationSequence : MonoBehaviour, ISelectionSequence<object> {
+public class ConversationSequence : IProcess<ConversationArgs, object> {
 
-    public static ConversationSequence GetInstance(DialogueSequence dialogue) {
-        var go = new GameObject("Conversation");
-        var c = go.AddComponent<ConversationSequence>();
-        c.dialogue = dialogue;
-        return c;
-    }
+    public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestLinearDialogueTurn = new ProcessFactoryRef<DialogueState,DialogueState>();
+    public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestPromptDialogueTurn = new ProcessFactoryRef<DialogueState,DialogueState>();
+    public static readonly ProcessFactoryRef<GameObject, object> RequestConversationCamera = new ProcessFactoryRef<GameObject,object>();
 
-    public GameObject cameraController;
-    public DialogueActor actor;
+    public event ProcessExitCallback OnExit;
 
-    public event EventHandler OnCancel;
-    public event EventHandler OnExit;
-    public event SequenceCompleteCallback<object> OnSelection;
-
+    DialogueActor actor;
     DialogueSequence dialogue;
-    GameObject cameraControllerInstance;
-    bool running;
 
-    void Start() {
-        //SetDialogueElement(GetComponent<DialogueActor>(), d, 0);
+    public void Initialize(ConversationArgs target) {
+        actor = target.Target.GetComponent<DialogueActor>();
+        dialogue = target.Dialogue;
+
+        CoroutineManager.Instance.StartCoroutine(PrepareConversation());
     }
 
-    void Begin() {
-        if (cameraControllerInstance) {
-            Destroy(cameraControllerInstance);
-        }
+    public void ForceExit() {
+        Exit();
+    }
 
-        cameraControllerInstance = Instantiate<GameObject>(cameraController);
-        cameraControllerInstance.GetComponent<ConversationCameraController>().conversationTarget = transform;
+    IEnumerator PrepareConversation() {
+        var pgo = PlayerManager.Instance.PlayerGameObject.GetComponent<Rigidbody>();
+        pgo.position = actor.transform.position + actor.transform.forward * 2f;
+        pgo.transform.forward = -actor.transform.forward;
+        pgo.velocity = Vector3.zero;
+
+        yield return null;
+
+        pgo.position = actor.transform.position + actor.transform.forward * 2f;
+        pgo.transform.forward = -actor.transform.forward;
+        pgo.velocity = Vector3.zero;
+        
+        RequestConversationCamera.Get(actor.gameObject, null, this);
+
         CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
-
-        var pgo = PlayerManager.main.PlayerGameObject;
-        pgo.transform.position = transform.position + transform.forward * 2f;
-        pgo.transform.forward = -transform.forward;
 
         PlayerController.LockMovement(this);
 
-        running = true;
+        SetDialogueElement(new DialogueState(0, dialogue));
     }
 
-    void SetDialogueElement(DialogueActor actor, DialogueSequence dialogue, int currentElement) {
-        actor.SetPhrase(dialogue.GetElement(currentElement).Phrase);
+    void Exit() {
+        actor.SetPhrase(null);
+        PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
+        PlayerController.UnlockMovement(this);
 
-        //Debug.Log(dialogue.GetElementType(currentElement));
-        switch (dialogue.GetElementType(currentElement)) {
-            case DialogueElementType.Linear:
+        CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
 
-                CrystallizeEventManager.UI.RaisePromptLinearDialogueContinue(this, new DialogueSequenceEventArgs(dialogue, currentElement));
-                //CrystallizeEventManager.UI.OnResolveLinearDialogueContinue += HandleResolveLinearDialogueContinue;
-                break;
-            case DialogueElementType.End:
-                CrystallizeEventManager.UI.RaisePromptEndDialogueContinue(this, new DialogueSequenceEventArgs(dialogue, currentElement));
-                //CrystallizeEventManager.UI.OnResolveEndDialogueContinue += HandleResolveEndDialogueContinue;
+        OnExit.Raise(this, null);
+    }
+
+    void SetDialogueElement(DialogueState dialogueState) {
+        actor.SetLine(dialogueState.GetElement().Line);
+        //Debug.Log(dialogueState.GetElement().NextIDs.Count);
+
+        switch (dialogueState.Dialogue.GetElementType(dialogueState.CurrentID)) {
+            case DialogueElementType.Linear: case DialogueElementType.End:
+                RequestLinearDialogueTurn.Get(dialogueState, HandleTurnExit, this);
                 break;
             case DialogueElementType.Prompted:
-                CrystallizeEventManager.UI.RaisePromptPromptDialogueContinue(this, new DialogueSequenceEventArgs(dialogue, currentElement));
-                //CrystallizeEventManager.UI.OnResolvePromptDialogueContinue += HandleResolveLinearDialogueContinue;
+                RequestPromptDialogueTurn.Get(dialogueState, HandleTurnExit, this);
                 break;
+        }
+    }
+
+    void HandleTurnExit(object sender, DialogueState e) {
+        if (e == null) {
+            Exit();
+        } else {
+            //var args = (ProcessExitEventArgs<DialogueState>)e;
+            SetDialogueElement(e);
         }
     }
 

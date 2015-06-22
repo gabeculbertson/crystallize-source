@@ -19,12 +19,12 @@ public class CompleteBranchQuestInfoGameData : QuestInfoGameData {
             Debug.Log("Invalid actor: " + ActorGlobalID);
             return;
         }
-        PlayerManager.main.playerData.Conversation.SetAvailable(cid.ID, true);
+        PlayerData.Instance.Conversation.SetAvailable(cid.ID, true);
     }
 
     public override void ProcessMessage(System.EventArgs args) {
         //Debug.Log("Checking for: " + ActorGlobalID + "; " + BranchID);
-        if (PlayerData.Instance.Conversation.GetBranchCompleted(ActorGlobalID, BranchID)){
+        if (PlayerData.Instance.Conversation.GetBranchCompleted(ActorGlobalID, BranchID)) {
             CompleteObjective(0);
         }
     }

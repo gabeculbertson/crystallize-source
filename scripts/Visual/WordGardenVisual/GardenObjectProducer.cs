@@ -33,7 +33,7 @@ public class GardenObjectProducer : MonoBehaviour {
 		instance = (GameObject)Instantiate (levelObjects [target], transform.position, rot);
 		instance.transform.parent = transform;
 		if (instance.GetComponent<Renderer>()) {
-			instance.GetComponent<Renderer>().material.color = GUIPallet.main.levelColors[level];
+			instance.GetComponent<Renderer>().material.color = GUIPallet.Instance.levelColors[level];
 		}
 		Instantiate(smokeEffect, transform.position + Vector3.up, Quaternion.identity);
 		this.level = level;

@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7727d0fc359df4486dd7b3f162d1e0, type: 3}
   m_Name: NightSessionData
   m_EditorClassIdentifier: 
-  sessionArea: NightSession
+  sessionArea: ParkBench

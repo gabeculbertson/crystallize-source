@@ -114,7 +114,7 @@ public class QuickDictionaryUI : UIMonoBehaviour {
             var e = DictionaryData.Instance.GetEntryFromID(word.WordID);
 
             var cat = e.PartOfSpeech.GetCategory();
-            var c = GUIPallet.main.GetColorForWordCategory(cat);
+            var c = GUIPallet.Instance.GetColorForWordCategory(cat);
             partOfSpeech.GetComponentInChildren<Text>().text = cat.ToString().ToLower(); 
             partOfSpeech.GetComponentInChildren<Image>().color = c;
             partOfSpeech.GetComponentInChildren<Outline>().effectColor = c;
