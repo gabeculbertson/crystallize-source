@@ -11089,6 +11089,26 @@
       </English>
       <PartOfSpeech>Noun</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1576150</ID>
+      <Kanji>一人</Kanji>
+      <Kana>ひとり</Kana>
+      <English>
+        <string>one person</string>
+      </English>
+      <PartOfSpeech>Noun</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1189130</ID>
+      <Kanji>どうぞ</Kanji>
+      <Kana>どうぞ</Kana>
+      <English>
+        <string>please</string>
+        <string>kindly</string>
+        <string>I beg of you</string>
+      </English>
+      <PartOfSpeech>Adverb</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>

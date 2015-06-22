@@ -2247,8 +2247,124 @@
           </JobTaskGameData>
         </Tasks>
       </JobGameData>
+      <JobGameData>
+        <ID>2</ID>
+        <Name>Eat at restaurant</Name>
+        <Difficulty>0</Difficulty>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Go eat</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <SceneObjectIdentifier>
+              <Name>Waiter</Name>
+            </SceneObjectIdentifier>
+            <Dialogue>
+              <Elements>
+                <Items>
+                  <DialogueElement>
+                    <ID>0</ID>
+                    <Prompt>
+                      <PhraseElements />
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1289400</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs>
+                      <int>1</int>
+                    </NextIDs>
+                  </DialogueElement>
+                  <DialogueElement>
+                    <ID>1</ID>
+                    <Prompt>
+                      <PhraseElements>
+                        <PhraseSequenceElement>
+                          <WordID>1289400</WordID>
+                          <FormID>0</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                      </PhraseElements>
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2149890</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs>
+                      <int>2</int>
+                    </NextIDs>
+                  </DialogueElement>
+                  <DialogueElement>
+                    <ID>2</ID>
+                    <Prompt>
+                      <PhraseElements />
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1576150</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs />
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
     </Items>
-    <CurrentKey>1000020</CurrentKey>
+    <CurrentKey>1000021</CurrentKey>
   </Jobs>
   <Homes>
     <Items>

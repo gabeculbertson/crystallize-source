@@ -22,6 +22,7 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, ITemporaryUI<
 
     PhraseSequence phrase;
     List<GameObject> wordInstances = new List<GameObject>();
+    ITemporaryUI<PhraseSequenceElement, PhraseSequenceElement> wordSelector;
 
     int selectedWord = -1;
 
@@ -32,7 +33,10 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, ITemporaryUI<
     }
 
     public void Close() {
-        Exit(null);
+        Destroy(gameObject);
+        if (wordSelector != null) {
+            wordSelector.Close();
+        }
     }
 
     void Start() {
@@ -53,29 +57,32 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, ITemporaryUI<
         return wordInstance;
     }
 
-    void Exit(EventArgs<PhraseSequence> args)
+    void RaiseComplete(EventArgs<PhraseSequence> args)
     {
         Complete.Raise(this, args);
-        Destroy(gameObject);
     }
 
     public void Confirm()
     {
-        Exit(new EventArgs<PhraseSequence>(phrase));
+        RaiseComplete(new EventArgs<PhraseSequence>(phrase));
     }
 
     void HandleWordClicked(object sender, System.EventArgs e) {
         selectedWord = wordInstances.IndexOf(((Component)sender).gameObject);
         var word = phrase.PhraseElements[selectedWord];
 
-        RequestWordSelection.Get(word, OnWordSelected, null);// this);
+        wordSelector = UILibrary.WordSelector.Get(null);
+        wordSelector.Complete += wordSelector_Complete;
+        //RequestWordSelection.Get(word, OnWordSelected, null);// this);
     }
 
-    void OnWordSelected(object sender, PhraseSequenceElement e) {
+    void wordSelector_Complete(object sender, EventArgs<PhraseSequenceElement> e) {
         if (phrase.PhraseElements.IndexInRange(selectedWord)) {
-            phrase.PhraseElements[selectedWord] = e;
+            phrase.PhraseElements[selectedWord] = e.Data;
         }
         Refresh();
+        wordSelector.Complete -= wordSelector_Complete;
+        wordSelector = null;
     }
 
 }

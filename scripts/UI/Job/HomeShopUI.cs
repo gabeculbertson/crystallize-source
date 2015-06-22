@@ -17,6 +17,17 @@ public class HomeShopUI : UIPanel, ITemporaryUI<object, object> {
 
     public void Initialize(object param1) {
         transform.SetParent(MainCanvas.main.transform, false);
+        CrystallizeEventManager.PlayerState.OnHomesChanged += PlayerState_OnHomesChanged;
+        CrystallizeEventManager.PlayerState.OnMoneyChanged += PlayerState_OnHomesChanged;
+        Refresh();
+    }
+
+    void OnDestroy() {
+        CrystallizeEventManager.PlayerState.OnHomesChanged -= PlayerState_OnHomesChanged;
+        CrystallizeEventManager.PlayerState.OnMoneyChanged -= PlayerState_OnHomesChanged;
+    }
+
+    void PlayerState_OnHomesChanged(object sender, EventArgs e) {
         Refresh();
     }
 

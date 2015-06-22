@@ -45,7 +45,11 @@ public class ConversationPhrasePanelUI : UIPanel, IPanelItemSelector<PhraseSeque
 
     void Refresh()
     {
-        UIUtil.GenerateChildren(PlayerData.Instance.PhraseStorage.Phrases, phraseInstances, transform, GetPhraseInstance);
+        var phrases = new List<PhraseSequence>();
+        var confused = new PhraseSequence("?");
+        phrases.Add(confused);
+        phrases.AddRange(PlayerData.Instance.PhraseStorage.Phrases);
+        UIUtil.GenerateChildren(phrases, phraseInstances, transform, GetPhraseInstance);
     }
 
     void HandlePhraseCollected(object sender, PhraseEventArgs e) {

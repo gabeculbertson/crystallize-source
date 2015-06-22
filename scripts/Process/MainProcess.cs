@@ -49,10 +49,9 @@ public class MainProcess {
         MorningProcess.RequestPlanSelection.Set<JobSelectionProcess>();
 
         // Link main events for day session
-        DayProcess.RequestJob.Set<JanitorProcess>();
+        DayProcess.RequestJob.Set<JobProcessSelector>();
 
         // Link main events for evening session
-
         EveningProcess.RequestExplore.Set<TempProcess<object, TimeSessionArgs>>();
 
         // Link main events for night session
@@ -87,7 +86,7 @@ public class MainProcess {
 
     static void SetDebugState() {
         Debug.Log("Set debug state.");
-        PlayerDataConnector.UnlockJob(new JobRef(0));
+        PlayerDataConnector.UnlockJob(new JobRef(2));
         PlayerDataConnector.UnlockJob(new JobRef(1));
     }
 

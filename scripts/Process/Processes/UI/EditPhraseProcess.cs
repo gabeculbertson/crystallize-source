@@ -3,22 +3,34 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class EditPhraseProcess : IUIProcess<PhraseSequence, PhraseSequence> {
-
-    //public static 
+public class EditPhraseProcess : IProcess<PhraseSequence, PhraseSequence> {
 
     public event ProcessExitCallback OnExit;
 
-    public void SetUIInstance(ITemporaryUI<PhraseSequence, PhraseSequence> uiInstance) {
-        throw new NotImplementedException();
-    }
+    ITemporaryUI<PhraseSequence, PhraseSequence> ui;
 
     public void Initialize(PhraseSequence param1) {
-        throw new NotImplementedException();
+        ui = UILibrary.PhraseEditor.Get(param1);
+        ui.Complete += ui_Complete;
+    }
+
+    void ui_Complete(object sender, EventArgs<PhraseSequence> e) {
+        if (e == null) {
+            Exit(null);
+        } else {
+            Exit(e.Data);
+        }
     }
 
     public void ForceExit() {
-        throw new NotImplementedException();
+        Exit(null);
+    }
+
+    void Exit(PhraseSequence args) {
+        if (ui != null) {
+            ui.Close();
+        }
+        OnExit.Raise(this, args);
     }
 
 }

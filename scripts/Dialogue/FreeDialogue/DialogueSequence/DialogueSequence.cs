@@ -6,6 +6,8 @@ public class DialogueSequence {
 
     public SerializableDictionary<int, DialogueElement> Elements { get; set; }
 
+    public const int ConfusedExit = -2;
+
     public DialogueSequence()
     {
         Elements = new SerializableDictionary<int, DialogueElement>();
