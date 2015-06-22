@@ -21,10 +21,13 @@ public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState>
         Exit();
     }
 
-    ProcessExitEventArgs<DialogueState> GetNextState() {
+    DialogueState GetNextState() {
+        if (state.CurrentID == DialogueSequence.ConfusedExit) {
+            return null;
+        }
+        
         if (state.GetElement().NextIDs.Count > 0) {
-            return new ProcessExitEventArgs<DialogueState>(
-                new DialogueState(state.GetElement().NextIDs[0], state.Dialogue));
+            return new DialogueState(state.GetElement().NextIDs[0], state.Dialogue);
         } else {
             return null;
         }

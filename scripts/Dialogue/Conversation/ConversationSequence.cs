@@ -72,10 +72,16 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
     void HandleTurnExit(object sender, DialogueState e) {
         if (e == null) {
             Exit();
-        } else {
-            //var args = (ProcessExitEventArgs<DialogueState>)e;
-            SetDialogueElement(e);
         }
+        
+        if (e.CurrentID == DialogueSequence.ConfusedExit) {
+            var p = new PhraseSequence("(stupid foreigner...)");
+            actor.SetPhrase(p);
+            RequestLinearDialogueTurn.Get(e, HandleTurnExit, this);
+            return;
+        }
+
+        SetDialogueElement(e);
     }
 
 }

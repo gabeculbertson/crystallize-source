@@ -24,7 +24,8 @@ public class PlayerStateEvents : GameEvents {
     public void RaiseMoneyChanged(object sender, EventArgs args) { OnMoneyChanged.Raise(sender, args); }
     public event EventHandler OnAreaUnlocked;
     public void RaiseAreaUnlocked(object sender, EventArgs args) { OnAreaUnlocked.Raise(sender, args); }
-
+    public event EventHandler OnHomesChanged;
+    public void RaiseHomesChanged(object sender, EventArgs args) { OnHomesChanged(sender, args); }
 
     public event EventHandler<PhraseEventArgs> OnCollectPhraseRequested;
     public void RaiseCollectPhraseRequested(object sender, PhraseEventArgs args) { OnCollectPhraseRequested.Raise(sender, args); }

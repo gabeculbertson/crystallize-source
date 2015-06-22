@@ -14,7 +14,7 @@ public class DayProcess : TimeSessionProcess<DaySessionArgs, object>, IProcess<D
         if (args.Job == null) {
             return args.LevelName;
         } else {
-            task = new JobTaskRef(args.Job.GameDataInstance.Tasks[0]);
+            task = new JobTaskRef(args.Job, args.Job.GameDataInstance.Tasks[0]);
             return task.Data.AreaName;
         }
     }

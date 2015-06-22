@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 public class JobTaskRef {
 
+    public JobRef Job { get; private set; }
     public JobTaskGameData Data { get; private set; }
 
-    public JobTaskRef(JobTaskGameData data) {
+    public JobTaskRef(JobRef job, JobTaskGameData data) {
+        this.Job = job;
         this.Data = data;
     }
 
