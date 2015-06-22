@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class ConversationCameraController : MonoBehaviour, IProcess<GameObject, object> {
+public class ConversationCameraController : MonoBehaviour, ITemporaryUI<GameObject>  {
 
     const string ResourcePath = "Camera/ConversationCameraController";
 
@@ -19,27 +19,19 @@ public class ConversationCameraController : MonoBehaviour, IProcess<GameObject, 
     public Transform cameraTransform;
     public Transform conversationTarget;
 
-    public event EventHandler OnExit;
-    public event ProcessExitCallback OnReturn;
+    public event EventHandler<EventArgs<object>> Complete;
 
     public void Initialize(GameObject target) {
         conversationTarget = target.transform;
     }
 
-    public void ForceExit() {
-        Exit();
-    }
-
-    void Exit() {
-        if (gameObject) {
-            Destroy(gameObject);
-        }
-        OnExit.Raise(this, null);
+    public void Close() {
+        Destroy(gameObject);
     }
 
 	// Use this for initialization
 	void Start () {
-        transform.SetParent(PlayerManager.main.PlayerGameObject.transform);
+        transform.SetParent(PlayerManager.Instance.PlayerGameObject.transform);
         transform.localPosition = Vector3.zero;
         OmniscientCamera.main.Suspend();
 	}

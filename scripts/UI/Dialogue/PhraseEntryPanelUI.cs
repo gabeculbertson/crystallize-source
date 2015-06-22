@@ -38,7 +38,7 @@ public class PhraseEntryPanelUI : UIMonoBehaviour {
     void Update() {
         bool hasAllWords = true;
         foreach (var word in missingWords) {
-            if (!PlayerManager.main.playerData.WordStorage.ContainsFoundWord(word)) {
+            if (!PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
                 hasAllWords = false;
                 break;
             }
@@ -70,7 +70,7 @@ public class PhraseEntryPanelUI : UIMonoBehaviour {
         transform.position = new Vector2(Screen.width * .5f, Screen.height * .5f - 150f);
 
         if (isRight) {
-            GetComponent<Image>().sprite = GUIPallet.main.rightSpeechBubble;
+            GetComponent<Image>().sprite = GUIPallet.Instance.rightSpeechBubble;
         }
 
         this.phrase = phrase;
@@ -109,8 +109,8 @@ public class PhraseEntryPanelUI : UIMonoBehaviour {
                 instance = Instantiate(wordPrefab) as GameObject;
                 instance.transform.SetParent(wordParent);
                 instance.GetComponentInChildren<Text>().text = word.ConvertedText;
-                instance.GetComponentInChildren<Outline>().effectColor = GUIPallet.main.GetColorForWordCategory(word.Category);
-                instance.GetComponentInChildren<Image>().color = GUIPallet.main.GetColorForWordCategory(word.Category);
+                instance.GetComponentInChildren<Outline>().effectColor = GUIPallet.Instance.GetColorForWordCategory(word.Category);
+                instance.GetComponentInChildren<Image>().color = GUIPallet.Instance.GetColorForWordCategory(word.Category);
             }
             instances.Add(instance);
         }
@@ -130,7 +130,7 @@ public class PhraseEntryPanelUI : UIMonoBehaviour {
 
         bool hasAllWords = true;
         foreach (var word in missingWords) {
-            if (!PlayerManager.main.playerData.WordStorage.ContainsFoundWord(word)) {
+            if (!PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
                 hasAllWords = false;
                 break;
             }
@@ -140,7 +140,7 @@ public class PhraseEntryPanelUI : UIMonoBehaviour {
         }
 
         if (IsFull()) {
-            PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(GetInputPhrase());
+            PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(GetInputPhrase());
             if (IsCorrect()) {
                 CrystallizeEventManager.UI.RaiseUIInteraction(this, new PhraseInputEventArgs(phrase, GetContextData()));
                 Close();

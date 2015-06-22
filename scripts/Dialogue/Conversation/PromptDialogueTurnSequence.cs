@@ -4,15 +4,11 @@ using System.Collections;
 
 public class PromptDialogueTurnSequence : IProcess<DialogueState, DialogueState> {
 
-    public static ProcessRequestHandler<object, PhraseSequence> RequestPhrasePanel;
-
-    public static PromptDialogueTurnSequence GetInstance() {
-        return new PromptDialogueTurnSequence();
-    }
+    public static readonly ProcessFactoryRef<object, PhraseSequence> RequestPhrasePanel = new ProcessFactoryRef<object,PhraseSequence>();
 
     DialogueState state;
 
-    public event ProcessExitCallback OnReturn;
+    public event ProcessExitCallback OnExit;
     public event EventHandler<PhraseEventArgs> OnPhraseRequested;
 
     public PromptDialogueTurnSequence() {
@@ -21,28 +17,26 @@ public class PromptDialogueTurnSequence : IProcess<DialogueState, DialogueState>
 
     public void Initialize(DialogueState data) {
         this.state = data;
-        RequestPhrasePanel(this, new ProcessRequestEventArgs<object, PhraseSequence>(null, HandlePhrasePanelExit, this));
+        RequestPhrasePanel.Get(null, HandlePhrasePanelExit, this);
     }
 
-    void HandlePhrasePanelExit(object sender, ProcessExitEventArgs<PhraseSequence> args) {
+    void HandlePhrasePanelExit(object sender, PhraseSequence args) {
         foreach (var id in state.GetElement().NextIDs) {
-            //Debug.Log(state.Dialogue.GetElement(id).Prompt);
-            //Debug.Log(args.Data);
-            if (PhraseSequence.IsPhraseEquivalent(state.Dialogue.GetElement(id).Prompt, args.Data)) {
-                PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args.Data);
+            if (PhraseSequence.IsPhraseEquivalent(state.Dialogue.GetElement(id).Prompt, args)) {
+                PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args);
                 Exit(new ProcessExitEventArgs<DialogueState>(new DialogueState(id, state.Dialogue)));
                 return;
             }
         }
-        RequestPhrasePanel(null, new ProcessRequestEventArgs<object, PhraseSequence>(null, HandlePhrasePanelExit, this));
-    }
-
-    void Exit(ProcessExitEventArgs<DialogueState> args) {
-        OnReturn.Raise(this, args);
+        RequestPhrasePanel.Get(null, HandlePhrasePanelExit, this);
     }
 
     public void ForceExit() {
         Exit(null);
+    }
+
+    void Exit(ProcessExitEventArgs<DialogueState> args) {
+        OnExit.Raise(this, args);
     }
 
 }

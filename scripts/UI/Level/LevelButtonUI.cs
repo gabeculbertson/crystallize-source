@@ -6,30 +6,30 @@ using System.Collections;
 public class LevelButtonUI : MonoBehaviour, IPointerClickHandler {
 
     public bool isArea = true;
-	public string levelName;
-	public string stageName;
-	public string currency;
-	public int cost;
-	public LevelState levelState = LevelState.Locked;
-	//public LevelButtonUI nextButton;
+    public string levelName;
+    public string stageName;
+    public string currency;
+    public int cost;
+    public LevelState levelState = LevelState.Locked;
+    //public LevelButtonUI nextButton;
 
-	LevelStateData stateData;
+    LevelStateData stateData;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         if (isArea) {
-            stateData = PlayerManager.main.playerData.LevelData.GetLevelStateData(levelName);
+            stateData = PlayerData.Instance.LevelData.GetLevelStateData(levelName);
             if (stateData == null) {
-                PlayerManager.main.playerData.LevelData.SetLevelState(levelName, levelState);
-                stateData = PlayerManager.main.playerData.LevelData.GetLevelStateData(levelName);
+                PlayerData.Instance.LevelData.SetLevelState(levelName, levelState);
+                stateData = PlayerData.Instance.LevelData.GetLevelStateData(levelName);
             }
 
             levelState = stateData.LevelState;
             stageName = GetComponentInChildren<Text>().text;
         }
-	}
+    }
 
-	void Update(){
+    void Update() {
         if (isArea) {
             if (stateData.LevelState == LevelState.Locked) {
                 GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f, 0.5f);
@@ -44,31 +44,30 @@ public class LevelButtonUI : MonoBehaviour, IPointerClickHandler {
                 GetComponentInChildren<Text>().text = stageName;
                 GetComponent<Button>().interactable = true;
             }
-        } 
-	}
+        }
+    }
 
-	#region IPointerClickHandler implementation
+    #region IPointerClickHandler implementation
 
-	public void OnPointerClick (PointerEventData eventData)
-	{
+    public void OnPointerClick(PointerEventData eventData) {
         if (isArea) {
             var state = stateData.LevelState;
             if (state == LevelState.Locked) {
-                if (PlayerManager.main.playerData.Money >= cost) {
-                    PlayerManager.main.playerData.Money -= cost;
-                    PlayerManager.main.playerData.LevelData.SetLevelState(levelName, LevelState.Unlocked);
+                if (PlayerData.Instance.Money >= cost) {
+                    PlayerData.Instance.Money -= cost;
+                    PlayerData.Instance.LevelData.SetLevelState(levelName, LevelState.Unlocked);
                     //GetComponent<Image>().color = Color.white;
                     //GetComponentInChildren<Text>().text = stageName;
                     //state = LevelState.Unlocked;
                 }
             } else if (state == LevelState.Unlocked || state == LevelState.Played) {
-                PlayerManager.main.Save();
+                PlayerDataLoader.Save();
                 Application.LoadLevel(levelName);
             }
         } else {
             Application.LoadLevel(levelName);
         }
-	}
+    }
 
-	#endregion
+    #endregion
 }

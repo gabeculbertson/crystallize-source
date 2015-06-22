@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElement, PhraseSequenceElement> {
+public class WordSelectionPanelUI : MonoBehaviour, ITemporaryUI<PhraseSequenceElement, PhraseSequenceElement> {
 
     const string ResourcePath = "UI/WordSelectionPanel";
 
@@ -22,7 +22,7 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
     IPhraseDropHandler source;
     Dictionary<UIButton, PhraseSequenceElement> buttonWords = new Dictionary<UIButton, PhraseSequenceElement>();
 
-    public event ProcessExitCallback OnReturn;
+    public event EventHandler<EventArgs<PhraseSequenceElement>> Complete;
 
     public bool IsOpen {
         get {
@@ -33,14 +33,14 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
     public void Initialize() {
         transform.position = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
 
-        foreach (var word in PlayerManager.main.playerData.WordStorage.InventoryElements) {
+        foreach (var word in PlayerData.Instance.WordStorage.InventoryElements) {
             if (word == null) {
                 continue;
             }
 
             var instance = Instantiate(wordButtonPrefab) as GameObject;
             instance.transform.SetParent(wordParent);
-            instance.GetComponentInChildren<Image>().color = GUIPallet.main.GetColorForWordCategory(word.GetPhraseCategory());
+            instance.GetComponentInChildren<Image>().color = GUIPallet.Instance.GetColorForWordCategory(word.GetPhraseCategory());
             instance.GetComponentInChildren<Text>().text = word.GetPlayerText();
             instance.GetComponent<UIButton>().OnClicked += HandleClicked;
             buttonWords[instance.GetComponent<UIButton>()] = word;
@@ -61,7 +61,7 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
         Initialize();
     }
 
-    public void ForceExit() {
+    public void Close() {
         Exit(null);
     }
 
@@ -82,7 +82,7 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
             source.AcceptDrop(new WordContainer(buttonWords[(UIButton)sender]));
         }
 
-        Exit(new ProcessExitEventArgs<PhraseSequenceElement>(buttonWords[(UIButton)sender]));
+        Exit(new EventArgs<PhraseSequenceElement>(buttonWords[(UIButton)sender]));
     }
 
     void Update() {
@@ -91,9 +91,9 @@ public class WordSelectionPanelUI : MonoBehaviour, IProcess<PhraseSequenceElemen
         }
     }
 
-    public void Exit(ProcessExitEventArgs<PhraseSequenceElement> word) {
+    public void Exit(EventArgs<PhraseSequenceElement> args) {
         if (IsOpen) {
-            OnReturn.Raise(this, word);
+            Complete.Raise(this, args);
             Destroy(gameObject);
         }
     }

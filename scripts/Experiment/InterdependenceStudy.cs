@@ -47,7 +47,7 @@ namespace Crystallize.Experiment {
         }
 
         void HandleOnPersonAnimationRequested(object sender, PersonAnimationEventArgs e) {
-            var id = PlayerManager.main.GetPlayerID(e.TargetObject);
+            var id = PlayerManager.Instance.GetPlayerID(e.TargetObject);
 
             string text = null;
             switch (e.AnimationType) {

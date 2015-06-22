@@ -17,7 +17,7 @@ public class Cursor3DBehavior : MonoBehaviour {
 	void HandleOnTriggerEnterEvent (object sender, TriggerEventArgs e)
 	{
 		if (e.Collider.IsHumanControlled ()) {
-			var args = new CursorApproachedEventArgs(PlayerManager.main.GetPlayerID(e.Collider.attachedRigidbody.gameObject), playerID);
+			var args = new CursorApproachedEventArgs(PlayerManager.Instance.GetPlayerID(e.Collider.attachedRigidbody.gameObject), playerID);
 			//Debug.Log("Approached: " + args.ActorPlayerID + "; " + args.CursorPlayerID);
             CrystallizeEventManager.PlayerState.RaiseGameEvent(this, args);
 		}

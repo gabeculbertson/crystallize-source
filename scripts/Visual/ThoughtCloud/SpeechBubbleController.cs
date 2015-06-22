@@ -22,7 +22,7 @@ namespace Crystallize.Visualization {
 			}
 
 			if (e.Phrase != null){
-				speechBubbleInstance = SpeechPanelUI.main.GetSpeechBubble (transform, e.Phrase, PointerType.Normal, false, false);
+				speechBubbleInstance = SpeechPanelUI.Instance.GetSpeechBubble (transform, e.Phrase, PointerType.Normal, false, false);
 			}
 		}
 

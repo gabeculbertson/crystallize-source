@@ -30,7 +30,7 @@ public class InteractiveDialogActor : MonoBehaviour, IDialogActor {
     public bool AllObjectivesComplete {
         get {
             foreach (var word in client.GetObjectiveWords()) {//neededWords){
-                if (!PlayerManager.main.playerData.WordStorage.ContainsFoundWord(word)) {
+                if (!PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
                     return false;
                 }
             }
@@ -58,7 +58,7 @@ public class InteractiveDialogActor : MonoBehaviour, IDialogActor {
     }
 
     public void BeginDialog() {
-        if (PlayerManager.main.playerData.InventoryState.Level < minimumLevel) {
+        if (PlayerData.Instance.InventoryState.Level < minimumLevel) {
             return;
         }
 
@@ -81,7 +81,7 @@ public class InteractiveDialogActor : MonoBehaviour, IDialogActor {
     public void SetPhrase(PhraseSegmentData phrase) {
         if (playerDialog) {
             if (turn + 1 < playerDialog.dialogPhrases.Count) {
-                PlayerManager.main.TargetPhrase = playerDialog.dialogPhrases[turn + 1];
+                PlayerManager.Instance.TargetPhrase = playerDialog.dialogPhrases[turn + 1];
             }
         }
 
@@ -169,7 +169,7 @@ public class InteractiveDialogActor : MonoBehaviour, IDialogActor {
     }
 
     void FacePlayer() {
-        var player = PlayerManager.main.PlayerGameObject;
+        var player = PlayerManager.Instance.PlayerGameObject;
         var dir = player.transform.position - transform.position;
         dir.y = 0;
         transform.forward = dir;

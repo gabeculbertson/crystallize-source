@@ -18,9 +18,9 @@ public class AreaEntrance : MonoBehaviour {
     AreaGameData area;
     GameObject menuParent;
 
-	// Use this for initialization
-	IEnumerator Start () {
-        while (!PlayerManager.main) {
+    // Use this for initialization
+    IEnumerator Start() {
+        while (!PlayerManager.Instance) {
             yield return null;
         }
 
@@ -35,31 +35,30 @@ public class AreaEntrance : MonoBehaviour {
 
         CrystallizeEventManager.PlayerState.OnMoneyChanged += HandleStateChanged;
         CrystallizeEventManager.PlayerState.OnAreaUnlocked += HandleStateChanged;
-		CrystallizeEventManager.PlayerState.OnFlagChanged += HandleOnFlagChanged;
+        CrystallizeEventManager.PlayerState.OnFlagChanged += HandleOnFlagChanged;
 
         UpdateState();
-	}
+    }
 
-	void HandleOnFlagChanged (object sender, TextEventArgs e)
-	{
-		if (e.Text == FlagPlayerData.IsMultiplayer) {
-			UpdateState ();
-		}
-	}
+    void HandleOnFlagChanged(object sender, TextEventArgs e) {
+        if (e.Text == FlagPlayerData.IsMultiplayer) {
+            UpdateState();
+        }
+    }
 
     void HandleStateChanged(object sender, System.EventArgs e) {
         UpdateState();
     }
 
     void UpdateState() {
-		if (PlayerData.Instance.Flags.GetFlag (FlagPlayerData.IsMultiplayer)) {
+        if (PlayerData.Instance.Flags.GetFlag(FlagPlayerData.IsMultiplayer)) {
             if (!GameSettings.GetFlag(GameSystemFlags.LockQuestInterdependence) || enforcePayment) {
                 gameObject.SetActive(false);
                 return;
             }
-		} else {
-			gameObject.SetActive(true);
-		}
+        } else {
+            gameObject.SetActive(true);
+        }
 
         if (enforcePayment) {
             costText.text = area.Cost + " yen";
@@ -94,11 +93,11 @@ public class AreaEntrance : MonoBehaviour {
     }
 
     AreaState GetState() {
-        if (PlayerManager.main.playerData.LevelData.GetAreaUnlocked(destinationAreaID)) {
+        if (PlayerData.Instance.LevelData.GetAreaUnlocked(destinationAreaID)) {
             return AreaState.Unlocked;
         }
 
-        if (PlayerManager.main.playerData.Money >= area.Cost) {
+        if (PlayerData.Instance.Money >= area.Cost) {
             return AreaState.Available;
         } else {
             return AreaState.TooExpensive;
@@ -150,5 +149,5 @@ public class AreaEntrance : MonoBehaviour {
         }
         return menuParent;
     }
-	
+
 }

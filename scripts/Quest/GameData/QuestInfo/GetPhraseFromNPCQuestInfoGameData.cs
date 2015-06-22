@@ -36,7 +36,7 @@ public class GetPhraseFromNPCQuestInfoGameData : QuestInfoGameData {
                 if (sArgs.Phrase != null) {
                     if (sArgs.Phrase.FulfillsTemplate(Template)) {
                         CompleteObjective(0);
-                        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, GetQuestInstance()));
+                        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, GetQuestInstance()));
                     }
                 }
             }
@@ -44,7 +44,7 @@ public class GetPhraseFromNPCQuestInfoGameData : QuestInfoGameData {
 
         if (args is QuestStateChangedEventArgs) {
             var qscArgs = (QuestStateChangedEventArgs)args;
-            if (qscArgs.PlayerID == PlayerManager.main.PlayerID || qscArgs.QuestID != QuestID) {
+            if (qscArgs.PlayerID == PlayerManager.Instance.PlayerID || qscArgs.QuestID != QuestID) {
                 return;
             }
 

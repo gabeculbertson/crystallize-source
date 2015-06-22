@@ -7,7 +7,7 @@ public class WordCollector : IProcess<PhraseSequenceElement, PhraseSequenceEleme
         return new WordCollector();
     }
 
-    public event ProcessExitCallback OnReturn;
+    public event ProcessExitCallback OnExit;
 
     public void Initialize(PhraseSequenceElement word) {
         if (PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
@@ -15,7 +15,7 @@ public class WordCollector : IProcess<PhraseSequenceElement, PhraseSequenceEleme
 
             CrystallizeEventManager.PlayerState.RaiseWordCollected(this, new PhraseEventArgs(word));
         }
-        OnReturn.Raise(this, new ProcessExitEventArgs<PhraseSequenceElement>(word));
+        OnExit.Raise(this, new ProcessExitEventArgs<PhraseSequenceElement>(word));
     }
 
     public void ForceExit() {

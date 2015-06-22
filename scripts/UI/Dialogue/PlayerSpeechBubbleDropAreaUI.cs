@@ -50,12 +50,12 @@ public class PlayerSpeechBubbleDropAreaUI : MonoBehaviour, IPhraseDropHandler, I
 		if (word != null) {
 			GetComponentInChildren<Text> ().text = word.GetPlayerText();
 
-			GetComponentInChildren<Text> ().font = GUIPallet.main.defaultFont;
+			GetComponentInChildren<Text> ().font = GUIPallet.Instance.defaultFont;
 			GetComponentInChildren<Text> ().color = Color.black;
 			if(word.GetPhraseCategory() == PhraseCategory.Punctuation){
 				GetComponent<Image> ().color = Color.clear;
 			} else {
-				GetComponent<Image> ().color = GUIPallet.main.GetColorForWordCategory(word.GetPhraseCategory());
+				GetComponent<Image> ().color = GUIPallet.Instance.GetColorForWordCategory(word.GetPhraseCategory());
 			}
 		} else {
             if (PlayerData.Instance.Flags.GetFlag(FlagPlayerData.ClickWordSlotMessage)) {

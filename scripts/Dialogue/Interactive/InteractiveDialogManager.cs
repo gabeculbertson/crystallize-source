@@ -104,7 +104,7 @@ public class InteractiveDialogManager : MonoBehaviour {
 	}
 
 	public void PlayerPhraseEntered(PhraseSegmentData phraseData){
-        var player = PlayerManager.main.PlayerGameObject;
+        var player = PlayerManager.Instance.PlayerGameObject;
 		foreach (var actor in GetComponentsInChildren<InteractiveDialogActor>()) {
 			if(Vector3.Distance(player.transform.position, actor.transform.position) < SpeakingDistanceThreshold){
 				actor.ReactToPhrase(phraseData);

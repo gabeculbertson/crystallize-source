@@ -5,16 +5,19 @@ using System.Linq;
 
 public class PlayerData {
 
-    public static bool IsInitialized {
-        get {
-            return PlayerManager.main;
-        }
-    }
+    static PlayerData _instance;
 
     public static PlayerData Instance {
         get {
-            return PlayerManager.main.playerData;
+            if (_instance == null) {
+                _instance = new PlayerData();
+            }
+            return _instance;
         }
+    }
+
+    public static void Initialize(PlayerData playerData){
+        _instance = playerData;
     }
 
     public PersonalPlayerData PersonalData { get; set; }
@@ -33,7 +36,10 @@ public class PlayerData {
     public ConversationPlayerData Conversation { get; set; }
     public TutorialPlayerData Tutorial { get; set; }
     public LocationPlayerData Location { get; set; }
+    public TimePlayerData Time { get; set; }
     public FlagPlayerData Flags { get; set; }
+    public JobCollectionPlayerData Jobs { get; set; }
+    public HomeCollectionPlayerData Homes { get; set; }
 
 	public PlayerData(){
         AllowEnglish = false;
@@ -49,7 +55,10 @@ public class PlayerData {
         Conversation = new ConversationPlayerData();
         Tutorial = new TutorialPlayerData();
         Location = new LocationPlayerData();
+        Time = new TimePlayerData();
         Flags = new FlagPlayerData();
+        Jobs = new JobCollectionPlayerData();
+        Homes = new HomeCollectionPlayerData();
 		Item = "";
 	}
 

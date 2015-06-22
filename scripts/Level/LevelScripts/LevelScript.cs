@@ -8,7 +8,7 @@ public class LevelScript : MonoBehaviour {
 
 	public GameObject PlayerGameObject {
 		get {
-            return PlayerManager.main.PlayerGameObject;
+            return PlayerManager.Instance.PlayerGameObject;
 		}
 	}
 

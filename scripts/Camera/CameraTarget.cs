@@ -16,7 +16,7 @@ public class CameraTarget : MonoBehaviour, ICameraController {
 	// Update is called once per frame
 	void Update () {
 		if(isController){
-            transform.position = PlayerManager.main.PlayerGameObject.transform.position;
+            transform.position = PlayerManager.Instance.PlayerGameObject.transform.position;
 
 			var cam = OmniscientCamera.main;
 			var dist = Vector3.Distance(cam.transform.position, target.position);

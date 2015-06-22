@@ -17,9 +17,9 @@ public class DragDropFreeInputElementUI : MonoBehaviour, IPointerClickHandler, I
         this.phraseElement = phraseElement;
         this.Index = index;
         GetComponent<Image>().sprite = EffectLibrary.Instance.objectiveWordShape;
-        GetComponent<Image>().color = GUIPallet.main.GetColorForWordCategory(phraseElement.GetPhraseCategory());
+        GetComponent<Image>().color = GUIPallet.Instance.GetColorForWordCategory(phraseElement.GetPhraseCategory());
         GetComponentInChildren<Text>().text = phraseElement.GetPlayerText();
-        GetComponentInChildren<Text>().font = GUIPallet.main.defaultFont;
+        GetComponentInChildren<Text>().font = GUIPallet.Instance.defaultFont;
         GetComponentInChildren<Text>().color = Color.black;
 	}
 

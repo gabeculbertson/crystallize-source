@@ -133,7 +133,7 @@ public class TextEntryDialogueUI : MonoBehaviour {
         option.transform.SetParent(MainCanvas.main.transform);
         option.transform.position = input.transform.position + (optionInstances.Count * 32f + 40f) * Vector3.up + new Vector3(80f, 20f);
         option.GetComponentInChildren<Text>().text = phrase.ConvertedText;
-        option.GetComponent<Image>().color = GUIPallet.main.GetColorForWordCategory(phrase.Category);
+        option.GetComponent<Image>().color = GUIPallet.Instance.GetColorForWordCategory(phrase.Category);
         option.GetComponent<Image>().sprite = EffectLibrary.Instance.objectiveWordShape;
 
         if (optionInstances.Count == selectedOption) {
@@ -167,7 +167,7 @@ public class TextEntryDialogueUI : MonoBehaviour {
         var entryInstance = Instantiate(entryPrefab) as GameObject;
         entryInstance.transform.SetParent(entryParent);
         entryInstance.GetComponentInChildren<Text>().text = phrase.ConvertedText;
-        entryInstance.GetComponent<Image>().color = GUIPallet.main.GetColorForWordCategory(phrase.Category);
+        entryInstance.GetComponent<Image>().color = GUIPallet.Instance.GetColorForWordCategory(phrase.Category);
         entryInstance.GetComponent<Image>().sprite = EffectLibrary.Instance.objectiveWordShape;
 
         entryValues.Add(phrase);

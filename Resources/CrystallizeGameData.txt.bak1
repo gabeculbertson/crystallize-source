@@ -2132,6 +2132,153 @@
       <CurrentKey>1000410</CurrentKey>
     </Quests>
   </QuestData>
+  <Jobs>
+    <Items>
+      <JobGameData>
+        <ID>0</ID>
+        <Name>Greeter</Name>
+        <Difficulty>1</Difficulty>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Say hello</Name>
+            <AreaName>DaySession</AreaName>
+            <SceneObjectIdentifier>
+              <Name>Boss</Name>
+            </SceneObjectIdentifier>
+            <Dialogue>
+              <Elements>
+                <Items>
+                  <DialogueElement>
+                    <ID>0</ID>
+                    <Prompt>
+                      <PhraseElements />
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements />
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs />
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements>
+                  <PhraseSequenceElement>
+                    <WordID>101</WordID>
+                    <FormID>0</FormID>
+                    <Text>clean the </Text>
+                    <Tags />
+                  </PhraseSequenceElement>
+                  <PhraseSequenceElement>
+                    <WordID>102</WordID>
+                    <FormID>0</FormID>
+                    <Text>region</Text>
+                    <Tags />
+                  </PhraseSequenceElement>
+                </PhraseElements>
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+      <JobGameData>
+        <ID>1</ID>
+        <Name>Janitor</Name>
+        <Difficulty>1</Difficulty>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Clean stuff up</Name>
+            <AreaName>JanitorTest</AreaName>
+            <SceneObjectIdentifier>
+              <Name>Boss</Name>
+            </SceneObjectIdentifier>
+            <Dialogue>
+              <Elements>
+                <Items>
+                  <DialogueElement>
+                    <ID>0</ID>
+                    <Prompt>
+                      <PhraseElements />
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>clean this stuff up</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs />
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements>
+                  <PhraseSequenceElement>
+                    <WordID>101</WordID>
+                    <FormID>0</FormID>
+                    <Text>clean the</Text>
+                    <Tags />
+                  </PhraseSequenceElement>
+                  <PhraseSequenceElement>
+                    <WordID>102</WordID>
+                    <FormID>0</FormID>
+                    <Text>region</Text>
+                    <Tags />
+                  </PhraseSequenceElement>
+                </PhraseElements>
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+    </Items>
+    <CurrentKey>1000020</CurrentKey>
+  </Jobs>
+  <Homes>
+    <Items>
+      <HomeGameData>
+        <Name>Park bench</Name>
+        <AreaName />
+        <DailyCost>0</DailyCost>
+        <InitialCost>0</InitialCost>
+        <Quality>0.5</Quality>
+        <ID>0</ID>
+      </HomeGameData>
+      <HomeGameData>
+        <Name>Capsule hotel</Name>
+        <AreaName />
+        <DailyCost>10000</DailyCost>
+        <InitialCost>100000</InitialCost>
+        <Quality>1</Quality>
+        <ID>1</ID>
+      </HomeGameData>
+      <HomeGameData>
+        <Name>Private residence</Name>
+        <AreaName />
+        <DailyCost>100000</DailyCost>
+        <InitialCost>1000000</InitialCost>
+        <Quality>1.5</Quality>
+        <ID>2</ID>
+      </HomeGameData>
+    </Items>
+    <CurrentKey>3</CurrentKey>
+  </Homes>
   <ProgressionData>
     <Challenges>
       <Items>

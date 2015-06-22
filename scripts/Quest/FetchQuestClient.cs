@@ -13,11 +13,11 @@ public class FetchQuestClient : MonoBehaviour {
     }
 
     void HandleOnOpenDialog(object sender, PhraseEventArgs e) {
-        if (PlayerManager.main.playerData.Item == desiredItem && !complete) {
+        if (PlayerData.Instance.Item == desiredItem && !complete) {
             GetComponent<QuestClient>().CompleteQuest();
             GetComponent<PassiveDialogActor>().phrase = thanksPhrase;
             GetComponent<PassiveDialogActor>().PlayPhrase();
-            PlayerManager.main.PlayerGameObject.GetComponent<ArmAnimationController>().StopHolding();
+            PlayerManager.Instance.PlayerGameObject.GetComponent<ArmAnimationController>().StopHolding();
 
             complete = true;
         }

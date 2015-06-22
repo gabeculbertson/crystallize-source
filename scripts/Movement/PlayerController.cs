@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (!target) {
-			var p = PlayerManager.main.PlayerGameObject;
+			var p = PlayerManager.Instance.PlayerGameObject;
 
 			if(!p){
 				return;

@@ -40,7 +40,7 @@ public class ActiveQuestUI : UIMonoBehaviour {
 	}
 
     void HandleQuestStateChanged(object sender, QuestStateChangedEventArgs e) {
-        if (e.PlayerID == PlayerManager.main.PlayerID) {
+        if (e.PlayerID == PlayerManager.Instance.PlayerID) {
             if (e.GetQuestInstance().State != ObjectiveState.Complete) {
                 SetActiveQuest(e.QuestID);
             }
@@ -85,12 +85,12 @@ public class ActiveQuestUI : UIMonoBehaviour {
 
         //Debug.Log(questID);
 		var info = GameData.Instance.QuestData.Quests.GetItem (questID);
-		var questpd = PlayerManager.main.playerData.QuestData.GetOrCreateQuestInstance(info.QuestID);
+        var questpd = PlayerData.Instance.QuestData.GetOrCreateQuestInstance(info.QuestID);
         questNameText.text = info.Title;
 
         var c = Color.white;
         if (questpd.State == ObjectiveState.Complete) {
-            c = GUIPallet.main.successColor;
+            c = GUIPallet.Instance.successColor;
             Close();
         } else {
             Open();

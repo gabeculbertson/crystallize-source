@@ -35,7 +35,7 @@ public class CardLevelTrigger : MonoBehaviour {
 			played = true;
 			
 			if(victoryEffect){
-                Instantiate(victoryEffect, PlayerManager.main.PlayerGameObject.transform.position, Quaternion.identity);
+                Instantiate(victoryEffect, PlayerManager.Instance.PlayerGameObject.transform.position, Quaternion.identity);
 			}
 		}
 	}

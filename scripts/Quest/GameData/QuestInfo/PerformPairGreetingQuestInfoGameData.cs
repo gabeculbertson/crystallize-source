@@ -8,7 +8,7 @@ public class PerformPairGreetingQuestInfoGameData : QuestInfoGameData {
 
     public PerformPairGreetingQuestInfoGameData()
         : base() {
-            Template = new PhraseSequence();
+        Template = new PhraseSequence();
     }
 
     public override List<QuestObjectiveInfoGameData> GetDefaultObjectives() {
@@ -24,7 +24,7 @@ public class PerformPairGreetingQuestInfoGameData : QuestInfoGameData {
         foreach (var word in Template.PhraseElements) {
             Debug.Log(word.GetText());
             if (word.ElementType == PhraseSequenceElementType.FixedWord) {
-                PlayerManager.main.playerData.WordStorage.AddObjectiveWord(word.WordID);
+                PlayerData.Instance.WordStorage.AddObjectiveWord(word.WordID);
             }
         }
 
@@ -36,7 +36,7 @@ public class PerformPairGreetingQuestInfoGameData : QuestInfoGameData {
         if (!IsJoined(args)) {
             return;
         }
-        
+
         if (!(args is SpeechBubbleRequestedEventArgs)) {
             return;
         }
@@ -46,23 +46,23 @@ public class PerformPairGreetingQuestInfoGameData : QuestInfoGameData {
         }
 
         var sba = (SpeechBubbleRequestedEventArgs)args;
-        
+
         if (sba.Phrase == null) {
             return;
         }
 
-        if(!sba.Phrase.FulfillsTemplate(Template)){
+        if (!sba.Phrase.FulfillsTemplate(Template)) {
             return;
         }
-        
+
         var qi = GetQuestInstance();
 
-        if(sba.Target.gameObject == PlayerManager.main.PlayerGameObject){
-            if(!qi.GetObjectiveState(1).IsComplete){
+        if (sba.Target.gameObject == PlayerManager.Instance.PlayerGameObject) {
+            if (!qi.GetObjectiveState(1).IsComplete) {
                 CompleteObjective(1);
             }
-        } else if(sba.Target.IsHumanControlled()){
-            if(!qi.GetObjectiveState(2).IsComplete){
+        } else if (sba.Target.IsHumanControlled()) {
+            if (!qi.GetObjectiveState(2).IsComplete) {
                 CompleteObjective(2);
             }
         }

@@ -513,7 +513,7 @@ public static partial class Extensions
             return false;
         }
 
-        if (PlayerManager.main.PlayerGameObject != c.attachedRigidbody.gameObject) {
+        if (PlayerManager.Instance.PlayerGameObject != c.attachedRigidbody.gameObject) {
             return false;
         }
 

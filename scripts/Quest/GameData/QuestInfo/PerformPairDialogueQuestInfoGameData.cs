@@ -10,8 +10,8 @@ public class PerformPairDialogueQuestInfoGameData : QuestInfoGameData {
 
     public PerformPairDialogueQuestInfoGameData()
         : base() {
-            QuestionTemplate = new PhraseSequence();
-            ResponseTemplate = new PhraseSequence();
+        QuestionTemplate = new PhraseSequence();
+        ResponseTemplate = new PhraseSequence();
     }
 
     public override List<QuestObjectiveInfoGameData> GetDefaultObjectives() {
@@ -19,7 +19,7 @@ public class PerformPairDialogueQuestInfoGameData : QuestInfoGameData {
         l.Add(new QuestObjectiveInfoGameData("Wait for your partner to accept the quest"));
         l.Add(new QuestObjectiveInfoGameData("Greet your partner"));
         l.Add(new QuestObjectiveInfoGameData("Have your partner greet you"));
-		l.Add(new QuestObjectiveInfoGameData("Answer your partner's question"));
+        l.Add(new QuestObjectiveInfoGameData("Answer your partner's question"));
         return l;
     }
 
@@ -28,14 +28,14 @@ public class PerformPairDialogueQuestInfoGameData : QuestInfoGameData {
         foreach (var word in QuestionTemplate.PhraseElements) {
             //Debug.Log(word.GetText());
             if (word.ElementType == PhraseSequenceElementType.FixedWord) {
-                PlayerManager.main.playerData.WordStorage.AddObjectiveWord(word.WordID);
+                PlayerData.Instance.WordStorage.AddObjectiveWord(word.WordID);
             }
         }
 
         foreach (var word in ResponseTemplate.PhraseElements) {
             //Debug.Log(word.GetText());
             if (word.ElementType == PhraseSequenceElementType.FixedWord) {
-                PlayerManager.main.playerData.WordStorage.AddObjectiveWord(word.WordID);
+                PlayerData.Instance.WordStorage.AddObjectiveWord(word.WordID);
             }
         }
 
@@ -62,16 +62,16 @@ public class PerformPairDialogueQuestInfoGameData : QuestInfoGameData {
             }
 
             var logEntry = InteractionLog.main.Entries.Last();
-            bool isPrompt = logEntry.Phrase.FulfillsTemplate(QuestionTemplate) && logEntry.Player == PlayerManager.main.PlayerID;
+            bool isPrompt = logEntry.Phrase.FulfillsTemplate(QuestionTemplate) && logEntry.Player == PlayerManager.Instance.PlayerID;
 
             if (isPrompt) {
                 CompleteObjective(1);
-                CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, qi));
+                CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, qi));
             } else {
-                bool isResponse = qi.GetObjectiveState(1).IsComplete && logEntry.Player != PlayerManager.main.PlayerID && logEntry.Phrase.FulfillsTemplate(ResponseTemplate);
+                bool isResponse = qi.GetObjectiveState(1).IsComplete && logEntry.Player != PlayerManager.Instance.PlayerID && logEntry.Phrase.FulfillsTemplate(ResponseTemplate);
                 if (isResponse) {
                     CompleteObjective(2);
-                    CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, qi));
+                    CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, qi));
                 } else {
                     //qi.SetObjectiveState(0, false);
                     //qi.SetObjectiveState(1, false);
@@ -82,10 +82,10 @@ public class PerformPairDialogueQuestInfoGameData : QuestInfoGameData {
         if (args is QuestStateChangedEventArgs) {
             var qsc = (QuestStateChangedEventArgs)args;
             var questInstance = qsc.GetQuestInstance();
-            if (qsc.PlayerID != PlayerManager.main.PlayerID
+            if (qsc.PlayerID != PlayerManager.Instance.PlayerID
                 && questInstance.GetObjectiveState(2).IsComplete
                 && qsc.QuestID == QuestID) {
-                    CompleteObjective(3);
+                CompleteObjective(3);
             }
         }
     }

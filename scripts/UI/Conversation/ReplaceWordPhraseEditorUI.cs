@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializable<PhraseSequence>, IProcess<PhraseSequence, PhraseSequence> {
+public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, ITemporaryUI<PhraseSequence, PhraseSequence> {
 
     const string ResourcePath = "UI/ReplaceWordPhraseEditor";
 
@@ -12,13 +12,13 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
         return GameObjectUtil.GetResourceInstance<ReplaceWordPhraseEditorUI>(ResourcePath);
     }
 
-    public static ProcessRequestHandler<PhraseSequenceElement, PhraseSequenceElement> RequestWordSelection;
+    public static ProcessFactoryRef<PhraseSequenceElement, PhraseSequenceElement> RequestWordSelection;
 
 
     public GameObject wordPrefab;
     public Transform wordParent;
 
-    public event ProcessExitCallback OnReturn;
+    public event EventHandler<EventArgs<PhraseSequence>> Complete;
 
     PhraseSequence phrase;
     List<GameObject> wordInstances = new List<GameObject>();
@@ -27,16 +27,11 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
 
     public void Initialize(PhraseSequence phrase) {
         this.phrase = new PhraseSequence(phrase);
-        //Debug.Log(this.phrase.GetText());
         transform.SetParent(MainCanvas.main.transform, false);
+        transform.position = new Vector2(Screen.width * 0.5f, 300f);
     }
 
     public void Close() {
-        ForceExit();
-    }
-
-    public void ForceExit() {
-        Debug.Log("Exit forced.");
         Exit(null);
     }
 
@@ -58,29 +53,27 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
         return wordInstance;
     }
 
-    public void Exit(ProcessExitEventArgs<PhraseSequence> args)
+    void Exit(EventArgs<PhraseSequence> args)
     {
-        //Debug.Log(args + StackTraceUtility.ExtractStackTrace());
-        OnReturn.Raise(this, args);
+        Complete.Raise(this, args);
         Destroy(gameObject);
     }
 
     public void Confirm()
     {
-        Exit(new ProcessExitEventArgs<PhraseSequence>(phrase));
+        Exit(new EventArgs<PhraseSequence>(phrase));
     }
 
     void HandleWordClicked(object sender, System.EventArgs e) {
         selectedWord = wordInstances.IndexOf(((Component)sender).gameObject);
         var word = phrase.PhraseElements[selectedWord];
 
-        RequestWordSelection(this, new ProcessRequestEventArgs<PhraseSequenceElement, PhraseSequenceElement>(word, OnWordSelected, this));
-        //CrystallizeEventManager.UI.RequestWordSelectionRequested(selectedWord, OnWordSelectionOpened);
+        RequestWordSelection.Get(word, OnWordSelected, null);// this);
     }
 
-    void OnWordSelected(object sender, ProcessExitEventArgs<PhraseSequenceElement> e) {
+    void OnWordSelected(object sender, PhraseSequenceElement e) {
         if (phrase.PhraseElements.IndexInRange(selectedWord)) {
-            phrase.PhraseElements[selectedWord] = e.Data;
+            phrase.PhraseElements[selectedWord] = e;
         }
         Refresh();
     }

@@ -76,7 +76,7 @@ public class MultiplayerFirstLevelTutorialScript : LevelScript {
     IEnumerator WaitAndActivateQuest() {
         partnerJoined = false;
         questClient.gameObject.SetActive(false);
-        while (PlayerManager.main.PlayerCount < 2) {
+        while (PlayerManager.Instance.PlayerCount < 2) {
             yield return null;
         }
         questClient.gameObject.SetActive(true);
@@ -117,7 +117,7 @@ public class MultiplayerFirstLevelTutorialScript : LevelScript {
     CommunicationState GetState() {
         var gid = questClient.GetWorldID();
         var qid = GameData.Instance.QuestData.GetQuestInfoFromWorldID(gid).QuestID;
-        var qpd = PlayerManager.main.playerData.QuestData.GetQuestInstance(qid);
+        var qpd = PlayerData.Instance.QuestData.GetQuestInstance(qid);
         if (qpd.State == ObjectiveState.Complete) {
             return CommunicationState.Complete;
         }

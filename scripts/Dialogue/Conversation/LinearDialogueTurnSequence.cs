@@ -4,13 +4,9 @@ using System.Collections;
 
 public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState> {
 
-    public static LinearDialogueTurnSequence GetInstance() {
-        return new LinearDialogueTurnSequence();
-    }
-
     DialogueState state;
 
-    public event ProcessExitCallback OnReturn;
+    public event ProcessExitCallback OnExit;
     public event EventHandler<PhraseEventArgs> OnPhraseRequested;
 
     public LinearDialogueTurnSequence() {
@@ -36,7 +32,7 @@ public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState>
 
     void Exit() {
         CrystallizeEventManager.Input.OnEnvironmentClick -= OnEnvironmentClick;
-        OnReturn.Raise(this, GetNextState());
+        OnExit.Raise(this, GetNextState());
     }
 
     public void ForceExit() {

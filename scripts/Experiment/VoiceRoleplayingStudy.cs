@@ -22,12 +22,12 @@ namespace Crystallize.Experiment {
             }
             PlayerController.UnlockMovement(this);
 
-            if (PlayerManager.main.PlayerID == 1) {
+            if (PlayerManager.Instance.PlayerID == 1) {
                 var inst = Instantiate<GameObject>(nativeSpeakerUI);
                 instances.Add(inst);
                 PlayerController.LockMovement(this);
-                OmniscientCamera.main.player = PlayerManager.main.OtherGameObject.transform;
-                PlayerManager.main.PlayerGameObject = PlayerManager.main.OtherGameObject;
+                OmniscientCamera.main.player = PlayerManager.Instance.OtherGameObject.transform;
+                PlayerManager.Instance.PlayerGameObject = PlayerManager.Instance.OtherGameObject;
             }
         }
 

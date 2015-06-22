@@ -36,7 +36,7 @@ public class DialogueActor : MonoBehaviour, ITriggerEventHandler, ISpeechTextSou
             OnSpeechTextChanged(this, new PhraseEventArgs(phrase, hasMore));
         }
 
-        var canEdit = gameObject == PlayerManager.main.PlayerGameObject;
+        var canEdit = gameObject == PlayerManager.Instance.PlayerGameObject;
         var checkGrammar = gameObject.CompareTag("Player") || gameObject.CompareTag("OtherPlayer");
         var speechArgs = new SpeechBubbleRequestedEventArgs(transform, phrase, hasMore, canEdit, checkGrammar);
         CrystallizeEventManager.UI.RaiseSpeechBubbleRequested(this, speechArgs);

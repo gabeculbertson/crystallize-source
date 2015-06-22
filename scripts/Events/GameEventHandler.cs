@@ -5,16 +5,12 @@ using System.Reflection;
 
 public class GameEventHandler : MonoBehaviour {
 
+    public static GameEventHandler GetInstance() {
+        return new GameObject("GameEventHandler").AddComponent<GameEventHandler>();
+    }
+
 	// Use this for initialization
 	void Awake () {
-        Process.Connect<GameObject, object>(ref ExploreSceneSequence.RequestDialogue, ConversationSequence.GetInstance);
-        Process.Connect<GameObject, object>(ref ConversationSequence.RequestConversationCamera, ConversationCameraController.GetInstance);
-        Process.Connect<DialogueState, DialogueState>(ref ConversationSequence.RequestLinearDialogueTurn, LinearDialogueTurnSequence.GetInstance);
-        Process.Connect<DialogueState, DialogueState>(ref ConversationSequence.RequestPromptDialogueTurn, PromptDialogueTurnSequence.GetInstance);
-        Process.Connect<object, PhraseSequence>(ref PromptDialogueTurnSequence.RequestPhrasePanel, ConversationPhrasePanelUI.GetInstance);
-        Process.Connect<PhraseSequence, PhraseSequence>(ref ConversationPhrasePanelUI.RequestReplaceWordPhraseEditor, ReplaceWordPhraseEditorUI.GetInstance);
-        Process.Connect<PhraseSequenceElement, PhraseSequenceElement>(ref ReplaceWordPhraseEditorUI.RequestWordSelection, WordSelectionPanelUI.GetInstance);
- 
         CrystallizeEventManager.PlayerState.OnCollectWordRequested += HandleCollectWordRequested;
         CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
 	}

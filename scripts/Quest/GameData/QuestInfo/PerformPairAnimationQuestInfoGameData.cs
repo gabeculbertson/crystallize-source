@@ -28,11 +28,11 @@ public class PerformPairAnimationQuestInfoGameData : QuestInfoGameData {
         if (args is PersonAnimationEventArgs) {
             var paea = (PersonAnimationEventArgs)args;
 
-            if (paea.TargetObject == PlayerManager.main.PlayerGameObject && !qi.GetObjectiveState(1).IsComplete) {
+            if (paea.TargetObject == PlayerManager.Instance.PlayerGameObject && !qi.GetObjectiveState(1).IsComplete) {
                 CompleteObjective(1);
             }
 
-            if (paea.TargetObject != PlayerManager.main.PlayerGameObject && !qi.GetObjectiveState(2).IsComplete) {
+            if (paea.TargetObject != PlayerManager.Instance.PlayerGameObject && !qi.GetObjectiveState(2).IsComplete) {
                 CompleteObjective(2);
             }
         }

@@ -55,7 +55,7 @@ public class WordTranslationUI : UIMonoBehaviour {
             t += Time.deltaTime;
             if (successful) {
                 if (t < 0.7f) {
-                    GetComponent<Image>().color = Vector4.MoveTowards(GetComponent<Image>().color, GUIPallet.main.successColor, 5f * Time.deltaTime);
+                    GetComponent<Image>().color = Vector4.MoveTowards(GetComponent<Image>().color, GUIPallet.Instance.successColor, 5f * Time.deltaTime);
                 } else {
                     canvasGroup.alpha -= Time.deltaTime;
                     if (canvasGroup.alpha <= 0) {
@@ -107,7 +107,7 @@ public class WordTranslationUI : UIMonoBehaviour {
             AudioManager.main.PlayDialogueSuccess();
             Close();
         } else {
-            GetComponent<Image>().color = GUIPallet.main.failureColor;
+            GetComponent<Image>().color = GUIPallet.Instance.failureColor;
         }
     }
 

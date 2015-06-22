@@ -20,7 +20,7 @@ public class QuestRelevantPeople : MonoBehaviour {
         
         //Debug.Log("Cahnged.");
         var quest = GameData.Instance.QuestData.GetQuestInfoFromWorldID(transform.GetWorldID());
-        var inst = PlayerManager.main.playerData.QuestData.GetOrCreateQuestInstance(quest.QuestID);
+        var inst = PlayerData.Instance.QuestData.GetOrCreateQuestInstance(quest.QuestID);
         if (inst == null) {
             //Debug.Log("No instance");
             return;

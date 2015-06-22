@@ -20,7 +20,7 @@ public static class EventExtensions {
         }
     }
 
-    public static void Raise(this ProcessExitCallback eventHandler, object sender, ProcessExitEventArgs args) {
+    public static void Raise<I, O>(this ProcessExitCallback eventHandler, IProcess<I, O> sender, object args) {
         if (eventHandler != null) {
             eventHandler(sender, args);
         }

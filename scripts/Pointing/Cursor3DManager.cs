@@ -34,7 +34,7 @@ public class Cursor3DManager : MonoBehaviour {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 var hit = new RaycastHit();
                 if (Physics.Raycast(ray, out hit)) {
-                    CrystallizeEventManager.UI.RaiseCursor3DPositionChanged(this, new Cursor3DPositionChangedEventArgs(PlayerManager.main.PlayerID, hit.point));
+                    CrystallizeEventManager.UI.RaiseCursor3DPositionChanged(this, new Cursor3DPositionChangedEventArgs(PlayerManager.Instance.PlayerID, hit.point));
                 }
             }
         }
@@ -50,7 +50,7 @@ public class Cursor3DManager : MonoBehaviour {
     }
 
     GameObject GetPlayerGameObject(int playerID) {
-        return PlayerManager.main.GetPlayerGameObject(playerID);
+        return PlayerManager.Instance.GetPlayerGameObject(playerID);
     }
 
     GameObject GetCursorInstance(int playerID) {
@@ -58,9 +58,9 @@ public class Cursor3DManager : MonoBehaviour {
             var go = Instantiate<GameObject>(cursorPrefab);
             go.GetComponent<Cursor3DBehavior>().Initialize(playerID);
 
-            var c = GUIPallet.main.otherColor;
-            if(playerID == PlayerManager.main.PlayerID){
-                c = GUIPallet.main.selfColor;
+            var c = GUIPallet.Instance.otherColor;
+            if(playerID == PlayerManager.Instance.PlayerID){
+                c = GUIPallet.Instance.selfColor;
             }
             float emission = 0.1f;
             go.GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor", c * Mathf.LinearToGammaSpace(emission));

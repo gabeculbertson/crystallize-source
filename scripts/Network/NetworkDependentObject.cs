@@ -22,7 +22,7 @@ public class NetworkDependentObject : MonoBehaviour {
 	}
 
     void HandleConnectedToNetwork(object sender, System.EventArgs e) {
-        gameObject.SetActive((int)playerType == PlayerManager.main.PlayerID);
+        gameObject.SetActive((int)playerType == PlayerManager.Instance.PlayerID);
     }
 	
 }

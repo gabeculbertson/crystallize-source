@@ -73,7 +73,7 @@ public class WordInventoryUI : MonoBehaviour {
     protected void Initialize() {
         words.Clear();
 
-        foreach (var e in PlayerManager.main.playerData.WordStorage.InventoryElements) {
+        foreach (var e in PlayerData.Instance.WordStorage.InventoryElements) {
             if (e == null) {
                 words.Add(null);
             } else {
@@ -142,7 +142,7 @@ public class WordInventoryUI : MonoBehaviour {
     }
 
     void SetWordFound(PhraseSequenceElement word) {
-        PlayerManager.main.playerData.WordStorage.AddFoundWord(word.WordID);
+        PlayerData.Instance.WordStorage.AddFoundWord(word.WordID);
         tentativeIndex = -1;
 
         RefreshInventory();
@@ -158,7 +158,7 @@ public class WordInventoryUI : MonoBehaviour {
         resourcePool.Clear();
         instanceIndicies.Clear();
 
-        foreach (var w in PlayerManager.main.playerData.WordStorage.ObjectiveWords) {
+        foreach (var w in PlayerData.Instance.WordStorage.ObjectiveWords) {
             //Debug.Log(w);
             if (!ContainsWord(w)) {
                 AddWord(new PhraseSequenceElement(w, 0));
@@ -177,7 +177,7 @@ public class WordInventoryUI : MonoBehaviour {
             } else if (words[i] == null) {
                 InsertSlot(i, fillerSlotPrefab, slotParent);
             } else {
-                if (PlayerManager.main.playerData.WordStorage.ContainsObjectiveWord(words[i])) {
+                if (PlayerData.Instance.WordStorage.ContainsObjectiveWord(words[i])) {
                     var instance = InsertSlot(i, objectiveSlotPrefab, slotParent);
                     instance.GetComponent<ObjectiveSlotColoring>().Initialize(words[i]);
                     // TODO: we need another class for these types of slots to reject wrong words
@@ -219,9 +219,9 @@ public class WordInventoryUI : MonoBehaviour {
     }
 
     protected void UpdatePlayerData() {
-        PlayerManager.main.playerData.WordStorage.InventoryElements.Clear();
+        PlayerData.Instance.WordStorage.InventoryElements.Clear();
         foreach (var word in words) {
-            PlayerManager.main.playerData.WordStorage.InventoryElements.Add(word);
+            PlayerData.Instance.WordStorage.InventoryElements.Add(word);
         }
 
         //TODO: move this somewhere else

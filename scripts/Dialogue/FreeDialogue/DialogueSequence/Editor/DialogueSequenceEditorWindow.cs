@@ -7,6 +7,11 @@ using Util.Serialization;
 
 public class DialogueSequenceEditorWindow : EditorWindow {
 
+    public static void Open(DialogueSequence dialogue) {
+        var window = GetWindow<DialogueSequenceEditorWindow>();
+        window.Initialize(dialogue);
+    }
+
     public static void Open(string initial, Action<string> setString)
     {
         var window = GetWindow<DialogueSequenceEditorWindow>();
@@ -18,6 +23,12 @@ public class DialogueSequenceEditorWindow : EditorWindow {
 
     string[] elementStrings;
     int[] elementIDs;
+
+    void Initialize(DialogueSequence dialogue) {
+        this.dialogue = dialogue;
+        setString = null;
+        GetElementList();
+    }
 
     void Initialize(string xmlString, Action<string> setString)
     {
@@ -48,7 +59,7 @@ public class DialogueSequenceEditorWindow : EditorWindow {
         elementStrings = new string[dialogue.Elements.Items.Count + 1];
         elementIDs = new int[dialogue.Elements.Items.Count + 1];
 
-        var names = dialogue.Elements.Items.Select((e) => string.Format("[{0}] {1}", e.ID, e.Phrase.GetText())).ToArray();
+        var names = dialogue.Elements.Items.Select((e) => string.Format("[{0}] {1}", e.ID, e.Line.Phrase.GetText())).ToArray();
         var ids = dialogue.Elements.Items.Select((e) => e.ID).ToArray();
 
         elementStrings[0] = "NULL";
@@ -74,7 +85,9 @@ public class DialogueSequenceEditorWindow : EditorWindow {
         if (GUILayout.Button("Save"))
         {
             Debug.Log("Set string");
-            setString(Serializer.SaveToXmlString<DialogueSequence>(dialogue));
+            if (setString != null) {
+                setString(Serializer.SaveToXmlString<DialogueSequence>(dialogue));
+            }
         }
 
         EditorGUILayout.LabelField(Serializer.SaveToXmlString<DialogueSequence>(dialogue));
@@ -85,7 +98,7 @@ public class DialogueSequenceEditorWindow : EditorWindow {
         EditorGUILayout.BeginVertical(GUI.skin.box);
 
         EditorGUILayout.LabelField(element.ID.ToString());
-        EditorUtilities.DrawPhraseSequence(element.Phrase);
+        EditorUtilities.DrawObject(element.Line);
         EditorUtilities.DrawPhraseSequence(element.Prompt);
 
         element.DefaultNextID = GetID("Default Next ID", element.DefaultNextID);

@@ -37,7 +37,7 @@ public class CompassBehavior : MonoBehaviour {
 		transform.rotation = Quaternion.Inverse (Camera.main.transform.rotation);
 		if (QuestManager.main.HasActiveTarget()) {
 			arrow.gameObject.SetActive(true);
-            var playerPos = PlayerManager.main.PlayerGameObject.transform.position;
+            var playerPos = PlayerManager.Instance.PlayerGameObject.transform.position;
 			var dir = QuestManager.main.GetActiveTarget() - playerPos;
 			//Debug.Log("dir: " + dir + "; " + QuestManager.main.GetActiveTarget() + "; " + playerPos);
 			dir.y = 0;
@@ -49,7 +49,7 @@ public class CompassBehavior : MonoBehaviour {
         var ally = InteractionManager.AllyGameObject();
         if (ally) {
             allyArrow.gameObject.SetActive(true);
-            var dir = ally.transform.position - PlayerManager.main.PlayerGameObject.transform.position;
+            var dir = ally.transform.position - PlayerManager.Instance.PlayerGameObject.transform.position;
             dir.y = 0;
             allyArrow.localRotation = Quaternion.LookRotation(-dir.normalized);
         } else {
