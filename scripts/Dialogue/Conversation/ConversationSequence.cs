@@ -28,15 +28,17 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
         var pgo = PlayerManager.Instance.PlayerGameObject.GetComponent<Rigidbody>();
         pgo.position = actor.transform.position + actor.transform.forward * 2f;
         pgo.transform.forward = -actor.transform.forward;
+        pgo.velocity = Vector3.zero;
 
         yield return null;
-        yield return null;
+
+        pgo.position = actor.transform.position + actor.transform.forward * 2f;
+        pgo.transform.forward = -actor.transform.forward;
+        pgo.velocity = Vector3.zero;
         
         RequestConversationCamera.Get(actor.gameObject, null, this);
 
         CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
-
-        pgo.velocity = Vector3.zero;
 
         PlayerController.LockMovement(this);
 
