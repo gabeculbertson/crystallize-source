@@ -81,7 +81,7 @@ public class Multiplayer03TutorialScript : LevelScript {
     void HandleQuestStateChanged(object sender, QuestStateChangedEventArgs e) {
         var gid = questClient.GetWorldID();
         var qid = GameData.Instance.QuestData.GetQuestInfoFromWorldID(gid).QuestID;
-        var qpd = PlayerManager.main.playerData.QuestData.GetQuestInstance(qid);
+        var qpd = PlayerData.Instance.QuestData.GetQuestInstance(qid);
         if (qpd.State == ObjectiveState.Complete) {
             ObjectiveManager.main.SetObjective(this, true);
         }

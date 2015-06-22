@@ -78,6 +78,8 @@ public class GameData {
 
 
 	public QuestGameData QuestData { get; set; }
+    public JobCollectionGameData Jobs { get; set; }
+    public HomeCollectionGameData Homes { get; set; }
 	public ChallengeProgressionGameData ProgressionData { get; set; }
 	public NavigationGameData NavigationData { get; set; }
 	public PhraseClassGameData PhraseClassData { get; set; }
@@ -87,6 +89,8 @@ public class GameData {
 
 	public GameData(){
 		QuestData = new QuestGameData ();
+        Jobs = new JobCollectionGameData();
+        Homes = new HomeCollectionGameData();
 		ProgressionData = new ChallengeProgressionGameData ();
 		NavigationData = new NavigationGameData ();
 		PhraseClassData = new PhraseClassGameData ();

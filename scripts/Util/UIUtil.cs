@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public static class UIUtil {
 
-    public static void GenerateChildren<T>(IEnumerable<T> iterator, List<GameObject> instances, Transform parent, Func<T, GameObject> getChildInstance)
+    public static void GenerateChildren<T>(IEnumerable<T> collection, List<GameObject> instances, Transform parent, Func<T, GameObject> getChildInstance)
     {
         foreach (var i in instances)
         {
@@ -14,7 +14,7 @@ public static class UIUtil {
         }
         instances.Clear();
 
-        foreach (var item in iterator)
+        foreach (var item in collection)
         {
             var instance = getChildInstance(item);
             instance.transform.SetParent(parent, false);
@@ -24,6 +24,10 @@ public static class UIUtil {
     }
 
     public static bool MouseOverUI() {
+        if (EventSystem.current == null) {
+            return false;
+        }
+
         var raycastResults = new List<RaycastResult>();
         var eventData = new PointerEventData(EventSystem.current);
         eventData.position = Input.mousePosition;

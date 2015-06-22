@@ -13,7 +13,7 @@ public class EmptySlotUI : MonoBehaviour, IPhraseDropHandler, IItemDropAcceptor,
 
 	void Start(){
         if (controlColor) {
-            GetComponent<Image>().color = GUIPallet.main.darkGray;
+            GetComponent<Image>().color = GUIPallet.Instance.darkGray;
         }
 	}
 
@@ -43,7 +43,7 @@ public class EmptySlotUI : MonoBehaviour, IPhraseDropHandler, IItemDropAcceptor,
 	{
         if (UISystem.main.PhraseDragHandler.IsDragging) {
             if (controlColor) {
-                GetComponent<Image>().color = GUIPallet.main.darkGray;
+                GetComponent<Image>().color = GUIPallet.Instance.darkGray;
             }
         }
 	}

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IWindowUI {
+public interface IWindowUI : ICloseable {
     void Confirm();
-    void Close();
 }

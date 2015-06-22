@@ -63,7 +63,7 @@ public class OmniscientCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if (!player) {
-            player = PlayerManager.main.PlayerGameObject.transform;
+            player = PlayerManager.Instance.PlayerGameObject.transform;
         }
 
 		finalTransform = new GameObject ("OmniscientCameraTarget").transform;

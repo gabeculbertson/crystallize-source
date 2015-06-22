@@ -5,8 +5,8 @@ using System.Linq;
 
 public class UniqueKeySerializableDictionary<V> : SerializableDictionary<int, V> where V : ISerializableDictionaryItem<int> {
 
-	const int StartConstant = 1000000;
-	const int Increment = 10;
+	const int StartConstant = 0;
+	const int Increment = 1;
 
 	public int CurrentKey { get; set; }
 

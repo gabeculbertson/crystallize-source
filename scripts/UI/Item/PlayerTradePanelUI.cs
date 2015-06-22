@@ -126,7 +126,7 @@ public class PlayerTradePanelUI : UIMonoBehaviour {
     public void UpdatePlayerMoney() {
         int m = 0;
         if (int.TryParse(playerMoneyInput.text, out m)) {
-            m = Mathf.Clamp(m, 0, PlayerManager.main.playerData.Money);
+            m = Mathf.Clamp(m, 0, PlayerData.Instance.Money);
             playerMoneyInput.text = m.ToString();
         }
         playerMoney = m;
@@ -186,8 +186,8 @@ public class PlayerTradePanelUI : UIMonoBehaviour {
     }
 
     void ExecuteTrade() {
-        PlayerManager.main.playerData.Money -= playerMoney;
-        PlayerManager.main.playerData.Money += otherMoney;
+        PlayerData.Instance.Money -= playerMoney;
+        PlayerData.Instance.Money += otherMoney;
 
         playerInventory.SetEmpty();
         foreach (var item in otherInventory.GetItems()) {

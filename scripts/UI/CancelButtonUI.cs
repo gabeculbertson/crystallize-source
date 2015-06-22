@@ -6,11 +6,9 @@ public class CancelButtonUI : MonoBehaviour, IPointerClickHandler {
 
     public GameObject window;
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
+    public void OnPointerClick(PointerEventData eventData) {
         var w = window.GetInterface<IWindowUI>();
-        if (w != null)
-        {
+        if (w != null) {
             w.Close();
         }
     }

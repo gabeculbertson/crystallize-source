@@ -28,7 +28,7 @@ public class MultiplayerRoofTutorial : LevelScript {
         var c = (Component)sender;
         if (c.GetComponent<SpeechStatusEffect>()) {
             if (!c.GetComponent<SpeechStatusEffect>().yourState) {
-                if (PlayerManager.main.PlayerID == 0) {
+                if (PlayerManager.Instance.PlayerID == 0) {
                     SetMessage("This person is too shy to talk to guys...");
                 } else {
                     SetMessage("This person is too shy to talk to girls...");

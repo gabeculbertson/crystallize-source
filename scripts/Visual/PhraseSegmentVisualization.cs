@@ -17,7 +17,7 @@ namespace Crystallize.Animation {
 		void LateUpdate(){
 			if (objectInstance) {
 				objectInstance.transform.position =
-                        PlayerManager.main.PlayerGameObject.transform.position
+                        PlayerManager.Instance.PlayerGameObject.transform.position
 						+ Vector3.up * 3f
 						+ Vector3.up * 0.25f * Mathf.Sin(Time.time);
 			}

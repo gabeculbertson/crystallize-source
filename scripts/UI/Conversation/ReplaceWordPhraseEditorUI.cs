@@ -3,43 +3,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializable<PhraseSequence>, ISelectionSequence<PhraseSequence> {
+public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, ITemporaryUI<PhraseSequence, PhraseSequence> {
 
     const string ResourcePath = "UI/ReplaceWordPhraseEditor";
 
-    static GameObject instance;
-
-    public static GameObject Prefab
-    {
-        get
-        {
-            return Resources.Load<GameObject>(ResourcePath);
-        }
-    }
-
     public static ReplaceWordPhraseEditorUI GetInstance()
     {
-        if (instance)
-        {
-            Destroy(instance);
-        }
-
-        instance = Instantiate<GameObject>(Prefab);
-        return instance.GetComponent<ReplaceWordPhraseEditorUI>();
+        return GameObjectUtil.GetResourceInstance<ReplaceWordPhraseEditorUI>(ResourcePath);
     }
+
+    public static ProcessFactoryRef<PhraseSequenceElement, PhraseSequenceElement> RequestWordSelection;
 
 
     public GameObject wordPrefab;
     public Transform wordParent;
 
-    public event EventHandler OnCancel;
-    public event EventHandler OnExit;
-    public event SequenceCompleteCallback<PhraseSequence> OnSelection;
+    public event EventHandler<EventArgs<PhraseSequence>> Complete;
 
     PhraseSequence phrase;
     List<GameObject> wordInstances = new List<GameObject>();
 
     int selectedWord = -1;
+
+    public void Initialize(PhraseSequence phrase) {
+        this.phrase = new PhraseSequence(phrase);
+        transform.SetParent(MainCanvas.main.transform, false);
+        transform.position = new Vector2(Screen.width * 0.5f, 300f);
+    }
+
+    public void Close() {
+        Exit(null);
+    }
 
     void Start() {
         Refresh();
@@ -48,13 +42,6 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
     void Refresh() {
         UIUtil.GenerateChildren(phrase.PhraseElements, wordInstances, wordParent, GetWordInstance);
         //Debug.Log(wordInstances.Count);
-    }
-
-    public void Initialize(PhraseSequence phrase)
-    {
-        this.phrase = new PhraseSequence(phrase);
-        //Debug.Log(this.phrase.GetText());
-        transform.SetParent(MainCanvas.main.transform, false);
     }
 
     GameObject GetWordInstance(PhraseSequenceElement word)
@@ -66,29 +53,27 @@ public class ReplaceWordPhraseEditorUI : MonoBehaviour, IWindowUI, IInitializabl
         return wordInstance;
     }
 
-    public void Close()
+    void Exit(EventArgs<PhraseSequence> args)
     {
+        Complete.Raise(this, args);
         Destroy(gameObject);
     }
 
     public void Confirm()
     {
-        OnSelection.Raise(this, new SequenceCompleteEventArgs<PhraseSequence>(phrase));
-        //CrystallizeEventManager.UI.RaiseModifiedPhraseSelected(this, new PhraseEventArgs(phrase));
+        Exit(new EventArgs<PhraseSequence>(phrase));
     }
 
     void HandleWordClicked(object sender, System.EventArgs e) {
         selectedWord = wordInstances.IndexOf(((Component)sender).gameObject);
-        CrystallizeEventManager.UI.RequestWordSelectionRequested(selectedWord, OnWordSelectionOpened);
+        var word = phrase.PhraseElements[selectedWord];
+
+        RequestWordSelection.Get(word, OnWordSelected, null);// this);
     }
 
-    void OnWordSelectionOpened(object sender, SequenceCallbackEventArgs<PhraseSequenceElement> e) {
-        e.Sequence.OnSelection += OnWordSelected;
-    }
-
-    void OnWordSelected(object sender, SequenceCompleteEventArgs<PhraseSequenceElement> e) {
+    void OnWordSelected(object sender, PhraseSequenceElement e) {
         if (phrase.PhraseElements.IndexInRange(selectedWord)) {
-            phrase.PhraseElements[selectedWord] = e.Data;
+            phrase.PhraseElements[selectedWord] = e;
         }
         Refresh();
     }

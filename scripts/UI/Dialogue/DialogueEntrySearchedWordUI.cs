@@ -17,7 +17,7 @@ public class DialogueEntrySearchedWordUI : UIMonoBehaviour, IPointerClickHandler
 		this.dropSection = dropSection;
 		this.phrase = phrase;
 
-		GetComponent<Image> ().color = GUIPallet.main.GetColorForWordCategory (phrase.Category);
+		GetComponent<Image> ().color = GUIPallet.Instance.GetColorForWordCategory (phrase.Category);
 		GetComponentInChildren<Text> ().text = phrase.ConvertedText;
 	}
 

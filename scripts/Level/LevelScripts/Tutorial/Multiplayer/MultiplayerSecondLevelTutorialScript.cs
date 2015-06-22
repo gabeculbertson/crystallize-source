@@ -26,7 +26,7 @@ public class MultiplayerSecondLevelTutorialScript : LevelScript {
 
     // Use this for initialization
     IEnumerator Start() {
-		ObjectiveManager.main.SetObjective (this, false);
+        ObjectiveManager.main.SetObjective(this, false);
 
         downArrow.SetActive(false);
 
@@ -50,9 +50,9 @@ public class MultiplayerSecondLevelTutorialScript : LevelScript {
         SetMessage("Wait for your partner...");
         while (true) {
             var quest = GameData.Instance.QuestData.GetQuestInfoFromWorldID(questClient.GetWorldID());
-            var questInstance = PlayerManager.main.playerData.QuestData.GetQuestInstance(quest.QuestID);
+            var questInstance = PlayerData.Instance.QuestData.GetQuestInstance(quest.QuestID);
             //Debug.Log(questInstance);
-            if(questInstance != null){
+            if (questInstance != null) {
                 //Debug.Log(questInstance.QuestID + "; " + questInstance.GetObjectiveState(0));
                 if (questInstance.GetObjectiveState(0).IsComplete) {
                     break;
@@ -113,7 +113,7 @@ public class MultiplayerSecondLevelTutorialScript : LevelScript {
         TutorialCanvas.main.ClearAllIndicators();
         ClearMessages();
 
-		ObjectiveManager.main.SetObjective (this, true);
+        ObjectiveManager.main.SetObjective(this, true);
         //SetMessage("Go upstairs to continue");
     }
 
@@ -202,7 +202,7 @@ public class MultiplayerSecondLevelTutorialScript : LevelScript {
     CommunicationState GetSayState() {
         var gid = questClient.GetWorldID();
         var qid = GameData.Instance.QuestData.GetQuestInfoFromWorldID(gid).QuestID;
-        var qpd = PlayerManager.main.playerData.QuestData.GetQuestInstance(qid);
+        var qpd = PlayerData.Instance.QuestData.GetQuestInstance(qid);
         if (qpd.State == ObjectiveState.Complete) {
             return CommunicationState.Complete;
         }

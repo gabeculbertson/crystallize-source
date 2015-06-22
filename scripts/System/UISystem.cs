@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,25 @@ public enum UIMode
 
 public class UISystem : MonoBehaviour {
 
-	public static UISystem main { get; set; }
+    const string ResourcePath = "UI/UISystem";
+
+	public static UISystem main { 
+        get{
+            return GetInstance();
+        }
+    }
+
+    static UISystem _instance;
+    public static UISystem GetInstance() {
+        if (EventSystem.current == null) {
+            GameObjectUtil.GetResourceInstance("UI/EventSystem");
+        }
+
+        if (!_instance) {
+            _instance = GameObjectUtil.GetResourceInstance<UISystem>(ResourcePath);
+        }
+        return _instance;
+    }
 
     public static bool MouseOverUI() {
         if (main.PhraseDragHandler.IsDragging) {
@@ -42,12 +61,12 @@ public class UISystem : MonoBehaviour {
 
     KeyCode[] UIKeys = { KeyCode.Space, KeyCode.Return };
 
-	void Awake(){
-		main = this;
-	}
-
 	// Use this for initialization
-	void Start () {
+	void Awake() {
+        if (_instance) {
+            Debug.LogWarning("Already have a UISystem!");
+        }
+
 		PhraseDragHandler = phraseDragHandlerObject.GetInterface<IPhraseDragHandler> ();
 
         CrystallizeEventManager.UI.OnUIModeRequested += HandleUIModeRequested;
@@ -77,6 +96,7 @@ public class UISystem : MonoBehaviour {
         }
 
         if (Input.GetMouseButtonDown(0)) {
+            CrystallizeEventManager.Input.RaiseLeftClick(this, System.EventArgs.Empty);
             if (!UISystem.MouseOverUI()) {
                 CrystallizeEventManager.Input.RaiseEnvironmentClick(this, System.EventArgs.Empty);
             }

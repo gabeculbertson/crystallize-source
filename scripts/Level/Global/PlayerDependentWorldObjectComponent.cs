@@ -16,7 +16,7 @@ public class PlayerDependentWorldObjectComponent : MonoBehaviour, IGlobalID {
 
     public int GlobalID {
         get {
-            return GetID(PlayerManager.main.PlayerID);
+            return GetID(PlayerManager.Instance.PlayerID);
         }
     }
 

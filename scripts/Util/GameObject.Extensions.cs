@@ -500,12 +500,20 @@ public static partial class Extensions
 		return s;
 	}
 
+    public static GameObject GetBaseGameObject(this Collider c) {
+        if (!c.attachedRigidbody) {
+            return c.gameObject;
+        }
+
+        return c.attachedRigidbody.gameObject;
+    }
+
     public static bool IsPlayer(this Collider c) {
         if (!c.attachedRigidbody) {
             return false;
         }
 
-        if (PlayerManager.main.PlayerGameObject != c.attachedRigidbody.gameObject) {
+        if (PlayerManager.Instance.PlayerGameObject != c.attachedRigidbody.gameObject) {
             return false;
         }
 

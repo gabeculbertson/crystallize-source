@@ -71,7 +71,7 @@ public class InventoryEntryUI : MonoBehaviour, IPointerDownHandler, IWordContain
 	}
 
 	void LateUpdate(){
-		GetComponent<Image> ().color = GUIPallet.main.GetColorForWordCategory (PhraseData.Category);
+		GetComponent<Image> ().color = GUIPallet.Instance.GetColorForWordCategory (PhraseData.Category);
 		
 		if (Dragging) {
 			rectTransform.position = (Vector2)Input.mousePosition + dragOffset;

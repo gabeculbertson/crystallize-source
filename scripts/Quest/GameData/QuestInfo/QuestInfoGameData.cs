@@ -57,13 +57,11 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
             Objectives = GetDefaultObjectives();
         }
 
-        if (PlayerData.IsInitialized) {
-            if (PlayerData.Instance.Flags.GetFlag(FlagPlayerData.IsMultiplayer)
-                && !GameSettings.GetFlag(GameSystemFlags.LockQuestInterdependence)) {
-                var l = new List<QuestObjectiveInfoGameData>(Objectives);
-                l.Add(new QuestObjectiveInfoGameData("Help your partner complete the quest"));
-                return l;
-            }
+        if (PlayerData.Instance.Flags.GetFlag(FlagPlayerData.IsMultiplayer)
+            && !GameSettings.GetFlag(GameSystemFlags.LockQuestInterdependence)) {
+            var l = new List<QuestObjectiveInfoGameData>(Objectives);
+            l.Add(new QuestObjectiveInfoGameData("Help your partner complete the quest"));
+            return l;
         }
 
         return Objectives;
@@ -85,7 +83,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
     public void BeginQuest() {
         Begin();
 
-        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, GetQuestInstance()));
+        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, GetQuestInstance()));
     }
 
     protected virtual void Begin() { }
@@ -108,7 +106,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
     public virtual void ProcessMessage(System.EventArgs args) { }
 
     public QuestInstanceData GetQuestInstance() {
-        return PlayerManager.main.playerData.QuestData.GetQuestInstance(QuestID);
+        return PlayerData.Instance.QuestData.GetQuestInstance(QuestID);
     }
 
     protected bool AllObjectivesComplete() {
@@ -130,7 +128,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
             EffectManager.main.EnqueueEffect(() => AudioManager.main.PlayPhraseSuccess(), 0.15f);
             DataLogger.LogTimestampedData("ObjectiveComplete", QuestID.ToString(), index.ToString());
         }
-        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, qi));
+        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, qi));
         //CrystallizeEventManager.main.RaiseSendQuestStateRequested (this, new PartnerObjectiveCompleteEventArgs (QuestID));
     }
 
@@ -142,7 +140,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
             EffectManager.main.EnqueueEffect(() => AudioManager.main.PlayDialogueSuccess(), 0.2f);
             DataLogger.LogTimestampedData("QuestComplete", QuestID.ToString());
         }
-        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.main.PlayerID, qi));
+        CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this, new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID, qi));
         CrystallizeEventManager.Network.RaiseSendQuestStateRequested(this, new PartnerObjectiveCompleteEventArgs(QuestID));
     }
 
@@ -158,7 +156,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
             if (args is QuestStateChangedEventArgs) {
                 var qsc = (QuestStateChangedEventArgs)args;
 
-                if (qsc.PlayerID != PlayerManager.main.PlayerID
+                if (qsc.PlayerID != PlayerManager.Instance.PlayerID
                     && qsc.QuestState == ObjectiveState.Active
                     && qsc.QuestID == QuestID) {
                     CompleteObjective(0);
@@ -179,7 +177,7 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
         }
         var qscArgs = (QuestStateChangedEventArgs)args;
 
-        if (qscArgs.PlayerID == PlayerManager.main.PlayerID || qscArgs.QuestID != QuestID) {
+        if (qscArgs.PlayerID == PlayerManager.Instance.PlayerID || qscArgs.QuestID != QuestID) {
             return false;
         }
 

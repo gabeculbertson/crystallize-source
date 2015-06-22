@@ -38,7 +38,7 @@ public class InteractionManager {
     }
 
     public static GameObject AllyGameObject() {
-        if (PlayerManager.main.PlayerID == 0) {
+        if (PlayerManager.Instance.PlayerID == 0) {
             var go = GameObject.FindGameObjectWithTag("OtherPlayer");
             if (go) {
                 if (go.transform.position.y > -500f) {

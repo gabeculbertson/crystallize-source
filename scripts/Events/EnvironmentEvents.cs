@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class EnvironmentEvents {
+public class EnvironmentEvents : GameEvents {
 
     public event EventHandler OnActorApproached;
     public void RaiseActorApproached(object sender, EventArgs args) { OnActorApproached.Raise(sender, args); }
@@ -19,5 +19,10 @@ public class EnvironmentEvents {
 
     public event EventHandler<PersonAnimationEventArgs> OnPersonAnimationRequested;
     public void RaisePersonAnimationRequested(object sender, PersonAnimationEventArgs args) { OnPersonAnimationRequested.Raise(sender, args); }
+
+    //public event SequenceRequestHandler<GameObject, object> OnConversationCameraRequested;
+    //public void RequestConversationCamera(GameObject input, ProcessExitCallback<object> callback) {
+    //    RequestSequence(input, OnConversationCameraRequested, callback);
+    //}
 
 }

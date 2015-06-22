@@ -22,11 +22,11 @@ public class FloatingNameUI : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (!PlayerManager.main.PlayerGameObject) {
+        if (!PlayerManager.Instance.PlayerGameObject) {
             return;
         }
 
-        var player = PlayerManager.main.PlayerGameObject.transform;
+        var player = PlayerManager.Instance.PlayerGameObject.transform;
         foreach (var h in holderNames.Keys) {
             var d = Vector3.Distance(player.position, h.transform.position);
             if (d < 20f) {

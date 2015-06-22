@@ -26,7 +26,7 @@ public class QuestSetLevel : MonoBehaviour {
 	void Update () {
         var finished = true;
 	    foreach(var cid in cids){
-            if (PlayerManager.main.playerData.QuestData.GetQuestInstance(cid).State != ObjectiveState.Complete) {
+            if (PlayerData.Instance.QuestData.GetQuestInstance(cid).State != ObjectiveState.Complete) {
                 finished = false;
                 break;
             }

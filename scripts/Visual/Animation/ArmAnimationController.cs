@@ -3,70 +3,70 @@ using System.Collections;
 
 public class ArmAnimationController : MonoBehaviour {
 
-	public bool IsHolding { 
-		get{
-			return holdableInstance;
-		}
-	}
+    public bool IsHolding {
+        get {
+            return holdableInstance;
+        }
+    }
 
-	public Transform handTarget;
+    public Transform handTarget;
 
-	Animator animator;
-	GameObject holdableInstance;
-	float holdableForwardOffset;
-	float holdableVerticalOffset;
+    Animator animator;
+    GameObject holdableInstance;
+    float holdableForwardOffset;
+    float holdableVerticalOffset;
 
-	bool intialized = false;
+    bool intialized = false;
 
-	// Use this for initialization
-	IEnumerator Start () {
-		yield return null;
+    // Use this for initialization
+    IEnumerator Start() {
+        yield return null;
 
-		animator = GetComponentInChildren<Animator> ();
-		var i = PlayerManager.main.playerData.Item;
-		if (i != "") {
-			HoldItem(i);
-		}
+        animator = GetComponentInChildren<Animator>();
+        var i = PlayerData.Instance.Item;
+        if (i != "") {
+            HoldItem(i);
+        }
 
-		intialized = true;
-	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
-		if (!intialized) {
-			return;
-		}
+        intialized = true;
+    }
 
-		if (IsHolding) {
-			animator.SetLayerWeight(1, 1f);
-			holdableInstance.transform.forward = -transform.forward;
-			holdableInstance.transform.position = handTarget.position + transform.forward * holdableForwardOffset + Vector3.up * (holdableVerticalOffset + 0.1f);
-		} else {
-			animator.SetLayerWeight(1, 0);
-		}
-	}
+    // Update is called once per frame
+    void LateUpdate() {
+        if (!intialized) {
+            return;
+        }
 
-	public void HoldItem(string itemID){
-		PlayerManager.main.playerData.Item = itemID;
-		CrystallizeEventManager.UI.RaiseItemChanged (this, new StringEventArgs (itemID));
+        if (IsHolding) {
+            animator.SetLayerWeight(1, 1f);
+            holdableInstance.transform.forward = -transform.forward;
+            holdableInstance.transform.position = handTarget.position + transform.forward * holdableForwardOffset + Vector3.up * (holdableVerticalOffset + 0.1f);
+        } else {
+            animator.SetLayerWeight(1, 0);
+        }
+    }
 
-		if (IsHolding) {
-			StopHolding();
-		}
+    public void HoldItem(string itemID) {
+        PlayerData.Instance.Item = itemID;
+        CrystallizeEventManager.UI.RaiseItemChanged(this, new StringEventArgs(itemID));
 
-		holdableInstance = Instantiate(ScriptableObjectDictionaries.main.holdableDictionary.GetHoldable(itemID).prefab) as GameObject;
-		holdableInstance.transform.SetParent (transform);
-		holdableForwardOffset = holdableInstance.GetComponent<BoxCollider> ().size.z * 0.5f;
-		holdableVerticalOffset = -holdableInstance.GetComponent<BoxCollider> ().center.y;
-	}
+        if (IsHolding) {
+            StopHolding();
+        }
 
-	public void StopHolding(){
-		PlayerManager.main.playerData.Item = "";
+        holdableInstance = Instantiate(ScriptableObjectDictionaries.main.holdableDictionary.GetHoldable(itemID).prefab) as GameObject;
+        holdableInstance.transform.SetParent(transform);
+        holdableForwardOffset = holdableInstance.GetComponent<BoxCollider>().size.z * 0.5f;
+        holdableVerticalOffset = -holdableInstance.GetComponent<BoxCollider>().center.y;
+    }
 
-		if (holdableInstance) {
-			Destroy (holdableInstance);
-			holdableInstance = null;
-		}
-	}
+    public void StopHolding() {
+        PlayerData.Instance.Item = "";
+
+        if (holdableInstance) {
+            Destroy(holdableInstance);
+            holdableInstance = null;
+        }
+    }
 
 }

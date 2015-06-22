@@ -4,60 +4,61 @@ using System.Collections;
 
 public class NetworkCardUI : MonoBehaviour, IAnchoredUIElement {
 
-	const string Slash = "  /  ";
-	const float MoveSpeed = 2000f;
-	
-	public SocialData socialData;
-	public string dotString;
-	public Image portraitImage;
-	public Text nameText;
-	public Text infoText;
-	public Text statusText;
+    const string Slash = "  /  ";
+    const float MoveSpeed = 2000f;
 
-	Vector2 anchor;
-	bool isAnchored = false;
+    public SocialData socialData;
+    public string dotString;
+    public Image portraitImage;
+    public Text nameText;
+    public Text infoText;
+    public Text statusText;
 
-	public Vector2 Anchor { 
-		get {
-			return anchor;
-		} set {
-			isAnchored = true;
-			anchor = value;
-		}
-	}
+    Vector2 anchor;
+    bool isAnchored = false;
 
-	// Use this for initialization
-	void Start () {
-		portraitImage.sprite = socialData.portrait;
-		nameText.text = socialData.surname + dotString + socialData.givenName;
-		infoText.text = socialData.occupation + Slash + socialData.age + Slash + socialData.homeTown;
-		statusText.text = dotString + socialData.status;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (isAnchored) {
-			transform.position = Vector2.MoveTowards(transform.position, Anchor, MoveSpeed * Time.deltaTime);
-		}
-	}
+    public Vector2 Anchor {
+        get {
+            return anchor;
+        }
+        set {
+            isAnchored = true;
+            anchor = value;
+        }
+    }
 
-	public void BeginAddFriendSequence(){
-		StartCoroutine (AddSequence ());
-	}
+    // Use this for initialization
+    void Start() {
+        portraitImage.sprite = socialData.portrait;
+        nameText.text = socialData.surname + dotString + socialData.givenName;
+        infoText.text = socialData.occupation + Slash + socialData.age + Slash + socialData.homeTown;
+        statusText.text = dotString + socialData.status;
+    }
 
-	IEnumerator AddSequence(){
-		bool wasOpen = FriendsPanelUI.main.isOpen;
-		FriendsPanelUI.main.isOpen = true;
-		
-		while(!FriendsPanelUI.main.IsVisible){
-			yield return null;
-		}
+    // Update is called once per frame
+    void Update() {
+        if (isAnchored) {
+            transform.position = Vector2.MoveTowards(transform.position, Anchor, MoveSpeed * Time.deltaTime);
+        }
+    }
 
-		FriendsPanelUI.main.AddFriend (gameObject);
-		PlayerManager.main.playerData.FriendData.SetFriendState (socialData.ID, 0);
-		
-		yield return new WaitForSeconds(3f);
-		
-		FriendsPanelUI.main.isOpen = wasOpen;
-	}
+    public void BeginAddFriendSequence() {
+        StartCoroutine(AddSequence());
+    }
+
+    IEnumerator AddSequence() {
+        bool wasOpen = FriendsPanelUI.main.isOpen;
+        FriendsPanelUI.main.isOpen = true;
+
+        while (!FriendsPanelUI.main.IsVisible) {
+            yield return null;
+        }
+
+        FriendsPanelUI.main.AddFriend(gameObject);
+        PlayerData.Instance.FriendData.SetFriendState(socialData.ID, 0);
+
+        yield return new WaitForSeconds(3f);
+
+        FriendsPanelUI.main.isOpen = wasOpen;
+    }
 }

@@ -18,14 +18,14 @@ public class GenericSpeechBubbleWordUI : MonoBehaviour, IPointerClickHandler {
 
 	public void Initialize(PhraseSegmentData word){
 		this.word = word.GetPhraseElement();
-		GetComponent<Image> ().color = GUIPallet.main.GetColorForWordCategory (word.Category);
-        GetComponentInChildren<Outline>().effectColor = GUIPallet.main.GetColorForWordCategory(word.Category);
+		GetComponent<Image> ().color = GUIPallet.Instance.GetColorForWordCategory (word.Category);
+        GetComponentInChildren<Outline>().effectColor = GUIPallet.Instance.GetColorForWordCategory(word.Category);
 	}
 
     public void Initialize(PhraseSequenceElement word) {
         this.word = word;
         GetComponentInChildren<Text>().text = word.GetPlayerText();
-        var c = GUIPallet.main.GetColorForWordCategory(word.GetPhraseCategory());
+        var c = GUIPallet.Instance.GetColorForWordCategory(word.GetPhraseCategory());
         c = Color.Lerp(Color.white, c, 0.5f);
         GetComponent<Image>().color = c;
         //GetComponentInChildren<Outline>().effectColor = c;

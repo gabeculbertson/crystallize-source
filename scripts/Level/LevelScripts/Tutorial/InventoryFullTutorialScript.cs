@@ -6,7 +6,7 @@ public class InventoryFullTutorialScript : LevelScript {
     public const int ID = 1;
 
     IEnumerator Start() {
-        PlayerManager.main.playerData.Tutorial.SetTutorialViewed(ID);
+        PlayerData.Instance.Tutorial.SetTutorialViewed(ID);
 
         SetMessage("Inventory getting full!");
 

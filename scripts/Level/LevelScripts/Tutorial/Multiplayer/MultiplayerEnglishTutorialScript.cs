@@ -55,7 +55,7 @@ public class MultiplayerEnglishTutorialScript : LevelScript {
 	IEnumerator WaitAndActivateQuest(){
 		partnerJoined = false;
 		questClient.gameObject.SetActive (false);
-		while (PlayerManager.main.PlayerCount < 2) {
+		while (PlayerManager.Instance.PlayerCount < 2) {
 			yield return null;
 		}
 		questClient.gameObject.SetActive (true);

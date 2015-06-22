@@ -22,6 +22,10 @@ public partial class CrystallizeEventManager : MonoBehaviour {
 		}
 	}
 
+    public static CrystallizeEventManager GetInstance() {
+        return main;
+    }
+
     public static PlayerStateEvents PlayerState { get { return main.playerState; } }
     public static EnvironmentEvents Environment { get { return main.environment; } }
     public static UIEvents UI { get { return main.ui; } }
@@ -52,6 +56,8 @@ public partial class CrystallizeEventManager : MonoBehaviour {
         network = new NetworkEvents();
         debug = new DebugEvents();
         input = new InputEvents();
+
+        quitting = false;
     }
 
 	void OnApplicationQuit(){

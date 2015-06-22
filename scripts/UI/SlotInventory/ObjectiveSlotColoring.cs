@@ -10,7 +10,7 @@ public class ObjectiveSlotColoring : MonoBehaviour {
     public void Initialize(PhraseSequenceElement word) {
         this.word = word;
         GetComponentInChildren<Text>().text = word.GetTranslation();
-        GetComponent<Image>().color = GUIPallet.main.darkGray;
+        GetComponent<Image>().color = GUIPallet.Instance.darkGray;
 
         if (DialogueSystemManager.main) {
             if (DialogueSystemManager.main.Mode == InteractionType.LinearDialogue
@@ -37,7 +37,7 @@ public class ObjectiveSlotColoring : MonoBehaviour {
 
     void Update() {
         if (isHighlighted) {
-            GetComponent<Image>().color = Color.Lerp(Color.yellow, GUIPallet.main.darkGray, Mathf.PingPong(Time.time, 1f));
+            GetComponent<Image>().color = Color.Lerp(Color.yellow, GUIPallet.Instance.darkGray, Mathf.PingPong(Time.time, 1f));
         }
     }
 

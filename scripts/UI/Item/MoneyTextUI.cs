@@ -42,8 +42,8 @@ public class MoneyTextUI : MonoBehaviour {
     }
 
     void UpdateMoney() {
-        remainingMoneyToAdd = PlayerManager.main.playerData.Money - lastMoney;
-        lastMoney = PlayerManager.main.playerData.Money;
+        remainingMoneyToAdd = PlayerData.Instance.Money - lastMoney;
+        lastMoney = PlayerData.Instance.Money;
 
         StartCoroutine(AddMoneySequence());
     }

@@ -28,7 +28,7 @@ public class DialogueSequence {
         {
             return DialogueElementType.End;
         }
-        else if(GetElement(e.NextIDs[0]).Prompt != null)
+        else if(!GetElement(e.NextIDs[0]).Prompt.IsEmpty)
         {
             return DialogueElementType.Prompted;
         }

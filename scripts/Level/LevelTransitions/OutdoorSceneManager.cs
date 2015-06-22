@@ -17,7 +17,7 @@ public class OutdoorSceneManager : LevelArea {
 	// Update is called once per frame
 	void Update () {
 		var thisTarget = transform;
-        var playerPosition = PlayerManager.main.PlayerGameObject.transform.position;
+        var playerPosition = PlayerManager.Instance.PlayerGameObject.transform.position;
 		foreach (var area in areas) {
             if (!area.enabled) {
                 continue;

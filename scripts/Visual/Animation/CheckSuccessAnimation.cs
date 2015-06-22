@@ -9,7 +9,7 @@ public class CheckSuccessAnimation : UIMonoBehaviour {
 	// Use this for initialization
 	void Start () {
         transform.SetParent(WorldCanvas.main.transform);
-        transform.position = PlayerManager.main.PlayerGameObject.transform.position + Vector3.up * 3f;
+        transform.position = PlayerManager.Instance.PlayerGameObject.transform.position + Vector3.up * 3f;
 	}
 	
 	// Update is called once per frame

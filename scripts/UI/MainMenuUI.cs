@@ -48,7 +48,7 @@ public class MainMenuUI : MonoBehaviour {
 	}
 
 	void RefreshLevelButtons(){
-		if (!PlayerManager.main) {
+		if (!PlayerManager.Instance) {
 			return;
 		}
 
@@ -58,7 +58,7 @@ public class MainMenuUI : MonoBehaviour {
 
 		foreach (var level in ScriptableObjectDictionaries.main.levelDictionary.Levels) {
 			bool isLocked = false;
-			if(PlayerManager.main.playerData.LevelData.GetLevelState(level.levelID) == LevelState.Locked){
+            if (PlayerData.Instance.LevelData.GetLevelState(level.levelID) == LevelState.Locked) {
 				isLocked = true;
 			}
 			//Debug.Log(level.levelID + ": " + isLocked);
@@ -80,12 +80,12 @@ public class MainMenuUI : MonoBehaviour {
     }
 
 	public void Save(){
-		PlayerManager.main.Save ();
+        PlayerDataLoader.Save();
         EffectManager.main.PlayMessage("Game saved!");
 	}
 
     public void ClearData() {
-        PlayerManager.main.ClearData();
+        PlayerDataLoader.ClearData();
     }
 
 	public void OpenInventory(){
@@ -114,8 +114,8 @@ public class MainMenuUI : MonoBehaviour {
     public void Reset() {
         var po = GameObject.FindGameObjectWithTag("PlayerOrigin");
         if (po != null) {
-            PlayerManager.main.PlayerGameObject.transform.position = po.transform.position;
-            PlayerManager.main.PlayerGameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            PlayerManager.Instance.PlayerGameObject.transform.position = po.transform.position;
+            PlayerManager.Instance.PlayerGameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 

@@ -6,7 +6,7 @@ public class MoneyQuestReward : QuestReward {
     public int Amount { get; set; }
 
     public override void GrantReward() {
-        PlayerManager.main.playerData.Money += Amount;
+        PlayerData.Instance.Money += Amount;
 
         CrystallizeEventManager.PlayerState.RaiseMoneyChanged(this, System.EventArgs.Empty);
     }

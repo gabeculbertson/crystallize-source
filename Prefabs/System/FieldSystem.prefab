@@ -31,22 +31,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400004}
-  - 114: {fileID: 11400002}
-  m_Layer: 0
-  m_Name: UIDragBehavior
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,22 +58,6 @@ GameObject:
   - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: PlayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400010}
-  - 114: {fileID: 11400008}
-  m_Layer: 0
-  m_Name: UISystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,8 +377,6 @@ Transform:
   - {fileID: 400008}
   - {fileID: 400012}
   - {fileID: 400002}
-  - {fileID: 400010}
-  - {fileID: 400004}
   - {fileID: 400006}
   - {fileID: 400014}
   - {fileID: 400016}
@@ -436,18 +402,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 2
---- !u!4 &400004
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400000}
-  m_RootOrder: 4
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -459,7 +413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -472,18 +426,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 0
---- !u!4 &400010
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400000}
-  m_RootOrder: 3
 --- !u!4 &400012
 Transform:
   m_ObjectHideFlags: 1
@@ -507,7 +449,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 6
+  m_RootOrder: 4
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -519,7 +461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 7
+  m_RootOrder: 5
 --- !u!4 &400018
 Transform:
   m_ObjectHideFlags: 1
@@ -531,7 +473,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 8
+  m_RootOrder: 6
 --- !u!4 &410178
 Transform:
   m_ObjectHideFlags: 1
@@ -555,7 +497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 11
+  m_RootOrder: 9
 --- !u!4 &441420
 Transform:
   m_ObjectHideFlags: 1
@@ -567,7 +509,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 14
+  m_RootOrder: 12
 --- !u!4 &442226
 Transform:
   m_ObjectHideFlags: 1
@@ -579,7 +521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 15
+  m_RootOrder: 13
 --- !u!4 &449272
 Transform:
   m_ObjectHideFlags: 1
@@ -591,7 +533,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 13
+  m_RootOrder: 11
 --- !u!4 &452426
 Transform:
   m_ObjectHideFlags: 1
@@ -630,7 +572,7 @@ Transform:
   - {fileID: 477960}
   - {fileID: 477954}
   m_Father: {fileID: 400000}
-  m_RootOrder: 10
+  m_RootOrder: 8
 --- !u!4 &477952
 Transform:
   m_ObjectHideFlags: 1
@@ -707,7 +649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 12
+  m_RootOrder: 10
 --- !u!4 &485264
 Transform:
   m_ObjectHideFlags: 1
@@ -719,7 +661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 9
+  m_RootOrder: 7
 --- !u!20 &2077950
 Camera:
   m_ObjectHideFlags: 1
@@ -764,8 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b0561847a498148b89cef77bf86b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phraseDictionaryData: {fileID: 11400000, guid: fc0560f875c540942b8131f3c42bab4f,
-    type: 2}
+  phraseDictionaryData: {fileID: 0}
   conversationDictionary: {fileID: 11400000, guid: 112388c94bffe3147a6d6b2938a0f995,
     type: 2}
   clientDictionary: {fileID: 11400000, guid: afadd6b0aa82fb04a8a6a22d5a4f7cb4, type: 2}
@@ -774,18 +715,6 @@ MonoBehaviour:
   itemResourceDictionary: {fileID: 11400000, guid: bdf3481d02238ff4896c317f5840a5d2,
     type: 2}
   audioResources: {fileID: 11400000, guid: 70daabd5aec16e5488b0ef0291d6d75c, type: 2}
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87f4e00a8dfc42c42b404257250490f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phraseUIPrefab: {fileID: 100002, guid: aafdd793b4434c34abf264fdbbcd088c, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,18 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc1f54bcd021364aae9fc419f50024c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f733622e57635284fb12914e43f2e08d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phraseDragHandlerObject: {fileID: 100004}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1

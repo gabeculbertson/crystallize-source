@@ -9,18 +9,18 @@ public class ActiveQuestScrollUI : UIMonoBehaviour {
     public Button scrollUpButton;
     public Button scrollDownButton;
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    //var q = new List<QuestInstanceData>();
+    // Use this for initialization
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+        //var q = new List<QuestInstanceData>();
         int count = 0;
         int index = 0;
-        foreach (var q in PlayerManager.main.playerData.QuestData.QuestInstances) {
-			if(q.State == ObjectiveState.Active){
+        foreach (var q in PlayerData.Instance.QuestData.QuestInstances) {
+            if (q.State == ObjectiveState.Active) {
                 count++;
                 if (q.QuestID == QuestManager.main.ActiveQuestID) {
                     index = count;
@@ -40,21 +40,21 @@ public class ActiveQuestScrollUI : UIMonoBehaviour {
             if (index == count) {
                 scrollUpButton.GetComponent<CanvasGroup>().alpha = 0;
             }
-            
+
             if (index == 1) {
                 scrollDownButton.GetComponent<CanvasGroup>().alpha = 0;
-            } 
+            }
         }
 
         if (count >= 1 && index == 0) {
             SetFirst();
         }
-	}
+    }
 
     public void ScrollUp() {
         var found = false;
-        var qs = PlayerManager.main.playerData.QuestData.QuestInstances;
-        for(int i = 0; i < qs.Count; i++){
+        var qs = PlayerData.Instance.QuestData.QuestInstances;
+        for (int i = 0; i < qs.Count; i++) {
             var q = qs[i];
             if (q.State == ObjectiveState.Active) {
                 if (found) {
@@ -69,7 +69,7 @@ public class ActiveQuestScrollUI : UIMonoBehaviour {
 
     public void ScrollDown() {
         var found = false;
-        var qs = PlayerManager.main.playerData.QuestData.QuestInstances;
+        var qs = PlayerData.Instance.QuestData.QuestInstances;
         for (int i = qs.Count - 1; i >= 0; i--) {
             var q = qs[i];
             if (q.State == ObjectiveState.Active) {
@@ -84,7 +84,7 @@ public class ActiveQuestScrollUI : UIMonoBehaviour {
     }
 
     public void SetFirst() {
-        var qs = PlayerManager.main.playerData.QuestData.QuestInstances;
+        var qs = PlayerData.Instance.QuestData.QuestInstances;
         for (int i = 0; i < qs.Count; i++) {
             var q = qs[i];
             if (q.State == ObjectiveState.Active) {

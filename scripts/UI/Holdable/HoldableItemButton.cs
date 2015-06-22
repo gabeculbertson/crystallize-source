@@ -16,7 +16,7 @@ public class HoldableItemButton : MonoBehaviour, IPointerClickHandler {
 
     #region IPointerClickHandler implementation
     public void OnPointerClick(PointerEventData eventData) {
-        PlayerManager.main.PlayerGameObject.GetComponent<ArmAnimationController>().HoldItem(holdableID);
+        PlayerManager.Instance.PlayerGameObject.GetComponent<ArmAnimationController>().HoldItem(holdableID);
         Destroy(parentUI);
     }
     #endregion

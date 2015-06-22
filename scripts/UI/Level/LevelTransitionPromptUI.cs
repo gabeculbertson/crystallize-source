@@ -28,7 +28,7 @@ public class LevelTransitionPromptUI : MonoBehaviour {
 
 	public void GoToNextLevel(){
 		if (targetLevel != null) {
-			PlayerManager.main.Save ();
+			PlayerDataLoader.Save ();
 			Application.LoadLevel(targetLevel);
 		}
 	}

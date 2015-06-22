@@ -79,7 +79,7 @@ public class DialogueSystemManager : MonoBehaviour {
             Component nearest = null;
             var shortest = Mathf.Infinity;
             foreach (var t in engagedTargets) {
-                var d = Vector3.Distance(t.transform.position, PlayerManager.main.transform.position);
+                var d = Vector3.Distance(t.transform.position, PlayerManager.Instance.transform.position);
                 if (d < shortest) {
                     nearest = t;
                     shortest = d;
@@ -181,13 +181,13 @@ public class DialogueSystemManager : MonoBehaviour {
                 if (e is QuestConfirmedEventArgs) {
                     var questID = ((QuestConfirmedEventArgs)e).QuestID;
                     QuestManager.main.ActiveQuestID = questID;
-                    PlayerManager.main.playerData.QuestData.SetQuestState(questID, ObjectiveState.Active);
+                    PlayerData.Instance.QuestData.SetQuestState(questID, ObjectiveState.Active);
                     EffectManager.main.PlayMessage("Quest started!", Color.yellow);
                     interactionMode = InteractionType.None;
 
                     CrystallizeEventManager.PlayerState.RaiseQuestStateChanged(this,
-                                                                    new QuestStateChangedEventArgs(PlayerManager.main.PlayerID,
-                                                                                                   PlayerManager.main.playerData.QuestData.GetOrCreateQuestInstance(questID)));
+                                                                    new QuestStateChangedEventArgs(PlayerManager.Instance.PlayerID,
+                                                                                                   PlayerData.Instance.QuestData.GetOrCreateQuestInstance(questID)));
 
                     var it = InteractionTarget;
                     EndInteraction();
@@ -291,7 +291,7 @@ public class DialogueSystemManager : MonoBehaviour {
     }
 
     void EndInteraction() {
-        PlayerManager.main.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
+        PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
         DestroyInteractionParent();
         interactionTarget = null;
 
@@ -300,13 +300,13 @@ public class DialogueSystemManager : MonoBehaviour {
 
     void BeginLinearDialogue(int worldID) {
         var d = GameData.Instance.DialogueData.GetLinearDialogueForWorldObject(worldID);
-        if (!PlayerManager.main.playerData.Conversation.IsAvailable(d.ID)) {
+        if (!PlayerData.Instance.Conversation.IsAvailable(d.ID)) {
             return;
         }
 
         if (d.GiveObjectives) {
             foreach (var nw in d.GetNeededWords()) {
-                PlayerManager.main.playerData.WordStorage.AddObjectiveWord(nw.WordID);
+                PlayerData.Instance.WordStorage.AddObjectiveWord(nw.WordID);
             }
             CrystallizeEventManager.UI.RaiseUpdateUI(this, System.EventArgs.Empty);
         }
@@ -342,7 +342,7 @@ public class DialogueSystemManager : MonoBehaviour {
 
     void CompleteLinearDialogue() {
         //var c = GameData.Instance.DialogueData.GetLinearDialogueForWorldObject(interactionTarget.GetWorldID());
-        PlayerManager.main.playerData.Conversation.SetConversationComplete(interactionTarget.GetWorldID());//c.ID);
+        PlayerData.Instance.Conversation.SetConversationComplete(interactionTarget.GetWorldID());//c.ID);
         EffectManager.main.PlayMessage("Conversation complete!", Color.yellow);
 
         CrystallizeEventManager.PlayerState.RaiseGameEvent(this, System.EventArgs.Empty);
@@ -366,7 +366,7 @@ public class DialogueSystemManager : MonoBehaviour {
         var q = GameData.Instance.QuestData.GetQuestInfoFromWorldID(worldID);
         interactionTarget.GetComponent<DialogueActor>().SetLine(q.QuestPromptLine);
 
-        var aq = PlayerManager.main.playerData.QuestData.GetQuestInstance(QuestManager.main.ActiveQuestID);
+        var aq = PlayerData.Instance.QuestData.GetQuestInstance(QuestManager.main.ActiveQuestID);
         if (LevelSettings.main.isMultiplayer) {
             if (aq != null) {
                 if (aq.State != ObjectiveState.Complete) {

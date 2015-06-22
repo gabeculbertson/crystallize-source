@@ -21,7 +21,7 @@ public class RankUpUI : UIMonoBehaviour {
             return;
         }
 
-        if (!PlayerManager.main.playerData.WordStorage.ContainsFoundWord(slot.Word.WordID)) {
+        if (!PlayerData.Instance.WordStorage.ContainsFoundWord(slot.Word.WordID)) {
             Destroy(gameObject);
             return;
         }

@@ -37,7 +37,7 @@ public class ItemInventoryUI : MonoBehaviour {
 
         if(usePlayerDataInventory){
             for (int i = 0; i < MaxCount; i++) {
-                items[i] = PlayerManager.main.playerData.ItemInventory.GetItem(i);
+                items[i] = PlayerData.Instance.ItemInventory.GetItem(i);
             }
         }
 
@@ -54,7 +54,7 @@ public class ItemInventoryUI : MonoBehaviour {
     void HandleItemAquired(object sender, ItemDragEventArgs args) {
         if (usePlayerDataInventory) {
             for (int i = 0; i < MaxCount; i++) {
-                items[i] = PlayerManager.main.playerData.ItemInventory.GetItem(i);
+                items[i] = PlayerData.Instance.ItemInventory.GetItem(i);
             }
             UpdateInventory();
         }
@@ -177,7 +177,7 @@ public class ItemInventoryUI : MonoBehaviour {
 
     void SetItem(int index, int itemID){
         if(usePlayerDataInventory){
-            PlayerManager.main.playerData.ItemInventory.SetItem(index, itemID);
+            PlayerData.Instance.ItemInventory.SetItem(index, itemID);
         } else {
             items[index] = itemID;
         }
@@ -185,7 +185,7 @@ public class ItemInventoryUI : MonoBehaviour {
 
     int GetItem(int index){
         if(usePlayerDataInventory){
-            return PlayerManager.main.playerData.ItemInventory.GetItem(index);
+            return PlayerData.Instance.ItemInventory.GetItem(index);
         } else {
             return items[index];
         }

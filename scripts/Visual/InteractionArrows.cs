@@ -50,7 +50,7 @@ public class InteractionArrows : MonoBehaviour {
         var p1 = pl1.transform.position; //_self.transform.position;
         var p2 = pl2.transform.position; //_ally.transform.position;
         
-        if (PlayerManager.main.PlayerGameObject != pl1) {
+        if (PlayerManager.Instance.PlayerGameObject != pl1) {
             p1 = pl2.transform.position;
             p2 = pl1.transform.position;
         }

@@ -33,7 +33,7 @@ public class OverheadUI : UIMonoBehaviour {
 	}
 
     void HandleAfterCameraMove(object sender, System.EventArgs e) {
-        var sqDist = (PlayerManager.main.PlayerGameObject.transform.position - target.transform.position).sqrMagnitude;
+        var sqDist = (PlayerManager.Instance.PlayerGameObject.transform.position - target.transform.position).sqrMagnitude;
         if (sqDist < innerDistance * innerDistance) {
             canvasGroup.alpha = 1f;
         } else if (sqDist < outerDistance * outerDistance) {

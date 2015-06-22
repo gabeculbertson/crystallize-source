@@ -9,7 +9,7 @@ public class DeleteWordDropArea : UIMonoBehaviour, IPhraseDropHandler {
         if (phraseObject.gameObject) {
             Destroy(phraseObject.gameObject);
         }
-        var invEles = PlayerManager.main.playerData.WordStorage.InventoryElements;
+        var invEles = PlayerData.Instance.WordStorage.InventoryElements;
         var i = invEles.IndexOf(phraseObject.Word);
         if (i >= 0) {
             invEles[i] = null;

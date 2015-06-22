@@ -19,9 +19,9 @@ public class PhraseEvaluator {
 		}
 		
 		if (reviewData.Level == 0) {
-			return GUIPallet.main.stageColors [4];
+			return GUIPallet.Instance.stageColors [4];
 		} else {
-			return GUIPallet.main.stageColors [(reviewData.Level - 1) % 4];
+			return GUIPallet.Instance.stageColors [(reviewData.Level - 1) % 4];
 		}
 	}
 

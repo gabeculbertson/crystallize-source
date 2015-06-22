@@ -39,7 +39,7 @@ public class LinearDialogueSection : ISerializableDictionaryItem<int> {
         var words = GetNeededWords();
         var rem = new List<PhraseSequenceElement>();
         foreach (var w in words) {
-            if (!PlayerManager.main.playerData.WordStorage.ContainsFoundWord(w.WordID)) {
+            if (!PlayerData.Instance.WordStorage.ContainsFoundWord(w.WordID)) {
                 rem.Add(w);
             }
         }

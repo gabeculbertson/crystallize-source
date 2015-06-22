@@ -18,21 +18,21 @@ namespace Crystallize.Experiment {
         }
 
         void HandleOnPersonAnimationRequested(object sender, PersonAnimationEventArgs e) {
-            var id = PlayerManager.main.GetPlayerID(e.TargetObject);
-            Debug.Log("Animation requested: " + id + "; " + PlayerManager.main.PlayerID);
+            var id = PlayerManager.Instance.GetPlayerID(e.TargetObject);
+            Debug.Log("Animation requested: " + id + "; " + PlayerManager.Instance.PlayerID);
 
             string text = null;
             switch (e.AnimationType) {
                 case PersonAnimationType.Happy:
                     text = "nice!";
-                    if (id == PlayerManager.main.PlayerID) {
+                    if (id == PlayerManager.Instance.PlayerID) {
                         StartCoroutine(PlayDelayedAnimation(PersonAnimationType.Thanks));
                     }
                     break;
 
                 case PersonAnimationType.Wave:
                     text = "hi!";
-                    if (id == PlayerManager.main.PlayerID) {
+                    if (id == PlayerManager.Instance.PlayerID) {
                         StartCoroutine(PlayDelayedAnimation(PersonAnimationType.Wave));
                     }
                     break;
@@ -52,7 +52,7 @@ namespace Crystallize.Experiment {
                 return;
             }
 
-            if (e.PlayerID != PlayerManager.main.PlayerID) {
+            if (e.PlayerID != PlayerManager.Instance.PlayerID) {
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace Crystallize.Experiment {
         IEnumerator PlayDelayedAnimation(PersonAnimationType type) {
             yield return new WaitForSeconds(3f);
 
-            var args = new PersonAnimationEventArgs(PlayerManager.main.OtherGameObject, type);
+            var args = new PersonAnimationEventArgs(PlayerManager.Instance.OtherGameObject, type);
             CrystallizeEventManager.Environment.RaisePersonAnimationRequested(this, args);
         }
 
