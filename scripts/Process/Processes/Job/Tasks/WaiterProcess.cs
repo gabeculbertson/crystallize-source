@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[JobProcessType]
 public class WaiterProcess : IProcess<JobTaskRef, object> {
 
     public event ProcessExitCallback OnExit;

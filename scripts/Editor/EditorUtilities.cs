@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 public class EditorUtilities {
 
@@ -31,6 +32,7 @@ public class EditorUtilities {
         propertyDrawers[typeof(DialogueSequence)] = DrawDialogueSequenceValue;
         propertyDrawers[typeof(SceneObjectGameData)] = DrawSceneObjectValue;
         propertyDrawers[typeof(DialogueActorLine)] = DrawActorLineValue;
+        propertyDrawers[typeof(ProcessTypeRef)] = DrawProcessTypeRefValue;
     }
 
     public static object GetInstance(Type t) {
@@ -332,6 +334,21 @@ public class EditorUtilities {
 
     static void DrawLabelValue(object obj, PropertyInfo p) {
         EditorGUILayout.LabelField(p.PropertyType.ToString(), obj.ToString());
+    }
+
+    static void DrawProcessTypeRefValue(object obj, PropertyInfo p) {
+        var items = (from t in Assembly.GetAssembly(typeof(ProcessTypeRef)).GetTypes()
+                    where Attribute.IsDefined(t, typeof(JobProcessTypeAttribute)) select t).ToList();
+        items.Insert(0, typeof(TempProcess<JobTaskRef, object>));
+        var strings = items.Select((t) => t.Name).ToArray();
+        strings[0] = "Default";
+        var val = (ProcessTypeRef)p.GetValue(obj, new object[0]);
+
+        int selected = items.IndexOf(val.ProcessType);
+        int newSelected = EditorGUILayout.Popup(p.Name, selected, strings);
+        if (newSelected != selected) {
+            p.SetValue(obj, new ProcessTypeRef(items[newSelected]), new object[0]);
+        }
     }
 
     public static void PlayClip(AudioClip clip) {

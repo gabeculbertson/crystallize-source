@@ -3,6 +3,7 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
+[JobProcessType]
 public class JanitorProcess : IProcess<JobTaskRef, object> {
 
     public event ProcessExitCallback OnExit;

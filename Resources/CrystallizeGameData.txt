@@ -2270,6 +2270,9 @@
               </Phrase>
               <AudioClipID>-1</AudioClipID>
             </Line>
+            <ProcessType>
+              <ProcessTypeName>WaiterProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
           </JobTaskGameData>
         </Tasks>
         <RequiredPhrases>
@@ -2357,6 +2360,9 @@
               </Phrase>
               <AudioClipID>-1</AudioClipID>
             </Line>
+            <ProcessType>
+              <ProcessTypeName>JanitorProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
           </JobTaskGameData>
         </Tasks>
         <RequiredPhrases />
@@ -2486,6 +2492,9 @@
               </Phrase>
               <AudioClipID>-1</AudioClipID>
             </Line>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProces, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
           </JobTaskGameData>
         </Tasks>
         <RequiredPhrases />
