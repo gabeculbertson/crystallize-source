@@ -15,8 +15,10 @@ public class HomeRef : IDRef<HomeGameData, HomePlayerData> {
         get {
             var pd = PlayerData.Instance.Homes.GetItem(ID);
             if (pd == null) {
+                Debug.Log("no player data");
                 pd = new HomePlayerData(ID);
                 PlayerData.Instance.Homes.UpdateItem(pd);
+                pd = PlayerData.Instance.Homes.GetItem(ID);
             }
             return pd;
         }

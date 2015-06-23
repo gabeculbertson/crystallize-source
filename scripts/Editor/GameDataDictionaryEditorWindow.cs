@@ -8,7 +8,11 @@ public abstract class GameDataDictionaryEditorWindow<T> : EditorWindow where T :
 
     protected abstract DictionaryCollectionGameData<T> Dictionary { get; }
 
+    Vector2 scroll;
+
     void OnGUI() {
+        scroll = EditorGUILayout.BeginScrollView(scroll);
+
         foreach (var j in Dictionary.Items) {
             DrawItem(j);
         }
@@ -18,6 +22,8 @@ public abstract class GameDataDictionaryEditorWindow<T> : EditorWindow where T :
             Dictionary.AddNewItem();
         }
         GUILayout.EndHorizontal();
+
+        EditorGUILayout.EndScrollView();
     }
 
     void DrawItem(T j) {

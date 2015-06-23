@@ -38,9 +38,9 @@ public class HomeSelectionPanelUI : UIPanel, ITemporaryUI<object, HomeRef> {
         var children = new List<HomeRef>();
         foreach (var h in GameData.Instance.Homes.Items) {
             var hr = new HomeRef(h.ID);
-            if (!hr.PlayerDataInstance.Unlocked) {
+            //if (hr.PlayerDataInstance.Unlocked) {
                 children.Add(hr);
-            }
+            //}
         }
         UIUtil.GenerateChildren(children, instances, buttonParent, GetChild);
     }
@@ -60,7 +60,7 @@ public class HomeSelectionPanelUI : UIPanel, ITemporaryUI<object, HomeRef> {
 
     void HomeSelectionPanelUI_OnClicked(object sender, EventArgs e) {
         var h = ((Component)sender).GetComponent<DataContainer>().Retrieve<HomeRef>();
-        PlayerDataConnector.AddMoney(-h.GameDataInstance.InitialCost);
+        PlayerDataConnector.AddMoney(-h.GameDataInstance.DailyCost);
         RaiseComplete(h);
     }
 

@@ -10,7 +10,7 @@ public class ConversationPhraseUI : MonoBehaviour, IInitializable<PhraseSequence
 
     public void Initialize(PhraseSequence param1)
     {
-        GetComponentInChildren<Text>().text = param1.GetText();
+        GetComponentInChildren<Text>().text = param1.GetText(JapaneseTools.JapaneseScriptType.Romaji);
         Phrase = param1;
     }
 

@@ -75,7 +75,7 @@ public class JanitorProcess : IProcess<JobTaskRef, object> {
     }
 
     void HandleExitConversationExit(object sender, object obj) {
-        int money = (int)(10000 * score);
+        int money = (int)(10000 * score * PlayerData.Instance.RestQuality);
         PlayerDataConnector.AddMoney(money);
         string moneyString = string.Format("You made {0} yen today.", money);
         var ui = UILibrary.MessageBox.Get(moneyString);

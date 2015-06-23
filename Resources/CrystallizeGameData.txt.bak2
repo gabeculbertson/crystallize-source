@@ -2143,7 +2143,7 @@
             <Name>Say hello</Name>
             <AreaName>DaySession</AreaName>
             <SceneObjectIdentifier>
-              <Name>Boss</Name>
+              <Name>Customer</Name>
             </SceneObjectIdentifier>
             <Dialogue>
               <Elements>
@@ -2155,7 +2155,85 @@
                     </Prompt>
                     <Line>
                       <Phrase>
-                        <PhraseElements />
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000430</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs>
+                      <int>1</int>
+                    </NextIDs>
+                  </DialogueElement>
+                  <DialogueElement>
+                    <ID>1</ID>
+                    <Prompt>
+                      <PhraseElements>
+                        <PhraseSequenceElement>
+                          <WordID>1289400</WordID>
+                          <FormID>0</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                      </PhraseElements>
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1289400</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <NextIDs>
+                      <int>2</int>
+                    </NextIDs>
+                  </DialogueElement>
+                  <DialogueElement>
+                    <ID>2</ID>
+                    <Prompt>
+                      <PhraseElements>
+                        <PhraseSequenceElement>
+                          <WordID>1577100</WordID>
+                          <FormID>0</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                        <PhraseSequenceElement>
+                          <WordID>2149890</WordID>
+                          <FormID>0</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                        <PhraseSequenceElement>
+                          <WordID>1577980</WordID>
+                          <FormID>110</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                      </PhraseElements>
+                    </Prompt>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>102</WordID>
+                            <FormID>0</FormID>
+                            <Text>people</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1577980</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
                       </Phrase>
                       <AudioClipID>-1</AudioClipID>
                     </Line>
@@ -2169,15 +2247,23 @@
               <Phrase>
                 <PhraseElements>
                   <PhraseSequenceElement>
-                    <WordID>101</WordID>
+                    <WordID>1576150</WordID>
                     <FormID>0</FormID>
-                    <Text>clean the </Text>
                     <Tags />
                   </PhraseSequenceElement>
                   <PhraseSequenceElement>
-                    <WordID>102</WordID>
+                    <WordID>1582670</WordID>
                     <FormID>0</FormID>
-                    <Text>region</Text>
+                    <Tags />
+                  </PhraseSequenceElement>
+                  <PhraseSequenceElement>
+                    <WordID>1301000</WordID>
+                    <FormID>0</FormID>
+                    <Tags />
+                  </PhraseSequenceElement>
+                  <PhraseSequenceElement>
+                    <WordID>1985310</WordID>
+                    <FormID>0</FormID>
                     <Tags />
                   </PhraseSequenceElement>
                 </PhraseElements>
@@ -2186,6 +2272,33 @@
             </Line>
           </JobTaskGameData>
         </Tasks>
+        <RequiredPhrases>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1577100</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2149890</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1577980</WordID>
+                <FormID>110</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2028970</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+        </RequiredPhrases>
+        <LearnablePhrases />
       </JobGameData>
       <JobGameData>
         <ID>1</ID>
@@ -2246,6 +2359,8 @@
             </Line>
           </JobTaskGameData>
         </Tasks>
+        <RequiredPhrases />
+        <LearnablePhrases />
       </JobGameData>
       <JobGameData>
         <ID>2</ID>
@@ -2308,7 +2423,7 @@
                             <Tags />
                           </PhraseSequenceElement>
                           <PhraseSequenceElement>
-                            <WordID>2089020</WordID>
+                            <WordID>1577980</WordID>
                             <FormID>110</FormID>
                             <Tags />
                           </PhraseSequenceElement>
@@ -2329,19 +2444,30 @@
                   <DialogueElement>
                     <ID>2</ID>
                     <Prompt>
-                      <PhraseElements />
+                      <PhraseElements>
+                        <PhraseSequenceElement>
+                          <WordID>1576150</WordID>
+                          <FormID>0</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                        <PhraseSequenceElement>
+                          <WordID>2089020</WordID>
+                          <FormID>110</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                      </PhraseElements>
                     </Prompt>
                     <Line>
                       <Phrase>
                         <PhraseElements>
                           <PhraseSequenceElement>
-                            <WordID>1576150</WordID>
+                            <WordID>1010080</WordID>
                             <FormID>0</FormID>
                             <Tags />
                           </PhraseSequenceElement>
                           <PhraseSequenceElement>
-                            <WordID>2089020</WordID>
-                            <FormID>110</FormID>
+                            <WordID>1189130</WordID>
+                            <FormID>0</FormID>
                             <Tags />
                           </PhraseSequenceElement>
                         </PhraseElements>
@@ -2362,6 +2488,56 @@
             </Line>
           </JobTaskGameData>
         </Tasks>
+        <RequiredPhrases />
+        <LearnablePhrases>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1289400</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1577100</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2149890</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1577980</WordID>
+                <FormID>110</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2028970</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1010080</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1189130</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+        </LearnablePhrases>
       </JobGameData>
     </Items>
     <CurrentKey>1000021</CurrentKey>
@@ -2379,16 +2555,16 @@
       <HomeGameData>
         <Name>Capsule hotel</Name>
         <AreaName />
-        <DailyCost>10000</DailyCost>
-        <InitialCost>100000</InitialCost>
+        <DailyCost>3000</DailyCost>
+        <InitialCost>10000</InitialCost>
         <Quality>1</Quality>
         <ID>1</ID>
       </HomeGameData>
       <HomeGameData>
         <Name>Private residence</Name>
         <AreaName />
-        <DailyCost>100000</DailyCost>
-        <InitialCost>1000000</InitialCost>
+        <DailyCost>10000</DailyCost>
+        <InitialCost>50000</InitialCost>
         <Quality>1.5</Quality>
         <ID>2</ID>
       </HomeGameData>

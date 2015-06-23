@@ -11109,6 +11109,56 @@
       </English>
       <PartOfSpeech>Adverb</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1000430</ID>
+      <Kanji>あのう</Kanji>
+      <Kana>あのう</Kana>
+      <English>
+        <string>say</string>
+        <string>well</string>
+        <string>errr ...</string>
+      </English>
+      <PartOfSpeech>Interjection</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1160790</ID>
+      <Kanji>一</Kanji>
+      <Kana>いち</Kana>
+      <English>
+        <string>one</string>
+      </English>
+      <PartOfSpeech>Numeric</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1582670</ID>
+      <Kanji>二人</Kanji>
+      <Kana>ふたり</Kana>
+      <English>
+        <string>two persons</string>
+        <string>two people</string>
+        <string>pair</string>
+        <string>couple</string>
+      </English>
+      <PartOfSpeech>Noun</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1301000</ID>
+      <Kanji>三人</Kanji>
+      <Kana>さんにん</Kana>
+      <English>
+        <string>three people</string>
+      </English>
+      <PartOfSpeech>Noun</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1985310</ID>
+      <Kanji>四人</Kanji>
+      <Kana>よにん</Kana>
+      <English>
+        <string>four people</string>
+      </English>
+      <PartOfSpeech>Noun</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>

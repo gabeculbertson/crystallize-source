@@ -40,6 +40,7 @@ public class PlayerData {
     public FlagPlayerData Flags { get; set; }
     public JobCollectionPlayerData Jobs { get; set; }
     public HomeCollectionPlayerData Homes { get; set; }
+    public float RestQuality { get; set; }
 
 	public PlayerData(){
         AllowEnglish = false;
@@ -60,6 +61,7 @@ public class PlayerData {
         Jobs = new JobCollectionPlayerData();
         Homes = new HomeCollectionPlayerData();
 		Item = "";
+        RestQuality = 0.5f;
 	}
 
 }

@@ -206,13 +206,24 @@ public class EditorUtilities {
         EditorGUILayout.EndVertical();
     }
 
-    public static void DrawPhraseSequence(PhraseSequence phrase) {
+    public static void DrawPhraseSequence(PhraseSequence phrase, string name = "") {
+        EditorGUILayout.BeginHorizontal();
+        if (name == "") {
+            name = "Phrase";
+        }
+        EditorGUILayout.PrefixLabel(name);
         if (GUILayout.Button(phrase.GetText())) {
             PhraseEditorWindow.Open(phrase);
         }
+        EditorGUILayout.EndHorizontal();
     }
 
     public static void DrawObject(object obj) {
+        if (obj is PhraseSequence) {
+            DrawPhraseSequence((PhraseSequence)obj);
+            return;
+        }
+
         foreach (var p in obj.GetType().GetProperties()) {
             if (!p.CanWrite) {
                 continue;
@@ -299,12 +310,7 @@ public class EditorUtilities {
 
     static void DrawPhraseSequenceValue(object obj, PropertyInfo p) {
         var ps = (PhraseSequence)p.GetValue(obj, new object[0]);
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.PrefixLabel(p.Name);
-        if (GUILayout.Button(ps.GetText())) {
-            PhraseEditorWindow.Open(ps);
-        }
-        EditorGUILayout.EndHorizontal();
+        DrawPhraseSequence(ps, p.Name);
     }
 
     static void DrawDialogueSequenceValue(object obj, PropertyInfo p) {

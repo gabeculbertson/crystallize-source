@@ -11,6 +11,9 @@ public class JobProcessSelector : IProcess<JobTaskRef, object> {
 
     public void Initialize(JobTaskRef param1) {
         switch (param1.Job.ID) {
+            case 0:
+                TaskFactory.Set<WaiterProcess>();
+                break;
             case 1:
                 TaskFactory.Set<JanitorProcess>();
                 break;
