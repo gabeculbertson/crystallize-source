@@ -82,6 +82,8 @@ public class MainProcess {
         UILibrary.HomeSelectionPanel.Set(HomeSelectionPanelUI.GetInstance);
         UILibrary.HomeShopPanel.Set(HomeShopUI.GetInstance);
         UILibrary.SkipSessionButton.Set(SkipSessionButtonUI.GetInstance);
+		UILibrary.TextMenu.Set (TextSelectionMenuUI.GetInstance);
+		UILibrary.ValuedMenu.Set (ValuedSelectionMenuUI.GetInstance);
     }
 
     static void SetDebugState() {

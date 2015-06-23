@@ -2329,19 +2329,30 @@
                   <DialogueElement>
                     <ID>2</ID>
                     <Prompt>
-                      <PhraseElements />
+                      <PhraseElements>
+                        <PhraseSequenceElement>
+                          <WordID>1576150</WordID>
+                          <FormID>0</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                        <PhraseSequenceElement>
+                          <WordID>2089020</WordID>
+                          <FormID>110</FormID>
+                          <Tags />
+                        </PhraseSequenceElement>
+                      </PhraseElements>
                     </Prompt>
                     <Line>
                       <Phrase>
                         <PhraseElements>
                           <PhraseSequenceElement>
-                            <WordID>1576150</WordID>
+                            <WordID>1010080</WordID>
                             <FormID>0</FormID>
                             <Tags />
                           </PhraseSequenceElement>
                           <PhraseSequenceElement>
-                            <WordID>2089020</WordID>
-                            <FormID>110</FormID>
+                            <WordID>1189130</WordID>
+                            <FormID>0</FormID>
                             <Tags />
                           </PhraseSequenceElement>
                         </PhraseElements>

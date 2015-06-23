@@ -18,6 +18,10 @@ public class UILibrary {
     public static readonly UIFactoryRef<object, object> HomeShopPanel = new UIFactoryRef<object, object>();
     public static readonly UIFactoryRef<object, HomeRef> HomeSelectionPanel = new UIFactoryRef<object, HomeRef>();
     public static readonly UIFactoryRef<object, object> SkipSessionButton = new UIFactoryRef<object, object>();
+	public static readonly UIFactoryRef<List<TextMenuItem>, TextMenuItemEventArg> TextMenu = new UIFactoryRef<List<TextMenuItem>, TextMenuItemEventArg>();
+	public static readonly UIFactoryRef<List<ValuedItem>, ValuedItemEventArg> ValuedMenu = new UIFactoryRef<List<ValuedItem>, ValuedItemEventArg>();
+	//UI for Cashier
+	public static readonly UIFactoryRef<SelectionMenuInput, MenuItemEventArg> SelectionMenu = new UIFactoryRef<SelectionMenuInput, MenuItemEventArg>();
 
     public static ITemporaryUI<string, object> GetPositiveFeedbackInstance() {
         return GameObjectUtil.GetResourceInstance<MessageBoxUI>("UI/PositiveFeedback");

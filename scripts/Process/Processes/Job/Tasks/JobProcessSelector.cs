@@ -17,6 +17,9 @@ public class JobProcessSelector : IProcess<JobTaskRef, object> {
             case 2:
                 TaskFactory.Set<RestaurantProces>();
                 break;
+			case 10:
+				TaskFactory.Set<CashierProcess>();
+				break;
             default:
                 TaskFactory.Set<TempProcess<JobTaskRef, object>>();
                 break;
