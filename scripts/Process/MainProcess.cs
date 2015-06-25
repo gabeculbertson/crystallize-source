@@ -68,6 +68,7 @@ public class MainProcess {
         UILibrary.SkipSessionButton.Set(SkipSessionButtonUI.GetInstance);
 		UILibrary.TextMenu.Set (TextSelectionMenuUI.GetInstance);
 		UILibrary.ValuedMenu.Set (ValuedSelectionMenuUI.GetInstance);
+		UILibrary.ImageTextMenu.Set (TextImageMenuUI.GetInstance);
     }
 
     static void SetDebugState() {

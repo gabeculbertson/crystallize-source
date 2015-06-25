@@ -21,7 +21,10 @@ public class DebugTimeProcess : MonoBehaviour {
 
 	JobGameData CreateGameData(){
 		JobGameData ret = new JobGameData ();
-		ret.Tasks.Add(CreateTask());
+		//TODO switch jobs here
+//		ret.Tasks.Add(CreateCashierTask());
+
+		ret.Tasks.Add(CreatePetFeederTask());
 		return ret;
 	}
 
@@ -32,8 +35,31 @@ public class DebugTimeProcess : MonoBehaviour {
 		return data;
 	}
 
+
 	//actually create an instance of the subclass of JobTaskGameData
-	JobTaskGameData CreateTask(){
+	JobTaskGameData CreatePetFeederTask ()
+	{
+		PetFeederTaskData task = new PetFeederTaskData ();
+		//set dialogue
+		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "The cat is "));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "query"));
+		//set question and answer data
+		task.AddQA("hungry", "fish", new Sprite());
+		task.AddQA("thristy", "milk", new Sprite());
+		task.AddQA ("tired", "bed", new Sprite ());
+		task.AddQA ("grumpy", "math", new Sprite ());
+		//other initialization
+		task.AreaName = "PetFeederTest";
+		task.Name = "PetFeederTask";
+		task.ProcessType = new ProcessTypeRef (typeof(PetFeederProcess));
+		task.SceneObjectIdentifier.Name = "Pet";
+		return task;
+	}
+	
+	JobTaskGameData CreateCashierTask(){
+
+		//task creation
 		CashierTaskData task = new CashierTaskData (1);
 		var dialogues = task.Dialogues;
 		//initialize inference dialogues, should be done in serialized files
@@ -43,12 +69,12 @@ public class DebugTimeProcess : MonoBehaviour {
 		dialogues.Add(createLine("Good Morning", "Morning"));
 		dialogues.Add(createLine("Good Evening", "Evening"));
 		//initialize shop lists
-		task.ShopLists.Add (createShopItem("item1", 1));
-		task.ShopLists.Add (createShopItem("item2", 2));
-		task.ShopLists.Add (createShopItem("item3", 3));
-		task.ShopLists.Add (createShopItem("item4", 4));
-		task.ShopLists.Add (createShopItem("item5", 5));
-		task.ShopLists.Add (createShopItem("item6", 6));
+		task.ShopLists.Add (createValuedItem("item1", 1));
+		task.ShopLists.Add (createValuedItem("item2", 2));
+		task.ShopLists.Add (createValuedItem("item3", 3));
+		task.ShopLists.Add (createValuedItem("item4", 4));
+		task.ShopLists.Add (createValuedItem("item5", 5));
+		task.ShopLists.Add (createValuedItem("item6", 6));
 		//initialze other parameters
 		task.AreaName = "CashierTest";
 		task.Name = "CashierTask";
@@ -57,13 +83,14 @@ public class DebugTimeProcess : MonoBehaviour {
 		return task;
 	}
 
+	//Convinience functions for task creation
 	InferenceDialogueLine createLine(string text, params string[] category){
 		InferenceDialogueLine line = new InferenceDialogueLine(new List<string>(category));
 		line.Phrase = new PhraseSequence(text);
 		return line;
 	}
 
-	ValuedItem createShopItem(string t, int i){
+	ValuedItem createValuedItem(string t, int i){
 		ValuedItem item = ValuedItem.CreateInstance<ValuedItem>();
 		item.Text = t;
 		item.Value = i;
