@@ -30,12 +30,10 @@ public class DialogueActor : MonoBehaviour, ITriggerEventHandler, ISpeechTextSou
 
     public void SetPhrase(PhraseSequence phrase, bool hasMore = false) {
         CurrentPhrase = phrase;
-
         // TODO: remove
         if (OnSpeechTextChanged != null) {
             OnSpeechTextChanged(this, new PhraseEventArgs(phrase, hasMore));
         }
-
         var canEdit = gameObject == PlayerManager.Instance.PlayerGameObject;
         var checkGrammar = gameObject.CompareTag("Player") || gameObject.CompareTag("OtherPlayer");
         var speechArgs = new SpeechBubbleRequestedEventArgs(transform, phrase, hasMore, canEdit, checkGrammar);

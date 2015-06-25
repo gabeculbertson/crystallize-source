@@ -2,6 +2,8 @@
 using System;
 using System.Collections; 
 using System.Collections.Generic;
+using System.Reflection;
+using System.Xml.Serialization;
 
 public class JobTaskGameData {
 
@@ -10,6 +12,7 @@ public class JobTaskGameData {
     public SceneObjectGameData SceneObjectIdentifier { get; set; }
     public DialogueSequence Dialogue { get; set; }
     public DialogueActorLine Line { get; set; }
+    public ProcessTypeRef ProcessType { get; set; }
 
     public JobTaskGameData() {
         Name = "";
@@ -17,6 +20,7 @@ public class JobTaskGameData {
         SceneObjectIdentifier = new SceneObjectGameData();
         Dialogue = new DialogueSequence();
         Line = new DialogueActorLine();
+        ProcessType = new ProcessTypeRef();
     }
 
 }

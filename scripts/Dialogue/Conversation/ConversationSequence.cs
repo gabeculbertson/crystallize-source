@@ -12,10 +12,12 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
 
     DialogueActor actor;
     DialogueSequence dialogue;
+    ContextData context;
 
     public void Initialize(ConversationArgs target) {
         actor = target.Target.GetComponent<DialogueActor>();
         dialogue = target.Dialogue;
+        context = target.Context;
 
         CoroutineManager.Instance.StartCoroutine(PrepareConversation());
     }
@@ -56,7 +58,7 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
     }
 
     void SetDialogueElement(DialogueState dialogueState) {
-        actor.SetLine(dialogueState.GetElement().Line);
+        actor.SetLine(dialogueState.GetElement().Line, context);
         //Debug.Log(dialogueState.GetElement().NextIDs.Count);
 
         switch (dialogueState.Dialogue.GetElementType(dialogueState.CurrentID)) {

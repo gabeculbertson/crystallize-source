@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
+using System.Collections; 
 using System.Collections.Generic;
+using System.Linq;
 
+[JobProcessType]
 public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	public event ProcessExitCallback OnExit;
 
 	GameObject person;
 	JobTaskRef task;
+	CashierTaskData taskData;
 
 	int remainingCount = 0;
 	int correctCount = 0;
@@ -16,29 +19,50 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	ITemporaryUI<string, string> ui;
 
-	int numItems = 3;
+	int numItems;
 	int price;
-	string greeting;
+	string greeting = "";
 	ValuedItem[] nowItem;
 
 	List<TextMenuItem> greetings;
 	List<ValuedItem> prices;
 
 	public void Initialize(JobTaskRef param1) {
+		greetings = new List<TextMenuItem>();
+		prices = new List<ValuedItem> ();
+
 		task = param1;
+		taskData = (CashierTaskData) (task.Data);
 		remainingCount = GetTaskCount();
-		person = new SceneObjectRef(task.Data.SceneObjectIdentifier).GetSceneObject();
+		numItems = taskData.NumItem;
+		nowItem = new ValuedItem[numItems];
+		person = new SceneObjectRef(taskData.SceneObjectIdentifier).GetSceneObject();
 		//get menu item lists
-		greetings = new List<TextMenuItem> (GameObject.FindObjectsOfType<TextMenuItem> ());
-		prices = new List<ValuedItem> (GameObject.FindObjectsOfType<ValuedItem> ());
+		foreach (var v in taskData.Dialogues) {
+			TextMenuItem item = TextMenuItem.CreateInstance<TextMenuItem>();
+			item.text = v.Phrase.GetText();
+			greetings.Add(item);
+		}
+		prices = taskData.ShopLists;
+//		greetings = new List<TextMenuItem> (GameObject.FindObjectsOfType<TextMenuItem> ());
+//		prices = new List<ValuedItem> (GameObject.FindObjectsOfType<ValuedItem> ());
 		//Greeting Prompt
 		ProcessLibrary.MessageBox.Get("Select the correct greeting.", HandleGreetingExit, this);
 	}
-	
+
 	//Select Greeting
 	void HandleGreetingExit(object sender, object obj) {
 		GetNewGreeting();
-		person.GetComponent<DialogueActor>().SetLine(task.Data.Line, GetNewGreetingContext());
+		var d = new DialogueSequence();
+		var de = d.GetNewDialogueElement();
+		de.Line = taskData.Line;
+		ContextData context = GetNewGreetingContext ();
+		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d, context), HandleGreetingConversationExit, this);
+//		person.GetComponent<DialogueActor>().SetLine(taskData.Line, GetNewGreetingContext());
+	}
+
+	void HandleGreetingConversationExit(object sender, object obj){
+		Debug.Log (greeting);
 		var ui = UILibrary.TextMenu.Get (greetings);
 		ui.Complete += ui_GreetComplete;
 	}
@@ -47,7 +71,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		//TODO cast e and get data
 
 		//remainingCount--;
-		if (e.Data.getName() == greeting) {
+		if (taskData.SameCategory(e.Data.getName(), greeting)) {
 			correctCount++;
 			var ui = UILibrary.PositiveFeedback.Get("");
 			ui.Complete += Greet_Feedback_Complete;
@@ -63,8 +87,9 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	void HandleMessageBoxExit(object sender, object obj) {
 		GetNewTargetPrice();
-		person.GetComponent<DialogueActor>().SetLine(task.Data.Line, GetNewPriceContext());
-		var ui = UILibrary.ValuedMenu.Get (prices);
+		person.GetComponent<DialogueActor>().SetLine(taskData.priceLine, GetNewPriceContext());
+		Debug.Log (nowItem [0].Value + " " + nowItem [0].Text);
+		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
 		ui.Complete += ui_Complete;
 	}
 	
@@ -155,20 +180,32 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		var c = new ContextData();
 		//TODO How to make this more flexible/dynamic?
 		Func<string, int, string> priceString = (x, y) => String.Format("{0} (Price: {1} yen)", x, y);
-		c.UpdateElement("price1", new PhraseSequence(priceString(nowItem[0].Text, nowItem[0].Value)));
-		c.UpdateElement("price2", new PhraseSequence(priceString(nowItem[1].Text, nowItem[1].Value)));
-		c.UpdateElement("price3", new PhraseSequence(priceString(nowItem[2].Text, nowItem[2].Value)));
+		for (int i = 0; i < taskData.NumItem; i++) {
+			c.UpdateElement(taskData.contextPrefix + i , new PhraseSequence(priceString(nowItem[i].Text, nowItem[i].Value)));
+		}
+//		c.UpdateElement("price1", new PhraseSequence(priceString(nowItem[0].Text, nowItem[0].Value)));
+//		c.UpdateElement("price2", new PhraseSequence(priceString(nowItem[1].Text, nowItem[1].Value)));
+//		c.UpdateElement("price3", new PhraseSequence(priceString(nowItem[2].Text, nowItem[2].Value)));
 		return c;
 		//TODO
 	}
 
 	ContextData GetNewGreetingContext() {
 		var c = new ContextData();
-//		c.UpdateElement("region", new PhraseSequence(price));
+		c.UpdateElement("greeting", new PhraseSequence(greeting));
 		return c;
-		//TODO 
 	}
 	int GetTaskCount(){
 		return 5;
+	}
+
+	List<ValuedItem> GetAllPrices(){
+		List<ValuedItem> ret = new List<ValuedItem> ();
+		int maxPrice = prices.Aggregate<ValuedItem, int> (0, (acc, el) => acc + el.Value);
+		Func<int, ValuedItem> createPriceOption = (k => {var item = new ValuedItem(); item.Value = k; item.Text = ""; return item;});
+		for (int i = 0; i < maxPrice; i++) {
+			ret.Add(createPriceOption(i));
+		}
+		return ret;
 	}
 }

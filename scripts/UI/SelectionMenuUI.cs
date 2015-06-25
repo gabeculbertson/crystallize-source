@@ -22,7 +22,6 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 
 	public virtual void Initialize(List<T> param1) {
 		items = param1;
-
 		/**
 		 * load created menuObjects into the menu by instantiating the 
 		 * gameObject with the info from the menuObjects
@@ -32,6 +31,10 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 		foreach (var item in items) {
 			GameObject instance = Instantiate<GameObject> (buttonPrefab);
 			instance.transform.SetParent (transform);
+			foreach (var c in instance.GetComponentsInChildren<RectTransform>()){
+				c.anchoredPosition = new Vector2(0f, 0f);
+			}
+			instance.transform.localPosition = new Vector3 (0f, 0f, 0f);
 			//assign attributes
 			InitializeButton(instance, item);
 			//hook event handler
@@ -46,6 +49,7 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 	protected void Start ()
 	{
 		transform.SetParent(MainCanvas.main.transform, false);
+		transform.localPosition = new Vector3 (0f, 0f, 0f);
 	}
 	
 	//let event manager fires menu item selected event, with info about the item selected
@@ -62,5 +66,9 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 	 */
 	protected void RaiseComplete(){
 		Complete.Raise (this, new EventArgs<V> (arg));
+	}
+
+	protected bool HasSelection(){
+		return arg == null;
 	}
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 public class EditorUtilities {
 
@@ -31,6 +32,7 @@ public class EditorUtilities {
         propertyDrawers[typeof(DialogueSequence)] = DrawDialogueSequenceValue;
         propertyDrawers[typeof(SceneObjectGameData)] = DrawSceneObjectValue;
         propertyDrawers[typeof(DialogueActorLine)] = DrawActorLineValue;
+        propertyDrawers[typeof(ProcessTypeRef)] = DrawProcessTypeRefValue;
     }
 
     public static object GetInstance(Type t) {
@@ -206,13 +208,24 @@ public class EditorUtilities {
         EditorGUILayout.EndVertical();
     }
 
-    public static void DrawPhraseSequence(PhraseSequence phrase) {
+    public static void DrawPhraseSequence(PhraseSequence phrase, string name = "") {
+        EditorGUILayout.BeginHorizontal();
+        if (name == "") {
+            name = "Phrase";
+        }
+        EditorGUILayout.PrefixLabel(name);
         if (GUILayout.Button(phrase.GetText())) {
             PhraseEditorWindow.Open(phrase);
         }
+        EditorGUILayout.EndHorizontal();
     }
 
     public static void DrawObject(object obj) {
+        if (obj is PhraseSequence) {
+            DrawPhraseSequence((PhraseSequence)obj);
+            return;
+        }
+
         foreach (var p in obj.GetType().GetProperties()) {
             if (!p.CanWrite) {
                 continue;
@@ -299,12 +312,7 @@ public class EditorUtilities {
 
     static void DrawPhraseSequenceValue(object obj, PropertyInfo p) {
         var ps = (PhraseSequence)p.GetValue(obj, new object[0]);
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.PrefixLabel(p.Name);
-        if (GUILayout.Button(ps.GetText())) {
-            PhraseEditorWindow.Open(ps);
-        }
-        EditorGUILayout.EndHorizontal();
+        DrawPhraseSequence(ps, p.Name);
     }
 
     static void DrawDialogueSequenceValue(object obj, PropertyInfo p) {
@@ -326,6 +334,21 @@ public class EditorUtilities {
 
     static void DrawLabelValue(object obj, PropertyInfo p) {
         EditorGUILayout.LabelField(p.PropertyType.ToString(), obj.ToString());
+    }
+
+    static void DrawProcessTypeRefValue(object obj, PropertyInfo p) {
+        var items = (from t in Assembly.GetAssembly(typeof(ProcessTypeRef)).GetTypes()
+                    where Attribute.IsDefined(t, typeof(JobProcessTypeAttribute)) select t).ToList();
+        items.Insert(0, typeof(TempProcess<JobTaskRef, object>));
+        var strings = items.Select((t) => t.Name).ToArray();
+        strings[0] = "Default";
+        var val = (ProcessTypeRef)p.GetValue(obj, new object[0]);
+
+        int selected = items.IndexOf(val.ProcessType);
+        int newSelected = EditorGUILayout.Popup(p.Name, selected, strings);
+        if (newSelected != selected) {
+            p.SetValue(obj, new ProcessTypeRef(items[newSelected]), new object[0]);
+        }
     }
 
     public static void PlayClip(AudioClip clip) {

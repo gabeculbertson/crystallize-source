@@ -21,7 +21,7 @@ public class UILibrary {
 	public static readonly UIFactoryRef<List<TextMenuItem>, TextMenuItemEventArg> TextMenu = new UIFactoryRef<List<TextMenuItem>, TextMenuItemEventArg>();
 	public static readonly UIFactoryRef<List<ValuedItem>, ValuedItemEventArg> ValuedMenu = new UIFactoryRef<List<ValuedItem>, ValuedItemEventArg>();
 	//UI for Cashier
-	public static readonly UIFactoryRef<SelectionMenuInput, MenuItemEventArg> SelectionMenu = new UIFactoryRef<SelectionMenuInput, MenuItemEventArg>();
+//	public static readonly UIFactoryRef<SelectionMenuInput, MenuItemEventArg> SelectionMenu = new UIFactoryRef<SelectionMenuInput, MenuItemEventArg>();
 
     public static ITemporaryUI<string, object> GetPositiveFeedbackInstance() {
         return GameObjectUtil.GetResourceInstance<MessageBoxUI>("UI/PositiveFeedback");

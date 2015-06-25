@@ -9,22 +9,6 @@ public class Context {
 
 public class MainProcess {
 
-    //class Wrapper<T> {
-
-    //}
-
-    //static Wrapper<T> Wrap<T>(Func<T> wrap) {
-    //    return new Wrapper<T>();
-    //}
-
-    //static UIFactory<T, I, O> GetUIFactory<T, I, O>(Func<T> getter) where T : ITemporaryUI<I, O> {
-    //    return new UIFactory<T, I, O>(getter);
-    //}
-
-    static void func<I,O>(Func<ITemporaryUI<I,O>> f) {
-
-    }
-
     public static void Initialize() {
         LinkProcesses();
         LinkUI();
@@ -88,6 +72,7 @@ public class MainProcess {
 
     static void SetDebugState() {
         Debug.Log("Set debug state.");
+        PlayerDataConnector.UnlockJob(new JobRef(0));
         PlayerDataConnector.UnlockJob(new JobRef(2));
         PlayerDataConnector.UnlockJob(new JobRef(1));
     }

@@ -20,7 +20,7 @@ public class UIEvents : GameEvents{
     public void RaiseUIModeChanged(object sender, UIModeChangedEventArgs args) { OnUIModeChanged.Raise(sender, args); }
 
     public event EventHandler<SpeechBubbleRequestedEventArgs> OnSpeechBubbleRequested;
-    public void RaiseSpeechBubbleRequested(object sender, SpeechBubbleRequestedEventArgs args) { OnSpeechBubbleRequested.Raise(sender, args); }
+	public void RaiseSpeechBubbleRequested(object sender, SpeechBubbleRequestedEventArgs args) { OnSpeechBubbleRequested.Raise(sender, args); }
     public event EventHandler<PhraseEventArgs> OnSpeechBubbleOpen;
     public void RaiseSpeechBubbleOpen(object sender, PhraseEventArgs args) { OnSpeechBubbleOpen.Raise(sender, args); }
 

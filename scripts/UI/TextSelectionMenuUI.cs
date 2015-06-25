@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class TextSelectionMenuUI : ConfirmMenuUI<TextMenuItem, TextMenuItemEventArg> {
 
 	const string ResourcePath = "UI/TextSelectionMenu";
-	public static TextSelectionMenuUI GetInstance() {
+	new public static TextSelectionMenuUI GetInstance() {
 		return GameObjectUtil.GetResourceInstance<TextSelectionMenuUI>(ResourcePath);
 	}
 	#region implemented abstract members of SelectionMenuUI

@@ -6,8 +6,19 @@ using System.Collections.Generic;
 public class GameTimeProcess : MonoBehaviour {
 
 	public static GameTimeProcess GetTestInstance(){
-		var gtp = new GameObject ("TestTime").AddComponent<GameTimeProcess>();
+		GameObject go = new GameObject ("TestTime");
+		var gtp = go.AddComponent<GameTimeProcess>();
+		go.AddComponent<DontDestroyOnLoad> ();
 		gtp.isTesting = true;
+		return gtp;
+	}
+
+	public static GameTimeProcess GetTestInstance(JobRef job){
+		GameObject go = new GameObject ("TestTime");
+		var gtp = go.AddComponent<GameTimeProcess>();
+		go.AddComponent<DontDestroyOnLoad> ();
+		gtp.isTesting = true;
+		gtp.testJob = job;
 		return gtp;
 	}
 
@@ -21,15 +32,18 @@ public class GameTimeProcess : MonoBehaviour {
     public StandardScriptableObjectSessionData eveningSession;
     public StandardScriptableObjectSessionData nightSession;
 
+	public JobRef testJob = null;
     int currentProcess;
-	bool isTesting = false;
+	public bool isTesting;
 
     void Start() {
 		Debug.Log ("Main process started");
 		MainProcess.Initialize ();
 		MainProcess.InstantiateNewSceneObjects ();
-
-		if (!isTesting) {
+		if (isTesting) {
+			MorningSessionCallback(null, testJob);
+		}
+		else {
 			MorningFactory.Get (new MorningSessionArgs (morningSession.SessionArea, new HomeRef (0)), MorningSessionCallback, null);
 		}
 	}
@@ -41,6 +55,7 @@ public class GameTimeProcess : MonoBehaviour {
     public void MorningSessionCallback(object sender, JobRef args) {
         Debug.Log("Morning exited:" + args);
         if (isTesting) {
+			DayFactory.Get(new DaySessionArgs(daySession.SessionArea, args), DaySessionCallback, null);
 			return;
 		}
 

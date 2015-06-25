@@ -32,12 +32,30 @@ public class UIProcessFactory<T, I, O> : ProcessFactory<I, O> where T : IUIProce
 
 }
 
+public class DyanmicProcessFactory<I, O> : ProcessFactory<I, O> {
+
+    Type t;
+
+    public DyanmicProcessFactory(Type t){
+        this.t = t;
+    }
+
+    public override IProcess<I, O> GetInstance() {
+        return (IProcess<I, O>)Activator.CreateInstance(t);
+    }
+
+}
+
 public class ProcessFactoryRef<I, O> {
     
     public ProcessFactory<I, O> Factory { get; set; }
 
     public void Set<T>() where T : IProcess<I, O>, new() {
         Factory = new ProcessFactory<T, I, O>();
+    }
+
+    public void Set(Type t) {
+        Factory = new DyanmicProcessFactory<I, O>(t);
     }
 
 }

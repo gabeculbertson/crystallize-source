@@ -8,7 +8,7 @@ public class ValuedSelectionMenuUI : ConfirmMenuUI<ValuedItem, ValuedItemEventAr
 	
 
 	const string ResourcePath = "UI/ValuedSelectionMenu";
-	public static ValuedSelectionMenuUI GetInstance() {
+	new public static ValuedSelectionMenuUI GetInstance() {
 		return GameObjectUtil.GetResourceInstance<ValuedSelectionMenuUI>(ResourcePath);
 	}
 

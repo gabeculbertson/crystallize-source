@@ -23,7 +23,8 @@ public class MorningProcess : TimeSessionProcess<MorningSessionArgs, JobRef>, IP
 
         string s = "";
         var quality = args.Home.GameDataInstance.Quality;
-        if (quality < 1f) {
+        PlayerData.Instance.RestQuality = quality;
+        if (quality < 0.95f) {
             s = "You didn't sleep so well... You'll probably have a hard time working today.";
         } else if (quality < 1.05f) {
             s = "You slept alright. You feel ready for work.";

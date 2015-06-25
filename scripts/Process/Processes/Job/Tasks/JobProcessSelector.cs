@@ -10,20 +10,23 @@ public class JobProcessSelector : IProcess<JobTaskRef, object> {
     public event ProcessExitCallback OnExit;
 
     public void Initialize(JobTaskRef param1) {
-        switch (param1.Job.ID) {
-            case 1:
-                TaskFactory.Set<JanitorProcess>();
-                break;
-            case 2:
-                TaskFactory.Set<RestaurantProces>();
-                break;
-			case 10:
-				TaskFactory.Set<CashierProcess>();
-				break;
-            default:
-                TaskFactory.Set<TempProcess<JobTaskRef, object>>();
-                break;
-        }
+
+        TaskFactory.Set(param1.Data.ProcessType.ProcessType);
+        //switch (param1.Job.ID) {
+        //    case 0:
+        //        TaskFactory.Set<WaiterProcess>();
+        //        break;
+        //    case 1:
+        //        TaskFactory.Set<JanitorProcess>();
+        //        break;
+        //    case 2:
+        //        TaskFactory.Set<RestaurantProces>();
+        //        break;
+        //    default:
+        //        TaskFactory.Set<TempProcess<JobTaskRef, object>>();
+        //        break;
+        //}
+
         TaskFactory.Get(param1, ChildCallback, this);
     }
 
