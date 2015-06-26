@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11446480}
   - 114: {fileID: 11400986}
   m_Layer: 5
-  m_Name: TextSelectionMenu
+  m_Name: ImageTextMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 150584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631b734ffd21c4b089e691d2bc6faf5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c4681af35b90453ebafb6b22f82f1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 173282, guid: 4afca0d199b6943e68f428bdb9ca3f16, type: 2}

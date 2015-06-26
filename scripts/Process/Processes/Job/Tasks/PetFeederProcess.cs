@@ -92,7 +92,7 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 	void PlayExitDialogue ()
 	{
 		var s = "";
-		score = (float)correctCount / (totalTrials * 2);
+		score = (float)correctCount / totalTrials;
 		if (score >= 0.99f) {
 			s = "Amazing! Nice work.";
 		} else if( score >= 0.75f){
