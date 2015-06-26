@@ -23,8 +23,9 @@ public class DebugTimeProcess : MonoBehaviour {
 		JobGameData ret = new JobGameData ();
 		//TODO switch jobs here
 //		ret.Tasks.Add(CreateCashierTask());
-
-		ret.Tasks.Add(CreatePetFeederTask());
+//		ret.Tasks.Add(CreatePetFeederTask());
+//		ret.Tasks.Add(CreatePointPlaceTask());
+		ret.Tasks.Add(CreateVolunteerTask());
 		return ret;
 	}
 
@@ -37,12 +38,53 @@ public class DebugTimeProcess : MonoBehaviour {
 
 
 	//actually create an instance of the subclass of JobTaskGameData
+	JobTaskGameData CreateVolunteerTask (){
+		VolunteerTaskData task = new VolunteerTaskData ();
+		//set dialogue
+		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "I feel"));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "need"));
+		//set question and answer data
+		task.AddQA("hungry", "restuarant");
+		task.AddQA("thirsty", "coffee shop");
+		task.AddQA ("tired", "hotel");
+		task.AddQA ("bored", "theatre");
+		//initialize player dialogue
+		var answerPhrase = task.AnswerDialogue.GetNewDialogueElement ().Line.Phrase;
+		answerPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "You should go to"));
+		answerPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "answer"));
+		//other initialization
+		task.AreaName = "VolunteerTest";
+		task.Name = "VolunteerTask";
+		task.ProcessType = new ProcessTypeRef (typeof(VolunteerProcess));
+		task.SceneObjectIdentifier.Name = "Asker";
+		task.PlayerIdentifier.Name = "Player";
+		return task;
+	}
+	JobTaskGameData CreatePointPlaceTask (){
+		PointPlaceTaskData task = new PointPlaceTaskData ();
+		//set dialogue
+		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "I want to go to"));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "place"));
+		//set question and answer data
+		task.AddQA("restuarant", "restuarant", new Sprite());
+		task.AddQA("coffee shop", "coffee shop", new Sprite());
+		task.AddQA ("hotel", "hotel", new Sprite ());
+		task.AddQA ("theatre", "theatre", new Sprite ());
+		//other initialization
+		task.AreaName = "PointPlaceTest";
+		task.Name = "PointPlaceTask";
+		task.ProcessType = new ProcessTypeRef (typeof(PointPlaceProcess));
+		task.SceneObjectIdentifier.Name = "Asker";
+		return task;
+	}
 	JobTaskGameData CreatePetFeederTask ()
 	{
 		PetFeederTaskData task = new PetFeederTaskData ();
 		//set dialogue
 		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
-		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "The cat is "));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "The cat is"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "query"));
 		//set question and answer data
 		task.AddQA("hungry", "fish", new Sprite());
