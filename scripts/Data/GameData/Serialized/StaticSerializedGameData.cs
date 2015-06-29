@@ -109,10 +109,10 @@ namespace CrystallizeData {
 
     }
 
-    public abstract class StaticSerializedTaskGameData : StaticGameData {
-        protected JobTaskGameData task = new JobTaskGameData();
+    public abstract class StaticSerializedTaskGameData<T> : StaticGameData where T : JobTaskGameData, new() {
+        protected T task = new T();
 
-        public JobTaskGameData GetTask() {
+        public T GetTask() {
             PrepareGameData();
             return task;
         }
@@ -123,12 +123,12 @@ namespace CrystallizeData {
             task.Actor = new SceneObjectGameData(actor);
         }
 
-        protected void SetProcess<T>() where T : IProcess<JobTaskRef, object> {
-            task.ProcessType = new ProcessTypeRef(typeof(T));
+        protected void SetProcess<V>() where V : IProcess<JobTaskRef, object> {
+            task.ProcessType = new ProcessTypeRef(typeof(V));
         }
 
-        protected void SetDialogue<T>() where T : StaticSerializedDialogueGameData, new() {
-            task.Dialogue = new T().GetDialogue();
+        protected void SetDialogue<V>() where V : StaticSerializedDialogueGameData, new() {
+            task.Dialogue = new V().GetDialogue();
         }
     }
 
