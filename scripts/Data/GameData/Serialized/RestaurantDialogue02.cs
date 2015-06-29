@@ -13,7 +13,7 @@ namespace CrystallizeData {
 
             AddLine("Welcome to the restaurant.");
             AddLine("What will you eat?");
-            AddUI<TextMenuItem>(UILibrary.TextMenu, GetItems, SelectNext);
+            //AddUI<TextMenuItem>(UILibrary.TextMenu, GetItems, SelectNext);
             //Break();
 
             right.Index = AddLine("good choice");

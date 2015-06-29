@@ -47,6 +47,9 @@ public class MainProcess {
 
         // Library of misc reusable processes
         ProcessLibrary.Conversation.Set<ConversationSequence>();
+        ProcessLibrary.BeginConversation.Set<BeginConversationProcess>();
+        ProcessLibrary.ConversationSegment.Set<ConversationSegmentProcess>();
+        ProcessLibrary.EndConversation.Set<EndConversationProcess>();
         ProcessLibrary.MessageBox.Set<MessageBoxProcess>();
     }
 
