@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class TextImageMenuUI : ImageMenuUI<TextImageItem, TextMenuItemEventArg> {
+public class TextImageMenuUI : ImageMenuUI<TextImageItem> {
 
 	const string ResourcePath = "UI/ImageTextMenu";
 	new public static TextImageMenuUI GetInstance() {
@@ -23,12 +23,8 @@ public class TextImageMenuUI : ImageMenuUI<TextImageItem, TextMenuItemEventArg> 
 			objText.gameObject.SetActive(false);
 		}
 		objText.text = item.text;
+		obj.AddComponent<DataContainer>().Store(item);
 
-	}
-
-	protected override TextMenuItemEventArg createEventArg (GameObject obj)
-	{
-		return new TextMenuItemEventArg (obj.GetComponentInChildren<Text> ().text);
 	}
 	#endregion
 	

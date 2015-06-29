@@ -37,7 +37,7 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		task = param1;
 		taskData = (VolunteerTaskData)(param1.Data);
 
-		target = new SceneObjectRef(taskData.SceneObjectIdentifier).GetSceneObject();
+		target = new SceneObjectRef(taskData.Actor).GetSceneObject();
 		player = new SceneObjectRef(taskData.PlayerIdentifier).GetSceneObject();
 		remainingCount = GetTaskCount ();
 
@@ -69,8 +69,8 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		ui.Complete += TalkBackToAsker;
 	}
 
-	void TalkBackToAsker(object sender, EventArgs<TextMenuItemEventArg> e){
-		currentAnswer = e.Data.getName();
+	void TalkBackToAsker(object sender, EventArgs<TextMenuItem> e){
+		currentAnswer = e.Data.text;
 		ProcessLibrary.Conversation.Get(new ConversationArgs(player, taskData.AnswerDialogue, getAnswerContext(currentAnswer)), HandleAnswerFeedBack, this);
 	}
 

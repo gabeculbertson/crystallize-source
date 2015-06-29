@@ -4,19 +4,18 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V> 
-	where V : MenuItemEventArg
+public abstract class SelectionMenuUI<T> : UIPanel, ITemporaryUI<List<T>, T> 
 {
 	const string ResourcePath = "UI/SelectionMenu";
-	public static SelectionMenuUI<T, V> GetInstance() {
-		return GameObjectUtil.GetResourceInstance<SelectionMenuUI<T, V>>(ResourcePath);
+	public static SelectionMenuUI<T> GetInstance() {
+		return GameObjectUtil.GetResourceInstance<SelectionMenuUI<T>>(ResourcePath);
 	}
 
 	List<T> items;
 	public GameObject buttonPrefab;
-	protected V arg;
+	protected T arg;
 	
-	public event EventHandler<EventArgs<V>> Complete;
+	public event EventHandler<EventArgs<T>> Complete;
 
 	public virtual void Initialize(List<T> param1) {
 		items = param1;
@@ -43,7 +42,9 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 
 	protected abstract void InitializeButton (GameObject obj, T item);
 	//obtain attributes necessary to pass to the event manager
-	protected abstract V createEventArg (GameObject obj);
+	protected T createEventArg (GameObject obj){
+		return obj.GetComponent<DataContainer>().Retrieve<T>();
+	}
 	
 	protected void Start ()
 	{
@@ -64,7 +65,7 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 	 * There is no way to access arg from subclasses
 	 */
 	protected void RaiseComplete(){
-		Complete.Raise (this, new EventArgs<V> (arg));
+		Complete.Raise (this, new EventArgs<T> (arg));
 	}
 
 	protected bool HasSelection(){

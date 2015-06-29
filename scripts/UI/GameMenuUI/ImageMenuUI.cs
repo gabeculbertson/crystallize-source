@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public abstract class ImageMenuUI<T, V> : ConfirmMenuUI<T, V> 
-	where V : MenuItemEventArg
+public abstract class ImageMenuUI<T> : ConfirmMenuUI<T> 
+
 	where T : ImageMenuItem
 
 {
@@ -12,6 +12,7 @@ public abstract class ImageMenuUI<T, V> : ConfirmMenuUI<T, V>
 	{
 		Image image = obj.GetComponent<Image> ();
 		image.sprite = item.Image;
+		obj.AddComponent<DataContainer>().Store(item);
 	}
 	#endregion
 		

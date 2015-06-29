@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class NestedMenuUI<T> : ConfirmMenuUI<T, NestedMenuArg>
+public class NestedMenuUI<T> : ConfirmMenuUI<T>
 	where T : MenuAcceptor
 
 {
@@ -11,12 +11,10 @@ public class NestedMenuUI<T> : ConfirmMenuUI<T, NestedMenuArg>
 	public static NestedMenuUI<T> GetInstance() {
 		return GameObjectUtil.GetResourceInstance<NestedMenuUI<T>>(ResourcePath);
 	}
-
-	Dictionary<GameObject, T> dataDictionary;
+	
 	public override void Initialize (List<T> items)
 	{
 		buttonPrefab = new GameObject();
-		dataDictionary = new Dictionary<GameObject, T>();
 		/**
 		 * load created menuObjects into the menu by instantiating the 
 		 * gameObject with the info from the menuObjects
@@ -36,30 +34,17 @@ public class NestedMenuUI<T> : ConfirmMenuUI<T, NestedMenuArg>
 			
 			//hook event handler
 			instance.GetComponent<UIButton>().OnClicked += MenuUI_OnClicked;
-			dataDictionary.Add(instance, item);
 		}
 	}
 
 
-	#region implemented abstract members of SelectionMenuUI
+
 
 	protected override void InitializeButton (GameObject obj, T item)
 	{
 		obj = MenuItemBuilder.BuildMenuItemObject(item).GO;
+		obj.AddComponent<DataContainer>().Store(item);
 	}
 
-	protected override NestedMenuArg createEventArg (GameObject obj)
-	{
-		T data;
-		if(dataDictionary.TryGetValue(obj, out data)){
-			arg.Data = data;
-		}
-		else{
-			//TODO handle exceptional case
-			arg = null;
-		}
-		return arg;
-	}
 
-	#endregion
 }

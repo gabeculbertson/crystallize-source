@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ValuedSelectionMenuUI : ConfirmMenuUI<ValuedItem, ValuedItemEventArg> {
+public class ValuedSelectionMenuUI : ConfirmMenuUI<ValuedItem> {
 	
 
 	const string ResourcePath = "UI/ValuedSelectionMenu";
@@ -18,16 +18,8 @@ public class ValuedSelectionMenuUI : ConfirmMenuUI<ValuedItem, ValuedItemEventAr
 		var texts = obj.GetComponentsInChildren<Text> ();
 		texts [0].text = item.Text;
 		texts [1].text = item.Value.ToString();
+		obj.AddComponent<DataContainer>().Store(item);
 
-	}
-	protected override ValuedItemEventArg createEventArg (GameObject obj)
-	{
-		var texts = obj.GetComponentsInChildren<Text> ();
-		int num;
-		bool isInt = int.TryParse (texts [1].text, out num);
-		if(!isInt)
-			Debug.LogWarning("text data is not integer");
-		return new ValuedItemEventArg (texts [0].text, num);
 	}
 	#endregion
 	

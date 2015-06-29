@@ -35,7 +35,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 		task = param1;
 		taskData = (PointPlaceTaskData)(param1.Data);
 
-		target = new SceneObjectRef(taskData.SceneObjectIdentifier).GetSceneObject();
+		target = new SceneObjectRef(taskData.Actor).GetSceneObject();
 		remainingCount = GetTaskCount ();
 
 		qa = taskData.GetQAs ();
@@ -67,10 +67,10 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 		ui.Complete += HandleAnswerFeedBack;
 	}
 
-	void HandleAnswerFeedBack (object sender, EventArgs<TextMenuItemEventArg> e)
+	void HandleAnswerFeedBack (object sender, EventArgs<TextImageItem> e)
 	{
 		totalTrials++;
-		if (e.Data.getName () == currentQA.Answer) {
+		if (e.Data.text == currentQA.Answer) {
 			var ui = UILibrary.PositiveFeedback.Get("");
 			correctCount++;
 			ui.Complete += HandleFeedBackComplete;
@@ -110,7 +110,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 		}
 		
 		var d = new DialogueSequence();
-		var de = d.GetNewDialogueElement();
+		var de = d.GetNewDialogueElement<LineDialogueElement>();
 		de.Line = new DialogueActorLine();
 		de.Line.Phrase = new PhraseSequence(s);
 		ProcessLibrary.Conversation.Get(new ConversationArgs(target, d), HandleExitConversationExit, this);

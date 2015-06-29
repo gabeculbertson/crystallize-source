@@ -41,7 +41,7 @@ public class DebugTimeProcess : MonoBehaviour {
 	JobTaskGameData CreateVolunteerTask (){
 		VolunteerTaskData task = new VolunteerTaskData ();
 		//set dialogue
-		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
+		var phrase = task.Dialogue.GetNewDialogueElement <LineDialogueElement>().Line.Phrase;
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "I feel"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "need"));
 		//set question and answer data
@@ -50,21 +50,21 @@ public class DebugTimeProcess : MonoBehaviour {
 		task.AddQA ("tired", "hotel");
 		task.AddQA ("bored", "theatre");
 		//initialize player dialogue
-		var answerPhrase = task.AnswerDialogue.GetNewDialogueElement ().Line.Phrase;
+		var answerPhrase = task.AnswerDialogue.GetNewDialogueElement<LineDialogueElement> ().Line.Phrase;
 		answerPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "You should go to"));
 		answerPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "answer"));
 		//other initialization
 		task.AreaName = "VolunteerTest";
 		task.Name = "VolunteerTask";
 		task.ProcessType = new ProcessTypeRef (typeof(VolunteerProcess));
-		task.SceneObjectIdentifier.Name = "Asker";
+		task.Actor.Name = "Asker";
 		task.PlayerIdentifier.Name = "Player";
 		return task;
 	}
 	JobTaskGameData CreatePointPlaceTask (){
 		PointPlaceTaskData task = new PointPlaceTaskData ();
 		//set dialogue
-		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
+		var phrase = task.Dialogue.GetNewDialogueElement<LineDialogueElement> ().Line.Phrase;
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "I want to go to"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "place"));
 		//set question and answer data
@@ -76,14 +76,14 @@ public class DebugTimeProcess : MonoBehaviour {
 		task.AreaName = "PointPlaceTest";
 		task.Name = "PointPlaceTask";
 		task.ProcessType = new ProcessTypeRef (typeof(PointPlaceProcess));
-		task.SceneObjectIdentifier.Name = "Asker";
+		task.Actor.Name = "Asker";
 		return task;
 	}
 	JobTaskGameData CreatePetFeederTask ()
 	{
 		PetFeederTaskData task = new PetFeederTaskData ();
 		//set dialogue
-		var phrase = task.Dialogue.GetNewDialogueElement ().Line.Phrase;
+		var phrase = task.Dialogue.GetNewDialogueElement<LineDialogueElement> ().Line.Phrase;
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "The cat is"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "query"));
 		//set question and answer data
@@ -95,7 +95,7 @@ public class DebugTimeProcess : MonoBehaviour {
 		task.AreaName = "PetFeederTest";
 		task.Name = "PetFeederTask";
 		task.ProcessType = new ProcessTypeRef (typeof(PetFeederProcess));
-		task.SceneObjectIdentifier.Name = "Pet";
+		task.Actor.Name = "Pet";
 		return task;
 	}
 	

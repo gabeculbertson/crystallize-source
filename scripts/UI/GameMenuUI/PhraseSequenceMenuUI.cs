@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PhraseSequenceMenuUI : ConfirmMenuUI<PhraseSequence, PhraseSequenceEventArg> 
+public class PhraseSequenceMenuUI : ConfirmMenuUI<PhraseSequence> 
 
 {
 	#region implemented abstract members of SelectionMenuUI
@@ -12,12 +12,7 @@ public class PhraseSequenceMenuUI : ConfirmMenuUI<PhraseSequence, PhraseSequence
 		obj.AddComponent<Text>().text = item.GetText();
 		obj.AddComponent<DataContainer>().Store(item);
 	}
-
-	protected override PhraseSequenceEventArg createEventArg (GameObject obj)
-	{
-		PhraseSequenceEventArg arg = new PhraseSequenceEventArg();
-		arg.PhraseData = obj.GetComponent<DataContainer>().Retrieve<PhraseSequence>();
-	}
+	
 
 	#endregion
 

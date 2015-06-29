@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TextSelectionMenuUI : ConfirmMenuUI<TextMenuItem, TextMenuItemEventArg> {
+public class TextSelectionMenuUI : ConfirmMenuUI<TextMenuItem> {
 
 	const string ResourcePath = "UI/TextSelectionMenu";
 	new public static TextSelectionMenuUI GetInstance() {
@@ -13,10 +13,8 @@ public class TextSelectionMenuUI : ConfirmMenuUI<TextMenuItem, TextMenuItemEvent
 	protected override void InitializeButton (GameObject obj, TextMenuItem item)
 	{
 		obj.GetComponentInChildren<Text> ().text = item.text;
+		obj.AddComponent<DataContainer>().Store(item);
 	}
-	protected override TextMenuItemEventArg createEventArg (GameObject obj)
-	{
-		return new TextMenuItemEventArg (obj.GetComponentInChildren<Text> ().text);
-	}
+
 	#endregion
 }

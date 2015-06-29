@@ -18,9 +18,9 @@ public class UILibrary {
     public static readonly UIFactoryRef<object, object> HomeShopPanel = new UIFactoryRef<object, object>();
     public static readonly UIFactoryRef<object, HomeRef> HomeSelectionPanel = new UIFactoryRef<object, HomeRef>();
     public static readonly UIFactoryRef<object, object> SkipSessionButton = new UIFactoryRef<object, object>();
-	public static readonly UIFactoryRef<List<TextMenuItem>, TextMenuItemEventArg> TextMenu = new UIFactoryRef<List<TextMenuItem>, TextMenuItemEventArg>();
-	public static readonly UIFactoryRef<List<ValuedItem>, ValuedItemEventArg> ValuedMenu = new UIFactoryRef<List<ValuedItem>, ValuedItemEventArg>();
-	public static readonly UIFactoryRef<List<TextImageItem>, TextMenuItemEventArg> ImageTextMenu = new UIFactoryRef<List<TextImageItem>, TextMenuItemEventArg>();
+	public static readonly UIFactoryRef<List<TextMenuItem>, TextMenuItem> TextMenu = new UIFactoryRef<List<TextMenuItem>, TextMenuItem>();
+	public static readonly UIFactoryRef<List<ValuedItem>, ValuedItem> ValuedMenu = new UIFactoryRef<List<ValuedItem>, ValuedItem>();
+	public static readonly UIFactoryRef<List<TextImageItem>, TextImageItem> ImageTextMenu = new UIFactoryRef<List<TextImageItem>, TextImageItem>();
 	//UI for Cashier
 //	public static readonly UIFactoryRef<SelectionMenuInput, MenuItemEventArg> SelectionMenu = new UIFactoryRef<SelectionMenuInput, MenuItemEventArg>();
 

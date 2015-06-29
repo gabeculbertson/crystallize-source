@@ -66,11 +66,11 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		ui.Complete += ui_GreetComplete;
 	}
 
-	void ui_GreetComplete(object sender, EventArgs<TextMenuItemEventArg> e) {
+	void ui_GreetComplete(object sender, EventArgs<TextMenuItem> e) {
 		//TODO cast e and get data
 
 		//remainingCount--;
-		if (taskData.SameCategory(e.Data.getName(), greeting)) {
+		if (taskData.SameCategory(e.Data.text, greeting)) {
 			correctCount++;
 			var ui = UILibrary.PositiveFeedback.Get("");
 			ui.Complete += Greet_Feedback_Complete;
@@ -87,7 +87,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	void HandleMessageBoxExit(object sender, object obj) {
 		GetNewTargetPrice();
 		var d = new DialogueSequence();
-		var de = d.GetNewDialogueElement();
+		var de = d.GetNewDialogueElement<LineDialogueElement>();
 		de.Line = taskData.priceLine;
 		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d, GetNewPriceContext()), HandlePriceConversationExit, this);
 //		person.GetComponent<DialogueActor>().SetLine(taskData.priceLine, GetNewPriceContext());
@@ -99,10 +99,10 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		ui.Complete += ui_Complete;
 	}
 
-	void ui_Complete(object sender, EventArgs<ValuedItemEventArg> e) {
+	void ui_Complete(object sender, EventArgs<ValuedItem> e) {
 		//TODO cast e and compare
 		remainingCount--;
-		if (e.Data.getValue() == price) {
+		if (e.Data.Value == price) {
 			correctCount++;
 			var ui = UILibrary.PositiveFeedback.Get("");
 			ui.Complete += Feedback_Complete;
