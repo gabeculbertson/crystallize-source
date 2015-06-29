@@ -16,7 +16,7 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 
 	List<T> items;
 	public GameObject buttonPrefab;
-	V arg;
+	protected V arg;
 	
 	public event EventHandler<EventArgs<V>> Complete;
 
@@ -37,6 +37,7 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 			instance.transform.localPosition = new Vector3 (0f, 0f, 0f);
 			//assign attributes
 			InitializeButton(instance, item);
+
 			//hook event handler
 			instance.GetComponent<UIButton>().OnClicked += MenuUI_OnClicked;
 		}
@@ -53,7 +54,7 @@ public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V>
 	}
 	
 	//let event manager fires menu item selected event, with info about the item selected
-	void MenuUI_OnClicked (object sender, EventArgs e)
+	protected void MenuUI_OnClicked (object sender, EventArgs e)
 	{	
 		//sender is the prefab gameobject, obtain attributes first
 		// and then create MenuItemEventArg from the object attributes
