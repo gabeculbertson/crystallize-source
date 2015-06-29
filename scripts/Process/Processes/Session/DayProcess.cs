@@ -28,6 +28,10 @@ public class DayProcess : TimeSessionProcess<DaySessionArgs, object>, IProcess<D
         skip.Complete += Skip_Complete;
 
         RequestJob.Get(task, JobCompleteCallback, this);
+
+        //TODO: get rid of direct reference
+        ResourceLearnEventHandler.GetInstance();
+        CollectUI.GetInstance();
     }
 
     void Skip_Complete(object sender, EventArgs<object> e) {

@@ -22,6 +22,10 @@ public class GameData {
 		}
 	}
 
+    static GameData() {
+        GameDataInitializer.Initialize();
+    }
+
 	public static void LoadInstance(){
 		if (Application.isEditor) {
 			Debug.Log("Loading GameData. Is editor.");
@@ -86,6 +90,7 @@ public class GameData {
 	public WorldGameData WorldData { get; set; }
 	public DialogueGameData DialogueData { get; set; }
     public TradeGameData TradeData { get; set; }
+    public PhraseSetCollectionGameData PhraseSets { get; set; }
 
 	public GameData(){
 		QuestData = new QuestGameData ();
@@ -97,6 +102,7 @@ public class GameData {
 		WorldData = new WorldGameData ();
 		DialogueData = new DialogueGameData ();
         TradeData = new TradeGameData();
+        PhraseSets = new PhraseSetCollectionGameData();
 	}
 
 }

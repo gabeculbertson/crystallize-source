@@ -55,4 +55,8 @@ public class SerializableDictionary<K, V> where V : ISerializableDictionaryItem<
         changed = true;
 	}
 
+    public bool ContainsKey(K key) {
+        return GetItem(key) != null;
+    }
+
 }

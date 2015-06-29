@@ -20,38 +20,36 @@ public class FlowLayoutGroup : LayoutGroup {
     protected bool m_ChildForceExpandWidth = true;
     public bool childForceExpandWidth { get { return m_ChildForceExpandWidth; } set { SetProperty(ref m_ChildForceExpandWidth, value); } }
 
-    protected FlowLayoutGroup()
-    {
-
-    }
-
     public override void CalculateLayoutInputHorizontal()
     {
+        float tmp, tmp2;
+        SetChildrenAlongAxis(1, false, out tmp, out tmp2);
         base.CalculateLayoutInputHorizontal();
         SetLayoutInputForAxis(width, width, width, 0);
     }
 
     public override void CalculateLayoutInputVertical()
     {
-        float tmp;
-        SetChildrenAlongAxis(1, false, out tmp);
+        float tmp, tmp2;
+        SetChildrenAlongAxis(1, false, out tmp, out tmp2);
         SetLayoutInputForAxis(tmp, tmp, tmp, 1);
     }
 
     public override void SetLayoutHorizontal()
     {
-        float tmp;
-        SetChildrenAlongAxis(0, true, out tmp);
+        float tmp, tmp2;
+        SetChildrenAlongAxis(0, true, out tmp, out tmp2);
     }
 
     public override void SetLayoutVertical()
     {
-        float tmp;
-        SetChildrenAlongAxis(1, true, out tmp);
+        float tmp, tmp2;
+        SetChildrenAlongAxis(1, true, out tmp, out tmp2);
     }
 
-    protected void SetChildrenAlongAxis(int axis, bool set, out float height)
+    protected void SetChildrenAlongAxis(int axis, bool set, out float height, out float w)
     {
+        w = 0;
         float sizeH = rectTransform.rect.size[0];
         //float sizeV = rectTransform.rect.size[1];
 
@@ -59,30 +57,30 @@ public class FlowLayoutGroup : LayoutGroup {
         float maxHeight = 0;
 
         float posH = padding.left;
-        if (GetTotalFlexibleSize(0) == 0 && GetTotalPreferredSize(0) < sizeH)
-            posH = GetStartOffset(0, GetTotalPreferredSize(0) - padding.horizontal);
+        //if (GetTotalFlexibleSize(0) == 0 && GetTotalPreferredSize(0) < sizeH)
+        //    posH = GetStartOffset(0, GetTotalPreferredSize(0) - padding.horizontal);
 
         for (int i = 0; i < rectChildren.Count; i++)
         {
             RectTransform child = rectChildren[i];
             float childWidth = LayoutUtility.GetPreferredSize(child, 0);
+            float childHeight = LayoutUtility.GetPreferredSize(child, 1);
+            float startOffset = padding.top;//GetStartOffset(1, childHeight);
 
-            float requiredHeight = LayoutUtility.GetPreferredSize(child, 1);
-            float startOffset = GetStartOffset(1, requiredHeight);
-
-            if (requiredHeight > maxHeight)
+            if (childHeight > maxHeight)
             {
-                maxHeight = requiredHeight;
+                maxHeight = childHeight;
             }
 
-            if (posH + childWidth > sizeH)
+            if (posH + childWidth >= sizeH)
             {
                 posH = padding.left;
-                if (GetTotalFlexibleSize(0) == 0 && GetTotalPreferredSize(0) < sizeH)
-                    posH = GetStartOffset(0, GetTotalPreferredSize(0) - padding.horizontal);
+                //if (GetTotalFlexibleSize(0) == 0 && GetTotalPreferredSize(0) < sizeH)
+                //    posH = GetStartOffset(0, GetTotalPreferredSize(0) - padding.horizontal);
 
                 posV += maxHeight + verticalSpacing;
                 maxHeight = 0;
+                w = this.width;
             }
 
             if (set)
@@ -93,10 +91,13 @@ public class FlowLayoutGroup : LayoutGroup {
                 }
                 else
                 {
-                    SetChildAlongAxis(child, 1, startOffset + posV, requiredHeight);
+                    SetChildAlongAxis(child, 1, startOffset + posV, childHeight);
                 }
             }
             posH += childWidth + horizontalSpacing;
+            if (w != this.width) {
+                w = posH;
+            }
         }
 
         height = posV + maxHeight + padding.bottom;

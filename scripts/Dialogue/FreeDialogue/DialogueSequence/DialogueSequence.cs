@@ -1,16 +1,27 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class DialogueSequence {
 
+    public List<SceneObjectGameData> Actors { get; set; }
     public SerializableDictionary<int, DialogueElement> Elements { get; set; }
 
     public const int ConfusedExit = -2;
 
     public DialogueSequence()
     {
+        Actors = new List<SceneObjectGameData>();
         Elements = new SerializableDictionary<int, DialogueElement>();
+    }
+
+    public SceneObjectGameData GetActor(int index) {
+        if (Actors.IndexInRange(index)) {
+            return Actors[index];
+        }
+        return new SceneObjectGameData("[default]");
     }
 
     public DialogueElement GetElement(int i)
@@ -18,34 +29,13 @@ public class DialogueSequence {
         return Elements.GetItem(i);
     }
 
-    public DialogueElementType GetElementType(int i)
+    public DialogueElement GetNewDialogueElement(Type t)
     {
-        var e = GetElement(i);
-        if (e == null)
-        {
-            return DialogueElementType.Null;
+        if (!typeof(DialogueElement).IsAssignableFrom(t)) {
+            Debug.LogError(t + " does not derive from DialogueElement!");
+            return null;
         }
 
-        if (e.NextIDs.Count == 0)
-        {
-            return DialogueElementType.End;
-        }
-        else if(!GetElement(e.NextIDs[0]).Prompt.IsEmpty)
-        {
-            return DialogueElementType.Prompted;
-        }
-        else if (GetElement(e.NextIDs[0]).Condition != null)
-        {
-            return DialogueElementType.Branched;
-        }
-        else
-        {
-            return DialogueElementType.Linear;
-        }
-    }
-
-    public DialogueElement GetNewDialogueElement()
-    {
         int count = 0;
         foreach (var ele in Elements.Items)
         {
@@ -54,7 +44,20 @@ public class DialogueSequence {
                 count = ele.ID + 1;
             }
         }
-        var newEle = new DialogueElement();
+        var newEle = (DialogueElement)Activator.CreateInstance(t);
+        newEle.ID = count;
+        Elements.AddItem(newEle);
+        return newEle;
+    }
+
+    public T GetNewDialogueElement<T>() where T : DialogueElement, new() {
+        int count = 0;
+        foreach (var ele in Elements.Items) {
+            if (ele.ID >= count) {
+                count = ele.ID + 1;
+            }
+        }
+        var newEle = new T();
         newEle.ID = count;
         Elements.AddItem(newEle);
         return newEle;

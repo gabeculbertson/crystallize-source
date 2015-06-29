@@ -11,8 +11,8 @@ public class GameEventHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        CrystallizeEventManager.PlayerState.OnCollectWordRequested += HandleCollectWordRequested;
-        CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
+        //CrystallizeEventManager.PlayerState.OnCollectWordRequested += HandleCollectWordRequested;
+        //CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += HandleCollectPhraseRequested;
 	}
 
     //ProcessRequestHandler<I, O> Handler<I, O>(GetProcessInstance<I, O> getProcess) {

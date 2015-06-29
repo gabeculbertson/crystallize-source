@@ -6,12 +6,32 @@ using JapaneseTools;
 
 public class PhraseEditorWindow : EditorWindow {
 
+    class KeyStringMap {
+        public string Normal { get; private set; }
+        public string Shift { get; private set; }
+
+        public KeyStringMap(string normal, string shift) {
+            Normal = normal;
+            Shift = shift;
+        }
+    }
+
 	/** IME Keyboard configuration ******************************************/
 	public static int displayLines  = 10;
 	public static KeyCode nextPage = KeyCode.RightArrow;
 	public static KeyCode prevPage = KeyCode.LeftArrow;
 	public static KeyCode nextEntry = KeyCode.DownArrow;
 	public static KeyCode prevEntry = KeyCode.UpArrow;
+
+    static Dictionary<KeyCode, KeyStringMap> keyMapping = new Dictionary<KeyCode, KeyStringMap>();
+
+    static PhraseEditorWindow() {
+        keyMapping[KeyCode.Comma] = new KeyStringMap(",", "<");
+        keyMapping[KeyCode.Period] = new KeyStringMap(".", ">");
+        keyMapping[KeyCode.Slash] = new KeyStringMap("/", "?");
+        keyMapping[KeyCode.Minus] = new KeyStringMap("-", "_");
+        keyMapping[KeyCode.Space] = new KeyStringMap(" ", "\t");
+    }
 
 	DictionaryDataEntry[] OnDisplay = new DictionaryDataEntry[displayLines];
 	int offset = 0;
@@ -138,21 +158,11 @@ public class PhraseEditorWindow : EditorWindow {
 			}
 		}
 		//entering letters into imeText
-		if(key.ToString().Length == 1 && IsAlphabet(key.ToString()[0])){
+		if(IsText(key)){//key.ToString().Length == 1 && IsAlphabet(key.ToString()[0])){
 			//set onConjugate and toConjugate as such for every action that will change imeText
 			onConjugate = false;
 			toConjugate = null;
-			if(Event.current.shift){
-				imeText += key.ToString().ToUpper();
-			}
-			else
-				imeText += key.ToString().ToLower();
-		}
-		//enter space into imeText
-		if (key == KeyCode.Space) {
-			onConjugate = false;
-			toConjugate = null;
-			imeText += " ";
+            imeText += GetText(key);
 		}
 		/** Potential key strokes that can be used for entering into text ***/
 		//TODO maybe enable punctuations
@@ -201,22 +211,22 @@ public class PhraseEditorWindow : EditorWindow {
 
 		/**   HotKeys for selection when imeText isn't empty  ********************/
 		//TODO maybe change hotkey to ctrl
-		else if (key == KeyCode.Comma && imeText != "") {
+		else if (key == KeyCode.Tab && imeText != "") {
 			var element = new PhraseSequenceElement (PhraseSequenceElementType.Text, imeText);
 			//phrase.Add (new PhraseSequenceElement(PhraseSequenceElementType.Text, imeText));
 			imeText = "";
 			phraseSequence.PhraseElements.Insert (cursorPosition, element);
 			setCursorPosition(cursorPosition + 1);
 		}
-		else if (key == KeyCode.Period && imeText != "") {
+		else if (key == KeyCode.LeftControl && imeText != "") {
 			var element = new PhraseSequenceElement (PhraseSequenceElementType.ContextSlot, imeText);
 			//phrase.Add (new PhraseSequenceElement(PhraseSequenceElementType.Text, imeText));
 			imeText = "";
 			phraseSequence.PhraseElements.Insert (cursorPosition, element);
 			setCursorPosition(cursorPosition + 1);
 		}
-		else if (key == KeyCode.Slash && imeText != "") {
-			var element = new PhraseSequenceElement (PhraseSequenceElementType.Wildcard, imeText);
+		else if (key == KeyCode.Tab && imeText == "") {
+			var element = new PhraseSequenceElement (PhraseSequenceElementType.Wildcard, "");
 			//phrase.Add (new PhraseSequenceElement(PhraseSequenceElementType.Text, imeText));
 			imeText = "";
 			phraseSequence.PhraseElements.Insert (cursorPosition, element);
@@ -265,6 +275,40 @@ public class PhraseEditorWindow : EditorWindow {
 	/** IME UI helper ****************************************************************************/
 
 	//key input helpers
+    bool IsText(KeyCode kc) {
+        var s = kc.ToString();
+        if (s.Length == 1) {
+            if(IsAlphabet(s[0])){
+                return true;
+            }
+        }
+
+        return keyMapping.ContainsKey(kc);
+    }
+
+    string GetText(KeyCode kc) {
+        var s = kc.ToString();
+        if (s.Length == 1) {
+            if (IsAlphabet(s[0])) {
+                if (Event.current.shift) {
+                    return s.ToUpper();
+                } else {
+                    return s.ToLower();
+                }
+            }
+        }
+
+        if (keyMapping.ContainsKey(kc)) {
+            if (Event.current.shift) {
+                return keyMapping[kc].Shift;
+            } else {
+                return keyMapping[kc].Normal;
+            }
+        }
+
+        return kc.ToString();
+    }
+
 	bool IsAlphabet(char c){
 		if (((int)c >= (int)'A' && (int)c <= (int)'Z') || ((int)c >= (int)'a' && (int)c <= (int)'z'))
 			return true;

@@ -2138,107 +2138,40 @@
         <ID>0</ID>
         <Name>Greeter</Name>
         <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
         <Tasks>
           <JobTaskGameData>
             <Name>Say hello</Name>
             <AreaName>RestaurantTest</AreaName>
-            <SceneObjectIdentifier>
-              <Name>Customer</Name>
-            </SceneObjectIdentifier>
+            <ProcessType>
+              <ProcessTypeName>WaiterProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name />
+            </Actor>
             <Dialogue>
+              <Actors />
               <Elements>
                 <Items>
                   <DialogueElement>
                     <ID>0</ID>
-                    <Prompt>
-                      <PhraseElements />
-                    </Prompt>
-                    <Line>
-                      <Phrase>
-                        <PhraseElements>
-                          <PhraseSequenceElement>
-                            <WordID>1000430</WordID>
-                            <FormID>0</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                        </PhraseElements>
-                      </Phrase>
-                      <AudioClipID>-1</AudioClipID>
-                    </Line>
+                    <ActorIndex>0</ActorIndex>
                     <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs>
-                      <int>1</int>
-                    </NextIDs>
                   </DialogueElement>
                   <DialogueElement>
                     <ID>1</ID>
-                    <Prompt>
-                      <PhraseElements>
-                        <PhraseSequenceElement>
-                          <WordID>1289400</WordID>
-                          <FormID>0</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                      </PhraseElements>
-                    </Prompt>
-                    <Line>
-                      <Phrase>
-                        <PhraseElements>
-                          <PhraseSequenceElement>
-                            <WordID>1289400</WordID>
-                            <FormID>0</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                        </PhraseElements>
-                      </Phrase>
-                      <AudioClipID>-1</AudioClipID>
-                    </Line>
+                    <ActorIndex>0</ActorIndex>
                     <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs>
-                      <int>2</int>
-                    </NextIDs>
                   </DialogueElement>
                   <DialogueElement>
                     <ID>2</ID>
-                    <Prompt>
-                      <PhraseElements>
-                        <PhraseSequenceElement>
-                          <WordID>1577100</WordID>
-                          <FormID>0</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                        <PhraseSequenceElement>
-                          <WordID>2149890</WordID>
-                          <FormID>0</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                        <PhraseSequenceElement>
-                          <WordID>1577980</WordID>
-                          <FormID>110</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                      </PhraseElements>
-                    </Prompt>
-                    <Line>
-                      <Phrase>
-                        <PhraseElements>
-                          <PhraseSequenceElement>
-                            <WordID>102</WordID>
-                            <FormID>0</FormID>
-                            <Text>people</Text>
-                            <Tags />
-                          </PhraseSequenceElement>
-                          <PhraseSequenceElement>
-                            <WordID>1577980</WordID>
-                            <FormID>110</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                        </PhraseElements>
-                      </Phrase>
-                      <AudioClipID>-1</AudioClipID>
-                    </Line>
+                    <ActorIndex>0</ActorIndex>
                     <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs />
                   </DialogueElement>
                 </Items>
               </Elements>
@@ -2270,73 +2203,37 @@
               </Phrase>
               <AudioClipID>-1</AudioClipID>
             </Line>
-            <ProcessType>
-              <ProcessTypeName>WaiterProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
-            </ProcessType>
           </JobTaskGameData>
         </Tasks>
-        <RequiredPhrases>
-          <PhraseSequence>
-            <PhraseElements>
-              <PhraseSequenceElement>
-                <WordID>1577100</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>2149890</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>1577980</WordID>
-                <FormID>110</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>2028970</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-            </PhraseElements>
-          </PhraseSequence>
-        </RequiredPhrases>
-        <LearnablePhrases />
       </JobGameData>
       <JobGameData>
         <ID>1</ID>
         <Name>Janitor</Name>
         <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
         <Tasks>
           <JobTaskGameData>
             <Name>Clean stuff up</Name>
             <AreaName>JanitorTest</AreaName>
-            <SceneObjectIdentifier>
-              <Name>Boss</Name>
-            </SceneObjectIdentifier>
+            <ProcessType>
+              <ProcessTypeName>JanitorProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name />
+            </Actor>
             <Dialogue>
+              <Actors />
               <Elements>
                 <Items>
                   <DialogueElement>
                     <ID>0</ID>
-                    <Prompt>
-                      <PhraseElements />
-                    </Prompt>
-                    <Line>
-                      <Phrase>
-                        <PhraseElements>
-                          <PhraseSequenceElement>
-                            <WordID>101</WordID>
-                            <FormID>0</FormID>
-                            <Text>clean this stuff up</Text>
-                            <Tags />
-                          </PhraseSequenceElement>
-                        </PhraseElements>
-                      </Phrase>
-                      <AudioClipID>-1</AudioClipID>
-                    </Line>
+                    <ActorIndex>0</ActorIndex>
                     <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs />
                   </DialogueElement>
                 </Items>
               </Elements>
@@ -2360,81 +2257,65 @@
               </Phrase>
               <AudioClipID>-1</AudioClipID>
             </Line>
-            <ProcessType>
-              <ProcessTypeName>JanitorProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
-            </ProcessType>
           </JobTaskGameData>
         </Tasks>
-        <RequiredPhrases />
-        <LearnablePhrases />
       </JobGameData>
       <JobGameData>
         <ID>2</ID>
         <Name>Eat at restaurant</Name>
         <Difficulty>0</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
         <Tasks>
           <JobTaskGameData>
             <Name>Go eat</Name>
             <AreaName>RestaurantTest</AreaName>
-            <SceneObjectIdentifier>
-              <Name>Waiter</Name>
-            </SceneObjectIdentifier>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
             <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+                <SceneObjectGameData>
+                  <Name>Customer</Name>
+                </SceneObjectGameData>
+              </Actors>
               <Elements>
                 <Items>
-                  <DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
                     <ID>0</ID>
-                    <Prompt>
-                      <PhraseElements />
-                    </Prompt>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
                     <Line>
                       <Phrase>
-                        <PhraseElements>
-                          <PhraseSequenceElement>
-                            <WordID>1289400</WordID>
-                            <FormID>0</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                        </PhraseElements>
+                        <PhraseElements />
                       </Phrase>
                       <AudioClipID>-1</AudioClipID>
                     </Line>
-                    <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs>
-                      <int>1</int>
-                    </NextIDs>
                   </DialogueElement>
-                  <DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
                     <ID>1</ID>
-                    <Prompt>
-                      <PhraseElements>
-                        <PhraseSequenceElement>
-                          <WordID>1289400</WordID>
-                          <FormID>0</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                      </PhraseElements>
-                    </Prompt>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
                     <Line>
                       <Phrase>
                         <PhraseElements>
                           <PhraseSequenceElement>
-                            <WordID>1577100</WordID>
+                            <WordID>1004500</WordID>
                             <FormID>0</FormID>
                             <Tags />
                           </PhraseSequenceElement>
                           <PhraseSequenceElement>
-                            <WordID>2149890</WordID>
-                            <FormID>0</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                          <PhraseSequenceElement>
-                            <WordID>1577980</WordID>
-                            <FormID>110</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                          <PhraseSequenceElement>
-                            <WordID>2028970</WordID>
+                            <WordID>2029000</WordID>
                             <FormID>0</FormID>
                             <Tags />
                           </PhraseSequenceElement>
@@ -2442,46 +2323,6 @@
                       </Phrase>
                       <AudioClipID>-1</AudioClipID>
                     </Line>
-                    <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs>
-                      <int>2</int>
-                    </NextIDs>
-                  </DialogueElement>
-                  <DialogueElement>
-                    <ID>2</ID>
-                    <Prompt>
-                      <PhraseElements>
-                        <PhraseSequenceElement>
-                          <WordID>1576150</WordID>
-                          <FormID>0</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                        <PhraseSequenceElement>
-                          <WordID>2089020</WordID>
-                          <FormID>110</FormID>
-                          <Tags />
-                        </PhraseSequenceElement>
-                      </PhraseElements>
-                    </Prompt>
-                    <Line>
-                      <Phrase>
-                        <PhraseElements>
-                          <PhraseSequenceElement>
-                            <WordID>1010080</WordID>
-                            <FormID>0</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                          <PhraseSequenceElement>
-                            <WordID>1189130</WordID>
-                            <FormID>0</FormID>
-                            <Tags />
-                          </PhraseSequenceElement>
-                        </PhraseElements>
-                      </Phrase>
-                      <AudioClipID>-1</AudioClipID>
-                    </Line>
-                    <DefaultNextID>-1</DefaultNextID>
-                    <NextIDs />
                   </DialogueElement>
                 </Items>
               </Elements>
@@ -2492,61 +2333,8 @@
               </Phrase>
               <AudioClipID>-1</AudioClipID>
             </Line>
-            <ProcessType>
-              <ProcessTypeName>RestaurantProces, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
-            </ProcessType>
           </JobTaskGameData>
         </Tasks>
-        <RequiredPhrases />
-        <LearnablePhrases>
-          <PhraseSequence>
-            <PhraseElements>
-              <PhraseSequenceElement>
-                <WordID>1289400</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-            </PhraseElements>
-          </PhraseSequence>
-          <PhraseSequence>
-            <PhraseElements>
-              <PhraseSequenceElement>
-                <WordID>1577100</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>2149890</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>1577980</WordID>
-                <FormID>110</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>2028970</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-            </PhraseElements>
-          </PhraseSequence>
-          <PhraseSequence>
-            <PhraseElements>
-              <PhraseSequenceElement>
-                <WordID>1010080</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-              <PhraseSequenceElement>
-                <WordID>1189130</WordID>
-                <FormID>0</FormID>
-                <Tags />
-              </PhraseSequenceElement>
-            </PhraseElements>
-          </PhraseSequence>
-        </LearnablePhrases>
       </JobGameData>
     </Items>
     <CurrentKey>1000021</CurrentKey>
@@ -11446,4 +11234,87 @@
       <CurrentKey>1000040</CurrentKey>
     </Items>
   </TradeData>
+  <PhraseSets>
+    <Items>
+      <PhraseSetGameData>
+        <Name>RestaurantDialogue01</Name>
+        <Phrases>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1000930</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>,</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2262180</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1545790</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2089020</WordID>
+                <FormID>110</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2028970</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>?</Text>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1301000</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2089020</WordID>
+                <FormID>110</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>1189130</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1004500</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>2029000</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+        </Phrases>
+      </PhraseSetGameData>
+    </Items>
+  </PhraseSets>
 </GameData>

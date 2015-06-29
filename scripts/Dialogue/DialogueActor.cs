@@ -119,4 +119,9 @@ public class DialogueActor : MonoBehaviour, ITriggerEventHandler, ISpeechTextSou
     public void SetRelevant(bool relevant) {
         isRelevant = relevant;
     }
+
+    void OnDrawGizmosSelected() {
+        Gizmos.DrawWireSphere(transform.position, 0.25f);
+        Gizmos.DrawWireSphere(transform.position + transform.forward * 2f, 0.25f);
+    }
 }

@@ -6,6 +6,7 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
 
     public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestLinearDialogueTurn = new ProcessFactoryRef<DialogueState,DialogueState>();
     public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestPromptDialogueTurn = new ProcessFactoryRef<DialogueState,DialogueState>();
+    public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestAnimationDialogueTurn = new ProcessFactoryRef<DialogueState, DialogueState>();
     public static readonly ProcessFactoryRef<GameObject, object> RequestConversationCamera = new ProcessFactoryRef<GameObject,object>();
 
     public event ProcessExitCallback OnExit;
@@ -13,6 +14,8 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
     DialogueActor actor;
     DialogueSequence dialogue;
     ContextData context;
+    DialogueState state;
+    int animationIndex = 0;
 
     public void Initialize(ConversationArgs target) {
         actor = target.Target.GetComponent<DialogueActor>();
@@ -44,7 +47,7 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
 
         PlayerController.LockMovement(this);
 
-        SetDialogueElement(new DialogueState(0, dialogue));
+        SetDialogueElement(new DialogueState(0, dialogue, null));
     }
 
     void Exit() {
@@ -58,22 +61,33 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
     }
 
     void SetDialogueElement(DialogueState dialogueState) {
-        actor.SetLine(dialogueState.GetElement().Line, context);
+        //actor.SetLine(dialogueState.GetElement().Line, context);
         //Debug.Log(dialogueState.GetElement().NextIDs.Count);
+        var e = dialogueState.GetElement();
 
-        switch (dialogueState.Dialogue.GetElementType(dialogueState.CurrentID)) {
-            case DialogueElementType.Linear: case DialogueElementType.End:
-                RequestLinearDialogueTurn.Get(dialogueState, HandleTurnExit, this);
-                break;
-            case DialogueElementType.Prompted:
-                RequestPromptDialogueTurn.Get(dialogueState, HandleTurnExit, this);
-                break;
+        if (e is LineDialogueElement) {
+            RequestLinearDialogueTurn.Get(dialogueState, HandleTurnExit, this);
+        } else if (e is BranchDialogueElement) {
+            RequestPromptDialogueTurn.Get(dialogueState, HandleTurnExit, this);
+        } else if (e is AnimationDialogueElement) {
+            RequestAnimationDialogueTurn.Get(dialogueState, HandleTurnExit, this);
+        } else {
+            int id = -1;
+            if (e != null) {
+                id = e.DefaultNextID;
+            }
+            HandleTurnExit(null, new DialogueState(id, dialogueState.Dialogue, null));
         }
     }
 
+    void HandleAnimationExit(object sender, System.EventArgs args) {
+        SetDialogueElement(state); 
+    }
+
     void HandleTurnExit(object sender, DialogueState e) {
-        if (e == null) {
+        if (e.GetElement() == null) {
             Exit();
+            return;
         }
         
         if (e.CurrentID == DialogueSequence.ConfusedExit) {

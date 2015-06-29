@@ -17,7 +17,12 @@ public class ProcessTypeRef {
     }
 
     public string ProcessTypeName {
-        get { return _processType.AssemblyQualifiedName; }
+        get {
+            if (_processType != null) {
+                return _processType.AssemblyQualifiedName;
+            }
+            return typeof(TempProcess<JobTaskRef, object>).AssemblyQualifiedName;
+        }
         set { _processType = Type.GetType(value); }
     }
 
