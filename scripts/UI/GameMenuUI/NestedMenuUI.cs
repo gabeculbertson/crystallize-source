@@ -8,7 +8,7 @@ public class NestedMenuUI<T> : ConfirmMenuUI<T>
 
 {
 	const string ResourcePath = "UI/NestedMenu";
-	public static NestedMenuUI<T> GetInstance() {
+	new public static NestedMenuUI<T> GetInstance() {
 		return GameObjectUtil.GetResourceInstance<NestedMenuUI<T>>(ResourcePath);
 	}
 	

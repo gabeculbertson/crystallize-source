@@ -6,6 +6,8 @@ public class CashierTaskData : InferenceTaskGameData {
 	//number of items a customer will buy
 	public int NumItem { get; set;}
 
+	public List<DialogueSequence> AllDialogues;
+
 	public string contextPrefix = "price";
 
 	public DialogueActorLine priceLine;
@@ -16,6 +18,7 @@ public class CashierTaskData : InferenceTaskGameData {
 		NumItem = 0;
 		priceLine = new DialogueActorLine ();
 		ShopLists = new List<ValuedItem> ();
+		AllDialogues = new List<DialogueSequence>(); 
 	}
 	public CashierTaskData(int num) : this (){
 		NumItem = num;
