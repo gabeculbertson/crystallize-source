@@ -15,6 +15,7 @@ namespace CrystallizeData {
             AddLine("What will you eat?");
             AddUI<TextMenuItem>(UILibrary.TextMenu, GetItems, SelectNext);
 
+
             right.Index = AddLine("good choice");
             Break();
 
