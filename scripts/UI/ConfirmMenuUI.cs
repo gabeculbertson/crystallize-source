@@ -4,9 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class ConfirmMenuUI<T, V> : SelectionMenuUI<T, V> 
+public abstract class ConfirmMenuUI<T, V> : SelectionMenuUI<T, V>
 	where V : MenuItemEventArg
-	where T : GameMenuItem
 {
 
 	public UIButton button;

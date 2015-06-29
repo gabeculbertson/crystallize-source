@@ -22,10 +22,10 @@ public class DebugTimeProcess : MonoBehaviour {
 	JobGameData CreateGameData(){
 		JobGameData ret = new JobGameData ();
 		//TODO switch jobs here
-		ret.Tasks.Add(CreateCashierTask());
+//		ret.Tasks.Add(CreateCashierTask());
 //		ret.Tasks.Add(CreatePetFeederTask());
 //		ret.Tasks.Add(CreatePointPlaceTask());
-//		ret.Tasks.Add(CreateVolunteerTask());
+		ret.Tasks.Add(CreateVolunteerTask());
 		return ret;
 	}
 

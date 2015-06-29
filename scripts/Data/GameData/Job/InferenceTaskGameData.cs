@@ -25,17 +25,20 @@ public class InferenceTaskGameData: JobTaskGameData {
 		List<string> l1 = new List<string> ();
 		List<string> l2 = new List<string> ();
 		foreach (var d in Dialogues){
-			if(PhraseSequence.IsPhraseEquivalent(p1, d.Phrase)){
+//			if(PhraseSequence.IsPhraseEquivalent(p1, d.Phrase)){
+			if(d.Phrase.GetText() == g1){
 				l1 = new List<string>(d.Category);
 			}
 		}
 
 		foreach (var d in Dialogues){
-			if(PhraseSequence.IsPhraseEquivalent(p2, d.Phrase)){
+			if(d.Phrase.GetText() == g2){
 				l2 = new List<string>(d.Category);
 			}
 		}
-
+		foreach(var v in l1.Intersect (l2).ToList()){
+			Debug.Log(v);
+		}
 		return l1.Intersect (l2).ToList().Count > 0;
 	}
 }

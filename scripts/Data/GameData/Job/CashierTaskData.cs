@@ -19,10 +19,10 @@ public class CashierTaskData : InferenceTaskGameData {
 	}
 	public CashierTaskData(int num) : this (){
 		NumItem = num;
+		priceLine.Phrase = new PhraseSequence("I want to buy ");
 		PhraseSequence phrase = priceLine.Phrase;
-		phrase = new PhraseSequence("I want to buy ");
 		for (int i = 0; i < NumItem; i++) {
-			phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, contextPrefix+i));
+			phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, contextPrefix+i.ToString()));
 			phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, " "));
 		}
 		Line.Phrase = new PhraseSequence ();

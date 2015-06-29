@@ -6,9 +6,7 @@ using System.Collections.Generic;
 
 public abstract class SelectionMenuUI<T, V> : UIPanel, ITemporaryUI<List<T>, V> 
 	where V : MenuItemEventArg
-	where T : GameMenuItem
 {
-
 	const string ResourcePath = "UI/SelectionMenu";
 	public static SelectionMenuUI<T, V> GetInstance() {
 		return GameObjectUtil.GetResourceInstance<SelectionMenuUI<T, V>>(ResourcePath);

@@ -62,7 +62,6 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	}
 
 	void HandleGreetingConversationExit(object sender, object obj){
-		Debug.Log (greeting);
 		var ui = UILibrary.TextMenu.Get (greetings);
 		ui.Complete += ui_GreetComplete;
 	}
@@ -87,12 +86,19 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	void HandleMessageBoxExit(object sender, object obj) {
 		GetNewTargetPrice();
-		person.GetComponent<DialogueActor>().SetLine(taskData.priceLine, GetNewPriceContext());
-		Debug.Log (nowItem [0].Value + " " + nowItem [0].Text);
+		var d = new DialogueSequence();
+		var de = d.GetNewDialogueElement();
+		de.Line = taskData.priceLine;
+		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d, GetNewPriceContext()), HandlePriceConversationExit, this);
+//		person.GetComponent<DialogueActor>().SetLine(taskData.priceLine, GetNewPriceContext());
+//		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
+//		ui.Complete += ui_Complete;
+	}
+	void HandlePriceConversationExit(object sender, object obj){
 		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
 		ui.Complete += ui_Complete;
 	}
-	
+
 	void ui_Complete(object sender, EventArgs<ValuedItemEventArg> e) {
 		//TODO cast e and compare
 		remainingCount--;
@@ -181,7 +187,8 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		//TODO How to make this more flexible/dynamic?
 		Func<string, int, string> priceString = (x, y) => String.Format("{0} (Price: {1} yen)", x, y);
 		for (int i = 0; i < taskData.NumItem; i++) {
-			c.UpdateElement(taskData.contextPrefix + i , new PhraseSequence(priceString(nowItem[i].Text, nowItem[i].Value)));
+			Debug.Log(taskData.contextPrefix + i.ToString());
+			c.UpdateElement(taskData.contextPrefix + i.ToString() , new PhraseSequence(priceString(nowItem[i].Text, nowItem[i].Value)));
 		}
 //		c.UpdateElement("price1", new PhraseSequence(priceString(nowItem[0].Text, nowItem[0].Value)));
 //		c.UpdateElement("price2", new PhraseSequence(priceString(nowItem[1].Text, nowItem[1].Value)));
