@@ -63,4 +63,16 @@ public class DialogueSequence {
         return newEle;
     }
 
+    public DialogueElement AddNewDialogueElement(DialogueElement e) {
+        int count = 0;
+        foreach (var ele in Elements.Items) {
+            if (ele.ID >= count) {
+                count = ele.ID + 1;
+            }
+        }
+        e.ID = count;
+        Elements.AddItem(e);
+        return e;
+    }
+
 }

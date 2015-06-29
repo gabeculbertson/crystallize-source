@@ -37,7 +37,7 @@ public class SpeechPanelUI : MonoBehaviour {
     }
 
     void HandleSpeechBubbleRequested(object sender, SpeechBubbleRequestedEventArgs e) {
-		Debug.Log ("speech bubble callback");
+		//Debug.Log ("speech bubble callback");
         if (e.Phrase == null) {
             RemoveSpeechBubble(e.Target);
         } else {

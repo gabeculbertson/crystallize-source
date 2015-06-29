@@ -11186,6 +11186,20 @@
       </English>
       <PartOfSpeech>Noun</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>2820690</ID>
+      <Kanji>いい</Kanji>
+      <Kana>いい</Kana>
+      <English>
+        <string>good</string>
+        <string>excellent</string>
+        <string>fine</string>
+        <string>nice</string>
+        <string>pleasant</string>
+        <string>agreeable</string>
+      </English>
+      <PartOfSpeech>Adjective</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>
