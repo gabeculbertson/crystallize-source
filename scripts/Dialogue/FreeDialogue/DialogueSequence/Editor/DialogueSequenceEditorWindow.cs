@@ -2,7 +2,9 @@
 using UnityEditor;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Util.Serialization;
 
 public class DialogueSequenceEditorWindow : EditorWindow {
@@ -21,6 +23,9 @@ public class DialogueSequenceEditorWindow : EditorWindow {
     DialogueSequence dialogue;
     Action<string> setString;
 
+    List<Type> newElementTypes;
+    string[] newElementTypeStrings;
+
     string[] elementStrings;
     int[] elementIDs;
 
@@ -28,6 +33,12 @@ public class DialogueSequenceEditorWindow : EditorWindow {
         this.dialogue = dialogue;
         setString = null;
         GetElementList();
+
+        newElementTypes = (from t in Assembly.GetAssembly(typeof(DialogueSequence)).GetTypes()
+                           where t.IsSubclassOf(typeof(DialogueElement)) select t).ToList();
+        newElementTypes.Insert(0, typeof(object));
+        newElementTypeStrings = newElementTypes.Select((e) => e.ToString()).ToArray();
+        newElementTypeStrings[0] = "Null";
     }
 
     void Initialize(string xmlString, Action<string> setString)
@@ -59,7 +70,7 @@ public class DialogueSequenceEditorWindow : EditorWindow {
         elementStrings = new string[dialogue.Elements.Items.Count + 1];
         elementIDs = new int[dialogue.Elements.Items.Count + 1];
 
-        var names = dialogue.Elements.Items.Select((e) => string.Format("[{0}] {1}", e.ID, e.Line.Phrase.GetText())).ToArray();
+        var names = dialogue.Elements.Items.Select((e) => string.Format("[{0}] {1}", e.ID, e.ToString())).ToArray();
         var ids = dialogue.Elements.Items.Select((e) => e.ID).ToArray();
 
         elementStrings[0] = "NULL";
@@ -71,16 +82,30 @@ public class DialogueSequenceEditorWindow : EditorWindow {
 
     void OnGUI()
     {
+        EditorUtilities.DrawProperty(dialogue, typeof(DialogueSequence).GetProperty("Actors"));
+
         foreach (var e in dialogue.Elements.Items)
         {
             DrawElement(e);
+
+            e.ActorIndex = EditorGUILayout.Popup("Actor", e.ActorIndex, GetPersonChoices());
+
+            if (GUILayout.Button("-")) {
+                dialogue.Elements.RemoveItem(e.ID);
+                break;
+            }
         }
 
-        if (GUILayout.Button("Add element"))
+        var selected = EditorGUILayout.Popup("Add element", 0, newElementTypeStrings);
+        if (selected != 0) {
+            dialogue.GetNewDialogueElement(newElementTypes[selected]);
+            GetElementList();
+        }
+        /*if (GUILayout.Button("Add element"))
         {
             dialogue.GetNewDialogueElement();
             GetElementList();
-        }
+        }*/
 
         if (GUILayout.Button("Save"))
         {
@@ -97,32 +122,16 @@ public class DialogueSequenceEditorWindow : EditorWindow {
     {
         EditorGUILayout.BeginVertical(GUI.skin.box);
 
-        EditorGUILayout.LabelField(element.ID.ToString());
-        EditorUtilities.DrawObject(element.Line);
-        EditorUtilities.DrawPhraseSequence(element.Prompt);
-
-        element.DefaultNextID = GetID("Default Next ID", element.DefaultNextID);
-
-        EditorGUI.indentLevel++;
-
-        for (int i = 0; i < element.NextIDs.Count; i++)
-        {
-            element.NextIDs[i] = GetID("Next ID [" + i + "]", element.NextIDs[i]);
-        }
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add"))
-        {
-            element.NextIDs.Add(-1);
-        }
-        if (GUILayout.Button("Remove"))
-        {
-            element.NextIDs.RemoveAt(element.NextIDs.Count - 1);
-        }
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUI.indentLevel--;
+        EditorUtilities.DrawObject(element);
 
         EditorGUILayout.EndVertical();
+    }
+
+    string[] GetPersonChoices() {
+        if (dialogue.Actors.Count == 0) {
+            return new string[] { "default" };
+        }
+        return dialogue.Actors.Select((e) => e.Name).ToArray();
     }
 
     int GetIndex(int id)

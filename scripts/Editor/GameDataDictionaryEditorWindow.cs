@@ -15,6 +15,8 @@ public abstract class GameDataDictionaryEditorWindow<T> : EditorWindow where T :
 
         foreach (var j in Dictionary.Items) {
             DrawItem(j);
+
+            EditorGUILayout.Space();
         }
 
         GUILayout.BeginHorizontal();

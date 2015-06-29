@@ -9,15 +9,15 @@ public class JobTaskGameData {
 
     public string Name { get; set; }
     public string AreaName { get; set; }
-    public SceneObjectGameData SceneObjectIdentifier { get; set; }
+    public ProcessTypeRef ProcessType { get; set; }
+    public SceneObjectGameData Actor { get; set; }
     public DialogueSequence Dialogue { get; set; }
     public DialogueActorLine Line { get; set; }
-    public ProcessTypeRef ProcessType { get; set; }
 
     public JobTaskGameData() {
         Name = "";
         AreaName = "";
-        SceneObjectIdentifier = new SceneObjectGameData();
+        Actor = new SceneObjectGameData();
         Dialogue = new DialogueSequence();
         Line = new DialogueActorLine();
         ProcessType = new ProcessTypeRef();

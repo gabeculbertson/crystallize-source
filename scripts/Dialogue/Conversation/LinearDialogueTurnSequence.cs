@@ -14,6 +14,8 @@ public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState>
 
     public void Initialize(DialogueState data) {
         this.state = data;
+        var target = state.GetTarget();
+        target.GetComponent<DialogueActor>().SetLine(((LineDialogueElement)data.GetElement()).Line);
         CrystallizeEventManager.Input.OnEnvironmentClick += OnEnvironmentClick;
     }
 
@@ -25,12 +27,8 @@ public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState>
         if (state.CurrentID == DialogueSequence.ConfusedExit) {
             return null;
         }
-        
-        if (state.GetElement().NextIDs.Count > 0) {
-            return new DialogueState(state.GetElement().NextIDs[0], state.Dialogue);
-        } else {
-            return null;
-        }
+
+        return new DialogueState(state.GetElement().DefaultNextID,state.Dialogue, state.Context);
     }
 
     void Exit() {

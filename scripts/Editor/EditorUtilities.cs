@@ -210,10 +210,9 @@ public class EditorUtilities {
 
     public static void DrawPhraseSequence(PhraseSequence phrase, string name = "") {
         EditorGUILayout.BeginHorizontal();
-        if (name == "") {
-            name = "Phrase";
+        if (name != "") {
+            EditorGUILayout.PrefixLabel(name);
         }
-        EditorGUILayout.PrefixLabel(name);
         if (GUILayout.Button(phrase.GetText())) {
             PhraseEditorWindow.Open(phrase);
         }
@@ -231,6 +230,10 @@ public class EditorUtilities {
                 continue;
             }
 
+            if (Attribute.IsDefined(p, typeof(HideEditorPropertyAttribute))) {
+                continue;
+            }
+            
             DrawProperty(obj, p);
         }
     }
@@ -271,9 +274,13 @@ public class EditorUtilities {
             EditorGUI.indentLevel++;
 
             for (int i = 0; i < list.Count; i++) {
-                EditorGUILayout.BeginVertical(GUI.skin.box);
-                DrawObject(list[i]);
-                EditorGUILayout.EndVertical();
+                if (t.IsValueType) {
+                    list[i] = DrawValueTypeField("[" + i + "]", list[i]);
+                } else {
+                    EditorGUILayout.BeginVertical(GUI.skin.box);
+                    DrawObject(list[i]);
+                    EditorGUILayout.EndVertical();
+                }
             }
 
             EditorGUILayout.BeginHorizontal();
@@ -301,6 +308,10 @@ public class EditorUtilities {
     }
 
     static object GetDefaultValue(Type t) {
+        if (t == typeof(string)) {
+            return "";
+        }
+        
         if (t.IsValueType) {
             return Activator.CreateInstance(t);
         } else if (t.GetConstructor(new Type[0]) != null) {
@@ -334,6 +345,17 @@ public class EditorUtilities {
 
     static void DrawLabelValue(object obj, PropertyInfo p) {
         EditorGUILayout.LabelField(p.PropertyType.ToString(), obj.ToString());
+    }
+
+    public static object DrawValueTypeField(string label, object obj) {
+        if (obj is string) {
+            return EditorGUILayout.TextField(label, (string)obj);
+        } else if (obj is int) {
+            return EditorGUILayout.IntField(label, (int)obj);
+        } else if (obj is float) {
+            return EditorGUILayout.FloatField(label, (float)obj);
+        }
+        return null;
     }
 
     static void DrawProcessTypeRefValue(object obj, PropertyInfo p) {
@@ -372,7 +394,5 @@ public class EditorUtilities {
         }
         return null;
     }
-
-
 
 }

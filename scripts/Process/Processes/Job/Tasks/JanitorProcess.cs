@@ -20,7 +20,7 @@ public class JanitorProcess : IProcess<JobTaskRef, object> {
     public void Initialize(JobTaskRef param1) {
         task = param1;
         remainingCount = GetTaskCount();
-        person = new SceneObjectRef(task.Data.SceneObjectIdentifier).GetSceneObject();
+        person = new SceneObjectRef(task.Data.Actor).GetSceneObject();
         ProcessLibrary.Conversation.Get(new ConversationArgs(person, task.Data.Dialogue), HandleConversationExit, this);
     }
 
@@ -69,7 +69,7 @@ public class JanitorProcess : IProcess<JobTaskRef, object> {
         }
 
         var d = new DialogueSequence();
-        var de = d.GetNewDialogueElement();
+        var de = d.GetNewDialogueElement<LineDialogueElement>();
         de.Line = new DialogueActorLine();
         de.Line.Phrase = new PhraseSequence(s);
         ProcessLibrary.Conversation.Get(new ConversationArgs(person, d), HandleExitConversationExit, this);

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [JobProcessType]
-public class RestaurantProces : IProcess<JobTaskRef, object> {
+public class RestaurantProcess : IProcess<JobTaskRef, object> {
 
     public event ProcessExitCallback OnExit;
 
@@ -13,7 +13,7 @@ public class RestaurantProces : IProcess<JobTaskRef, object> {
 
     public void Initialize(JobTaskRef param1) {
         task = param1;
-        person = new SceneObjectRef(task.Data.SceneObjectIdentifier).GetSceneObject();
+        person = new SceneObjectRef(task.Data.Actor).GetSceneObject();
         ProcessLibrary.Conversation.Get(new ConversationArgs(person, task.Data.Dialogue), HandleConversationExit, this);
     }
 

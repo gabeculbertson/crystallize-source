@@ -3,10 +3,6 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class Context {
-    
-}
-
 public class MainProcess {
 
     public static void Initialize() {
@@ -45,6 +41,7 @@ public class MainProcess {
         ConversationSequence.RequestConversationCamera.Set<ConversationCameraProcess>();
         ConversationSequence.RequestLinearDialogueTurn.Set<LinearDialogueTurnSequence>();
         ConversationSequence.RequestPromptDialogueTurn.Set<PromptDialogueTurnSequence>();
+        ConversationSequence.RequestAnimationDialogueTurn.Set<DialogueAnimationProcess>();
         PromptDialogueTurnSequence.RequestPhrasePanel.Set<PhraseSelectionProcess>();
         PhraseSelectionProcess.RequestPhraseEditor.Set<EditPhraseProcess>();
 

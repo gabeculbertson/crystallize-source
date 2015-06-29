@@ -119,6 +119,7 @@ Transform:
   m_Children:
   - {fileID: 807377962}
   - {fileID: 1665964452}
+  - {fileID: 1788322728}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!114 &203505136
@@ -277,7 +278,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 807377961}
   m_LocalRotation: {x: 0, y: -.49395892, z: 0, w: -.869485319}
-  m_LocalPosition: {x: 1.33000004, y: .061999999, z: .959999979}
+  m_LocalPosition: {x: 2.8499999, y: .061999999, z: .129999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 453441487}
@@ -769,6 +770,62 @@ Rigidbody:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1665964451}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &1788322727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1788322728}
+  - 54: {fileID: 1788322731}
+  - 114: {fileID: 1788322730}
+  m_Layer: 0
+  m_Name: Observer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1788322728
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788322727}
+  m_LocalRotation: {x: 0, y: .0644315556, z: 0, w: .997922182}
+  m_LocalPosition: {x: 4.03999996, y: .0890000015, z: .0500000007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 203505135}
+  m_RootOrder: 2
+--- !u!114 &1788322730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788322727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7be89f97bd746c4c8cebe51a45ced5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actorName: ???
+--- !u!54 &1788322731
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788322727}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0

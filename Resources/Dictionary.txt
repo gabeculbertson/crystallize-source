@@ -11159,6 +11159,33 @@
       </English>
       <PartOfSpeech>Noun</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1000930</ID>
+      <Kanji>いらっしゃいませ</Kanji>
+      <Kana>いらっしゃいませ</Kana>
+      <English>
+        <string>welcome (in shops, etc.)</string>
+      </English>
+      <PartOfSpeech>Expression</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>2262180</ID>
+      <Kanji>何名</Kanji>
+      <Kana>なんめい</Kana>
+      <English>
+        <string>how many people</string>
+      </English>
+      <PartOfSpeech>Noun</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>2254960</ID>
+      <Kanji>辺</Kanji>
+      <Kana>へ</Kana>
+      <English>
+        <string>surrounding area</string>
+      </English>
+      <PartOfSpeech>Noun</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>

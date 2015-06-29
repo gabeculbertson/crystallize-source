@@ -40,6 +40,7 @@ public class PlayerData {
     public FlagPlayerData Flags { get; set; }
     public JobCollectionPlayerData Jobs { get; set; }
     public HomeCollectionPlayerData Homes { get; set; }
+    public ProficiencyPlayerData Proficiency { get; set; }
     public float RestQuality { get; set; }
 
 	public PlayerData(){
@@ -60,7 +61,8 @@ public class PlayerData {
         Flags = new FlagPlayerData();
         Jobs = new JobCollectionPlayerData();
         Homes = new HomeCollectionPlayerData();
-		Item = "";
+        Proficiency = new ProficiencyPlayerData();
+        Item = "";
         RestQuality = 0.5f;
 	}
 

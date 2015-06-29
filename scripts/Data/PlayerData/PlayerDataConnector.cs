@@ -20,4 +20,18 @@ public class PlayerDataConnector {
         CrystallizeEventManager.PlayerState.RaiseMoneyChanged(null, null);
     }
 
+    public static void CollectPhrase(PhraseSequence phrase) {
+        if (!PlayerData.Instance.PhraseStorage.ContainsPhrase(phrase)) {
+            PlayerData.Instance.PhraseStorage.AddPhrase(phrase);
+            CrystallizeEventManager.PlayerState.RaisePhraseCollected(null, new PhraseEventArgs(phrase));
+        }
+    }
+
+    public static void CollectWord(PhraseSequenceElement word) {
+        if (!PlayerData.Instance.WordStorage.ContainsFoundWord(word)) {
+            PlayerData.Instance.WordStorage.AddFoundWord(word);
+            CrystallizeEventManager.PlayerState.RaiseWordCollected(null, new PhraseEventArgs(word));
+        }
+    }
+
 }

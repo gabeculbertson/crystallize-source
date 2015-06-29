@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
+[XmlInclude(typeof(LineDialogueElement))]
+[XmlInclude(typeof(BranchDialogueElement))]
+[XmlInclude(typeof(AnimationDialogueElement))]
 public class DialogueElement : ISerializableDictionaryItem<int> {
 
     public int ID { get; set; }
-    public PhraseSequence Prompt { get; set; }
-    public DialogueActorLine Line { get; set; }
-    public ConditionBranch Condition { get; set; }
+    [HideEditorProperty]
+    public int ActorIndex { get; set; }
     public int DefaultNextID { get; set; }
-    public List<int> NextIDs { get; set; }
 
     public int Key
     {
@@ -21,11 +23,9 @@ public class DialogueElement : ISerializableDictionaryItem<int> {
 
     public DialogueElement()
     {
-        Line = new DialogueActorLine();
-        Prompt = new PhraseSequence();
         ID = -1;
         DefaultNextID = -1;
-        NextIDs = new List<int>();
+        ActorIndex = 0;
     }
 
 }

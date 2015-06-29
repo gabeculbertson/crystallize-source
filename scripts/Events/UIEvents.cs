@@ -25,7 +25,7 @@ public class UIEvents : GameEvents{
     public void RaiseSpeechBubbleOpen(object sender, PhraseEventArgs args) { OnSpeechBubbleOpen.Raise(sender, args); }
 
     public event EventHandler<WordClickedEventArgs> OnWordClicked;
-    public void RaiseWordClicked(object sender, WordClickedEventArgs args) { OnWordClicked(sender, args); }
+    public void RaiseWordClicked(object sender, WordClickedEventArgs args) { OnWordClicked.Raise(sender, args); }
 
     public event EventHandler OnInteractiveDialogueOpened;
     public void RaiseInteractiveDialogueOpened(object sender, EventArgs args) { OnInteractiveDialogueOpened.Raise(sender, args); }

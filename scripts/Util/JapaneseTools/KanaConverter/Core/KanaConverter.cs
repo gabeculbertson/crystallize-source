@@ -76,32 +76,50 @@ namespace JapaneseTools {
 			}
 
 			var romajiText = "";
+            var tmpText = "";
+            bool tsu = false;
 			for (int i = 0; i < text.Length; i++) {
 				var charString = text[i].ToString();
+                if (charString == "っ") {
+                    tsu = true;
+                    continue;
+                }
+
 				if(i < text.Length - 1){
 					var substring = text.Substring(i, 2);
 					if(hiraganaToRomaji.ContainsKey(substring)){
-						romajiText += hiraganaToRomaji[substring];
+                        romajiText += AddSegment(hiraganaToRomaji[substring], ref tsu);
 						i++;
 						continue;
 					} else if(katakanaToHiragana.ContainsKey(substring)){
-						romajiText += hiraganaToRomaji[katakanaToHiragana[substring]];
+						romajiText += AddSegment(hiraganaToRomaji[katakanaToHiragana[substring]], ref tsu);
 						i++;
 						continue;
 					} 
 				}
 
 				if(hiraganaToRomaji.ContainsKey(charString)){
-					romajiText += hiraganaToRomaji[charString];
+					romajiText += AddSegment(hiraganaToRomaji[charString], ref tsu);
 				} else if(katakanaToHiragana.ContainsKey(charString)){
-					romajiText += hiraganaToRomaji[katakanaToHiragana[charString]];
+					romajiText += AddSegment(hiraganaToRomaji[katakanaToHiragana[charString]],ref tsu);
 				} else {
-					romajiText += text[i];
+					romajiText += AddSegment(text[i].ToString(), ref tsu);
 				}
 			}
 
+            //romajiToHiragana["っ"] = "っ";
+            //hiraganaToRomaji["っ"] = "";
+
 			return romajiText;
 		}
+
+        string AddSegment(string text, ref bool tsu) {
+            if (tsu) {
+                text = text[0] + text;
+            }
+            tsu = false;
+            return text;
+        }
 
 		public string ConvertToHiragana(string text){
 			if (text == null) {

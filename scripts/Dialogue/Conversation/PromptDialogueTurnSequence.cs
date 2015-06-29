@@ -25,14 +25,15 @@ public class PromptDialogueTurnSequence : IProcess<DialogueState, DialogueState>
         Debug.Log("[" + args.GetText() + "]" + (args.GetText().Trim() == "?"));
         if (args.GetText().Trim() == "?") {
             PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args);
-            Exit(new DialogueState(DialogueSequence.ConfusedExit, state.Dialogue));
+            Exit(new DialogueState(DialogueSequence.ConfusedExit, state.Dialogue, state.Context));
             return;
         }
-        
-        foreach (var id in state.GetElement().NextIDs) {
-            if (PhraseSequence.IsPhraseEquivalent(state.Dialogue.GetElement(id).Prompt, args)) {
+
+        var promptElement = (BranchDialogueElement)state.GetElement();
+        foreach (var link in promptElement.Branches) {
+            if (PhraseSequence.IsPhraseEquivalent(link.Prompt, args)) {
                 PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args);
-                nextState = new DialogueState(id, state.Dialogue);
+                nextState = new DialogueState(link.NextID, state.Dialogue, state.Context);
                 var pos = UILibrary.PositiveFeedback.Get("");
                 pos.Complete += pos_Complete;
                 return;
