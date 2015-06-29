@@ -53,7 +53,7 @@ public class DebugTimeProcess : MonoBehaviour {
 		task.AreaName = "CashierTest";
 		task.Name = "CashierTask";
 		task.ProcessType = new ProcessTypeRef (typeof(CashierProcess));
-		task.SceneObjectIdentifier.Name = "Customer";
+		task.Actor.Name = "Customer";
 		return task;
 	}
 

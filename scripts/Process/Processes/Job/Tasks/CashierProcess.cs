@@ -36,7 +36,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		remainingCount = GetTaskCount();
 		numItems = taskData.NumItem;
 		nowItem = new ValuedItem[numItems];
-		person = new SceneObjectRef(taskData.SceneObjectIdentifier).GetSceneObject();
+		person = new SceneObjectRef(taskData.Actor).GetSceneObject();
 		//get menu item lists
 		foreach (var v in taskData.Dialogues) {
 			TextMenuItem item = TextMenuItem.CreateInstance<TextMenuItem>();
@@ -54,7 +54,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	void HandleGreetingExit(object sender, object obj) {
 		GetNewGreeting();
 		var d = new DialogueSequence();
-		var de = d.GetNewDialogueElement();
+		var de = d.GetNewDialogueElement<LineDialogueElement>();
 		de.Line = taskData.Line;
 		ContextData context = GetNewGreetingContext ();
 		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d, context), HandleGreetingConversationExit, this);
@@ -128,7 +128,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		}
 		
 		var d = new DialogueSequence();
-		var de = d.GetNewDialogueElement();
+		var de = d.GetNewDialogueElement<LineDialogueElement>();
 		de.Line = new DialogueActorLine();
 		de.Line.Phrase = new PhraseSequence(s);
 		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d), HandleExitConversationExit, this);
