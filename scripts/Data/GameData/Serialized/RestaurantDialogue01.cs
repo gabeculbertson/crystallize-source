@@ -8,10 +8,10 @@ namespace CrystallizeData {
             AddActor("Waiter");
             AddActor("Customer");
 
-            AddAnimation(0, new GestureDialogueAnimation("Bow"));
-            AddLine(0, "Welcome to the restaurant. How many in your party?");
-            AddLine(1, "x people.");
-            AddLine(0, "Please, this way.");
+            AddAnimation(new GestureDialogueAnimation("Bow"));
+            AddLine("Welcome to the restaurant. How many in your party?", 0);
+            AddLine("x people.", 1);
+            AddLine("Please, this way.", 0);
         }
 
     }
