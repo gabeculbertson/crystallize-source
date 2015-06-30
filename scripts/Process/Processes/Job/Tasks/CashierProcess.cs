@@ -72,6 +72,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	void HandleGreetingConversationExit(object sender, object obj){
 		var ui = UILibrary.PhraseSequenceMenu.Get (greetings);
+		Debug.Log("Creating new UI");
 		ui.Complete += ui_GreetComplete;
 	}
 

@@ -23,6 +23,8 @@ public class DialogueAnimationProcess : IProcess<DialogueState, DialogueState> {
     }
 
     void Exit() {
+		var anim = ((AnimationDialogueElement)state.GetElement()).Animation;
+		anim.OnComplete -= anim_OnComplete;
         OnExit.Raise(this, new DialogueState(state.GetElement().DefaultNextID, state.Dialogue, state.Context));
     }
 
