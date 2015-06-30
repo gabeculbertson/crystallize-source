@@ -13,14 +13,18 @@ public class PhraseSetTranslationEditorWindow : EditorWindow {
 
     Vector2 scroll;
 
+    void Initialize() {
+        PhraseSetCollectionGameData.LoadAll();
+    }
+
     void OnGUI() {
         scroll = EditorGUILayout.BeginScrollView(scroll);
 
-        foreach (var ps in GameData.Instance.PhraseSets.Items) {
+        foreach (var ps in PhraseSetCollectionGameData.GetPhraseSets()) {
             foreach (var p in ps.Phrases) {
                 p.Translation = EditorGUILayout.TextField(p.GetText(), p.Translation);
             }
-        } 
+        }
 
         EditorGUILayout.EndScrollView();
     }
