@@ -48,6 +48,18 @@ public class PhraseSequence {
 
 	public string Translation { get; set; }
 	public List<PhraseSequenceElement> PhraseElements { get; set; }
+    
+    public bool IsWord {
+        get {
+            return PhraseElements.Count == 1;
+        }
+    }
+
+    public PhraseSequenceElement Word {
+        get {
+            return PhraseElements[0];
+        }
+    }
 
     public bool IsEmpty {
         get {
@@ -68,6 +80,10 @@ public class PhraseSequence {
     {
         Translation = original.Translation;
         PhraseElements = new List<PhraseSequenceElement>(original.PhraseElements);
+    }
+
+    public PhraseSequence(PhraseSequenceElement word) : this() {
+        Add(word);
     }
 
 	public List<PhraseSequenceElement> GetElements(){

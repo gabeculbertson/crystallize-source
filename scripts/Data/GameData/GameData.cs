@@ -52,12 +52,12 @@ public class GameData {
 	}
 
 	public static void SaveInstance(){
+        PhraseSetCollectionGameData.SaveAll();
+        
         if (!CanSave) {
             Debug.LogError("GameData contains temporary data. Unable to save.");
             return;
         }
-
-        PhraseSetCollectionGameData.SaveAll();
 
 		if (_instance != null) {
 			if(Application.isEditor){

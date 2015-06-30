@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Eater</Name>
+  <Phrases>
+    <PhraseSequence>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1289400</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>2262180</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

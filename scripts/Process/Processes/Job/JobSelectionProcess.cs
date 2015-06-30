@@ -7,11 +7,11 @@ public class JobSelectionProcess : IProcess<object, JobRef> {
 
     public event ProcessExitCallback OnExit;
 
-    IPanelItemSelector<JobRef> panel;
+    ITemporaryUI<object, JobRef> panel;
 
     public void Initialize(object data) {
-        panel = JobSelectionPanelUI.GetInstance();
-        panel.OnItemSelected += HandleItemSelected;
+        panel = UILibrary.Jobs.Get(null);
+        panel.Complete += HandleItemSelected;
     }
 
     public void ForceExit() {

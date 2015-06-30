@@ -2,6 +2,7 @@
 using System;
 using System.Collections; 
 using System.Collections.Generic;
+using System.Linq;
 
 public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
 
@@ -10,7 +11,7 @@ public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
     public int Difficulty { get; set; }
     public JobUnlockPrerequisiteGameData Prerequisite { get; set; }
     public List<JobTaskGameData> Tasks { get; set; }
-    //public List<PhraseSequence> RequiredPhrases { get; set; }
+    public List<JobRequirementGameData> Requirements { get; set; }
     //public List<PhraseSequence> LearnablePhrases { get; set; }
 
     public int Key {
@@ -23,8 +24,18 @@ public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
         Difficulty = 1;
         Prerequisite = new JobUnlockPrerequisiteGameData();
         Tasks = new List<JobTaskGameData>();
-        //RequiredPhrases = new List<PhraseSequence>();
+        Requirements = new List<JobRequirementGameData>();
         //LearnablePhrases = new List<PhraseSequence>();
+    }
+
+    public void AddRequirement(PhraseSequence phrase) {
+        Requirements.Add(new PhraseJobRequirementGameData(phrase));
+    }
+
+    public IEnumerable<PhraseJobRequirementGameData> GetPhraseRequirements() {
+        return from r in Requirements 
+               where r is PhraseJobRequirementGameData
+               select (PhraseJobRequirementGameData)r;
     }
 
 }

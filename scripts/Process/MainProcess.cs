@@ -71,6 +71,7 @@ public class MainProcess {
 		UILibrary.ImageTextMenu.Set (TextImageMenuUI.GetInstance);
 		UILibrary.PhraseSequenceMenu.Set (PhraseSequenceMenuUI.GetInstance);
         UILibrary.Review.Set(ReviewUI.GetInstance);
+        UILibrary.Jobs.Set(JobPanelUI.GetInstance);
     }
 
     static void SetDebugState() {
