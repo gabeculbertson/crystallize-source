@@ -12,7 +12,8 @@ public class ConversationSegmentProcess : IProcess<ConversationArgs, object> {
         actor = args.Target.GetComponent<DialogueActor>();
         context = args.Context;
 
-        SetDialogueElement(new DialogueState(0, args.Dialogue, args.Context));
+		CoroutineManager.Instance.WaitAndDo(
+			() => SetDialogueElement(new DialogueState(0, args.Dialogue, args.Context)));
     }
 
     void SetDialogueElement(DialogueState dialogueState) {
@@ -21,6 +22,7 @@ public class ConversationSegmentProcess : IProcess<ConversationArgs, object> {
         var e = dialogueState.GetElement();
 
         if (e is LineDialogueElement) {
+			Debug.Log("Set line: " + ((LineDialogueElement)e).Line.Phrase.GetText());
             ConversationSequence.RequestLinearDialogueTurn.Get(dialogueState, HandleTurnExit, this);
         } else if (e is BranchDialogueElement) {
             ConversationSequence.RequestPromptDialogueTurn.Get(dialogueState, HandleTurnExit, this);
