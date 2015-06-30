@@ -21,6 +21,7 @@ public class UILibrary {
 	public static readonly UIFactoryRef<List<TextMenuItem>, TextMenuItem> TextMenu = new UIFactoryRef<List<TextMenuItem>, TextMenuItem>();
 	public static readonly UIFactoryRef<List<ValuedItem>, ValuedItem> ValuedMenu = new UIFactoryRef<List<ValuedItem>, ValuedItem>();
 	public static readonly UIFactoryRef<List<TextImageItem>, TextImageItem> ImageTextMenu = new UIFactoryRef<List<TextImageItem>, TextImageItem>();
+    public static readonly UIFactoryRef<object, int> Review = new UIFactoryRef<object, int>();
 	//UI for Cashier
 //	public static readonly UIFactoryRef<SelectionMenuInput, MenuItemEventArg> SelectionMenu = new UIFactoryRef<SelectionMenuInput, MenuItemEventArg>();
 

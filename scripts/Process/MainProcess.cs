@@ -35,7 +35,7 @@ public class MainProcess {
         EveningProcess.RequestExplore.Set<TempProcess<object, TimeSessionArgs>>();
 
         // Link main events for night session
-        NightProcess.RequestReviews.Set<TempProcess<object, TimeSessionArgs>>();
+        NightProcess.RequestReviews.Set<ReviewProcess>();
 
         // Conversation sub-processes
         ConversationSequence.RequestConversationCamera.Set<ConversationCameraProcess>();
@@ -69,6 +69,7 @@ public class MainProcess {
 		UILibrary.TextMenu.Set (TextSelectionMenuUI.GetInstance);
 		UILibrary.ValuedMenu.Set (ValuedSelectionMenuUI.GetInstance);
 		UILibrary.ImageTextMenu.Set (TextImageMenuUI.GetInstance);
+        UILibrary.Review.Set(ReviewUI.GetInstance);
     }
 
     static void SetDebugState() {

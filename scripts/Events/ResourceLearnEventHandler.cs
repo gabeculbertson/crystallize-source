@@ -28,6 +28,12 @@ public class ResourceLearnEventHandler : MonoBehaviour {
     void Start() {
         CrystallizeEventManager.PlayerState.OnCollectWordRequested += PlayerState_OnCollectWordRequested;
         CrystallizeEventManager.PlayerState.OnCollectPhraseRequested += PlayerState_OnCollectPhraseRequested;
+        CrystallizeEventManager.UI.OnWordClicked += UI_OnWordClicked;
+    }
+
+    void UI_OnWordClicked(object sender, WordClickedEventArgs e) {
+        //CrystallizeEventManager.main
+        PlayerState_OnCollectWordRequested(sender, new PhraseEventArgs(e.Word));
     }
 
     void PlayerState_OnCollectPhraseRequested(object sender, PhraseEventArgs e) {

@@ -19,6 +19,7 @@ public class CollectUI : MonoBehaviour {
 
         CrystallizeEventManager.PlayerState.OnWordCollected += PlayerState_OnWordCollected;
         CrystallizeEventManager.PlayerState.OnPhraseCollected += PlayerState_OnPhraseCollected;
+        Refresh();
     }
 
     void OnDestroy() {
@@ -35,7 +36,7 @@ public class CollectUI : MonoBehaviour {
     }
 
     void Refresh() {
-        remainingCountText.text = string.Format("Words [{0}/{1}]\t\tPhrases [{2}/{3}]",
+        remainingCountText.text = string.Format("Today's new stuff: words [{0}/{1}]\t\tphrases [{2}/{3}]",
             ResourceLearnEventHandler.GetWords(), PlayerData.Instance.Proficiency.Words,
             ResourceLearnEventHandler.GetPhrases(), PlayerData.Instance.Proficiency.Phrases);
     }

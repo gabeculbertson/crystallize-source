@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class NightProcess : TimeSessionProcess<NightSessionArgs, MorningSessionArgs>, IProcess<NightSessionArgs, MorningSessionArgs> {
 
-    public static readonly ProcessFactoryRef<object, TimeSessionArgs> RequestReviews = new ProcessFactoryRef<object,TimeSessionArgs>();
+    public static readonly ProcessFactoryRef<object, int> RequestReviews = new ProcessFactoryRef<object,int>();
 
     NightSessionArgs nightArgs;
 
@@ -20,7 +20,12 @@ public class NightProcess : TimeSessionProcess<NightSessionArgs, MorningSessionA
         }
     }
 
-    void ReviewsCompleteCallback(object sender, TimeSessionArgs args) {
+    void ReviewsCompleteCallback(object sender, int args) {
+        var result = PlayerDataConnector.AddReviewExperience(args);
+        ProcessLibrary.MessageBox.Get(result.ToMessageBoxString(), MessageBoxCallback, this);
+    }
+
+    void MessageBoxCallback(object sender, object args) {
         Exit(new MorningSessionArgs(nightArgs.LevelName, nightArgs.Home));
     }
 
