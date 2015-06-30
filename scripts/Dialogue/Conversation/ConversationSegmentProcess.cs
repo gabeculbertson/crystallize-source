@@ -22,7 +22,6 @@ public class ConversationSegmentProcess : IProcess<ConversationArgs, object> {
         var e = dialogueState.GetElement();
 
         if (e is LineDialogueElement) {
-			Debug.Log("Set line: " + ((LineDialogueElement)e).Line.Phrase.GetText());
             ConversationSequence.RequestLinearDialogueTurn.Get(dialogueState, HandleTurnExit, this);
         } else if (e is BranchDialogueElement) {
             ConversationSequence.RequestPromptDialogueTurn.Get(dialogueState, HandleTurnExit, this);
