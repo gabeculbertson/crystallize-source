@@ -12,7 +12,7 @@ public class ConversationSegmentProcess : IProcess<ConversationArgs, object> {
         actor = args.Target.GetComponent<DialogueActor>();
         context = args.Context;
 
-        SetDialogueElement(new DialogueState(0, args.Dialogue, null));
+        SetDialogueElement(new DialogueState(0, args.Dialogue, args.Context));
     }
 
     void SetDialogueElement(DialogueState dialogueState) {

@@ -5,9 +5,10 @@ public class DialogueState {
 
     public int CurrentID { get; set; }
     public DialogueSequence Dialogue { get; set; }
-    public StringMap Context { get; set; }
+	public ContextData Context {get; set;}
+    public StringMap ActorMap{ get; set; }
 
-    public DialogueState(int id, DialogueSequence dialogue, StringMap context) {
+    public DialogueState(int id, DialogueSequence dialogue, ContextData context) {
         CurrentID = id;
         Dialogue = dialogue;
         Context = context;
@@ -23,9 +24,9 @@ public class DialogueState {
     }
 
     public string GetActorName(string tag) {
-        if (Context != null) {
-            if (Context.ContainsKey(tag)) {
-                return Context.GetItem(tag).Value;
+        if (ActorMap != null) {
+            if (ActorMap.ContainsKey(tag)) {
+                return ActorMap.GetItem(tag).Value;
             }
         }
         return tag;
