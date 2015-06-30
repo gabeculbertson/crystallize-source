@@ -26,14 +26,14 @@ public class GestureDialogueAnimation : DialogueAnimation {
     IEnumerator PlaySequence() {
         animator.CrossFade(Animation, 0.1f);
 
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
         //while (!animator.GetCurrentAnimatorStateInfo(0).IsName(Animation)) {
         //    yield return null;
         //}
         
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName(Animation)) {
-            yield return null;
-        }
+        //while (animator.GetCurrentAnimatorStateInfo(0).IsName(Animation)) {
+        //    yield return null;
+        //}
 
         OnComplete.Raise(this, System.EventArgs.Empty);
     }

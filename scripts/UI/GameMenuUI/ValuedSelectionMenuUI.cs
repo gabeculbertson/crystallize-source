@@ -16,8 +16,9 @@ public class ValuedSelectionMenuUI : ConfirmMenuUI<ValuedItem> {
 	protected override void InitializeButton (GameObject obj, ValuedItem item)
 	{
 		var texts = obj.GetComponentsInChildren<Text> ();
-		texts [0].text = item.Text;
-		texts [1].text = item.Value.ToString();
+		texts [0].text = item.Text.GetText();
+		if(item.ShowValue)
+			texts [1].text = item.Value.ToString();
 		obj.AddComponent<DataContainer>().Store(item);
 
 	}

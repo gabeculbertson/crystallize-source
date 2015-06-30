@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace CrystallizeData{
-	public class CashierSellGoods : StaticSerializedTaskGameData {
+	public class CashierSellGoods : StaticSerializedTaskGameData<JobTaskGameData> {
 
 		protected override void PrepareGameData() {
 
-			CashierTaskData cashierTask = new CashierTaskData (2);
+			task = new CashierTaskData (2);
+			var cashierTask = (CashierTaskData) task;
 			var dialogues = cashierTask.Dialogues;
 			//initialize inference dialogues, should be done in serialized files
 			dialogues.Add(createLine("Hi", "Normal", "Morning", "Evening"));
@@ -23,10 +24,10 @@ namespace CrystallizeData{
 			cashierTask.ShopLists.Add (createValuedItem("item5", 5));
 			cashierTask.ShopLists.Add (createValuedItem("item6", 6));
 
-			task = cashierTask;
 			Initialize("Sell goods as cashier", "CashierTest", "Customer");
 			SetProcess<CashierProcess>();
-			SetDialogue<RestaurantDialogue02>();
+			AddDialogues<CashierDialogue01>();
+			AddDialogues<CashierDialogue02>();
 		}
 
 		//Convinience functions for task creation
@@ -38,9 +39,13 @@ namespace CrystallizeData{
 		
 		ValuedItem createValuedItem(string t, int i){
 			ValuedItem item = ValuedItem.CreateInstance<ValuedItem>();
-			item.Text = t;
+			item.Text = new PhraseSequence(t);
 			item.Value = i;
 			return item;
+		}
+
+		protected void AddDialogues<V>() where V : StaticSerializedDialogueGameData, new() {
+			((CashierTaskData)task).AllDialogues.Add( new V().GetDialogue() );
 		}
 	}
 }

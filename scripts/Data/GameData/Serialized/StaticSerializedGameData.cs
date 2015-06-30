@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,7 +109,7 @@ namespace CrystallizeData {
 
     }
 
-    public abstract class StaticSerializedTaskGameData<T> : StaticGameData where T : JobTaskGameData, new() {
+	public abstract class StaticSerializedTaskGameData<T> : StaticGameData  where T : JobTaskGameData, new() {
         protected T task = new T();
 
         public T GetTask() {
@@ -137,8 +137,9 @@ namespace CrystallizeData {
 
         protected override void AddGameData() {
             if (Application.isEditor && !Application.isPlaying) {
-                //Debug.Log("Is editor");
+                Debug.Log("Is editor: " + GetType());
             } else {
+				Debug.Log(job.Name + " added to GameData");
                 int i = GameData.Instance.Jobs.GetNextKey();
                 job.ID = i;
                 GameData.Instance.Jobs.AddItem(job);
@@ -152,7 +153,7 @@ namespace CrystallizeData {
             job.Name = name;
         }
 
-        protected void AddTask<T>() where T : StaticSerializedTaskGameData, new() {
+        protected void AddTask<T>() where T : StaticSerializedTaskGameData<JobTaskGameData>, new() {
             job.Tasks.Add(new T().GetTask());
         }
 

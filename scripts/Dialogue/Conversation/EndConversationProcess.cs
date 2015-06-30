@@ -13,21 +13,28 @@ public class EndConversationProcess : ConversationProcessPart, IProcess<Conversa
         actor = args.Target.GetComponent<DialogueActor>();
         context = args.Context;
 
-        Exit();
+		CoroutineManager.Instance.StartCoroutine(EndCoroutine());
+        //Exit();
     }
+
+	IEnumerator EndCoroutine(){
+		actor.SetPhrase(null);
+		PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
+		PlayerController.UnlockMovement(this);
+		StopCamera();
+		
+		CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
+
+		yield return null;
+
+		Exit();
+	}
 
     public void ForceExit() {
         Exit();
     }
 
     void Exit() {
-        actor.SetPhrase(null);
-        PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(null);
-        PlayerController.UnlockMovement(this);
-        StopCamera();
-
-        CrystallizeEventManager.UI.RaiseUIModeRequested(this, new UIModeChangedEventArgs(UIMode.Speaking));
-
         OnExit.Raise(this, null);
     }
 }

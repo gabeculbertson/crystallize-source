@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Cashier : MonoBehaviour {
+namespace CrystallizeData {
+	public class Cashier : StaticSerializedJobGameData {
+		protected override void PrepareGameData() {
+			Initialize("Cashier");
+			AddTask<CashierSellGoods>();
+		}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

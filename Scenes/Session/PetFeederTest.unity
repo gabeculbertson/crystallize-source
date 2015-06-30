@@ -207,7 +207,7 @@ GameObject:
   - 54: {fileID: 807377963}
   - 114: {fileID: 807377964}
   m_Layer: 0
-  m_Name: Pet
+  m_Name: PetOwner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

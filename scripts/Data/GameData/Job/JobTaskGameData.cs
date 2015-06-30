@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Xml.Serialization;
 
+//[XmlInclude(typeof(InferenceTaskGameData))]
 public class JobTaskGameData {
 
     public string Name { get; set; }

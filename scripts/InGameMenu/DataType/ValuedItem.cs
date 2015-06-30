@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ValuedItem : GameMenuItem {
 
-	public string Text { get; set;}
+	public bool ShowValue {get;set;}
+	public PhraseSequence Text { get; set;}
 	public int Value { get; set;}
 }

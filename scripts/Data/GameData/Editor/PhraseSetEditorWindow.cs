@@ -17,16 +17,24 @@ public class PhraseSetEditorWindow : EditorWindow {
     string filterString = "";
     PhraseSetGameData target;
 
+	bool initialized = false;
+
     void Initialize() {
+		if(!initialized){
         setNames = GameDataInitializer.phraseSets.Keys.ToArray();
         Debug.Log(setNames.Length);
+			initialized = true;
+		}
         //setNames = GameData.Instance.PhraseSets.Items.Select((ps) => ps.Name).ToArray();
     }
 
     void OnGUI() {
+		Initialize();
+
         scroll = EditorGUILayout.BeginScrollView(scroll);
 
         filterString = EditorGUILayout.TextField("Filter", filterString);
+		//Debug.Log(setNames + "; " + filterString);
         var filtered = (from n in setNames 
                         where n.Contains(filterString) 
                         orderby n

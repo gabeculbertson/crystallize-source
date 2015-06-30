@@ -24,11 +24,11 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	string greeting = "";
 	ValuedItem[] nowItem;
 
-	List<TextMenuItem> greetings;
+	List<PhraseSequence> greetings;
 	List<ValuedItem> prices;
 
 	public void Initialize(JobTaskRef param1) {
-		greetings = new List<TextMenuItem>();
+		greetings = new List<PhraseSequence>();
 		prices = new List<ValuedItem> ();
 
 		task = param1;
@@ -39,8 +39,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		person = new SceneObjectRef(taskData.Actor).GetSceneObject();
 		//get menu item lists
 		foreach (var v in taskData.Dialogues) {
-			TextMenuItem item = TextMenuItem.CreateInstance<TextMenuItem>();
-			item.text = v.Phrase.GetText();
+			var item = v.Phrase;
 			greetings.Add(item);
 		}
 		prices = taskData.ShopLists;
@@ -53,24 +52,34 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	//Select Greeting
 	void HandleGreetingExit(object sender, object obj) {
 		GetNewGreeting();
-		var d = new DialogueSequence();
-		var de = d.GetNewDialogueElement<LineDialogueElement>();
-		de.Line = taskData.Line;
 		ContextData context = GetNewGreetingContext ();
-		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d, context), HandleGreetingConversationExit, this);
+		DialogueSequence d = taskData.AllDialogues[0];
+		//ProcessLibrary.BeginConversation.Get
+		//		ProcessLibrary.ConversationSegment
+		var actor = new SceneObjectRef(d.Actors[0]).GetSceneObject();
+		ProcessLibrary.BeginConversation.Get(new ConversationArgs(actor, d, context), HandleGreetingBegins, this);
 //		person.GetComponent<DialogueActor>().SetLine(taskData.Line, GetNewGreetingContext());
 	}
 
+	void HandleGreetingBegins(object sender, object obj){
+		ContextData context = GetNewGreetingContext ();
+		DialogueSequence d = taskData.AllDialogues[0];
+		//ProcessLibrary.BeginConversation.Get
+		//		ProcessLibrary.ConversationSegment
+		var actor = new SceneObjectRef(d.Actors[0]).GetSceneObject();
+		ProcessLibrary.ConversationSegment.Get(new ConversationArgs(actor, d, context), HandleGreetingConversationExit, this);
+	}
+
 	void HandleGreetingConversationExit(object sender, object obj){
-		var ui = UILibrary.TextMenu.Get (greetings);
+		var ui = UILibrary.PhraseSequenceMenu.Get (greetings);
 		ui.Complete += ui_GreetComplete;
 	}
 
-	void ui_GreetComplete(object sender, EventArgs<TextMenuItem> e) {
+	void ui_GreetComplete(object sender, EventArgs<PhraseSequence> e) {
 		//TODO cast e and get data
 
 		//remainingCount--;
-		if (taskData.SameCategory(e.Data.text, greeting)) {
+		if (taskData.SameCategory(e.Data.GetText(), greeting)) {
 			correctCount++;
 			var ui = UILibrary.PositiveFeedback.Get("");
 			ui.Complete += Greet_Feedback_Complete;
@@ -86,13 +95,19 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	void HandleMessageBoxExit(object sender, object obj) {
 		GetNewTargetPrice();
-		var d = new DialogueSequence();
-		var de = d.GetNewDialogueElement<LineDialogueElement>();
-		de.Line = taskData.priceLine;
-		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d, GetNewPriceContext()), HandlePriceConversationExit, this);
+		var dialogue = taskData.AllDialogues[1];
+		dialogue.GetNewDialogueElement<LineDialogueElement>().Line = taskData.priceLine;
+		var actor = new SceneObjectRef(dialogue.Actors[0]).GetSceneObject();
+		ProcessLibrary.ConversationSegment.Get(new ConversationArgs(actor, dialogue, GetNewPriceContext()), EndConversation, this);
 //		person.GetComponent<DialogueActor>().SetLine(taskData.priceLine, GetNewPriceContext());
 //		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
 //		ui.Complete += ui_Complete;
+	}
+
+	void EndConversation(object a , object b){
+		var dialogue = taskData.AllDialogues[1];
+		var actor = new SceneObjectRef(dialogue.Actors[0]).GetSceneObject();
+		ProcessLibrary.EndConversation.Get(new ConversationArgs(actor, dialogue), HandlePriceConversationExit, this);
 	}
 	void HandlePriceConversationExit(object sender, object obj){
 		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
@@ -178,8 +193,8 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	void GetNewGreeting(){
 		//TODO use task info to create a mapping
-		TextMenuItem[] greetArray = greetings.ToArray ();
-		greeting = greetArray [UnityEngine.Random.Range (0, greetArray.Length)].text;
+		PhraseSequence[] greetArray = greetings.ToArray ();
+		greeting = greetArray [UnityEngine.Random.Range (0, greetArray.Length)].GetText();
 	}
 	
 	ContextData GetNewPriceContext() {
@@ -188,7 +203,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		Func<string, int, string> priceString = (x, y) => String.Format("{0} (Price: {1} yen)", x, y);
 		for (int i = 0; i < taskData.NumItem; i++) {
 			Debug.Log(taskData.contextPrefix + i.ToString());
-			c.UpdateElement(taskData.contextPrefix + i.ToString() , new PhraseSequence(priceString(nowItem[i].Text, nowItem[i].Value)));
+			c.UpdateElement(taskData.contextPrefix + i.ToString() , new PhraseSequence(priceString(nowItem[i].Text.GetText(), nowItem[i].Value)));
 		}
 //		c.UpdateElement("price1", new PhraseSequence(priceString(nowItem[0].Text, nowItem[0].Value)));
 //		c.UpdateElement("price2", new PhraseSequence(priceString(nowItem[1].Text, nowItem[1].Value)));
@@ -209,7 +224,8 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	List<ValuedItem> GetAllPrices(){
 		List<ValuedItem> ret = new List<ValuedItem> ();
 		int maxPrice = prices.Aggregate<ValuedItem, int> (0, (acc, el) => acc + el.Value);
-		Func<int, ValuedItem> createPriceOption = (k => {var item = new ValuedItem(); item.Value = k; item.Text = ""; return item;});
+		Func<int, ValuedItem> createPriceOption = 
+			(k => {var item = new ValuedItem(); item.Value = k; item.Text = new PhraseSequence(k.ToString()); item.ShowValue = false; return item;});
 		for (int i = 0; i < maxPrice; i++) {
 			ret.Add(createPriceOption(i));
 		}

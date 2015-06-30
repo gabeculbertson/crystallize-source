@@ -134,7 +134,7 @@ public class DebugTimeProcess : MonoBehaviour {
 
 	ValuedItem createValuedItem(string t, int i){
 		ValuedItem item = ValuedItem.CreateInstance<ValuedItem>();
-		item.Text = t;
+		item.Text = new PhraseSequence(t);
 		item.Value = i;
 		return item;
 	}

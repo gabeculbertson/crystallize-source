@@ -107,6 +107,7 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 		var de = d.GetNewDialogueElement<LineDialogueElement>();
 		de.Line = new DialogueActorLine();
 		de.Line.Phrase = new PhraseSequence(s);
+		d.Actors.Add(taskData.Actor);
 		ProcessLibrary.Conversation.Get(new ConversationArgs(target, d), HandleExitConversationExit, this);
 	}
 
