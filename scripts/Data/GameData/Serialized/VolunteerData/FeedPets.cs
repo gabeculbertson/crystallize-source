@@ -9,11 +9,15 @@ namespace CrystallizeData{
 		{
 			task = new PetFeederTaskData();
 			var feederTask = (PetFeederTaskData) task;
+			var hungryPhrase = GetPhrase("hungry");
+			var thirstyPhrase = GetPhrase("thirsty");
+			var tiredPhrase = GetPhrase("tired");
+
 			//set question and answer data
-			feederTask.AddQA("hungry", "fish", new Sprite());
-			feederTask.AddQA("thristy", "milk", new Sprite());
-			feederTask.AddQA ("tired", "bed", new Sprite ());
-			feederTask.AddQA ("grumpy", "math", new Sprite ());
+			feederTask.AddQA(hungryPhrase, "fish", new Sprite());
+			feederTask.AddQA(thirstyPhrase, "milk", new Sprite());
+			feederTask.AddQA (tiredPhrase, "bed", new Sprite ());
+
 			//other initialization
 			Initialize("PetFeederTask", "PetFeederTest", "PetOwner");
 			SetProcess<PetFeederProcess>();

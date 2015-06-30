@@ -68,7 +68,7 @@ public abstract class SelectionMenuUI<T> : UIPanel, ITemporaryUI<List<T>, T>
 		Complete.Raise (this, new EventArgs<T> (arg));
 	}
 
-	protected bool HasSelection(){
+	protected bool NoSelection(){
 		return arg == null;
 	}
 }

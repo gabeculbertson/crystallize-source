@@ -23,6 +23,7 @@ public class PlayerData {
     public PersonalPlayerData PersonalData { get; set; }
 	public int Money { get; set; }
     public bool AllowEnglish { get; set; }
+    public ReviewPlayerData Reviews { get; set; }
 	public ReviewLog ReviewLog { get; set; }
 	public WordStore WordStorage { get; set; }
     public PhraseStore PhraseStorage { get; set; }
@@ -45,6 +46,7 @@ public class PlayerData {
 
 	public PlayerData(){
         AllowEnglish = false;
+        Reviews = new ReviewPlayerData();
         PersonalData = new PersonalPlayerData();
 		WordStorage = new WordStore ();
         PhraseStorage = new PhraseStore();

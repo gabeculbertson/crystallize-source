@@ -12,13 +12,13 @@ using System.Linq;
  */
 public class QATaskGameData: JobTaskGameData {
 
-	public struct QALine {
-		string question;
+	public class QALine {
+		PhraseSequence question;
 		string answer;
-		public string Question {get{return question;}}
+		public PhraseSequence Question {get{return question;}}
 		public string Answer {get{return answer;}}
 
-		public QALine(string q, string a){
+		public QALine(PhraseSequence q, string a){
 			question = q;
 			answer = a;
 		}
@@ -31,7 +31,7 @@ public class QATaskGameData: JobTaskGameData {
 		QAlist = new List<QALine> ();
 	}
 
-	public void AddQA(string question, string answer){
+	public void AddQA(PhraseSequence question, string answer){
 		QALine newline = new QALine (question, answer);
 		QAlist.Add (newline);
 	}

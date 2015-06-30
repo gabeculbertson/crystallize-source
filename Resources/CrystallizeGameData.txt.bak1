@@ -2336,8 +2336,916 @@
           </JobTaskGameData>
         </Tasks>
       </JobGameData>
+      <JobGameData>
+        <ID>1000021</ID>
+        <Name>Eater</Name>
+        <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Visit the restaurant</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
+            <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+              </Actors>
+              <Elements>
+                <Items>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>0</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000930</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>1</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>2</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2029010</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1358280</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>?</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>2</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1010080</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2820690</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>3</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1358340</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>130</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>...</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+      <JobGameData>
+        <ID>1000022</ID>
+        <Name>Eater</Name>
+        <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Visit the restaurant</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
+            <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+              </Actors>
+              <Elements>
+                <Items>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>0</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000930</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>1</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>2</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2029010</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1358280</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>?</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>2</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1010080</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2820690</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>3</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1358340</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>130</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>...</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+      <JobGameData>
+        <ID>1000023</ID>
+        <Name>Eater</Name>
+        <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Visit the restaurant</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
+            <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+              </Actors>
+              <Elements>
+                <Items>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>0</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000930</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>1</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>2</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2029010</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1358280</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>?</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>2</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1010080</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2820690</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>3</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1358340</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>130</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>...</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+      <JobGameData>
+        <ID>1000024</ID>
+        <Name>Eater</Name>
+        <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Visit the restaurant</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
+            <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+              </Actors>
+              <Elements>
+                <Items>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>0</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000930</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>1</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>2</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2029010</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1358280</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>?</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>2</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1010080</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2820690</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>3</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1358340</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>130</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>...</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+      <JobGameData>
+        <ID>1000025</ID>
+        <Name>Eater</Name>
+        <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Visit the restaurant</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
+            <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+              </Actors>
+              <Elements>
+                <Items>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>0</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>Welcome</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000930</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>1</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>2</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>What will you eat?</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2029010</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1358280</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>?</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>2</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>Yes, good.</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1010080</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2820690</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>3</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>That's not food.</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1358340</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>130</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>...</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
+      <JobGameData>
+        <ID>1000026</ID>
+        <Name>Eater</Name>
+        <Difficulty>1</Difficulty>
+        <Prerequisite>
+          <Words>
+            <PhraseElements />
+          </Words>
+          <Jobs />
+        </Prerequisite>
+        <Tasks>
+          <JobTaskGameData>
+            <Name>Visit the restaurant</Name>
+            <AreaName>RestaurantTest</AreaName>
+            <ProcessType>
+              <ProcessTypeName>RestaurantProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+            </ProcessType>
+            <Actor>
+              <Name>Observer</Name>
+            </Actor>
+            <Dialogue>
+              <Actors>
+                <SceneObjectGameData>
+                  <Name>Waiter</Name>
+                </SceneObjectGameData>
+              </Actors>
+              <Elements>
+                <Items>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>0</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>Welcome</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1000930</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>1</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>2</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>What will you eat?</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1577100</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2029010</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>1358280</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2028970</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>?</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>2</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>Yes, good.</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1010080</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2820690</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>110</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                  <DialogueElement xsi:type="LineDialogueElement">
+                    <ID>3</ID>
+                    <ActorIndex>0</ActorIndex>
+                    <DefaultNextID>-1</DefaultNextID>
+                    <Line>
+                      <Phrase>
+                        <Translation>That's not food.</Translation>
+                        <PhraseElements>
+                          <PhraseSequenceElement>
+                            <WordID>1358340</WordID>
+                            <FormID>0</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>2089020</WordID>
+                            <FormID>130</FormID>
+                            <Tags />
+                          </PhraseSequenceElement>
+                          <PhraseSequenceElement>
+                            <WordID>101</WordID>
+                            <FormID>0</FormID>
+                            <Text>...</Text>
+                            <Tags />
+                          </PhraseSequenceElement>
+                        </PhraseElements>
+                      </Phrase>
+                      <AudioClipID>-1</AudioClipID>
+                    </Line>
+                  </DialogueElement>
+                </Items>
+              </Elements>
+            </Dialogue>
+            <Line>
+              <Phrase>
+                <PhraseElements />
+              </Phrase>
+              <AudioClipID>-1</AudioClipID>
+            </Line>
+          </JobTaskGameData>
+        </Tasks>
+      </JobGameData>
     </Items>
-    <CurrentKey>1000021</CurrentKey>
+    <CurrentKey>1000027</CurrentKey>
   </Jobs>
   <Homes>
     <Items>
@@ -11240,6 +12148,7 @@
         <Name>RestaurantDialogue01</Name>
         <Phrases>
           <PhraseSequence>
+            <Translation>Welcome, how many?</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1000930</WordID>
@@ -11281,6 +12190,7 @@
             </PhraseElements>
           </PhraseSequence>
           <PhraseSequence>
+            <Translation>Three people.</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1301000</WordID>
@@ -11295,6 +12205,7 @@
             </PhraseElements>
           </PhraseSequence>
           <PhraseSequence>
+            <Translation>Please, this way.</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1189130</WordID>
@@ -11319,6 +12230,7 @@
         <Name>RestaurantDialogue02</Name>
         <Phrases>
           <PhraseSequence>
+            <Translation>Welcome</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1000930</WordID>
@@ -11328,6 +12240,7 @@
             </PhraseElements>
           </PhraseSequence>
           <PhraseSequence>
+            <Translation>What will you eat?</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1577100</WordID>
@@ -11358,6 +12271,7 @@
             </PhraseElements>
           </PhraseSequence>
           <PhraseSequence>
+            <Translation>Yes, good.</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1010080</WordID>
@@ -11377,6 +12291,7 @@
             </PhraseElements>
           </PhraseSequence>
           <PhraseSequence>
+            <Translation>That's not food.</Translation>
             <PhraseElements>
               <PhraseSequenceElement>
                 <WordID>1358340</WordID>
@@ -11402,7 +12317,14 @@
         <Name>CashierDialogue01</Name>
         <Phrases>
           <PhraseSequence>
-            <PhraseElements />
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>102</WordID>
+                <FormID>0</FormID>
+                <Text>greeting</Text>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
           </PhraseSequence>
         </Phrases>
       </PhraseSetGameData>
@@ -11414,7 +12336,31 @@
               <PhraseSequenceElement>
                 <WordID>101</WordID>
                 <FormID>0</FormID>
-                <Text>hello</Text>
+                <Text>I</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>want</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>to</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>buy</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>102</WordID>
+                <FormID>0</FormID>
+                <Text>item</Text>
                 <Tags />
               </PhraseSequenceElement>
             </PhraseElements>
@@ -11425,7 +12371,14 @@
         <Name>PetFeederDialogue01</Name>
         <Phrases>
           <PhraseSequence>
-            <PhraseElements />
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>102</WordID>
+                <FormID>0</FormID>
+                <Text>need</Text>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
           </PhraseSequence>
         </Phrases>
       </PhraseSetGameData>
@@ -11435,20 +12388,202 @@
           <PhraseSequence>
             <PhraseElements>
               <PhraseSequenceElement>
-                <WordID>1289400</WordID>
+                <WordID>101</WordID>
                 <FormID>0</FormID>
+                <Text>I</Text>
                 <Tags />
               </PhraseSequenceElement>
               <PhraseSequenceElement>
                 <WordID>101</WordID>
                 <FormID>0</FormID>
-                <Text>hey there</Text>
+                <Text>want</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>to</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>go</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>to</Text>
                 <Tags />
               </PhraseSequenceElement>
               <PhraseSequenceElement>
                 <WordID>102</WordID>
                 <FormID>0</FormID>
-                <Text>this is text</Text>
+                <Text>place</Text>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+        </Phrases>
+      </PhraseSetGameData>
+      <PhraseSetGameData>
+        <Name>FeedPets</Name>
+        <Phrases>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>hungry</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>thirsty</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>tired</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+        </Phrases>
+      </PhraseSetGameData>
+      <PhraseSetGameData>
+        <Name>PointPlace</Name>
+        <Phrases>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>restaurant</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>coffee</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>shop</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>hotel</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
+                <Tags />
+              </PhraseSequenceElement>
+            </PhraseElements>
+          </PhraseSequence>
+          <PhraseSequence>
+            <PhraseElements>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>theatre</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>in</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>1464530</WordID>
+                <FormID>0</FormID>
                 <Tags />
               </PhraseSequenceElement>
             </PhraseElements>

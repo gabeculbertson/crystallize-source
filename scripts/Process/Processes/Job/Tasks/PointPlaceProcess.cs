@@ -18,6 +18,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 	int totalTrials = 0;
 	float score = 0;
 
+	//learning point is question
 	IEnumerable<QATaskGameData.QALine> qa;
 	QATaskGameData.QALine currentQA;
 	List<TextImageItem> menuOptions;
@@ -138,7 +139,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 	ContextData getNewContext ()
 	{
 		ContextData c = new ContextData ();
-		c.UpdateElement("place", new PhraseSequence(currentQA.Question));
+		c.UpdateElement("place", currentQA.Question);
 		return c;
 	}
 

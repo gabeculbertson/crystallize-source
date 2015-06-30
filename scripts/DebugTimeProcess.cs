@@ -34,7 +34,7 @@ public class DebugTimeProcess : MonoBehaviour {
 		data.Unlocked = true;
 		data.JobID = 10;
 		return data;
-	}
+	}//
 
 
 	//actually create an instance of the subclass of JobTaskGameData
@@ -45,10 +45,10 @@ public class DebugTimeProcess : MonoBehaviour {
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "I feel"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "need"));
 		//set question and answer data
-		task.AddQA("hungry", "restuarant");
-		task.AddQA("thirsty", "coffee shop");
-		task.AddQA ("tired", "hotel");
-		task.AddQA ("bored", "theatre");
+//		task.AddQA("hungry", "restuarant");
+//		task.AddQA("thirsty", "coffee shop");
+//		task.AddQA ("tired", "hotel");
+//		task.AddQA ("bored", "theatre");
 		//initialize player dialogue
 		var answerPhrase = task.AnswerDialogue.GetNewDialogueElement<LineDialogueElement> ().Line.Phrase;
 		answerPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "You should go to"));
@@ -68,10 +68,10 @@ public class DebugTimeProcess : MonoBehaviour {
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "I want to go to"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "place"));
 		//set question and answer data
-		task.AddQA("restuarant", "restuarant", new Sprite());
-		task.AddQA("coffee shop", "coffee shop", new Sprite());
-		task.AddQA ("hotel", "hotel", new Sprite ());
-		task.AddQA ("theatre", "theatre", new Sprite ());
+//		task.AddQA("restuarant", "restuarant", new Sprite());
+//		task.AddQA("coffee shop", "coffee shop", new Sprite());
+//		task.AddQA ("hotel", "hotel", new Sprite ());
+//		task.AddQA ("theatre", "theatre", new Sprite ());
 		//other initialization
 		task.AreaName = "PointPlaceTest";
 		task.Name = "PointPlaceTask";
@@ -87,10 +87,10 @@ public class DebugTimeProcess : MonoBehaviour {
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "The cat is"));
 		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.ContextSlot, "query"));
 		//set question and answer data
-		task.AddQA("hungry", "fish", new Sprite());
-		task.AddQA("thristy", "milk", new Sprite());
-		task.AddQA ("tired", "bed", new Sprite ());
-		task.AddQA ("grumpy", "math", new Sprite ());
+//		task.AddQA("hungry", "fish", new Sprite());
+//		task.AddQA("thristy", "milk", new Sprite());
+//		task.AddQA ("tired", "bed", new Sprite ());
+//		task.AddQA ("grumpy", "math", new Sprite ());
 		//other initialization
 		task.AreaName = "PetFeederTest";
 		task.Name = "PetFeederTask";

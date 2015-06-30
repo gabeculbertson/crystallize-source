@@ -96,7 +96,6 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	void HandleMessageBoxExit(object sender, object obj) {
 		GetNewTargetPrice();
 		var dialogue = taskData.AllDialogues[1];
-		dialogue.GetNewDialogueElement<LineDialogueElement>().Line = taskData.priceLine;
 		var actor = new SceneObjectRef(dialogue.Actors[0]).GetSceneObject();
 		ProcessLibrary.ConversationSegment.Get(new ConversationArgs(actor, dialogue, GetNewPriceContext()), EndConversation, this);
 //		person.GetComponent<DialogueActor>().SetLine(taskData.priceLine, GetNewPriceContext());
@@ -117,7 +116,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	void ui_Complete(object sender, EventArgs<ValuedItem> e) {
 		//TODO cast e and compare
 		remainingCount--;
-		if (e.Data.Value == price) {
+		if (e.Data.Value == price) {//
 			correctCount++;
 			var ui = UILibrary.PositiveFeedback.Get("");
 			ui.Complete += Feedback_Complete;
@@ -202,7 +201,6 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		//TODO How to make this more flexible/dynamic?
 		Func<string, int, string> priceString = (x, y) => String.Format("{0} (Price: {1} yen)", x, y);
 		for (int i = 0; i < taskData.NumItem; i++) {
-			Debug.Log(taskData.contextPrefix + i.ToString());
 			c.UpdateElement(taskData.contextPrefix + i.ToString() , new PhraseSequence(priceString(nowItem[i].Text.GetText(), nowItem[i].Value)));
 		}
 //		c.UpdateElement("price1", new PhraseSequence(priceString(nowItem[0].Text, nowItem[0].Value)));

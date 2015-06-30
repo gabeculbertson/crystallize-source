@@ -36,9 +36,6 @@ public class InferenceTaskGameData: JobTaskGameData {
 				l2 = new List<string>(d.Category);
 			}
 		}
-		foreach(var v in l1.Intersect (l2).ToList()){
-			Debug.Log(v);
-		}
 		return l1.Intersect (l2).ToList().Count > 0;
 	}
 }

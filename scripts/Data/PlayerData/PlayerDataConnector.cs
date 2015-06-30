@@ -20,9 +20,20 @@ public class PlayerDataConnector {
         CrystallizeEventManager.PlayerState.RaiseMoneyChanged(null, null);
     }
 
+    public static ReviewExperienceArgs AddReviewExperience(int amount) {
+        var lastLvl = PlayerData.Instance.Proficiency.GetReviewLevel();
+        PlayerData.Instance.Proficiency.ReviewExperience += amount;
+        var thisLvl = PlayerData.Instance.Proficiency.GetReviewLevel();
+        bool lvlUp = thisLvl != lastLvl;
+        var nextLvlXp = ProficiencyPlayerData.GetReviewExperienceForLevel(thisLvl + 1);
+        var lvlXp = PlayerData.Instance.Proficiency.GetReviewLevelExperience();
+        return new ReviewExperienceArgs(amount, thisLvl, lvlUp, lvlXp, nextLvlXp);
+    }
+
     public static void CollectPhrase(PhraseSequence phrase) {
         if (!PlayerData.Instance.PhraseStorage.ContainsPhrase(phrase)) {
             PlayerData.Instance.PhraseStorage.AddPhrase(phrase);
+            Debug.Log("phrase added");
             CrystallizeEventManager.PlayerState.RaisePhraseCollected(null, new PhraseEventArgs(phrase));
         }
     }

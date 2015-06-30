@@ -15,12 +15,12 @@ public class PictureQATaskData : QATaskGameData {
 		answerPictureDictionary = new Dictionary<string, Sprite> ();
 	}
 
-	new public void AddQA(string question, string answer){
+	new public void AddQA(PhraseSequence question, string answer){
 		base.AddQA (question, answer);
 		answerPictureDictionary.Add (answer, new Sprite ());
 	}
 
-	public void AddQA(string question, string answer, Sprite picture){
+	public void AddQA(PhraseSequence question, string answer, Sprite picture){
 		QALine newline = new QALine (question, answer);
 		QAlist.Add (newline);
 		answerPictureDictionary.Add (answer, picture);

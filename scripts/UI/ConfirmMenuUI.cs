@@ -21,9 +21,9 @@ public abstract class ConfirmMenuUI<T> : SelectionMenuUI<T>
 	}
 	
 	void OnClick(object sender, EventArgs e){
-		if (HasSelection())
+		if (NoSelection())
 			return;
-		RaiseComplete ();
 		GameObject.Destroy (this.gameObject);
+		RaiseComplete ();
 	}
 }

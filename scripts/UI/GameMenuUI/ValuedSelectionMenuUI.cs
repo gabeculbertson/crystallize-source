@@ -19,6 +19,8 @@ public class ValuedSelectionMenuUI : ConfirmMenuUI<ValuedItem> {
 		texts [0].text = item.Text.GetText();
 		if(item.ShowValue)
 			texts [1].text = item.Value.ToString();
+		else
+			Destroy(texts[1]);
 		obj.AddComponent<DataContainer>().Store(item);
 
 	}
