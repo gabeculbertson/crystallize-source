@@ -110,14 +110,15 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		ProcessLibrary.EndConversation.Get(new ConversationArgs(actor, dialogue), HandlePriceConversationExit, this);
 	}
 	void HandlePriceConversationExit(object sender, object obj){
-		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
+//		var ui = UILibrary.ValuedMenu.Get (GetAllPrices());
+		var ui = UILibrary.NumberEntry.Get(this);
 		ui.Complete += ui_Complete;
 	}
 
-	void ui_Complete(object sender, EventArgs<ValuedItem> e) {
+	void ui_Complete(object sender, EventArgs<int> e) {
 		//TODO cast e and compare
 		remainingCount--;
-		if (e.Data.Value == price) {//
+		if (e.Data == price) {
 			correctCount++;
 			var ui = UILibrary.PositiveFeedback.Get("");
 			ui.Complete += Feedback_Complete;
