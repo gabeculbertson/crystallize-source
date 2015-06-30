@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class JobPanelEntryUI : MonoBehaviour, IInitializable<JobRef> {
 
     public Text jobText;
+    public Image buttonImage;
     public RectTransform wordParent;
     public GameObject requiredWordPrefab;
 
@@ -13,6 +14,9 @@ public class JobPanelEntryUI : MonoBehaviour, IInitializable<JobRef> {
 
     public void Initialize(JobRef job) {
         jobText.text = job.GameDataInstance.Name;
+        if (!job.GameDataInstance.RequirementsFullfilled()) {
+            buttonImage.color = Color.gray;
+        }
         UIUtil.GenerateChildren<PhraseJobRequirementGameData>(job.GameDataInstance.GetPhraseRequirements(), instances, wordParent, GetChild);
     }
 

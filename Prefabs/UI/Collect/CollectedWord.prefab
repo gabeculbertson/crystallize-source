@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationText: {fileID: 11463706}
   wordText: {fileID: 11470028}
+  wordImage: {fileID: 11462824}
 --- !u!114 &11489872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,7 +306,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: wordImage
+      value: 
+      objectReference: {fileID: 11462824}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187630}

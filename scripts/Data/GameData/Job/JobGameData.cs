@@ -32,6 +32,15 @@ public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
         Requirements.Add(new PhraseJobRequirementGameData(phrase));
     }
 
+    public bool RequirementsFullfilled() {
+        foreach (var r in Requirements) {
+            if (!r.IsFulfilled()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public IEnumerable<PhraseJobRequirementGameData> GetPhraseRequirements() {
         return from r in Requirements 
                where r is PhraseJobRequirementGameData

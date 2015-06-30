@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jobText: {fileID: 11442168}
+  buttonImage: {fileID: 11438262}
   wordParent: {fileID: 22448906}
   requiredWordPrefab: {fileID: 175200, guid: 484c6d878e2f5f84388ed1227fa0d39c, type: 2}
 --- !u!114 &11413558
@@ -418,7 +419,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: buttonImage
+      value: 
+      objectReference: {fileID: 11438262}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121564}
