@@ -16,6 +16,7 @@ public class PhraseSetEditorWindow : EditorWindow {
     Vector2 scroll;
     string filterString = "";
     PhraseSetGameData target;
+    bool showSets = true;
 
 	bool initialized = false;
 
@@ -25,6 +26,7 @@ public class PhraseSetEditorWindow : EditorWindow {
         Debug.Log(setNames.Length);
 			initialized = true;
 		}
+        //Debug.Log(setNames.Length);
         //setNames = GameData.Instance.PhraseSets.Items.Select((ps) => ps.Name).ToArray();
     }
 
@@ -34,25 +36,39 @@ public class PhraseSetEditorWindow : EditorWindow {
         scroll = EditorGUILayout.BeginScrollView(scroll);
 
         filterString = EditorGUILayout.TextField("Filter", filterString);
-		//Debug.Log(setNames + "; " + filterString);
-        var filtered = (from n in setNames 
-                        where n.Contains(filterString) 
-                        orderby n
-                        select n);
-        //if (filterString != "") {
+
+        if (showSets) {
+            var filtered = (from n in setNames
+                            where n.ToLower().Contains(filterString.ToLower())
+                            orderby n
+                            select n);
+
+
             foreach (var n in filtered) {
+                //Debug.Log(n);
                 if (GUILayout.Button(n)) {
-                    target = GameData.Instance.PhraseSets.GetOrCreateItem(n);
+                    target = PhraseSetCollectionGameData.GetOrCreateItem(n);
                     filterString = "";
                 }
             }
-        //}
+        } 
 
         if (target != null) {
             DrawPhraseSet(target);
         }
 
         EditorGUILayout.EndScrollView();
+
+        if (Event.current.type == EventType.Repaint) {
+            if (filterString == "" && target == null) {
+                showSets = true;
+            } else if (filterString != "") {
+                showSets = true;
+            } else {
+                //Debug.Log(filterString.Length + "; " + (target == null));
+                showSets = false;
+            }
+        }
     }
 
     void DrawPhraseSet(PhraseSetGameData phraseSet) {

@@ -16,6 +16,10 @@ public class PhraseSetGameData : ISerializableDictionaryItem<string> {
         Phrases = new List<PhraseSequence>();
     }
 
+    public PhraseSetGameData(string name) : this(){
+        Name = name;
+    }
+
     public PhraseSequence GetOrCreatePhrase(int index) {
         while (Phrases.Count <= index) {
             Phrases.Add(new PhraseSequence());

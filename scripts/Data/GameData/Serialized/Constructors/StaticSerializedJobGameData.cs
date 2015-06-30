@@ -15,6 +15,7 @@ namespace CrystallizeData {
                 int i = GameData.Instance.Jobs.GetNextKey();
                 job.ID = i;
                 GameData.Instance.Jobs.AddItem(job);
+                GameData.CanSave = false;
 
                 PlayerDataConnector.UnlockJob(new JobRef(job.ID));
                 //Debug.Log(job.Name + " added to GameData");

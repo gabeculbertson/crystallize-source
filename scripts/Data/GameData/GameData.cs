@@ -22,8 +22,11 @@ public class GameData {
 		}
 	}
 
+    public static bool CanSave { get; set; }
+
     static GameData() {
-        GameDataInitializer.Initialize();
+        CanSave = true;
+        GameDataInitializer.Initialize();   
     }
 
 	public static void LoadInstance(){
@@ -49,6 +52,13 @@ public class GameData {
 	}
 
 	public static void SaveInstance(){
+        if (!CanSave) {
+            Debug.LogError("GameData contains temporary data. Unable to save.");
+            return;
+        }
+
+        PhraseSetCollectionGameData.SaveAll();
+
 		if (_instance != null) {
 			if(Application.isEditor){
 				Serializer.SaveToXml<GameData>(GetEditorDataPath() + ".tmp", _instance);
@@ -90,7 +100,6 @@ public class GameData {
 	public WorldGameData WorldData { get; set; }
 	public DialogueGameData DialogueData { get; set; }
     public TradeGameData TradeData { get; set; }
-    public PhraseSetCollectionGameData PhraseSets { get; set; }
 
 	public GameData(){
 		QuestData = new QuestGameData ();
@@ -102,7 +111,6 @@ public class GameData {
 		WorldData = new WorldGameData ();
 		DialogueData = new DialogueGameData ();
         TradeData = new TradeGameData();
-        PhraseSets = new PhraseSetCollectionGameData();
 	}
 
 }
