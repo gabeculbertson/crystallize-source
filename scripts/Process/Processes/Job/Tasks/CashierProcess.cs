@@ -72,7 +72,6 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 
 	void HandleGreetingConversationExit(object sender, object obj){
 		var ui = UILibrary.PhraseSequenceMenu.Get (greetings);
-		Debug.Log("Creating new UI");
 		ui.Complete += ui_GreetComplete;
 	}
 
@@ -107,6 +106,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	void EndConversation(object a , object b){
 		var dialogue = taskData.AllDialogues[1];
 		var actor = new SceneObjectRef(dialogue.Actors[0]).GetSceneObject();
+		Debug.Log("finishing conversation");
 		ProcessLibrary.EndConversation.Get(new ConversationArgs(actor, dialogue), HandlePriceConversationExit, this);
 	}
 	void HandlePriceConversationExit(object sender, object obj){
@@ -200,15 +200,37 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 	ContextData GetNewPriceContext() {
 		var c = new ContextData();
 		//TODO How to make this more flexible/dynamic?
-		Func<string, int, string> priceString = (x, y) => String.Format("{0} (Price: {1} yen)", x, y);
-		for (int i = 0; i < taskData.NumItem; i++) {
-			c.UpdateElement(taskData.contextPrefix + i.ToString() , new PhraseSequence(priceString(nowItem[i].Text.GetText(), nowItem[i].Value)));
+
+		PhraseSequence contextPhrase = new PhraseSequence();
+		if(nowItem.Length > 0){
+			var firstItem = nowItem[0];
+			BuildPriceContextString(firstItem, contextPhrase);
+			if(nowItem.Length > 1){
+				for(int i = 1; i < nowItem.Length - 1; i++){
+					contextPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.FixedWord, ","));
+					BuildPriceContextString(nowItem[i], contextPhrase);
+				}
+				contextPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.FixedWord, ","));
+				contextPhrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "and"));
+				BuildPriceContextString(nowItem[nowItem.Length - 1], contextPhrase);
+			}
+
 		}
-//		c.UpdateElement("price1", new PhraseSequence(priceString(nowItem[0].Text, nowItem[0].Value)));
+		c.UpdateElement("item", contextPhrase);
 //		c.UpdateElement("price2", new PhraseSequence(priceString(nowItem[1].Text, nowItem[1].Value)));
 //		c.UpdateElement("price3", new PhraseSequence(priceString(nowItem[2].Text, nowItem[2].Value)));
 		return c;
 		//TODO
+	}
+
+	void BuildPriceContextString(ValuedItem item, PhraseSequence phrase){
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, item.Text.GetText()));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "("));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "price"));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, ":"));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, item.Value.ToString()));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, "yen"));
+		phrase.Add(new PhraseSequenceElement(PhraseSequenceElementType.Text, ")"));
 	}
 
 	ContextData GetNewGreetingContext() {

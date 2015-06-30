@@ -11465,6 +11465,24 @@
           <PhraseSequence>
             <PhraseElements>
               <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>The</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>cat</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
+                <WordID>101</WordID>
+                <FormID>0</FormID>
+                <Text>is</Text>
+                <Tags />
+              </PhraseSequenceElement>
+              <PhraseSequenceElement>
                 <WordID>102</WordID>
                 <FormID>0</FormID>
                 <Text>need</Text>
