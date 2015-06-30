@@ -3,7 +3,38 @@
   <Name>CashierDialogue02</Name>
   <Phrases>
     <PhraseSequence>
-      <PhraseElements />
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>I</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>want</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>to</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>buy</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>102</WordID>
+          <FormID>0</FormID>
+          <Text>item</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
     </PhraseSequence>
   </Phrases>
 </PhraseSetGameData>
