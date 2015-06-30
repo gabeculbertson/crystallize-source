@@ -3,7 +3,14 @@
   <Name>CashierDialogue01</Name>
   <Phrases>
     <PhraseSequence>
-      <PhraseElements />
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>102</WordID>
+          <FormID>0</FormID>
+          <Text>greeting</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
     </PhraseSequence>
   </Phrases>
 </PhraseSetGameData>

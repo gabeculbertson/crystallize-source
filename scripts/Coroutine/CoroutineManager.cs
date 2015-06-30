@@ -16,4 +16,16 @@ public class CoroutineManager : MonoBehaviour {
         }
     }
 
+	public void WaitAndDo(Action action, object obj = null){
+		StartCoroutine(WaitAndDoCoroutine(action, obj));
+	}
+
+	IEnumerator WaitAndDoCoroutine(Action action, object obj){
+		yield return obj;
+
+		if(action != null){
+			action();
+		}
+	}
+
 }

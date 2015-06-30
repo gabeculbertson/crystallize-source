@@ -24,9 +24,9 @@ namespace CrystallizeData {
         }
 
         List<TextMenuItem> GetItems() {
-            var item1 = ScriptableObject.CreateInstance<TextMenuItem>();
+            var item1 = new TextMenuItem();
             item1.text = "table";
-            var item2 = ScriptableObject.CreateInstance<TextMenuItem>();
+			var item2 = new TextMenuItem();
             item2.text = "beef";
             return new List<TextMenuItem>(new TextMenuItem[]{item1, item2});
         }

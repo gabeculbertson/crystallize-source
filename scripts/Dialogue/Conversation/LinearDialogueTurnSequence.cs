@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 
@@ -15,7 +15,7 @@ public class LinearDialogueTurnSequence : IProcess<DialogueState, DialogueState>
     public void Initialize(DialogueState data) {
         this.state = data;
         var target = state.GetTarget();
-        target.GetComponent<DialogueActor>().SetLine(((LineDialogueElement)data.GetElement()).Line);
+        target.GetComponent<DialogueActor>().SetLine(((LineDialogueElement)data.GetElement()).Line, data.Context);
         CrystallizeEventManager.Input.OnEnvironmentClick += OnEnvironmentClick;
     }
 

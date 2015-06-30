@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class JobPlayerData : ISerializableDictionaryItem<int> {
 
     public int JobID { get; set; }
+	public int Repetitions { get; set; }
     public bool Unlocked {get; set;}
     public float ExperiencePoints { get; set; }
 
