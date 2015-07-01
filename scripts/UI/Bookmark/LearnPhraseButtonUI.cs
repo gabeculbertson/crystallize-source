@@ -9,7 +9,7 @@ public class LearnPhraseButtonUI : MonoBehaviour, IPointerClickHandler, IInitial
 
     void Refresh()
     {
-        if (PlayerData.Instance.PhraseStorage.ContainsPhrase(phrase)) {
+        if (PlayerDataConnector.ContainsLearnedItem(phrase)) {
             GetComponent<Image>().color = Color.gray;
         } else {
             GetComponent<Image>().color = Color.yellow;
@@ -20,10 +20,16 @@ public class LearnPhraseButtonUI : MonoBehaviour, IPointerClickHandler, IInitial
         phrase = param1;
         Refresh();
         CrystallizeEventManager.PlayerState.OnPhraseCollected += HandleSucceedCollectPhrase;
+        CrystallizeEventManager.PlayerState.OnWordCollected += PlayerState_OnWordCollected;
+    }
+
+    void PlayerState_OnWordCollected(object sender, PhraseEventArgs e) {
+        Refresh();
     }
 
     void OnDestroy() {
         CrystallizeEventManager.PlayerState.OnPhraseCollected -= HandleSucceedCollectPhrase;
+        CrystallizeEventManager.PlayerState.OnWordCollected -= PlayerState_OnWordCollected;
     }
 
     void HandleSucceedCollectPhrase(object sender, PhraseEventArgs e) {

@@ -105,7 +105,7 @@ public class MultipleChoiceReviewUI : BaseReviewUI, ITemporaryUI<object, int> {
     }
 
     void Continue_OnClicked(object sender, EventArgs e) {
-        Debug.Log("Continue");
+        //Debug.Log("Continue");
         Refresh();
     }
 

@@ -32,11 +32,11 @@ public class UIProcessFactory<T, I, O> : ProcessFactory<I, O> where T : IUIProce
 
 }
 
-public class DyanmicProcessFactory<I, O> : ProcessFactory<I, O> {
+public class DynamicProcessFactory<I, O> : ProcessFactory<I, O> {
 
     Type t;
 
-    public DyanmicProcessFactory(Type t){
+    public DynamicProcessFactory(Type t){
         this.t = t;
     }
 
@@ -55,7 +55,7 @@ public class ProcessFactoryRef<I, O> {
     }
 
     public void Set(Type t) {
-        Factory = new DyanmicProcessFactory<I, O>(t);
+        Factory = new DynamicProcessFactory<I, O>(t);
     }
 
 }

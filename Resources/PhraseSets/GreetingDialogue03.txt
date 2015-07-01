@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>GreetingDialogue03</Name>
+  <Phrases>
+    <PhraseSequence>
+      <Translation>good morning</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1002340</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>good morning</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1002340</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

@@ -12,7 +12,7 @@ public class JobWordUI : MonoBehaviour, IInitializable<PhraseJobRequirementGameD
         string t = "";
         Color c = Color.white;
 
-        Debug.Log(phraseReq.Phrase.PhraseElements.Count);
+        //Debug.Log(phraseReq.Phrase.PhraseElements.Count);
         if(phraseReq.Phrase.IsWord){
             c = GUIPallet.Instance.GetColorForWordCategory(phraseReq.Phrase.Word.GetPhraseCategory());
             if (fulfilled) {
