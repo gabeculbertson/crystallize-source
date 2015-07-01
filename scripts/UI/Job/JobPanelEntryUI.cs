@@ -21,6 +21,7 @@ public class JobPanelEntryUI : MonoBehaviour, IInitializable<JobRef> {
             buttonImage.color = Color.gray;
             eventsText.text = "???";
         } else {
+			Debug.Log (eventsText);
             eventsText.text = job.ViewedEventsString();
         }
 

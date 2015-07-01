@@ -65,7 +65,8 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 	
 	void HandleQuestionExit(object sender, object arg){
 		//provides a menu to select possible responses
-		var ui = UILibrary.PhraseSequenceMenu.Get (menuOptions);
+		var ui = UILibrary.PhraseSelector.Get(menuOptions);
+//		var ui = UILibrary.PhraseSequenceMenu.Get (menuOptions);
 		ui.Complete += TalkBackToAsker;
 	}
 
