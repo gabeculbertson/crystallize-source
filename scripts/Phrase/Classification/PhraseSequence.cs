@@ -181,7 +181,9 @@ public class PhraseSequence {
             if (w.ElementType == PhraseSequenceElementType.ContextSlot) {
                 var cd = context.GetElement(w.Text);
                 if (cd != null) {
-                    p.Add(cd.Data.PhraseElements[0]);
+					foreach(var e in cd.Data.PhraseElements){
+                    	p.Add(e);
+					}
                 } else {
                     p.Add(w);
                 }
@@ -189,6 +191,14 @@ public class PhraseSequence {
                 p.Add(w);
             }
         }
+//		var t = "";
+//		PhraseSequence contextPhrase;
+//		if(contextPhrase.IsWord){
+//			t = contextPhrase.Word.GetTranslation();
+//		} else {
+//			t = contextPhrase.Translation;
+//		}
+//		p.Translation = Translation.Replace("[context1]", context.GetElement("context1").Data.Translation);
         return p;
     }
 
