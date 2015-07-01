@@ -8,7 +8,7 @@ namespace CrystallizeData {
 
         protected override void PrepareGameData() {
             Initialize("Tourist");
-            AddTask<StandardDialogueTask, GreetingDialogue01>();
+            AddTask<StandardDialogueTask, GreetingDialogue01>("StreetSession", "Observer");
         }
 
     }

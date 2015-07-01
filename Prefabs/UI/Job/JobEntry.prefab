@@ -116,6 +116,7 @@ MonoBehaviour:
   jobText: {fileID: 11442168}
   buttonImage: {fileID: 11438262}
   wordParent: {fileID: 22448906}
+  textPrefab: {fileID: 167236, guid: 50fb77aae49116241829e074b7357039, type: 2}
   requiredWordPrefab: {fileID: 175200, guid: 484c6d878e2f5f84388ed1227fa0d39c, type: 2}
 --- !u!114 &11413558
 MonoBehaviour:
@@ -154,7 +155,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 4
+  m_Spacing: 12
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
 --- !u!114 &11429700
@@ -424,6 +425,10 @@ Prefab:
       propertyPath: buttonImage
       value: 
       objectReference: {fileID: 11438262}
+    - target: {fileID: 0}
+      propertyPath: m_Spacing
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121564}

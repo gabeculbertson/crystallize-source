@@ -5,9 +5,28 @@ using System.Collections.Generic;
 
 public class PlayerDataConnector {
 
+    public static void RevealJob(JobRef job) {
+        var i = PlayerData.Instance.Jobs.GetOrCreateItem(job.ID);
+        i.Shown = true;
+    }
+
     public static void UnlockJob(JobRef job) {
-        PlayerData.Instance.Jobs.AddItem(new JobPlayerData(job.ID, true));
+        var i = PlayerData.Instance.Jobs.GetOrCreateItem(job.ID);
+        i.Unlocked = true;
         //CrystallizeEventManager.PlayerState.raisej(null, null);
+    }
+
+    public static void UpdateShownJobs() {
+        foreach (var j in GameData.Instance.Jobs.Items) {
+            var r = new JobRef(j.ID);
+            if (j.GetJobRequirements().IsFulfilled()) {
+                r.PlayerDataInstance.Shown = true;
+            }
+
+            if (r.PlayerDataInstance.Shown && j.GetPhraseRequirements().IsFulfilled()) {
+                new JobRef(j.ID).PlayerDataInstance.Unlocked = true;
+            }
+        }
     }
 
     public static void UnlockHome(HomeRef home) {

@@ -47,4 +47,10 @@ public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
                select (PhraseJobRequirementGameData)r;
     }
 
+    public IEnumerable<PreviousJobRequirementGameData> GetJobRequirements() {
+        return from r in Requirements
+               where r is PreviousJobRequirementGameData
+               select (PreviousJobRequirementGameData)r;
+    }
+
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Linq;
 
 public class PromptDialogueTurnSequence : IProcess<DialogueState, DialogueState> {
 
-    public static readonly ProcessFactoryRef<object, PhraseSequence> RequestPhrasePanel = new ProcessFactoryRef<object,PhraseSequence>();
+    public static readonly ProcessFactoryRef<BranchDialogueElement, PhraseSequence> RequestPhrasePanel = new ProcessFactoryRef<BranchDialogueElement, PhraseSequence>();
 
     DialogueState state;
     DialogueState nextState;
@@ -12,17 +13,22 @@ public class PromptDialogueTurnSequence : IProcess<DialogueState, DialogueState>
     public event ProcessExitCallback OnExit;
     public event EventHandler<PhraseEventArgs> OnPhraseRequested;
 
-    public PromptDialogueTurnSequence() {
-        
-    }
-
     public void Initialize(DialogueState data) {
         this.state = data;
-        RequestPhrasePanel.Get(null, HandlePhrasePanelExit, this);
+        
+        var phrases = ((BranchDialogueElement)data.GetElement()).Branches.Select((b) => b.Prompt).ToList();
+        phrases.Add(new PhraseSequence("?"));
+        var ui = UILibrary.PhraseSelector.Get(phrases);
+        ui.Complete += ui_Complete;
+        //RequestPhrasePanel.Get(null, HandlePhrasePanelExit, this);
+    }
+
+    void ui_Complete(object sender, EventArgs<PhraseSequence> e) {
+        HandlePhrasePanelExit(sender, e.Data);
     }
 
     void HandlePhrasePanelExit(object sender, PhraseSequence args) {
-        Debug.Log("[" + args.GetText() + "]" + (args.GetText().Trim() == "?"));
+        //Debug.Log("[" + args.GetText() + "]" + (args.GetText().Trim() == "?"));
         if (args.GetText().Trim() == "?") {
             PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args);
             Exit(new DialogueState(DialogueSequence.ConfusedExit, state.Dialogue, state.Context));
@@ -34,8 +40,9 @@ public class PromptDialogueTurnSequence : IProcess<DialogueState, DialogueState>
             if (PhraseSequence.IsPhraseEquivalent(link.Prompt, args)) {
                 PlayerManager.Instance.PlayerGameObject.GetComponent<DialogueActor>().SetPhrase(args);
                 nextState = new DialogueState(link.NextID, state.Dialogue, state.Context);
-                var pos = UILibrary.PositiveFeedback.Get("");
-                pos.Complete += pos_Complete;
+                //var pos = UILibrary.PositiveFeedback.Get("");
+                //pos.Complete += pos_Complete;
+                Exit(nextState);
                 return;
             }
         }

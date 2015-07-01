@@ -23,7 +23,7 @@ public class UIProcess<I, O> : IProcess<I, O> {
         Exit(default(O));
     }
 
-    void HandleComplete(object sender, EventArgs e) {
+    protected virtual void HandleComplete(object sender, EventArgs e) {
         Exit(default(O));
     }
 

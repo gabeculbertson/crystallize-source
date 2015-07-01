@@ -10,4 +10,9 @@ public class BranchDialogueElementLink {
         Prompt = new PhraseSequence();
     }
 
+    public BranchDialogueElementLink(int nextID, PhraseSequence prompt) {
+        NextID = nextID;
+        Prompt = prompt;
+    }
+
 }

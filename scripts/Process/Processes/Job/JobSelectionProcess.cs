@@ -10,6 +10,7 @@ public class JobSelectionProcess : IProcess<object, JobRef> {
     ITemporaryUI<object, JobRef> panel;
 
     public void Initialize(object data) {
+        PlayerDataConnector.UpdateShownJobs();
         panel = UILibrary.Jobs.Get(null);
         panel.Complete += HandleItemSelected;
     }

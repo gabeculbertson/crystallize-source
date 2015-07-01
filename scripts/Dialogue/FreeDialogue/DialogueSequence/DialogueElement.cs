@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 [XmlInclude(typeof(LineDialogueElement))]
 [XmlInclude(typeof(BranchDialogueElement))]
 [XmlInclude(typeof(AnimationDialogueElement))]
+[XmlInclude(typeof(MessageDialogueElement))]
 public class DialogueElement : ISerializableDictionaryItem<int> {
 
     public int ID { get; set; }

@@ -29,6 +29,8 @@ public class ConversationSegmentProcess : IProcess<ConversationArgs, object> {
             ConversationSequence.RequestAnimationDialogueTurn.Get(dialogueState, HandleTurnExit, this);
         } else if (e is UIDialogueElement) {
             ConversationSequence.RequestUIDialogueTurn.Get(dialogueState, HandleTurnExit, this);
+        } else if (e is MessageDialogueElement) {
+            ConversationSequence.RequestMessageDialogueTurn.Get(dialogueState, HandleTurnExit, this);
         } else {
             int id = -1;
             if (e != null) {

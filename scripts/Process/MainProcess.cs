@@ -42,7 +42,8 @@ public class MainProcess {
         ConversationSequence.RequestLinearDialogueTurn.Set<LinearDialogueTurnSequence>();
         ConversationSequence.RequestPromptDialogueTurn.Set<PromptDialogueTurnSequence>();
         ConversationSequence.RequestAnimationDialogueTurn.Set<DialogueAnimationProcess>();
-        PromptDialogueTurnSequence.RequestPhrasePanel.Set<PhraseSelectionProcess>();
+        ConversationSequence.RequestMessageDialogueTurn.Set<DialogueMessageBoxProcess>();
+        //PromptDialogueTurnSequence.RequestPhrasePanel.Set<PhraseSelectionProcess>();
         PhraseSelectionProcess.RequestPhraseEditor.Set<EditPhraseProcess>();
 
         // Library of misc reusable processes
@@ -56,6 +57,7 @@ public class MainProcess {
     static void LinkUI() {
         UILibrary.MessageBox.Set(MessageBoxUI.GetInstance);
         UILibrary.SessionTransition.Set(SessionTransitionUI.GetInstance);
+        UILibrary.PhraseSelector.Set(PhraseSelectionPanelUI.GetInstance);
         UILibrary.PhraseEditor.Set(ReplaceWordPhraseEditorUI.GetInstance);
         UILibrary.WordSelector.Set(WordSelectionPanelUI.GetInstance);
         UILibrary.ConversationCamera.Set(ConversationCameraController.GetInstance);
@@ -77,9 +79,9 @@ public class MainProcess {
 
     static void SetDebugState() {
         Debug.Log("Set debug state.");
-        PlayerDataConnector.UnlockJob(new JobRef(0));
-        PlayerDataConnector.UnlockJob(new JobRef(2));
-        PlayerDataConnector.UnlockJob(new JobRef(1));
+        //PlayerDataConnector.UnlockJob(new JobRef(0));
+        //PlayerDataConnector.UnlockJob(new JobRef(2));
+        //PlayerDataConnector.UnlockJob(new JobRef(1));
     }
 
     public static void InstantiateNewSceneObjects() {

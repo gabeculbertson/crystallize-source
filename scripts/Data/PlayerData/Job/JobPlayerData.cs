@@ -7,6 +7,7 @@ public class JobPlayerData : ISerializableDictionaryItem<int> {
 
     public int JobID { get; set; }
 	public int Repetitions { get; set; }
+    public bool Shown { get; set; }
     public bool Unlocked {get; set;}
     public float ExperiencePoints { get; set; }
 
@@ -16,6 +17,7 @@ public class JobPlayerData : ISerializableDictionaryItem<int> {
 
     public JobPlayerData() {
         JobID = -1;
+        Shown = false;
         Unlocked = false;
         ExperiencePoints = 0;
     }

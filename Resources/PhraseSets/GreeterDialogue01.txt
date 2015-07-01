@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>GreeterDialogue01</Name>
+  <Phrases>
+    <PhraseSequence>
+      <Translation>hello</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1289400</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>goodbye</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1291050</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>welcome</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1000930</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>hello</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1289400</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>What?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1577100</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>?</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Your Japanese is great!</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028930</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1605820</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029080</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

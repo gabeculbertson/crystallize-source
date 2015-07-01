@@ -16,12 +16,15 @@ public class JobPanelUI : UIPanel, ITemporaryUI<object,JobRef> {
 
     public event EventHandler<EventArgs<JobRef>> Complete;
 
+    List<GameObject> instances = new List<GameObject>();
+
     public void Initialize(object param1)
     {
         transform.SetParent(MainCanvas.main.transform, false);
-        var jobs = (from j in GameData.Instance.Jobs.Items 
+        var jobs = (from j in GameData.Instance.Jobs.Items
+                    where new JobRef(j.ID).PlayerDataInstance.Shown
                     select new JobRef(j.ID));
-        UIUtil.GenerateChildren<JobRef>(jobs, new List<GameObject>(), jobEntryParent, CreateChild);
+        UIUtil.GenerateChildren<JobRef>(jobs, instances, jobEntryParent, CreateChild);
     }
 
     GameObject CreateChild(JobRef job) {
@@ -39,6 +42,16 @@ public class JobPanelUI : UIPanel, ITemporaryUI<object,JobRef> {
 
     void Exit(JobRef job) {
         Complete.Raise(this, new EventArgs<JobRef>(job));
+    }
+
+    public void UnlockAllJobs() {
+        var jobs = (from j in GameData.Instance.Jobs.Items
+                    select new JobRef(j.ID));
+        foreach (var j in jobs) {
+            PlayerDataConnector.RevealJob(j);
+            PlayerDataConnector.UnlockJob(j);
+        }
+        Initialize(null);
     }
 
 }

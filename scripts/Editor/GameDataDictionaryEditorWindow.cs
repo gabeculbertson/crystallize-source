@@ -15,6 +15,10 @@ public abstract class GameDataDictionaryEditorWindow<T> : EditorWindow where T :
 
         foreach (var j in Dictionary.Items) {
             DrawItem(j);
+            if (GUILayout.Button("-")) {
+                Dictionary.RemoveItem(j.ID);
+                break;
+            }
 
             EditorGUILayout.Space();
         }

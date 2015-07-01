@@ -14,11 +14,16 @@ public class JobRef : IDRef<JobGameData, JobPlayerData> {
 
     public override JobPlayerData PlayerDataInstance {
 		get {
-			return PlayerData.Instance.Jobs.GetItem (ID);
+			return PlayerData.Instance.Jobs.GetOrCreateItem (ID);
 		}
 		set{}
     }
 
     public JobRef(int id) : base(id) { }
+
+    public JobRef(string name) : base(-1) {
+        var j = GameData.Instance.Jobs.GetItem(name);
+        ID = j.ID;
+    }
 
 }

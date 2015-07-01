@@ -8,6 +8,7 @@ public class ConversationSequence : IProcess<ConversationArgs, object> {
     public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestPromptDialogueTurn = new ProcessFactoryRef<DialogueState,DialogueState>();
     public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestAnimationDialogueTurn = new ProcessFactoryRef<DialogueState, DialogueState>();
     public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestUIDialogueTurn = new ProcessFactoryRef<DialogueState, DialogueState>();
+    public static readonly ProcessFactoryRef<DialogueState, DialogueState> RequestMessageDialogueTurn = new ProcessFactoryRef<DialogueState, DialogueState>();
     public static readonly ProcessFactoryRef<GameObject, object> RequestConversationCamera = new ProcessFactoryRef<GameObject,object>();
 
     public event ProcessExitCallback OnExit;

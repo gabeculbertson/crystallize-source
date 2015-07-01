@@ -7,7 +7,7 @@ public class UILibrary {
 
     public static readonly UIFactoryRef<string, object> MessageBox = new UIFactoryRef<string, object>();
     public static readonly UIFactoryRef<string, object> SessionTransition = new UIFactoryRef<string,object>();
-    public static readonly UIFactoryRef<PhraseSequence, PhraseSequence> PhraseSelector = new UIFactoryRef<PhraseSequence, PhraseSequence>();
+    public static readonly UIFactoryRef<List<PhraseSequence>, PhraseSequence> PhraseSelector = new UIFactoryRef<List<PhraseSequence>, PhraseSequence>();
     public static readonly UIFactoryRef<PhraseSequence, PhraseSequence> PhraseEditor = new UIFactoryRef<PhraseSequence, PhraseSequence>();
     public static readonly UIFactoryRef<PhraseSequenceElement, PhraseSequenceElement> WordSelector = new UIFactoryRef<PhraseSequenceElement, PhraseSequenceElement>();
     public static readonly UIFactoryRef<GameObject, object> ConversationCamera = new UIFactoryRef<GameObject, object>();
@@ -25,6 +25,7 @@ public class UILibrary {
     public static readonly UIFactoryRef<object, int> Review = new UIFactoryRef<object, int>();
     public static readonly UIFactoryRef<object, JobRef> Jobs = new UIFactoryRef<object, JobRef>();
 	public static readonly UIFactoryRef<object, int> NumberEntry = new UIFactoryRef<object, int>();
+    //public static readonly UIFactoryRef<BranchDialogueElement, PhraseSequence> PhraseSelec
 	//UI for Cashier
 //	public static readonly UIFactoryRef<SelectionMenuInput, MenuItemEventArg> SelectionMenu = new UIFactoryRef<SelectionMenuInput, MenuItemEventArg>();
 

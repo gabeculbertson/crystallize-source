@@ -17,7 +17,7 @@ namespace CrystallizeData {
                 GameData.Instance.Jobs.AddItem(job);
                 GameData.CanSave = false;
 
-                PlayerDataConnector.UnlockJob(new JobRef(job.ID));
+                //PlayerDataConnector.UnlockJob(new JobRef(job.ID));
                 //Debug.Log(job.Name + " added to GameData");
             }
         }
@@ -30,10 +30,12 @@ namespace CrystallizeData {
             job.Tasks.Add(new T().GetBaseTask());
         }
 
-        protected void AddTask<T, D>() 
+        protected void AddTask<T, D>(string level, string target) 
             where T : StaticSerializedTaskGameData, new() 
             where D : StaticSerializedDialogueGameData, new() {
             var t = new T().GetBaseTask();
+            t.AreaName = level;
+            t.Actor = new SceneObjectGameData(target);
             t.Dialogue = new D().GetDialogue();
             job.Tasks.Add(t);
         }

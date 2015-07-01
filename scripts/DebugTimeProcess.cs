@@ -34,7 +34,7 @@ public class DebugTimeProcess : MonoBehaviour {
 		data.Unlocked = true;
 		data.JobID = 10;
 		return data;
-	}//
+	}
 
 
 	//actually create an instance of the subclass of JobTaskGameData
