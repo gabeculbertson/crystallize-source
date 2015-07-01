@@ -11200,6 +11200,25 @@
       </English>
       <PartOfSpeech>Adjective</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>2140610</ID>
+      <Kanji>おは</Kanji>
+      <Kana>おは</Kana>
+      <English>
+        <string>Good morning!</string>
+        <string>Hi!</string>
+      </English>
+      <PartOfSpeech>Interjection</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1002340</ID>
+      <Kanji>お早うございます</Kanji>
+      <Kana>おはようございます</Kana>
+      <English>
+        <string>good morning</string>
+      </English>
+      <PartOfSpeech>Interjection</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>

@@ -9,10 +9,9 @@ public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
     public int ID { get; set; }
     public string Name { get; set; }
     public int Difficulty { get; set; }
-    public JobUnlockPrerequisiteGameData Prerequisite { get; set; }
+    public JobTaskSelectorGameData TaskSelector { get; set; }
     public List<JobTaskGameData> Tasks { get; set; }
     public List<JobRequirementGameData> Requirements { get; set; }
-    //public List<PhraseSequence> LearnablePhrases { get; set; }
 
     public int Key {
         get { return ID; }
@@ -22,9 +21,9 @@ public class JobGameData : ISerializableDictionaryItem<int>, IHasID {
         ID = -1;
         Name = "";
         Difficulty = 1;
-        Prerequisite = new JobUnlockPrerequisiteGameData();
         Tasks = new List<JobTaskGameData>();
         Requirements = new List<JobRequirementGameData>();
+        TaskSelector = new JobTaskSelectorGameData();
         //LearnablePhrases = new List<PhraseSequence>();
     }
 

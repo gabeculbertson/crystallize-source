@@ -7,6 +7,7 @@ using System.Linq;
 public class JobPanelEntryUI : MonoBehaviour, IInitializable<JobRef> {
 
     public Text jobText;
+    public Text eventsText;
     public Image buttonImage;
     public RectTransform wordParent;
     public GameObject textPrefab;
@@ -18,6 +19,9 @@ public class JobPanelEntryUI : MonoBehaviour, IInitializable<JobRef> {
         jobText.text = job.GameDataInstance.Name;
         if (!job.PlayerDataInstance.Unlocked) {
             buttonImage.color = Color.gray;
+            eventsText.text = "???";
+        } else {
+            eventsText.text = job.ViewedEventsString();
         }
 
         var phrases = job.GameDataInstance.GetPhraseRequirements();

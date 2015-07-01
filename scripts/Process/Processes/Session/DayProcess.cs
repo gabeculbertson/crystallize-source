@@ -5,22 +5,25 @@ using System.Collections.Generic;
 
 public class DayProcess : TimeSessionProcess<DaySessionArgs, object>, IProcess<DaySessionArgs, object> {
 
+    public static readonly ProcessFactoryRef<TaskSelectorArgs, JobTaskRef> RequestJobTask = new ProcessFactoryRef<TaskSelectorArgs, JobTaskRef>();
     public static readonly ProcessFactoryRef<JobTaskRef, object> RequestJob = new ProcessFactoryRef<JobTaskRef, object>();
 
     JobTaskRef task;
     DaySessionArgs args;
 
-    protected override string SelectNextLevel(DaySessionArgs args) {
-        if (args.Job == null) {
-            return args.LevelName;
-        } else {
-            task = new JobTaskRef(args.Job, args.Job.GameDataInstance.Tasks[0]);
-            return task.Data.AreaName;
-        }
+    public override void Initialize(DaySessionArgs input) {
+        this.args = input;
+        Debug.Log(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
+        RequestJobTask.Set(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
+        RequestJobTask.Get(input.Job.GameDataInstance.TaskSelector.GetArgs(input.Job), SelectTaskCallback, this);
     }
 
-    protected override void BeforeInitialize(DaySessionArgs input) {
-        this.args = input;
+    protected override string SelectNextLevel(DaySessionArgs args) {
+        if (task != null) {
+            return task.Data.AreaName;
+        } else {
+            return args.LevelName;
+        }
     }
 
     protected override void AfterLoad() {
@@ -34,11 +37,17 @@ public class DayProcess : TimeSessionProcess<DaySessionArgs, object>, IProcess<D
         CollectUI.GetInstance();
     }
 
+    void SelectTaskCallback(object sender, JobTaskRef task) {
+        this.task = task;
+        Run(args);
+    }
+
     void Skip_Complete(object sender, EventArgs<object> e) {
         Exit();
     }
 
     void JobCompleteCallback(object sender, object args) {
+        PlayerDataConnector.AddRepetitionToJob(this.args.Job, task);
         Exit();
     }
 

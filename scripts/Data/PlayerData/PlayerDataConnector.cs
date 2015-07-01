@@ -29,6 +29,10 @@ public class PlayerDataConnector {
         }
     }
 
+    public static void AddRepetitionToJob(JobRef job, JobTaskRef task) {
+        job.PlayerDataInstance.AddTask(task);
+    }
+
     public static void UnlockHome(HomeRef home) {
         PlayerData.Instance.Homes.AddItem(new HomePlayerData(home.ID, true));
         CrystallizeEventManager.PlayerState.RaiseHomesChanged(null, null);
@@ -47,6 +51,14 @@ public class PlayerDataConnector {
         var nextLvlXp = ProficiencyPlayerData.GetReviewExperienceForLevel(thisLvl + 1);
         var lvlXp = PlayerData.Instance.Proficiency.GetReviewLevelExperience();
         return new ReviewExperienceArgs(amount, thisLvl, lvlUp, lvlXp, nextLvlXp);
+    }
+
+    public static bool ContainsLearnedItem(PhraseSequence phrase) {
+        if (phrase.IsWord) {
+            return PlayerData.Instance.WordStorage.ContainsFoundWord(phrase.Word);
+        } else {
+            return PlayerData.Instance.PhraseStorage.ContainsPhrase(phrase);
+        }
     }
 
     public static void CollectPhrase(PhraseSequence phrase) {

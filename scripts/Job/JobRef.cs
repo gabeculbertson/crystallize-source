@@ -26,4 +26,8 @@ public class JobRef : IDRef<JobGameData, JobPlayerData> {
         ID = j.ID;
     }
 
+    public string ViewedEventsString() {
+        return string.Format("{0}/{1}", PlayerDataInstance.ViewedTasks(), GameDataInstance.Tasks.Count);
+    }
+
 }

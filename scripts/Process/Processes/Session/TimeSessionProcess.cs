@@ -13,7 +13,7 @@ public abstract class TimeSessionProcess<I, O> : IProcess<I, O> where I : TimeSe
 
     string nextLevel = "";
 
-    public void Initialize(I input) {
+    public virtual void Initialize(I input) {
         BeforeInitialize(input);
         Run(input);
     }
