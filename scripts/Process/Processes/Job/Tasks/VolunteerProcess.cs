@@ -163,7 +163,7 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		return c;
 	}
 
-	int GetTaskCount ()
+	int GetTaskCount ()//
 	{
 		return 3;
 	}

@@ -15,7 +15,7 @@ namespace CrystallizeData{
 			job.AddRequirement(GetPhrase("thirsty"));
 			job.AddRequirement(GetPhrase("restaurant"));
 			job.AddRequirement(GetPhrase("coffee shop"));
-			job.TaskSelector = new VariationListSelectorGameData(2);//
+			job.TaskSelector = new VariationListSelectorGameData(2);
 		}
 
 		#endregion
