@@ -15,6 +15,7 @@ public class JobTaskPanelUI : UIPanel, ITemporaryUI<TaskSelectorArgs, JobTaskRef
 
     public event System.EventHandler<EventArgs<JobTaskRef>> Complete;
 
+    int variation = 0;
     TaskSelectorArgs args;
 
     public void Initialize(TaskSelectorArgs param1) {
@@ -33,11 +34,17 @@ public class JobTaskPanelUI : UIPanel, ITemporaryUI<TaskSelectorArgs, JobTaskRef
 
     void JobTaskPanelUI_OnClicked(object sender, System.EventArgs e) {
         var task = ((Component)sender).GetComponent<DataContainer>().Retrieve<JobTaskGameData>();
-        Exit(new JobTaskRef(args.Job, task));
+        Exit(new JobTaskRef(args.Job, task, variation));
     }
 
     void Exit(JobTaskRef args) {
         Complete.Raise(this, new EventArgs<JobTaskRef>(args));
+    }
+
+    public void SetVariation(string variation) {
+        int v = 0;
+        int.TryParse(variation, out v);
+        this.variation = v;
     }
 
 }

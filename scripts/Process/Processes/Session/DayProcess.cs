@@ -13,7 +13,7 @@ public class DayProcess : TimeSessionProcess<DaySessionArgs, object>, IProcess<D
 
     public override void Initialize(DaySessionArgs input) {
         this.args = input;
-        Debug.Log(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
+        //Debug.Log(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
         
         if (input.ForceSelection) {
             RequestJobTask.Set(typeof(UITaskSelectorProcess));
