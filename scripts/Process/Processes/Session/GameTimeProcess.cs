@@ -9,7 +9,6 @@ public class GameTimeProcess : MonoBehaviour {
 		GameObject go = new GameObject ("TestTime");
 		var gtp = go.AddComponent<GameTimeProcess>();
 		go.AddComponent<DontDestroyOnLoad> ();
-		gtp.isTesting = true;
 		return gtp;
 	}
 
@@ -17,12 +16,11 @@ public class GameTimeProcess : MonoBehaviour {
 		GameObject go = new GameObject ("TestTime");
 		var gtp = go.AddComponent<GameTimeProcess>();
 		go.AddComponent<DontDestroyOnLoad> ();
-		gtp.isTesting = true;
 		gtp.testJob = job;
 		return gtp;
 	}
 
-    public static readonly ProcessFactoryRef<MorningSessionArgs, JobRef> MorningFactory = new ProcessFactoryRef<MorningSessionArgs, JobRef>();
+    public static readonly ProcessFactoryRef<MorningSessionArgs, DaySessionArgs> MorningFactory = new ProcessFactoryRef<MorningSessionArgs, DaySessionArgs>();
     public static readonly ProcessFactoryRef<DaySessionArgs, object> DayFactory = new ProcessFactoryRef<DaySessionArgs, object>();
     public static readonly ProcessFactoryRef<EveningSessionArgs, HomeRef> EveningFactory = new ProcessFactoryRef<EveningSessionArgs, HomeRef>();
     public static readonly ProcessFactoryRef<NightSessionArgs, MorningSessionArgs> NightFactory = new ProcessFactoryRef<NightSessionArgs, MorningSessionArgs>();
@@ -34,37 +32,28 @@ public class GameTimeProcess : MonoBehaviour {
 
 	public JobRef testJob = null;
     int currentProcess;
-	public bool isTesting;
 
     void Start() {
 		Debug.Log ("Main process started");
 		MainProcess.Initialize ();
 		MainProcess.InstantiateNewSceneObjects ();
-		if (isTesting) {
-			MorningSessionCallback(null, testJob);
-		}
-		else {
-			MorningFactory.Get (new MorningSessionArgs (morningSession.SessionArea, new HomeRef (0)), MorningSessionCallback, null);
-		}
+
+        MorningFactory.Get (new MorningSessionArgs (morningSession.SessionArea, new HomeRef (0)), MorningSessionCallback, null);
 	}
 
     void OnLevelWasLoaded(int level) {
         MainProcess.InstantiateNewSceneObjects();
     }
 
-    public void MorningSessionCallback(object sender, JobRef args) {
+    public void MorningSessionCallback(object sender, DaySessionArgs args) {
         Debug.Log("Morning exited:" + args);
-        if (isTesting) {
-			DayFactory.Get(new DaySessionArgs(daySession.SessionArea, args), DaySessionCallback, null);
-			return;
-		}
 
 		if (args == null) {
             PlayerData.Instance.Time.Session = (int)TimeSessionType.Evening;
             EveningFactory.Get(new EveningSessionArgs(eveningSession.SessionArea), EveningSessionCallback, null); 
         } else {
             PlayerData.Instance.Time.Session = (int)TimeSessionType.Day;
-            DayFactory.Get(new DaySessionArgs(daySession.SessionArea, args), DaySessionCallback, null);
+            DayFactory.Get(args, DaySessionCallback, null);
         }
     }
 

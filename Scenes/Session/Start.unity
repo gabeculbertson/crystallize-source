@@ -304,7 +304,6 @@ MonoBehaviour:
   daySession: {fileID: 11400000, guid: 5d244c6b867c1a54693a4806e0d1e953, type: 2}
   eveningSession: {fileID: 11400000, guid: 04023c6fea795c84ca021b1e3056673f, type: 2}
   nightSession: {fileID: 11400000, guid: 495ce7cd635e8d544a10894dec65963b, type: 2}
-  isTesting: 0
 --- !u!4 &1040273917
 Transform:
   m_ObjectHideFlags: 0

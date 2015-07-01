@@ -24,7 +24,12 @@ public class UIProcess<I, O> : IProcess<I, O> {
     }
 
     protected virtual void HandleComplete(object sender, EventArgs e) {
-        Exit(default(O));
+        var castArgs = e as EventArgs<O>;
+        if(castArgs != null){
+            Exit(castArgs.Data);
+        } else {
+            Exit(default(O));
+        }
     }
 
     void Exit(O obj) {

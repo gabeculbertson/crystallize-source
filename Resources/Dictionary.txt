@@ -11219,6 +11219,47 @@
       </English>
       <PartOfSpeech>Interjection</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1625780</ID>
+      <Kanji>初めまして</Kanji>
+      <Kana>はじめまして</Kana>
+      <English>
+        <string>How do you do?</string>
+        <string>I am glad to meet you</string>
+      </English>
+      <PartOfSpeech>Expression</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1584460</ID>
+      <Kanji>万</Kanji>
+      <Kana>まん</Kana>
+      <English>
+        <string>10,000</string>
+        <string>ten thousand</string>
+      </English>
+      <PartOfSpeech>Numeric</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>2133750</ID>
+      <Kanji>よろしくお願いします</Kanji>
+      <Kana>よろしくおねがいします</Kana>
+      <English>
+        <string>please remember me</string>
+        <string>please help me</string>
+        <string>please treat me well</string>
+        <string>I look forward to working with you</string>
+      </English>
+      <PartOfSpeech>Expression</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1004510</ID>
+      <Kanji>こちらこそ</Kanji>
+      <Kana>こちらこそ</Kana>
+      <English>
+        <string>it is I who should say so</string>
+      </English>
+      <PartOfSpeech>Expression</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>

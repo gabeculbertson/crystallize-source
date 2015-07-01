@@ -6,7 +6,7 @@
       <Translation>good morning</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
-          <WordID>1002340</WordID>
+          <WordID>1625780</WordID>
           <FormID>0</FormID>
           <Tags />
         </PhraseSequenceElement>
@@ -16,7 +16,71 @@
       <Translation>good morning</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
-          <WordID>1002340</WordID>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>Sakura</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>.</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>How do you do?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1625780</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>I'm Chie.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>Chie</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>.</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Nice to meet you</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>2133750</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>The same to you.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1004510</WordID>
           <FormID>0</FormID>
           <Tags />
         </PhraseSequenceElement>
