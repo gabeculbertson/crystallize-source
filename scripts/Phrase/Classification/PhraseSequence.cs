@@ -177,13 +177,19 @@ public class PhraseSequence {
         }
 
         var p = new PhraseSequence();
+
+		p.Translation = Translation;
+
         foreach (var w in PhraseElements) {
             if (w.ElementType == PhraseSequenceElementType.ContextSlot) {
                 var cd = context.GetElement(w.Text);
                 if (cd != null) {
-					foreach(var e in cd.Data.PhraseElements){
+					PhraseSequence replace = cd.Data;
+					foreach(var e in replace.PhraseElements){
                     	p.Add(e);
 					}
+					//assumes that the context in sequence is the same as the context slot text used in the phrase sequence
+					p.Translation = Translation.Replace("[" + w.Text + "]", HelperFindTranslation(replace));
                 } else {
                     p.Add(w);
                 }
@@ -191,15 +197,19 @@ public class PhraseSequence {
                 p.Add(w);
             }
         }
-//		var t = "";
-//		PhraseSequence contextPhrase;
-//		if(contextPhrase.IsWord){
-//			t = contextPhrase.Word.GetTranslation();
-//		} else {
-//			t = contextPhrase.Translation;
-//		}
-//		p.Translation = Translation.Replace("[context1]", context.GetElement("context1").Data.Translation);
+
         return p;
     }
+
+	string HelperFindTranslation (PhraseSequence contextPhrase){
+		var t = "";
+				
+		if(contextPhrase.IsWord){
+			t = contextPhrase.Word.GetTranslation();
+		} else {
+			t = contextPhrase.Translation;
+		}
+		return t;
+	}
 
 }
