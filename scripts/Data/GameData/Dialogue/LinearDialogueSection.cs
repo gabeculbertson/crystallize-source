@@ -8,6 +8,9 @@ public class LinearDialogueSection : ISerializableDictionaryItem<int> {
         get {
             return ID;
         }
+        set {
+            ID = value;
+        }
     }
 
     public int ID { get; set; }

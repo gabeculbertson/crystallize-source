@@ -38,9 +38,9 @@ public class HomeSelectionPanelUI : UIPanel, ITemporaryUI<object, HomeRef> {
         var children = new List<HomeRef>();
         foreach (var h in GameData.Instance.Homes.Items) {
             var hr = new HomeRef(h.ID);
-            //if (hr.PlayerDataInstance.Unlocked) {
+            if (hr.PlayerDataInstance.Unlocked) {
                 children.Add(hr);
-            //}
+            }
         }
         UIUtil.GenerateChildren(children, instances, buttonParent, GetChild);
     }

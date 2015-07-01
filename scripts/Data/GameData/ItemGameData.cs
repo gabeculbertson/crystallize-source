@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemGameData : ISerializableDictionaryItem<int> {
+public class ItemGameData : ISerializableDictionaryItem<int>, ISetableKey<int> {
 
     public int Key {
         get {
@@ -19,6 +19,10 @@ public class ItemGameData : ISerializableDictionaryItem<int> {
 
     public ItemGameData(int id) : this(){
         ItemID = id;
+    }
+
+    public void SetKey(int key) {
+        ItemID = key;
     }
 
 }

@@ -7,6 +7,9 @@ public class LinearDialogueHolder : ISerializableDictionaryItem<int> {
         get {
             return GlobalID;
         }
+        set {
+            GlobalID = value;
+        }
     }
 
     public int GlobalID { get; set; }

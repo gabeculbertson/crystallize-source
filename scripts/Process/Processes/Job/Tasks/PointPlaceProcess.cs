@@ -158,7 +158,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 			currentQA = availableQuestions.ElementAt(UnityEngine.Random.Range (0, availableQuestions.Count));
 			availableQuestions.Remove(currentQA);
 		}
-	}//
+	}
 
 	ContextData getNewContext ()
 	{

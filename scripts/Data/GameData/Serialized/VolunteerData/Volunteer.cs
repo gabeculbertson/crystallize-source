@@ -9,6 +9,7 @@ namespace CrystallizeData{
 		{
 			Initialize("Volunteer");
 			AddTask<VolunteerHelpFindPlace>();
+			job.TaskSelector = new VariationListSelectorGameData(2);
 		}
 
 		#endregion

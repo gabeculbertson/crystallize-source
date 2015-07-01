@@ -17,7 +17,7 @@ using System.Xml.Serialization;
 [XmlInclude(typeof(GetPhraseFromNPCQuestInfoGameData))]
 [XmlInclude(typeof(GenericQuestInfoGameData))]
 [XmlInclude(typeof(PairApproachCursorQuestInfoGameData))]
-public class QuestInfoGameData : ISerializableDictionaryItem<int> {
+public class QuestInfoGameData : ISerializableDictionaryItem<int>, ISetableKey<int> {
 
     public int Key {
         get {
@@ -65,6 +65,10 @@ public class QuestInfoGameData : ISerializableDictionaryItem<int> {
         }
 
         return Objectives;
+    }
+
+    public void SetKey(int key) {
+        QuestID = key;
     }
 
     public virtual List<QuestObjectiveInfoGameData> GetDefaultObjectives() {
