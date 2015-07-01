@@ -71,7 +71,7 @@ public class MainProcess {
 		UILibrary.ImageTextMenu.Set (TextImageMenuUI.GetInstance);
 		UILibrary.NumberEntry.Set(NumberEntryUI.GetInstance);
 		UILibrary.PhraseSequenceMenu.Set (PhraseSequenceMenuUI.GetInstance);
-        UILibrary.Review.Set(ReviewUI.GetInstance);
+        UILibrary.Review.Set(MultipleChoiceReviewUI.GetInstance);
         UILibrary.Jobs.Set(JobPanelUI.GetInstance);
     }
 

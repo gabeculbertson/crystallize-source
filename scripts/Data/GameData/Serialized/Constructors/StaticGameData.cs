@@ -17,8 +17,9 @@ namespace CrystallizeData {
 
 		protected PhraseSequence GetPhrase(string phraseKey) {
 			var p = PhraseSetCollectionGameData.GetOrCreateItem(Name).GetOrCreatePhrase(index);
-			GameDataInitializer.AddPhrase(Name, phraseKey);
-			index++;
+			GameDataInitializer.AddPhrase(Name, phraseKey, index);
+            //Debug.Log(Name + "; " + index);
+            index++;
 			return p;
 		}
     }

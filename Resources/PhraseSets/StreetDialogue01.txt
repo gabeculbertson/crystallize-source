@@ -3,6 +3,7 @@
   <Name>StreetDialogue01</Name>
   <Phrases>
     <PhraseSequence>
+      <Translation>hello</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
           <WordID>1289400</WordID>
@@ -12,6 +13,7 @@
       </PhraseElements>
     </PhraseSequence>
     <PhraseSequence>
+      <Translation>hello</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
           <WordID>1289400</WordID>
@@ -21,6 +23,7 @@
       </PhraseElements>
     </PhraseSequence>
     <PhraseSequence>
+      <Translation>How many in your party?</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
           <WordID>2262180</WordID>

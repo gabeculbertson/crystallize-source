@@ -530,5 +530,20 @@ public static partial class Extensions
 
         return c.gameObject.CompareTag("Player") || c.gameObject.CompareTag("OtherPlayer");
     }
+
+    public static List<T> PickN<T>(this List<T> list, int count) {
+        count = Mathf.Min(count, list.Count);
+        
+        var indicies = new List<int>();
+        var choices = new List<T>();
+        while (indicies.Count < count) {
+            var rand = UnityEngine.Random.Range(0, list.Count);
+            if (!indicies.Contains(rand)) {
+                choices.Add(list[rand]);
+                indicies.Add(rand);
+            }
+        }
+        return choices;
+    }
 	
 }

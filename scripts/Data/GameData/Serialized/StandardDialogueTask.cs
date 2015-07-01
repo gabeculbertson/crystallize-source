@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
+using System.Collections; 
+using System.Collections.Generic;
 
 namespace CrystallizeData {
-    public class VisitRestaurant01 : StaticSerializedTaskGameData<JobTaskGameData> {
-
+    public class StandardDialogueTask : StaticSerializedTaskGameData<JobTaskGameData> {
         protected override void PrepareGameData() {
             Initialize("Visit the restaurant", "RestaurantTest", "Observer");
             SetProcess<StandardConversationProcess>();
-            SetDialogue<RestaurantDialogue01>();
         }
-
     }
 }

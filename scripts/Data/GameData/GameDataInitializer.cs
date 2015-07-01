@@ -11,10 +11,6 @@ public static class GameDataInitializer {
     public static Dictionary<string, List<string>> phraseSets = new Dictionary<string, List<string>>();
 
     static GameDataInitializer() {
-        phraseSets["tmp"] = new List<string>();
-        phraseSets["tmp"].Add("Hey there");
-        phraseSets["tmp"].Add("What's up?");
-
         var types = (from t in Assembly.GetAssembly(typeof(StaticSerializedGameData)).GetTypes()
                      where t.IsSubclassOf(typeof(StaticSerializedGameData)) && !t.IsAbstract
                      select t);
@@ -24,11 +20,15 @@ public static class GameDataInitializer {
         }
     }
 
-    public static void AddPhrase(string setKey, string phraseKey) {
+    public static void AddPhrase(string setKey, string phraseKey, int index) {
         if (!phraseSets.ContainsKey(setKey)) {
             phraseSets[setKey] = new List<string>();
         }
-        phraseSets[setKey].Add(phraseKey);
+
+        while (phraseSets[setKey].Count <= index) {
+            phraseSets[setKey].Add("");
+        }
+        phraseSets[setKey][index] = phraseKey;
     }
 
     public static void Initialize() {}

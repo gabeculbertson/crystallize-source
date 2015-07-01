@@ -4,7 +4,7 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class ReviewUI : UIPanel, ITemporaryUI<object, int> {
+public class ReviewUI : BaseReviewUI, ITemporaryUI<object, int> {
 
     const string ResourcePath = "UI/Review";
     public static ReviewUI GetInstance() {
@@ -15,36 +15,25 @@ public class ReviewUI : UIPanel, ITemporaryUI<object, int> {
     public Text answerText;
     public GameObject checkButton;
 
-    public event EventHandler<EventArgs<int>> Complete;
-
-    int count = 0;
-    ItemReviewPlayerData activeReview;
-
-    //public IEnumerator Start() {
-    //    Refresh();
-    //}
-
     public void Initialize(object param1) {
         transform.SetParent(MainCanvas.main.transform, false);
         Refresh();
     }
 
-    void Refresh() {
+    protected override void Refresh() {
         //Debug.Log(PlayerData.Instance.PhraseStorage.Phrases.Count);
         PlayerData.Instance.Reviews.GetNewReviews();
         var reviews = PlayerData.Instance.Reviews.GetCurrentReviews();
 
         if (reviews.Count > 0) {
-            activeReview = reviews[UnityEngine.Random.Range(0, reviews.Count)];
-            SetReview(activeReview);
+            ActiveReview = reviews[UnityEngine.Random.Range(0, reviews.Count)];
+            DisplayReview(ActiveReview);
         } else {
-            Complete.Raise(this, new EventArgs<int>(count));
-            Close();
-            //itemText.text = "No more reviews";
+            Exit();
         }
     }
 
-    void SetReview(ItemReviewPlayerData review) {
+    void DisplayReview(ItemReviewPlayerData review) {
         itemText.text = review.Phrase.GetText(JapaneseTools.JapaneseScriptType.Romaji);
         if(review.IsWord){
             var entry =  DictionaryData.Instance.GetEntryFromID(review.Word.WordID);
@@ -64,26 +53,17 @@ public class ReviewUI : UIPanel, ITemporaryUI<object, int> {
         checkButton.SetActive(true);
     }
 
-    public void Skip() {
-        Complete.Raise(this, new EventArgs<int>(count));
-        Close();
-    }
-
     public void ShowAnswer() {
-        if (activeReview != null) {
+        if (ActiveReview != null) {
             checkButton.SetActive(false);
         } else {
             Refresh();
         }
     }
 
-    public void SetResult(int result) {
-        count++;
-        if (activeReview != null) {
-            activeReview.AddEntry(result);
-            activeReview = null;
-        }
+    protected override void OnSetResult() {
         Refresh();
     }
+    
     
 }

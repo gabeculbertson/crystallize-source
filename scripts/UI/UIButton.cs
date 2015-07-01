@@ -9,8 +9,6 @@ public class UIButton : MonoBehaviour, IPointerClickHandler {
     public event EventHandler OnClicked;
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (OnClicked != null) {
-            OnClicked(this, EventArgs.Empty);
-        }
+        OnClicked.Raise(this, EventArgs.Empty);
     }
 }

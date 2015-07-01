@@ -30,5 +30,13 @@ namespace CrystallizeData {
             job.Tasks.Add(new T().GetBaseTask());
         }
 
+        protected void AddTask<T, D>() 
+            where T : StaticSerializedTaskGameData, new() 
+            where D : StaticSerializedDialogueGameData, new() {
+            var t = new T().GetBaseTask();
+            t.Dialogue = new D().GetDialogue();
+            job.Tasks.Add(t);
+        }
+
     }
 }

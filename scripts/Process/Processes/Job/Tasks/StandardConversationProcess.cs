@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [JobProcessType]
-public class RestaurantProcess : IProcess<JobTaskRef, object> {
+public class StandardConversationProcess : IProcess<JobTaskRef, object> {
 
     public event ProcessExitCallback OnExit;
 

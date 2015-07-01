@@ -6,13 +6,59 @@ using System.Linq;
 
 public class PhraseSetEditorWindow : EditorWindow {
 
+    static HashSet<string> allKeys = new HashSet<string>();
+    static Dictionary<string, PhraseSequence> keySequences = new Dictionary<string, PhraseSequence>();
+
+    static void UpdateKeySequences() {
+        PhraseSetCollectionGameData.LoadAll();
+        var sets = PhraseSetCollectionGameData.GetPhraseSets();
+
+        foreach (var p in PhraseSetCollectionGameData.GetOrCreateItem("Default").Phrases) {
+            UpdateKeySequence(p.Translation, p);
+        }
+
+        foreach (var set in sets) {
+            if(!GameDataInitializer.phraseSets.ContainsKey(set.Name)){
+                continue;
+            }
+
+            var keys = GameDataInitializer.phraseSets[set.Name];
+            for (int i = 0; i < set.Phrases.Count; i++) {
+                if (i >= keys.Count) {
+                    break;
+                }
+                
+                if (!keySequences.ContainsKey(keys[i])) {
+                    UpdateKeySequence(keys[i], set.Phrases[i]);
+                }
+            }
+        }
+    }
+
+    static void UpdateKeySequence(string key, PhraseSequence phrase) {
+        if (!phrase.IsEmpty) {
+            keySequences[key] = phrase;
+        } 
+    }
+
+    static void GetAllKeys() {
+        PhraseSetCollectionGameData.LoadAll();
+        foreach (var k in GameDataInitializer.phraseSets.Keys) {
+            foreach (var s in GameDataInitializer.phraseSets[k]) {
+                if (!allKeys.Contains(s)) {
+                    allKeys.Add(s);
+                }
+            }
+        }
+    }
+
     [MenuItem("Crystallize/Game Data/Phrase sets")]
     public static void Open() {
         var window = GetWindow<PhraseSetEditorWindow>();
         window.Initialize();
     }
 
-    string[] setNames;
+    List<string> setNames;
     Vector2 scroll;
     string filterString = "";
     PhraseSetGameData target;
@@ -21,11 +67,13 @@ public class PhraseSetEditorWindow : EditorWindow {
 	bool initialized = false;
 
     void Initialize() {
-		if(!initialized){
-        setNames = GameDataInitializer.phraseSets.Keys.ToArray();
-        Debug.Log(setNames.Length);
-			initialized = true;
-		}
+        if (!initialized) {
+            setNames = GameDataInitializer.phraseSets.Keys.ToList();
+            setNames.Add("Default");
+            initialized = true;
+        }
+
+        UpdateKeySequences();
         //Debug.Log(setNames.Length);
         //setNames = GameData.Instance.PhraseSets.Items.Select((ps) => ps.Name).ToArray();
     }
@@ -48,13 +96,20 @@ public class PhraseSetEditorWindow : EditorWindow {
                 //Debug.Log(n);
                 if (GUILayout.Button(n)) {
                     target = PhraseSetCollectionGameData.GetOrCreateItem(n);
+                    if (n == "Default") {
+                        InitializeDefault();
+                    }
                     filterString = "";
                 }
             }
         } 
 
         if (target != null) {
-            DrawPhraseSet(target);
+            if (target.Name == "Default") {
+                DrawDefaultPhraseSet(target);
+            } else {
+                DrawPhraseSet(target);
+            }
         }
 
         EditorGUILayout.EndScrollView();
@@ -71,6 +126,24 @@ public class PhraseSetEditorWindow : EditorWindow {
         }
     }
 
+    void InitializeDefault() {
+        GetAllKeys();
+        
+        var pSet = PhraseSetCollectionGameData.GetOrCreateItem("Default");
+        foreach (var k in allKeys) {
+            if (!ContainsKey(pSet, k)) {
+                PhraseSequence p = null;
+                if (keySequences.ContainsKey(k)) {
+                    p = new PhraseSequence(keySequences[k]);
+                } else {
+                    p = new PhraseSequence();
+                }
+                p.Translation = k;
+                pSet.Phrases.Add(p);
+            }
+        }
+    }
+
     void DrawPhraseSet(PhraseSetGameData phraseSet) {
         EditorGUILayout.BeginVertical(GUI.skin.box);
 
@@ -82,17 +155,53 @@ public class PhraseSetEditorWindow : EditorWindow {
             EditorGUILayout.BeginHorizontal();
 
             EditorGUILayout.LabelField("[" + i + "]", GUILayout.Width(24f));
-            EditorGUILayout.LabelField(keys[i], GUILayout.Width(100f));
+            EditorGUILayout.LabelField(keys[i], GUILayout.Width(200f));
             EditorUtilities.DrawPhraseSequence(p);
+
+            if (p.IsEmpty && keySequences.ContainsKey(keys[i])) {
+                p.PhraseElements = new List<PhraseSequenceElement>(keySequences[keys[i]].PhraseElements);
+            }
+
+            if (p.Translation == null || p.Translation == "") {
+                p.Translation = keys[i];
+            }
 
             EditorGUILayout.EndHorizontal();
         }
-        
-        //EditorGUILayout.BeginHorizontal();
-        //EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.EndVertical();
     }
 
+    void DrawDefaultPhraseSet(PhraseSetGameData phraseSet) {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+
+        EditorGUILayout.LabelField(phraseSet.Name);
+
+        for (var i = 0; i < phraseSet.Phrases.Count; i++) {
+            var p = phraseSet.Phrases[i];
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.LabelField("[" + i + "]", GUILayout.Width(24f));
+            EditorGUILayout.LabelField(p.Translation, GUILayout.Width(200f));
+            EditorUtilities.DrawPhraseSequence(p);
+            if (GUILayout.Button("-", GUILayout.Width(16f))) {
+                phraseSet.Phrases.RemoveAt(i);
+                break;
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        EditorGUILayout.EndVertical();
+    }
+
+    bool ContainsKey(PhraseSetGameData phraseSet, string key) {
+        foreach (var p in phraseSet.Phrases) {
+            if (p.Translation == key) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

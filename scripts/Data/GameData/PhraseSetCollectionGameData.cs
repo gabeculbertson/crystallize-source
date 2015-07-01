@@ -32,8 +32,13 @@ public class PhraseSetCollectionGameData {
     }
 
     public static void LoadAll() {
-        foreach (var f in Directory.GetFiles(GetEditorDirectory())) {
-            Debug.Log(f);
+        //Debug.Log(GetEditorDirectory());
+        foreach (var f in Directory.GetFiles(GetEditorDirectory(), "*.txt")) {
+            var name = Path.GetFileNameWithoutExtension(f);
+            if (!instances.ContainsKey(name)) {
+                instances[name] = LoadItem(name);
+            }
+            //Debug.Log(name);
         }
     }
 

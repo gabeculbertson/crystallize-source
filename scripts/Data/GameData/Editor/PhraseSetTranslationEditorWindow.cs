@@ -8,7 +8,8 @@ public class PhraseSetTranslationEditorWindow : EditorWindow {
 
     [MenuItem("Crystallize/Game Data/Translate phrases")]
     public static void Open() {
-        GetWindow<PhraseSetTranslationEditorWindow>();
+        var w = GetWindow<PhraseSetTranslationEditorWindow>();
+        w.Initialize();
     }
 
     Vector2 scroll;

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Default</Name>
+  <Phrases>
+    <PhraseSequence>
+      <Translation>greeting</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>102</WordID>
+          <FormID>0</FormID>
+          <Text>greeting</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>I want this item</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>I</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>want</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>to</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>buy</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>102</WordID>
+          <FormID>0</FormID>
+          <Text>item</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Welcome to the restaurant. How many in your party?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1000930</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>,</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2262180</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>?</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>x people.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1301000</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Please, this way.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1189130</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>,</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1004500</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029000</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>hello</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1289400</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>hungry</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>2021520</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>thirsty</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>tired</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>the cat is</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>restaurant</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>coffee shop</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>hotel</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>theatre</Translation>
+      <PhraseElements />
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

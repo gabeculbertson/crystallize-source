@@ -3,6 +3,7 @@
   <Name>RestaurantDialogue01</Name>
   <Phrases>
     <PhraseSequence>
+      <Translation>Welcome to the restaurant. How many in your party?</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
           <WordID>1000930</WordID>
@@ -39,6 +40,7 @@
       </PhraseElements>
     </PhraseSequence>
     <PhraseSequence>
+      <Translation>x people.</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
           <WordID>1301000</WordID>
@@ -53,6 +55,7 @@
       </PhraseElements>
     </PhraseSequence>
     <PhraseSequence>
+      <Translation>Please, this way.</Translation>
       <PhraseElements>
         <PhraseSequenceElement>
           <WordID>1189130</WordID>

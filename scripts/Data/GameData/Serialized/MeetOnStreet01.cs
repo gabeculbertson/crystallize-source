@@ -6,8 +6,8 @@ namespace CrystallizeData {
 
         protected override void PrepareGameData() {
             Initialize("Take a walk", "RestaurantTest", "Observer");
-            SetProcess<RestaurantProcess>();
-            SetDialogue<StreetDialogue01>();
+            SetProcess<StandardConversationProcess>();
+            SetDialogue<GreetingDialogue01>();
         }
 
     }

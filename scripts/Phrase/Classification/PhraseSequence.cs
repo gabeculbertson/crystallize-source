@@ -12,7 +12,7 @@ public class PhraseSequence {
                 a2.Add(w);
             }
         }
-        
+
         PhraseSequence b2 = new PhraseSequence();
         foreach (var w in b.PhraseElements) {
             if (!w.IsPlainText) {
@@ -46,9 +46,9 @@ public class PhraseSequence {
         return true;
     }
 
-	public string Translation { get; set; }
-	public List<PhraseSequenceElement> PhraseElements { get; set; }
-    
+    public string Translation { get; set; }
+    public List<PhraseSequenceElement> PhraseElements { get; set; }
+
     public bool IsWord {
         get {
             return PhraseElements.Count == 1;
@@ -67,74 +67,76 @@ public class PhraseSequence {
         }
     }
 
-	public PhraseSequence (){
-		PhraseElements = new List<PhraseSequenceElement> ();
-	}
+    public PhraseSequence() {
+        PhraseElements = new List<PhraseSequenceElement>();
+    }
 
-    public PhraseSequence(string text) : this() {
+    public PhraseSequence(string text)
+        : this() {
         var pe = new PhraseSequenceElement(PhraseSequenceElementType.Text, text);
         Add(pe);
     }
 
-    public PhraseSequence(PhraseSequence original)
-    {
+    public PhraseSequence(PhraseSequence original) {
         Translation = original.Translation;
         PhraseElements = new List<PhraseSequenceElement>(original.PhraseElements);
     }
 
-    public PhraseSequence(PhraseSequenceElement word) : this() {
+    public PhraseSequence(PhraseSequenceElement word)
+        : this() {
         Add(word);
+        Translation = word.GetTranslation();
     }
 
-	public List<PhraseSequenceElement> GetElements(){
-		return PhraseElements;
-	}
+    public List<PhraseSequenceElement> GetElements() {
+        return PhraseElements;
+    }
 
-	public List<DictionaryDataEntry> GetWords(){
-		var l = new List<DictionaryDataEntry> ();
-		foreach (var ele in PhraseElements) {
-			l.Add (DictionaryData.Instance.GetEntryFromID(ele.WordID));
-		}
-		return l;
-	}
+    public List<DictionaryDataEntry> GetWords() {
+        var l = new List<DictionaryDataEntry>();
+        foreach (var ele in PhraseElements) {
+            l.Add(DictionaryData.Instance.GetEntryFromID(ele.WordID));
+        }
+        return l;
+    }
 
-	public void Add( PhraseSequenceElement element){
-		PhraseElements.Add (element);
-	}
+    public void Add(PhraseSequenceElement element) {
+        PhraseElements.Add(element);
+    }
 
-	public void UpdateAt(int index, PhraseSequenceElement element){
-		PhraseElements.RemoveAt (index);
-		PhraseElements.Insert (index, element);
-	}
+    public void UpdateAt(int index, PhraseSequenceElement element) {
+        PhraseElements.RemoveAt(index);
+        PhraseElements.Insert(index, element);
+    }
 
-	public void RemoveAt(int index){
-		PhraseElements.RemoveAt (index);
-	}
+    public void RemoveAt(int index) {
+        PhraseElements.RemoveAt(index);
+    }
 
-	public string GetText(JapaneseScriptType scriptType = JapaneseScriptType.Kanji){
-		var s = "";
-		foreach (var e in PhraseElements) {
-			s += e.GetText(scriptType) + " ";
-		}
-		return s;
-	}
+    public string GetText(JapaneseScriptType scriptType = JapaneseScriptType.Kanji) {
+        var s = "";
+        foreach (var e in PhraseElements) {
+            s += e.GetText(scriptType) + " ";
+        }
+        return s;
+    }
 
-	public List<string> GetSuppliedContextData(){
-		var suppliedContext = new List<string> ();
-		foreach (var p in PhraseElements) {
-			if(p.ElementType == PhraseSequenceElementType.ContextSlot){
-				suppliedContext.Add(p.Text);
-			}
-		}
-		return suppliedContext;
-	}
+    public List<string> GetSuppliedContextData() {
+        var suppliedContext = new List<string>();
+        foreach (var p in PhraseElements) {
+            if (p.ElementType == PhraseSequenceElementType.ContextSlot) {
+                suppliedContext.Add(p.Text);
+            }
+        }
+        return suppliedContext;
+    }
 
     public bool FulfillsTemplate(PhraseSequence template) {
         var cleanPhrase = new PhraseSequence();
         foreach (var e in this.PhraseElements) {
             if (e.GetPhraseCategory() != PhraseCategory.Punctuation) {
                 cleanPhrase.PhraseElements.Add(e);
-            } 
+            }
         }
 
         //Debug.Log("Cleaned: " + cleanPhrase.GetText());
@@ -149,7 +151,7 @@ public class PhraseSequence {
                 if (template.PhraseElements[i].WordID != cleanPhrase.PhraseElements[i].WordID) {
                     //Debug.Log("Word mismatch: " + i + "; " + template.PhraseElements[i].WordID + "; " + this.PhraseElements[i].WordID);
                     return false;
-                } 
+                }
             }
 
             if (template.PhraseElements[i].ElementType == PhraseSequenceElementType.ContextSlot) {
