@@ -2,21 +2,21 @@
 using System.Collections;
 
 namespace CrystallizeData{
-	public class FeedPets : StaticSerializedTaskGameData<JobTaskGameData> {
+	public class FeedPets : StaticSerializedTaskGameData<PetFeederTaskData> {
 		#region implemented abstract members of StaticGameData
 
 		protected override void PrepareGameData ()
 		{
-			task = new PetFeederTaskData();
-			var feederTask = (PetFeederTaskData) task;
 			var hungryPhrase = GetPhrase("hungry");
 			var thirstyPhrase = GetPhrase("thirsty");
 			var tiredPhrase = GetPhrase("tired");
+			var boredPhrase = GetPhrase("bored");
 
 			//set question and answer data
-			feederTask.AddQA(hungryPhrase, new PhraseSequence("fish"), new Sprite());
-			feederTask.AddQA(thirstyPhrase, new PhraseSequence("milk"), new Sprite());
-			feederTask.AddQA (tiredPhrase, new PhraseSequence("bed"), new Sprite ());
+			task.AddQA(hungryPhrase, new PhraseSequence("fish"), new Sprite());
+			task.AddQA(thirstyPhrase, new PhraseSequence("milk"), new Sprite());
+			task.AddQA (tiredPhrase, new PhraseSequence("bed"), new Sprite ());
+			task.AddQA (boredPhrase, new PhraseSequence("toy"), new Sprite ());
 
 			//other initialization
 			Initialize("PetFeederTask", "PetFeederTest", "PetOwner");

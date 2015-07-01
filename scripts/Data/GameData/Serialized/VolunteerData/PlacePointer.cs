@@ -8,6 +8,7 @@ namespace CrystallizeData{
 		{
 			Initialize ("PlacePointer");
 			AddTask<PointPlace>();
+			job.TaskSelector = new VariationListSelectorGameData(2);
 		}
 		#endregion
 	}

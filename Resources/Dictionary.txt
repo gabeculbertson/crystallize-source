@@ -11260,6 +11260,25 @@
       </English>
       <PartOfSpeech>Expression</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1277350</ID>
+      <Kanji>喉が乾く</Kanji>
+      <Kana>のどがかわく</Kana>
+      <English>
+        <string>to be thirsty</string>
+      </English>
+      <PartOfSpeech>Expression</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1483740</ID>
+      <Kanji>疲れる</Kanji>
+      <Kana>つかれる</Kana>
+      <English>
+        <string>to get tired</string>
+        <string>to tire</string>
+      </English>
+      <PartOfSpeech>IchidanVerb</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>

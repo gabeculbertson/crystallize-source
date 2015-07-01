@@ -22,6 +22,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 	IEnumerable<QATaskGameData.QALine> qa;
 	QATaskGameData.QALine currentQA;
 	List<TextImageItem> menuOptions;
+	LinkedList<QATaskGameData.QALine> availableQuestions;
 
 	public void ForceExit() {
 		Exit();
@@ -39,6 +40,13 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 		target = new SceneObjectRef(taskData.Actor).GetSceneObject();
 		remainingCount = GetTaskCount ();
 
+		availableQuestions = new LinkedList<QATaskGameData.QALine>();
+		var qas = taskData.GetQAs().ToArray();
+		for (int i = 0; i < qas.Length; i++){
+			if(i > task.Variation + 1)
+				break;
+			availableQuestions.AddLast(qas[i]);
+		}
 		qa = taskData.GetQAs ();
 		menuOptions = new List<TextImageItem> ();
 		foreach (var line in qa) {
@@ -144,8 +152,13 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 
 	void getNewQuery ()
 	{
-		currentQA = qa.ToArray()[UnityEngine.Random.Range (0, qa.Count ())];
-	}
+		if(availableQuestions.Count == 0)
+			currentQA = qa.ToArray()[UnityEngine.Random.Range (0, Math.Min(qa.Count (), task.Variation + 2))];
+		else{
+			currentQA = availableQuestions.ElementAt(UnityEngine.Random.Range (0, availableQuestions.Count));
+			availableQuestions.Remove(currentQA);
+		}
+	}//
 
 	ContextData getNewContext ()
 	{

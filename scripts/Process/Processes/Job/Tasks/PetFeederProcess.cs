@@ -22,6 +22,8 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 	QATaskGameData.QALine currentQA;
 	List<TextImageItem> menuOptions;
 
+	LinkedList<QATaskGameData.QALine> availableQuestions;
+
 	public void ForceExit() {
 		Exit();
 	}
@@ -37,6 +39,14 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 
 		target = new SceneObjectRef(taskData.Actor).GetSceneObject();
 		remainingCount = GetTaskCount ();
+
+		availableQuestions = new LinkedList<QATaskGameData.QALine>();
+		var qas = taskData.GetQAs().ToArray();
+		for (int i = 0; i < qas.Length; i++){
+			if(i > task.Variation + 1)
+				break;
+			availableQuestions.AddLast(qas[i]);
+		}
 
 		qa = taskData.GetQAs ();
 		menuOptions = new List<TextImageItem> ();
@@ -126,16 +136,23 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 
 	void getNewQuery ()
 	{
-		currentQA = qa.ToArray()[UnityEngine.Random.Range (0, qa.Count ())];
+		if(availableQuestions.Count == 0)
+			currentQA = qa.ToArray()[UnityEngine.Random.Range (0, Math.Min(qa.Count (), task.Variation + 2))];
+		else{
+			currentQA = availableQuestions.ElementAt(UnityEngine.Random.Range (0, availableQuestions.Count));
+			availableQuestions.Remove(currentQA);
+		}
 	}
 
 	ContextData getNewContext ()
 	{
 		ContextData c = new ContextData ();
+		Debug.Log(currentQA.Question.GetText());
+		Debug.Log(currentQA.Answer.GetText());
 		c.UpdateElement("need", new PhraseSequence(currentQA.Question));
 		return c;
 	}
-
+	//
 	int GetTaskCount ()
 	{
 		return 3;

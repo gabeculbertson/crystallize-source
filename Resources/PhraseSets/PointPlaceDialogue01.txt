@@ -3,7 +3,44 @@
   <Name>PointPlaceDialogue01</Name>
   <Phrases>
     <PhraseSequence>
-      <PhraseElements />
+      <Translation>I want to go to [place]</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1311110</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>want</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>to</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>go</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>to</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>102</WordID>
+          <FormID>0</FormID>
+          <Text>place</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
     </PhraseSequence>
   </Phrases>
 </PhraseSetGameData>

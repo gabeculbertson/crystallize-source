@@ -8,6 +8,7 @@ namespace CrystallizeData {
 		{
 			Initialize("PetFeeder");
 			AddTask<FeedPets>();
+			job.TaskSelector = new VariationListSelectorGameData(2);
 		}
 		#endregion
 		
