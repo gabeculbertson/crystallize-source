@@ -36,7 +36,9 @@ namespace CrystallizeData {
             var t = new T().GetBaseTask();
             t.AreaName = level;
             t.Actor = new SceneObjectGameData(target);
-            t.Dialogue = new D().GetDialogue();
+            var d =  new D();
+            t.Dialogue = d.GetDialogue();
+            t.Name = d.Name;
             job.Tasks.Add(t);
         }
 

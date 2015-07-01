@@ -3,11 +3,11 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class JobSelectionProcess : IProcess<object, JobRef> {
+public class JobSelectionProcess : IProcess<object, DaySessionArgs> {
 
     public event ProcessExitCallback OnExit;
 
-    ITemporaryUI<object, JobRef> panel;
+    ITemporaryUI<object, DaySessionArgs> panel;
 
     public void Initialize(object data) {
         PlayerDataConnector.UpdateShownJobs();
@@ -19,11 +19,11 @@ public class JobSelectionProcess : IProcess<object, JobRef> {
         Exit(null);
     }
 
-    void HandleItemSelected(object sender, EventArgs<JobRef> e) {
+    void HandleItemSelected(object sender, EventArgs<DaySessionArgs> e) {
         Exit(e.Data);
     }
 
-    void Exit(JobRef args) {
+    void Exit(DaySessionArgs args) {
         panel.Close();
         OnExit.Raise(this, args);
     }

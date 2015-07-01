@@ -13,6 +13,7 @@ public class StandardConversationProcess : IProcess<JobTaskRef, object> {
 
     public void Initialize(JobTaskRef param1) {
         task = param1;
+        Debug.Log(task.Data.Name);
         person = new SceneObjectRef(task.Data.Actor).GetSceneObject();
         ProcessLibrary.Conversation.Get(new ConversationArgs(person, task.Data.Dialogue), HandleConversationExit, this);
     }

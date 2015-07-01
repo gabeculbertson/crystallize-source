@@ -3,9 +3,9 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class MorningProcess : TimeSessionProcess<MorningSessionArgs, JobRef>, IProcess<MorningSessionArgs, JobRef> {
+public class MorningProcess : TimeSessionProcess<MorningSessionArgs, DaySessionArgs>, IProcess<MorningSessionArgs, DaySessionArgs> {
 
-    public static readonly ProcessFactoryRef<object, JobRef> RequestPlanSelection = new ProcessFactoryRef<object,JobRef>();
+    public static readonly ProcessFactoryRef<object, DaySessionArgs> RequestPlanSelection = new ProcessFactoryRef<object,DaySessionArgs>();
 
     MorningSessionArgs args;
 
@@ -38,7 +38,7 @@ public class MorningProcess : TimeSessionProcess<MorningSessionArgs, JobRef>, IP
         RequestPlanSelection.Get(null, PlanSelectionCallback, this);
     }
 
-    void PlanSelectionCallback(object sender, JobRef args) {
+    void PlanSelectionCallback(object sender, DaySessionArgs args) {
         Exit(args);
     }
 

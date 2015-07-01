@@ -2138,12 +2138,11 @@
         <ID>1</ID>
         <Name>Janitor</Name>
         <Difficulty>1</Difficulty>
-        <Prerequisite>
-          <Words>
-            <PhraseElements />
-          </Words>
-          <Jobs />
-        </Prerequisite>
+        <TaskSelector>
+          <SelectionProcess>
+            <ProcessTypeName>DefaultTaskSelectionProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+          </SelectionProcess>
+        </TaskSelector>
         <Tasks>
           <JobTaskGameData>
             <Name>Clean stuff up</Name>
@@ -2193,12 +2192,11 @@
         <ID>2</ID>
         <Name>Eat at restaurant</Name>
         <Difficulty>0</Difficulty>
-        <Prerequisite>
-          <Words>
-            <PhraseElements />
-          </Words>
-          <Jobs />
-        </Prerequisite>
+        <TaskSelector>
+          <SelectionProcess>
+            <ProcessTypeName>DefaultTaskSelectionProcess, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</ProcessTypeName>
+          </SelectionProcess>
+        </TaskSelector>
         <Tasks>
           <JobTaskGameData>
             <Name>Go eat</Name>

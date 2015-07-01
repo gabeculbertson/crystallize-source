@@ -84,14 +84,11 @@ public class SpeechPanelUI : MonoBehaviour {
 			return;
 		}
 
-		var minBubble = bubbles.First ();
-		foreach (var bubble in bubbles) {
-			bubble.Flipped = true;
-			if(bubble.RootPosition.x > minBubble.RootPosition.x){
-				minBubble = bubble;
-			}
-		}
-		minBubble.Flipped = true;
+        if (Overlaps(bubbles)) {
+            SetBubblesOutward(bubbles);
+        } else {
+            SetBubblesInward(bubbles);
+        }
 
 		//var sortedBubbles = new List<SpeechBubbleUI> ();
 		SpeechBubbleUI previous = null;
@@ -123,5 +120,44 @@ public class SpeechPanelUI : MonoBehaviour {
 			previous = lowest;
 		}
 	}
+
+    bool Overlaps(HashSet<SpeechBubbleUI> bubbleSet) {
+        if (bubbleSet.Count <= 1) {
+            return false;
+        }
+
+        var bubbles = new Queue<SpeechBubbleUI>(bubbleSet);
+        while (bubbles.Count > 1) {
+            var b1 = bubbles.Dequeue();
+            foreach (var b2 in bubbles) {
+                if (b1.DoubleRect.Overlaps(b2.DoubleRect)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    void SetBubblesOutward(IEnumerable<SpeechBubbleUI> bubbles) {
+        var minBubble = bubbles.First();
+        foreach (var bubble in bubbles) {
+            bubble.Flipped = true;
+            if (bubble.RootPosition.x < minBubble.RootPosition.x) {
+                minBubble = bubble;
+            }
+        }
+        minBubble.Flipped = false;
+    }
+
+    void SetBubblesInward(IEnumerable<SpeechBubbleUI> bubbles) {
+        var minBubble = bubbles.First();
+        foreach (var bubble in bubbles) {
+            bubble.Flipped = false;
+            if (bubble.RootPosition.x < minBubble.RootPosition.x) {
+                minBubble = bubble;
+            }
+        }
+        minBubble.Flipped = true;
+    }
 
 }

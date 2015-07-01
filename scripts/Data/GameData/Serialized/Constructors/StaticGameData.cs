@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CrystallizeData {
     public abstract class StaticGameData {
-        protected string Name {
+        public string Name {
             get {
                 return GetType().Name;
             }

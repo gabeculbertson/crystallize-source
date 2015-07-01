@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace CrystallizeData {
-    public class GreetingDialogue01 : StaticSerializedDialogueGameData {
-
+    class GreetingDialogue04 : StaticSerializedDialogueGameData {
         protected override void PrepareGameData() {
             AddActor("Person01");
             AddActor("Person02");
@@ -16,6 +16,5 @@ namespace CrystallizeData {
             AddLine("good morning", 1);
             AddMessage("After hearing the conversation, you continue to tour around for the rest of the day.");
         }
-
     }
 }

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class JobPanelUI : UIPanel, ITemporaryUI<object,JobRef> {
+public class JobPanelUI : UIPanel, ITemporaryUI<object, DaySessionArgs> {
 
     const string ResourcePath = "UI/JobPanel";
     public static JobPanelUI GetInstance() {
@@ -14,8 +14,9 @@ public class JobPanelUI : UIPanel, ITemporaryUI<object,JobRef> {
     public GameObject jobEntryPrefab;
     public RectTransform jobEntryParent;
 
-    public event EventHandler<EventArgs<JobRef>> Complete;
+    public event EventHandler<EventArgs<DaySessionArgs>> Complete;
 
+    bool chooseTask = false;
     List<GameObject> instances = new List<GameObject>();
 
     public void Initialize(object param1)
@@ -37,11 +38,14 @@ public class JobPanelUI : UIPanel, ITemporaryUI<object,JobRef> {
     }
 
     void JobPanelUI_OnClicked(object sender, EventArgs e) {
-        Exit(((Component)sender).gameObject.GetComponent<DataContainer>().Retrieve<JobRef>());
+        var job  = ((Component)sender).gameObject.GetComponent<DataContainer>().Retrieve<JobRef>();
+        var args = new DaySessionArgs("Start", job, chooseTask);
+
+        Exit(args);
     }
 
-    void Exit(JobRef job) {
-        Complete.Raise(this, new EventArgs<JobRef>(job));
+    void Exit(DaySessionArgs args) {
+        Complete.Raise(this, new EventArgs<DaySessionArgs>(args));
     }
 
     public void UnlockAllJobs() {
@@ -52,6 +56,10 @@ public class JobPanelUI : UIPanel, ITemporaryUI<object,JobRef> {
             PlayerDataConnector.UnlockJob(j);
         }
         Initialize(null);
+    }
+
+    public void SetChooseTask(bool chooseTask) {
+        this.chooseTask = chooseTask;
     }
 
 }

@@ -14,8 +14,14 @@ public class DayProcess : TimeSessionProcess<DaySessionArgs, object>, IProcess<D
     public override void Initialize(DaySessionArgs input) {
         this.args = input;
         Debug.Log(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
-        RequestJobTask.Set(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
-        RequestJobTask.Get(input.Job.GameDataInstance.TaskSelector.GetArgs(input.Job), SelectTaskCallback, this);
+        
+        if (input.ForceSelection) {
+            RequestJobTask.Set(typeof(UITaskSelectorProcess));
+            RequestJobTask.Get(new TaskSelectorArgs(input.Job, null), SelectTaskCallback, this);
+        } else {
+            RequestJobTask.Set(input.Job.GameDataInstance.TaskSelector.SelectionProcess.ProcessType);
+            RequestJobTask.Get(input.Job.GameDataInstance.TaskSelector.GetArgs(input.Job), SelectTaskCallback, this);
+        }
     }
 
     protected override string SelectNextLevel(DaySessionArgs args) {

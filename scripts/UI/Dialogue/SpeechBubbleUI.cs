@@ -71,6 +71,15 @@ public class SpeechBubbleUI : MonoBehaviour {
 		}
 	}
 
+    public Rect DoubleRect {
+        get {
+            var r = rectTransform.rect;
+            r.width *= 2f;
+            r.center = RootPosition;
+            return r;
+        }
+    }
+
     public GameObject BookmarkButtonInstance { get; set; }
 
     public void Initialize(Transform target, PhraseSequence phrase, PointerType pointerType, bool canEdit, bool checkGrammar) {

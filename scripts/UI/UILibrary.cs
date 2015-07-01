@@ -23,7 +23,8 @@ public class UILibrary {
 	public static readonly UIFactoryRef<List<TextImageItem>, TextImageItem> ImageTextMenu = new UIFactoryRef<List<TextImageItem>, TextImageItem>();
 	public static readonly UIFactoryRef<List<PhraseSequence>, PhraseSequence> PhraseSequenceMenu = new UIFactoryRef<List<PhraseSequence>, PhraseSequence>();
     public static readonly UIFactoryRef<object, int> Review = new UIFactoryRef<object, int>();
-    public static readonly UIFactoryRef<object, JobRef> Jobs = new UIFactoryRef<object, JobRef>();
+    public static readonly UIFactoryRef<object, DaySessionArgs> Jobs = new UIFactoryRef<object, DaySessionArgs>();
+    public static readonly UIFactoryRef<TaskSelectorArgs, JobTaskRef> Tasks = new UIFactoryRef<TaskSelectorArgs, JobTaskRef>();
 	public static readonly UIFactoryRef<object, int> NumberEntry = new UIFactoryRef<object, int>();
     //public static readonly UIFactoryRef<BranchDialogueElement, PhraseSequence> PhraseSelec
 	//UI for Cashier
