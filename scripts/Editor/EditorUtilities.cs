@@ -28,6 +28,7 @@ public class EditorUtilities {
         propertyDrawers[typeof(int)] = DrawIntValue;
         propertyDrawers[typeof(string)] = DrawStringValue;
         propertyDrawers[typeof(float)] = DrawFloatValue;
+        propertyDrawers[typeof(bool)] = DrawBoolValue;
         propertyDrawers[typeof(PhraseSequence)] = DrawPhraseSequenceValue;
         propertyDrawers[typeof(DialogueSequence)] = DrawDialogueSequenceValue;
         propertyDrawers[typeof(SceneObjectGameData)] = DrawSceneObjectValue;
@@ -262,6 +263,11 @@ public class EditorUtilities {
 
     static void DrawIntValue(object obj, PropertyInfo p) {
         p.SetValue(obj, EditorGUILayout.IntField(p.Name, (int)p.GetValue(obj, new object[0])), new object[0]);
+    }
+
+    static void DrawBoolValue(object obj, PropertyInfo p) {
+        p.SetValue(obj, 
+            EditorGUILayout.Toggle(p.Name, (bool)p.GetValue(obj, new object[0])), new object[0]);
     }
 
     static void DrawListValue(object obj, PropertyInfo p) {

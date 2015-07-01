@@ -7,7 +7,7 @@ public class ChallengeGameData : ISerializableDictionaryItem<string> {
 	public string Key {
 		get {
 			return ChallengeID;
-		}
+        }
 	}
 
 	public string ChallengeID { 

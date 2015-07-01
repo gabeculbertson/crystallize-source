@@ -6,6 +6,8 @@ namespace CrystallizeData {
 		protected override void PrepareGameData() {
 			Initialize("Cashier");
 			AddTask<CashierSellGoods>();
+
+            job.Hide = true;
 		}
 
 	}

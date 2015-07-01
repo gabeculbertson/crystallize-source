@@ -11260,6 +11260,42 @@
       </English>
       <PartOfSpeech>Expression</PartOfSpeech>
     </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1206050</ID>
+      <Kanji>覚える</Kanji>
+      <Kana>おぼえる</Kana>
+      <English>
+        <string>to memorize</string>
+        <string>to memorise</string>
+        <string>to commit to memory</string>
+        <string>to learn by heart</string>
+        <string>to bear in mind</string>
+        <string>to remember</string>
+      </English>
+      <PartOfSpeech>IchidanVerb</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1519210</ID>
+      <Kanji>忘れる</Kanji>
+      <Kana>わすれる</Kana>
+      <English>
+        <string>to forget</string>
+        <string>to leave carelessly</string>
+        <string>to be forgetful of</string>
+        <string>to forget about</string>
+        <string>to forget (an article)</string>
+      </English>
+      <PartOfSpeech>IchidanVerb</PartOfSpeech>
+    </DictionaryDataEntry>
+    <DictionaryDataEntry>
+      <ID>1519190</ID>
+      <Kanji>忘る</Kanji>
+      <Kana>わする</Kana>
+      <English>
+        <string>to lose something</string>
+      </English>
+      <PartOfSpeech>GodanVerb</PartOfSpeech>
+    </DictionaryDataEntry>
   </Entries>
   <AuxiliaryData>
     <AuxiliaryDictionaryDataEntry>
@@ -11318,6 +11354,12 @@
     <AuxiliaryDictionaryDataEntry>
       <WordID>2028920</WordID>
       <PreferredTranslation>topic marker</PreferredTranslation>
+      <ItemID>0</ItemID>
+      <TagIDs />
+    </AuxiliaryDictionaryDataEntry>
+    <AuxiliaryDictionaryDataEntry>
+      <WordID>1628530</WordID>
+      <PreferredTranslation>this</PreferredTranslation>
       <ItemID>0</ItemID>
       <TagIDs />
     </AuxiliaryDictionaryDataEntry>

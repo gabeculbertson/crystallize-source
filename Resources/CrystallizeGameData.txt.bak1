@@ -2187,6 +2187,7 @@
           </JobTaskGameData>
         </Tasks>
         <Requirements />
+        <Hide>true</Hide>
       </JobGameData>
       <JobGameData>
         <ID>2</ID>
@@ -2263,6 +2264,7 @@
           </JobTaskGameData>
         </Tasks>
         <Requirements />
+        <Hide>true</Hide>
       </JobGameData>
     </Items>
     <CurrentKey>1000028</CurrentKey>

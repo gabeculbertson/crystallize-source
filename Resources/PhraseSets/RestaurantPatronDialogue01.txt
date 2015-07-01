@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>RestaurantPatronDialogue01</Name>
+  <Phrases>
+    <PhraseSequence>
+      <Translation>What will you eat?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1577100</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029010</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1358280</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>?</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Sushi please.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1595650</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029010</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1001720</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Okay.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1010080</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

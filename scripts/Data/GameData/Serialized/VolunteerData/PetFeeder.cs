@@ -8,6 +8,8 @@ namespace CrystallizeData {
 		{
 			Initialize("PetFeeder");
 			AddTask<FeedPets>();
+
+            job.Hide = true;
 		}
 		#endregion
 		

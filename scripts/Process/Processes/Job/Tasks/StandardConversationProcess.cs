@@ -19,6 +19,13 @@ public class StandardConversationProcess : IProcess<JobTaskRef, object> {
     }
 
     void HandleConversationExit(object sender, object obj) {
+        var money = UnityEngine.Random.Range(1, 100);
+        PlayerDataConnector.AddMoney(money);
+        var ui = UILibrary.MessageBox.Get(string.Format("You found {0} yen on the ground.", money));
+        ui.Complete += ui_Complete;
+    }
+
+    void ui_Complete(object sender, EventArgs<object> e) {
         Exit();
     }
 

@@ -338,5 +338,297 @@
       <Translation>State you need</Translation>
       <PhraseElements />
     </PhraseSequence>
+    <PhraseSequence>
+      <Translation>What is this?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1628530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028920</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1577100</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>?</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>This is a desk.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1628530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028920</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1220210</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>.</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>to be</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>2089020</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>this</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1628530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>what</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1577100</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>thank you</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1586820</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>yes</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1010080</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>I see.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1400810</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>.</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Do you remember?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1206050</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>?</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Um...</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1000430</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>...</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Um... I forgot again.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1000430</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>...</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1519210</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Thanks!</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1586820</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Try your best, okay?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1217700</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029080</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Okay!</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1010080</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>What will you eat?</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1577100</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029010</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1358280</WordID>
+          <FormID>110</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2028970</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>?</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Sushi please.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1595650</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>2029010</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1001720</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>Okay.</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>1010080</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
   </Phrases>
 </PhraseSetGameData>

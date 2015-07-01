@@ -8,6 +8,8 @@ namespace CrystallizeData{
 		{
 			Initialize ("PlacePointer");
 			AddTask<PointPlace>();
+
+            job.Hide = true;
 		}
 		#endregion
 	}

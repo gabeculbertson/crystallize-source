@@ -19,7 +19,7 @@ public class PlayerDataConnector {
     public static void UpdateShownJobs() {
         foreach (var j in GameData.Instance.Jobs.Items) {
             var r = new JobRef(j.ID);
-            if (j.GetJobRequirements().IsFulfilled()) {
+            if (j.GetJobRequirements().IsFulfilled() && !j.Hide) {
                 r.PlayerDataInstance.Shown = true;
             }
 
@@ -34,7 +34,8 @@ public class PlayerDataConnector {
     }
 
     public static void UnlockHome(HomeRef home) {
-        PlayerData.Instance.Homes.AddItem(new HomePlayerData(home.ID, true));
+        PlayerData.Instance.Homes.GetOrCreateItem(home.ID).Unlocked = true;
+            //.AddItem(new HomePlayerData(home.ID, true));
         CrystallizeEventManager.PlayerState.RaiseHomesChanged(null, null);
     }
 
@@ -50,6 +51,7 @@ public class PlayerDataConnector {
         bool lvlUp = thisLvl != lastLvl;
         var nextLvlXp = ProficiencyPlayerData.GetReviewExperienceForLevel(thisLvl + 1);
         var lvlXp = PlayerData.Instance.Proficiency.GetReviewLevelExperience();
+        PlayerData.Instance.Proficiency.SetParametersForLevel();
         return new ReviewExperienceArgs(amount, thisLvl, lvlUp, lvlXp, nextLvlXp);
     }
 
