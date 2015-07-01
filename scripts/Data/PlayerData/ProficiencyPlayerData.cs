@@ -26,7 +26,7 @@ public class ProficiencyPlayerData {
     public int Words { get; set; }
 
     public ProficiencyPlayerData() {
-        Phrases = 1;
+        Phrases = 0;
         Words = 1;
     }
 
@@ -48,6 +48,29 @@ public class ProficiencyPlayerData {
             xp -= GetReviewExperienceForLevel(level);
         }
         return xp;
+    }
+
+    public void SetParametersForLevel() {
+        var l = GetReviewLevel();
+        if (l == 1) {
+            Phrases = 0;
+            Words = 1;
+        } else if (l == 2) {
+            Phrases = 1;
+            Words = 1;
+        } else if (l == 3) {
+            Phrases = 1;
+            Words = 2;
+        } else if (l == 4) {
+            Phrases = 1;
+            Words = 3;
+        } else if (l == 5) {
+            Phrases = 2;
+            Words = 3;
+        } else {
+            Phrases = 2 + (l - 5) / 2;
+            Words = 3 + (l - 4) / 2; ;
+        }
     }
 
 }

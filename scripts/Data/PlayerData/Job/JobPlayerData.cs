@@ -3,7 +3,7 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class JobPlayerData : ISerializableDictionaryItem<int> {
+public class JobPlayerData : ISerializableDictionaryItem<int>, ISetableKey<int> {
 
     public int JobID { get; set; }
     public bool Shown { get; set; }
@@ -50,6 +50,10 @@ public class JobPlayerData : ISerializableDictionaryItem<int> {
             }
         }
         return h.Count;
+    }
+
+    public void SetKey(int key) {
+        JobID = key;
     }
 
 }

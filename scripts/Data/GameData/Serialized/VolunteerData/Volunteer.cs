@@ -9,6 +9,13 @@ namespace CrystallizeData{
 		{
 			Initialize("Volunteer");
 			AddTask<VolunteerHelpFindPlace>();
+			job.Requirements.Add(new PreviousJobRequirementGameData("PetFeeder"));
+			job.Requirements.Add(new PreviousJobRequirementGameData("PlacePointer"));
+			job.AddRequirement(GetPhrase("hungry"));
+			job.AddRequirement(GetPhrase("thirsty"));
+			job.AddRequirement(GetPhrase("restaurant"));
+			job.AddRequirement(GetPhrase("coffee shop"));
+			job.TaskSelector = new VariationListSelectorGameData(2);//
 		}
 
 		#endregion

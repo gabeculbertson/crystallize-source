@@ -7,6 +7,7 @@ namespace CrystallizeData {
         protected override void PrepareGameData() {
             Initialize("Wanderer");
             AddTask<MeetOnStreet01>();
+            job.Hide = true;
         }
 
     }

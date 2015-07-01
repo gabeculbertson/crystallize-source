@@ -14,7 +14,10 @@ public class ContextData :ISerializableDictionaryItem<int> {
 	public int Key {
 		get {
 			return WorldID;
-		}
+        }
+        set {
+            WorldID = value;
+        }
 	}
 
 	public int WorldID { get; set; }

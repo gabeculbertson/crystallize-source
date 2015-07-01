@@ -10,6 +10,8 @@ namespace CrystallizeData {
             Initialize(Name);
             AddTask<StandardDialogueTask, GreeterDialogue01>("StreetSession", "Customer");
             job.AddRequirement(GetPhrase("hello"));
+
+            job.Hide = true;
         }
 
     }

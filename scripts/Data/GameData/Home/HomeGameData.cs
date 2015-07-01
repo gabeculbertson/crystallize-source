@@ -3,7 +3,7 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class HomeGameData : ISerializableDictionaryItem<int>, IHasID {
+public class HomeGameData : ISerializableDictionaryItem<int>, IHasID, ISetableKey<int> {
 
     public string Name { get; set; }
     public string AreaName { get; set; }
@@ -23,6 +23,10 @@ public class HomeGameData : ISerializableDictionaryItem<int>, IHasID {
         InitialCost = 100000;
         Quality = 1f;
         ID = -1;
+    }
+
+    public void SetKey(int key) {
+        ID = key;
     }
 
 }

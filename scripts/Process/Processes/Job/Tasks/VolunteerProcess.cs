@@ -23,6 +23,7 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 	QATaskGameData.QALine currentQA;
 	List<PhraseSequence> menuOptions;
 	PhraseSequence currentAnswer;
+	LinkedList<QATaskGameData.QALine> availableQuestions;
 
 	public void ForceExit() {
 		Exit();
@@ -41,6 +42,13 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		player = new SceneObjectRef(taskData.AnswerDialogue.GetActor(0)).GetSceneObject();
 		remainingCount = GetTaskCount ();
 
+		availableQuestions = new LinkedList<QATaskGameData.QALine>();
+		var qas = taskData.GetQAs().ToArray();
+		for (int i = 0; i < qas.Length; i++){
+			if(i > task.Variation + 1)
+				break;
+			availableQuestions.AddLast(qas[i]);
+		}
 		qa = taskData.GetQAs ();
 		menuOptions = new List<PhraseSequence> ();
 		foreach (var line in qa) {
@@ -133,7 +141,12 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 
 	void getNewQuery ()
 	{
-		currentQA = qa.ToArray()[UnityEngine.Random.Range (0, qa.Count ())];
+		if(availableQuestions.Count == 0)
+			currentQA = qa.ToArray()[UnityEngine.Random.Range (0, Math.Min(qa.Count (), task.Variation + 2))];
+		else{
+			currentQA = availableQuestions.ElementAt(UnityEngine.Random.Range (0, availableQuestions.Count));
+			availableQuestions.Remove(currentQA);
+		}
 	}
 
 	ContextData getNewContext ()
@@ -151,7 +164,7 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 	}
 
 	int GetTaskCount ()
-	{//
-		return 7;
+	{
+		return 3;
 	}
 }

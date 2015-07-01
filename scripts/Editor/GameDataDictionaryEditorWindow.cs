@@ -4,7 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class GameDataDictionaryEditorWindow<T> : EditorWindow where T : IHasID, ISerializableDictionaryItem<int>, new() {
+public abstract class GameDataDictionaryEditorWindow<T> : EditorWindow 
+    where T : IHasID, ISerializableDictionaryItem<int>, ISetableKey<int>, new() {
 
     protected abstract DictionaryCollectionGameData<T> Dictionary { get; }
 

@@ -3,7 +3,7 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 
-public class HomePlayerData : ISerializableDictionaryItem<int> {
+public class HomePlayerData : ISerializableDictionaryItem<int>, ISetableKey<int> {
 
     public int HomeID { get; set; }
     public bool Unlocked {get; set;}
@@ -23,6 +23,10 @@ public class HomePlayerData : ISerializableDictionaryItem<int> {
 
     public HomePlayerData(int jobID, bool unlocked) {
         HomeID = jobID;
+    }
+
+    public void SetKey(int key) {
+        HomeID = key;
     }
 
 }

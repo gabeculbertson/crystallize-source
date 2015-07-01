@@ -8,7 +8,10 @@ public class AreaGameData : ISerializableDictionaryItem<int> {
 	public int Key {
 		get {
 			return AreaID;
-		}
+        }
+        set {
+            AreaID = value;
+        }
 	}
 
 	public int AreaID { get; set; }

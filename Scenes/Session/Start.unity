@@ -199,8 +199,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 1600192896}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
@@ -542,3 +541,4 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22468764, guid: 46d640a60d7905e41ba188894a692931,
     type: 2}
   m_PrefabInternal: {fileID: 1600192895}
+
