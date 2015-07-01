@@ -10,7 +10,7 @@ public class JobProcessSelector : IProcess<JobTaskRef, object> {
     public event ProcessExitCallback OnExit;
 
     public void Initialize(JobTaskRef param1) {
-        Debug.Log(param1.Data.Name);
+        //Debug.Log(param1.Data.Name);
         TaskFactory.Set(param1.Data.ProcessType.ProcessType);
         TaskFactory.Get(param1, ChildCallback, this);
     }
