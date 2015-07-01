@@ -7,7 +7,7 @@ namespace CrystallizeData{
 		protected override void PrepareGameData ()
 		{
 			AddActor("Asker");
-			AddLine("State you need");
+			AddLine("I want to go to [place]");
 		}
 		#endregion
 		

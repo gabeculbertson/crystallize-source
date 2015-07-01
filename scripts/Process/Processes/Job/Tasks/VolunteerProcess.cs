@@ -21,8 +21,8 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 
 	IEnumerable<QATaskGameData.QALine> qa;
 	QATaskGameData.QALine currentQA;
-	List<TextMenuItem> menuOptions;
-	string currentAnswer;
+	List<PhraseSequence> menuOptions;
+	PhraseSequence currentAnswer;
 
 	public void ForceExit() {
 		Exit();
@@ -37,18 +37,14 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		task = param1;
 		taskData = (VolunteerTaskData)(param1.Data);
 
-		target = new SceneObjectRef(taskData.Actor).GetSceneObject();
-		player = new SceneObjectRef(taskData.PlayerIdentifier).GetSceneObject();
+		target = new SceneObjectRef(taskData.Dialogue.GetActor(0)).GetSceneObject();
+		player = new SceneObjectRef(taskData.AnswerDialogue.GetActor(0)).GetSceneObject();
 		remainingCount = GetTaskCount ();
 
 		qa = taskData.GetQAs ();
-		menuOptions = new List<TextMenuItem> ();
+		menuOptions = new List<PhraseSequence> ();
 		foreach (var line in qa) {
-			TextMenuItem item = new TextMenuItem();
-			//TODO disable text after getting image
-//			item.showText = false;
-			item.text = line.Answer;
-			menuOptions.Add(item);
+			menuOptions.Add(line.Answer);
 		}
 		ProcessLibrary.MessageBox.Get("Point people to places according to their need", StartTask, this);
 	}
@@ -60,24 +56,28 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 	}
 
 	void StartQuestion(){
-		ProcessLibrary.Conversation.Get(new ConversationArgs(target, taskData.Dialogue, getNewContext()), HandleQuestionExit, this);
+		ProcessLibrary.BeginConversation.Get(new ConversationArgs(target, taskData.Dialogue, getNewContext()),HandAskQuestion , this);
+	}
+
+	void HandAskQuestion(object s, object a){
+		ProcessLibrary.ConversationSegment.Get(new ConversationArgs(target, taskData.Dialogue, getNewContext()),HandleQuestionExit , this);
 	}
 	
 	void HandleQuestionExit(object sender, object arg){
 		//provides a menu to select possible responses
-		var ui = UILibrary.TextMenu.Get (menuOptions);
+		var ui = UILibrary.PhraseSequenceMenu.Get (menuOptions);
 		ui.Complete += TalkBackToAsker;
 	}
 
-	void TalkBackToAsker(object sender, EventArgs<TextMenuItem> e){
-		currentAnswer = e.Data.text;
-		ProcessLibrary.Conversation.Get(new ConversationArgs(player, taskData.AnswerDialogue, getAnswerContext(currentAnswer)), HandleAnswerFeedBack, this);
+	void TalkBackToAsker(object sender, EventArgs<PhraseSequence> e){
+		currentAnswer = e.Data;
+		ProcessLibrary.ConversationSegment.Get(new ConversationArgs(player, taskData.AnswerDialogue, getAnswerContext(currentAnswer)), HandleAnswerFeedBack, this);
 	}
 
 	void HandleAnswerFeedBack (object sender, object e)
 	{
 		totalTrials++;
-		if (currentAnswer == currentQA.Answer) {
+		if (currentAnswer.GetText() == currentQA.Answer.GetText()) {
 			var ui = UILibrary.PositiveFeedback.Get("");
 			correctCount++;
 			ui.Complete += HandleFeedBackComplete;
@@ -88,7 +88,11 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		}
 	}
 
-	void HandleFeedBackComplete (object sender, EventArgs<object> e)
+	void HandleFeedBackComplete (object sender, EventArgs<object> e){
+		ProcessLibrary.EndConversation.Get(new ConversationArgs(player, taskData.AnswerDialogue), HandleFeedBackExit, this);
+	}
+
+	void HandleFeedBackExit (object sender, object e)
 	{
 		remainingCount--;
 		if (remainingCount <= 0)
@@ -138,15 +142,15 @@ public class VolunteerProcess : IProcess<JobTaskRef, object> {
 		return c;
 	}
 
-	ContextData getAnswerContext(string s)
+	ContextData getAnswerContext(PhraseSequence s)
 	{
 		ContextData c = new ContextData ();
-		c.UpdateElement("answer", new PhraseSequence(s));
+		c.UpdateElement("place", new PhraseSequence(s));
 		return c;
 	}
 
 	int GetTaskCount ()
-	{
+	{//
 		return 7;
 	}
 }

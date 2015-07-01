@@ -34,7 +34,6 @@ public abstract class SelectionMenuUI<T> : UIPanel, ITemporaryUI<List<T>, T>
 			instance.transform.localPosition = new Vector3 (0f, 0f, 0f);
 			//assign attributes
 			InitializeButton(instance, item);
-
 			//hook event handler
 			instance.GetComponent<UIButton>().OnClicked += MenuUI_OnClicked;
 		}

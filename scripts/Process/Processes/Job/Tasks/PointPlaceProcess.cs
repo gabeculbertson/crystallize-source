@@ -45,13 +45,13 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 			TextImageItem item = new TextImageItem();
 			//TODO disable text after getting image
 //			item.showText = false;
-			item.text = line.Answer;
+			item.text = line.Answer.GetText();
 			item.Image = taskData.getPicture(line.Answer);
 			menuOptions.Add(item);
 		}
 		ProcessLibrary.MessageBox.Get("select the picture of the given place", StartTask, this);
 	}
-
+	
 	void StartTask(object obj, object arg){
 		//start by giving a random query
 		getNewQuery ();
@@ -59,7 +59,14 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 	}
 
 	void StartQuestion(){
-		ProcessLibrary.Conversation.Get(new ConversationArgs(target, taskData.Dialogue, getNewContext()), HandleQuestionExit, this);
+		StartQuestion(null, null);
+	}
+	void StartQuestion(object obj, object e){
+		ProcessLibrary.BeginConversation.Get(new ConversationArgs(target, taskData.Dialogue, getNewContext()),HandAskQuestion , this);
+	}
+	
+	void HandAskQuestion(object s, object a){
+		ProcessLibrary.ConversationSegment.Get(new ConversationArgs(target, taskData.Dialogue, getNewContext()),HandleQuestionExit , this);
 	}
 	
 	void HandleQuestionExit(object sender, object arg){
@@ -71,7 +78,7 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 	void HandleAnswerFeedBack (object sender, EventArgs<TextImageItem> e)
 	{
 		totalTrials++;
-		if (e.Data.text == currentQA.Answer) {
+		if (e.Data.text == currentQA.Answer.GetText()) {
 			var ui = UILibrary.PositiveFeedback.Get("");
 			correctCount++;
 			ui.Complete += HandleFeedBackComplete;
@@ -84,11 +91,15 @@ public class PointPlaceProcess : IProcess<JobTaskRef, object> {
 
 	void HandleRetry (object sender, EventArgs<object> e)
 	{
-		StartQuestion();
+		ProcessLibrary.EndConversation.Get(new ConversationArgs(target, taskData.Dialogue),StartQuestion , this);
 	}
 
 	void HandleFeedBackComplete (object sender, EventArgs<object> e)
 	{
+		ProcessLibrary.EndConversation.Get(new ConversationArgs(target, taskData.Dialogue),HandleConversationExited , this);
+	}
+
+	void HandleConversationExited (object obj, object e){
 		remainingCount--;
 		if (remainingCount <= 0)
 			PlayExitDialogue ();

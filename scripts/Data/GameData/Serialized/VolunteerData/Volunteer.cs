@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Volunteer : MonoBehaviour {
+namespace CrystallizeData{
+	public class Volunteer : StaticSerializedJobGameData {
+		#region implemented abstract members of StaticGameData
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		protected override void PrepareGameData ()
+		{
+			Initialize("Volunteer");
+			AddTask<VolunteerHelpFindPlace>();
+		}
+
+		#endregion
+
+
 	}
 }

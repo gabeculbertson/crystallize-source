@@ -42,7 +42,7 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 		menuOptions = new List<TextImageItem> ();
 		foreach (var line in qa) {
 			TextImageItem item = new TextImageItem();
-			item.text = line.Answer;
+			item.text = line.Answer.GetText();
 			item.Image = taskData.getPicture(line.Answer);
 			menuOptions.Add(item);
 		}
@@ -64,7 +64,7 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 	void HandleAnswerFeedBack (object sender, EventArgs<TextImageItem> e)
 	{
 		totalTrials++;
-		if (e.Data.text == currentQA.Answer) {
+		if (e.Data.text == currentQA.Answer.GetText()) {
 			var ui = UILibrary.PositiveFeedback.Get("");
 			correctCount++;
 			ui.Complete += HandleFeedBackComplete;
@@ -132,7 +132,7 @@ public class PetFeederProcess : IProcess<JobTaskRef, object> {
 	ContextData getNewContext ()
 	{
 		ContextData c = new ContextData ();
-		c.UpdateElement("query", new PhraseSequence(currentQA.Question));
+		c.UpdateElement("need", new PhraseSequence(currentQA.Question));
 		return c;
 	}
 

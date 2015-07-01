@@ -3,12 +3,12 @@ using System.Collections;
 
 
 namespace CrystallizeData{
-	public class VolunteerDialogue01 : StaticSerializedDialogueGameData {
+	public class VolunteerDialogue02 : StaticSerializedDialogueGameData {
 		#region implemented abstract members of StaticGameData
 		protected override void PrepareGameData ()
 		{
-			AddActor("Asker");
-			AddLine ("I feel [need]");
+			AddActor("Player");
+			AddLine ("You should go to [place]");
 		}
 		#endregion
 		

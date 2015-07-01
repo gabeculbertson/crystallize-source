@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>VolunteerDialogue02</Name>
+  <Phrases>
+    <PhraseSequence>
+      <Translation>Answer according to needs</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>You</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>can</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>go</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>to</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>102</WordID>
+          <FormID>0</FormID>
+          <Text>place</Text>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

@@ -14,11 +14,11 @@ public class QATaskGameData: JobTaskGameData {
 
 	public class QALine {
 		PhraseSequence question;
-		string answer;
+		PhraseSequence answer;
 		public PhraseSequence Question {get{return question;}}
-		public string Answer {get{return answer;}}
+		public PhraseSequence Answer {get{return answer;}}
 
-		public QALine(PhraseSequence q, string a){
+		public QALine(PhraseSequence q, PhraseSequence a){
 			question = q;
 			answer = a;
 		}
@@ -31,7 +31,7 @@ public class QATaskGameData: JobTaskGameData {
 		QAlist = new List<QALine> ();
 	}
 
-	public void AddQA(PhraseSequence question, string answer){
+	public void AddQA(PhraseSequence question, PhraseSequence answer){
 		QALine newline = new QALine (question, answer);
 		QAlist.Add (newline);
 	}

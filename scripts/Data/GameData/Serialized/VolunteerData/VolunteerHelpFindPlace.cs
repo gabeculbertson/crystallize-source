@@ -1,15 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VolunteerHelpFindPlace : MonoBehaviour {
+namespace CrystallizeData{
+	public class VolunteerHelpFindPlace : StaticSerializedTaskGameData<VolunteerTaskData> {
+		#region implemented abstract members of StaticGameData
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		protected override void PrepareGameData ()
+		{
+			//set dialogue
+			SetDialogue<VolunteerDialogue01>();
+			//set question and answer data
+			var restaurantPhrase = GetPhrase("restaurant");
+			var coffeeShopPhrase = GetPhrase("coffee shop");
+			var hotelPhrase = GetPhrase("hotel");
+			var theatrePhrase = GetPhrase("theatre");
+			var hungryPhrase = GetPhrase("hungry");
+			var thirstyPhrase = GetPhrase("thirsty");
+			var tiredPhrase = GetPhrase("tired");
+			var boredPhrase = GetPhrase("bored");
+
+			task.AddQA(hungryPhrase, restaurantPhrase);
+			task.AddQA(thirstyPhrase, coffeeShopPhrase);
+			task.AddQA (tiredPhrase, hotelPhrase);
+			task.AddQA (boredPhrase, theatrePhrase);
+			//initialize player dialogue
+			SetAnswerDialogue<VolunteerDialogue02>();
+			//other initialization
+			Initialize("Volunteer task", "VolunteerTest", "Asker");
+			SetProcess<VolunteerProcess>();
+		}
+
+		#endregion
+
+		protected void SetAnswerDialogue<T> () where T: CrystallizeData.StaticSerializedDialogueGameData, new(){
+			task.AnswerDialogue = new T().GetDialogue();
+		}
 	}
 }

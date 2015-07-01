@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PhraseSetGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>VolunteerHelpFindPlace</Name>
+  <Phrases>
+    <PhraseSequence>
+      <Translation>restaurant</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>restaurant</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>coffee shop</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>coffee shop</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>hotel</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>hotel</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>theatre</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>theatre</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>hungry</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>2021520</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>thirsty</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>thirsty</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>tired</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>tired</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+    <PhraseSequence>
+      <Translation>bored</Translation>
+      <PhraseElements>
+        <PhraseSequenceElement>
+          <WordID>101</WordID>
+          <FormID>0</FormID>
+          <Text>bored</Text>
+          <Tags />
+        </PhraseSequenceElement>
+        <PhraseSequenceElement>
+          <WordID>1464530</WordID>
+          <FormID>0</FormID>
+          <Tags />
+        </PhraseSequenceElement>
+      </PhraseElements>
+    </PhraseSequence>
+  </Phrases>
+</PhraseSetGameData>

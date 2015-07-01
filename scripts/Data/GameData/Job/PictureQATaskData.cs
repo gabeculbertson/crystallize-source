@@ -15,20 +15,20 @@ public class PictureQATaskData : QATaskGameData {
 		answerPictureDictionary = new Dictionary<string, Sprite> ();
 	}
 
-	new public void AddQA(PhraseSequence question, string answer){
+	new public void AddQA(PhraseSequence question, PhraseSequence answer){
 		base.AddQA (question, answer);
-		answerPictureDictionary.Add (answer, new Sprite ());
+		answerPictureDictionary.Add (answer.GetText(), new Sprite ());
 	}
 
-	public void AddQA(PhraseSequence question, string answer, Sprite picture){
+	public void AddQA(PhraseSequence question, PhraseSequence answer, Sprite picture){
 		QALine newline = new QALine (question, answer);
 		QAlist.Add (newline);
-		answerPictureDictionary.Add (answer, picture);
+		answerPictureDictionary.Add (answer.GetText(), picture);
 	}
 
-	public Sprite getPicture(string answer){
+	public Sprite getPicture(PhraseSequence key){
 		Sprite ret;
-		answerPictureDictionary.TryGetValue (answer, out ret);
+		answerPictureDictionary.TryGetValue (key.GetText(), out ret);
 		return ret;
 	}
 }

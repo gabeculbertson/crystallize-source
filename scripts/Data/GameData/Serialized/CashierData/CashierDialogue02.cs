@@ -8,7 +8,7 @@ namespace CrystallizeData {
 			AddActor("Customer");
 			
 
-			AddLine("I want this item");
+			AddLine("I want to buy [item]");
 		}
 	}
 }

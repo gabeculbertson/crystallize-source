@@ -7,7 +7,7 @@ namespace CrystallizeData{
 
 		protected override void PrepareGameData() {
 
-			task = new CashierTaskData (2);
+			task = new CashierTaskData (1);
 			var cashierTask = (CashierTaskData) task;
 			var dialogues = cashierTask.Dialogues;
 			//initialize inference dialogues, should be done in serialized files

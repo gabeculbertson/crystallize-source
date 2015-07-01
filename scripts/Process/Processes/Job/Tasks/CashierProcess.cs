@@ -153,6 +153,7 @@ public class CashierProcess : IProcess<JobTaskRef, object> {
 		var de = d.GetNewDialogueElement<LineDialogueElement>();
 		de.Line = new DialogueActorLine();
 		de.Line.Phrase = new PhraseSequence(s);
+		d.Actors.Add(taskData.Actor);
 		ProcessLibrary.Conversation.Get(new ConversationArgs(person, d), HandleExitConversationExit, this);
 	}
 	

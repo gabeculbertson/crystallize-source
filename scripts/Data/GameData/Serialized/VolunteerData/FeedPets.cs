@@ -14,9 +14,9 @@ namespace CrystallizeData{
 			var tiredPhrase = GetPhrase("tired");
 
 			//set question and answer data
-			feederTask.AddQA(hungryPhrase, "fish", new Sprite());
-			feederTask.AddQA(thirstyPhrase, "milk", new Sprite());
-			feederTask.AddQA (tiredPhrase, "bed", new Sprite ());
+			feederTask.AddQA(hungryPhrase, new PhraseSequence("fish"), new Sprite());
+			feederTask.AddQA(thirstyPhrase, new PhraseSequence("milk"), new Sprite());
+			feederTask.AddQA (tiredPhrase, new PhraseSequence("bed"), new Sprite ());
 
 			//other initialization
 			Initialize("PetFeederTask", "PetFeederTest", "PetOwner");

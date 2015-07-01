@@ -8,7 +8,7 @@ namespace CrystallizeData {
 		protected override void PrepareGameData ()
 		{
 			AddActor("PetOwner");
-			AddLine("the cat is");
+			AddLine("the cat is [need]");
 		}
 
 		#endregion

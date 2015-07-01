@@ -9,7 +9,7 @@ namespace CrystallizeData {
 			AddActor("Customer");
 			
 			AddAnimation(new GestureDialogueAnimation("Bow"));
-			AddLine("greeting");
+			AddLine("[greeting]");
 
 		}
 	}
